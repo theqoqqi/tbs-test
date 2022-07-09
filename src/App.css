@@ -1,0 +1,22 @@
+.App {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.App:before {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    content: '';
+    background: url('https://picsum.photos/1920/1080') center;
+    background-size: cover;
+
+    opacity: 0.4;
+    z-index: -1;
+}

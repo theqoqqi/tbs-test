@@ -1,0 +1,40 @@
+.arena-pawn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    width: 80px;
+    height: 80px;
+
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    box-sizing: border-box;
+
+    transform: translate(-50%, -50%);
+    user-select: none;
+}
+
+.arena-pawn:hover {
+    background-color: #ddd;
+}
+
+.arena-pawn .stats {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+
+    width: 40px;
+    bottom: 4px;
+
+    font-weight: 500;
+}
+
+.arena-pawn .stats .damage {
+    color: #a70000;
+}
+
+.arena-pawn .stats .health {
+    color: green;
+}

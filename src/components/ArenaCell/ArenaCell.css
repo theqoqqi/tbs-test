@@ -1,0 +1,87 @@
+.arena-cell {
+    --spacing-px: 4px;
+    --border-width-px: 2px;
+    --border-width: 2;
+    --ratio: 148 / 128;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    width: calc(128px + var(--spacing-px));
+    height: calc(148px + var(--spacing-px));
+
+    transform: translate(-50%, -50%);
+    user-select: none;
+}
+
+.arena-cell {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+
+
+.arena-cell .content {
+    position: absolute;
+}
+
+.arena-cell .content .distance {
+    font-size: 40px;
+}
+
+
+
+.arena-cell svg {
+    height: calc(100% - var(--spacing-px) - var(--border-width-px) * 1 * var(--ratio));
+    width: calc(100% - var(--spacing-px) - var(--border-width-px) * 1);
+
+    overflow: visible;
+}
+
+.arena-cell svg .hexagon {
+    fill: #92d050;
+    fill-opacity: 0.5;
+
+    stroke: black;
+    stroke-opacity: 1;
+    stroke-width: var(--border-width);
+    stroke-linejoin: round;
+
+    opacity: 0.2;
+}
+
+
+
+.arena-cell.selectable svg .hexagon {
+    fill: #404040;
+
+    opacity: 0.4;
+}
+
+
+
+.arena-cell:hover {
+    --border-width-px: 6px;
+    --border-width: 6;
+}
+
+.arena-cell:hover svg .hexagon {
+    fill-opacity: 0.5;
+
+    stroke: #466220;
+    stroke-opacity: 1;
+
+    opacity: 0.8;
+}
+
+
+
+.arena-cell .coords {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+
+    bottom: 12px;
+    color: #333;
+}

@@ -1,0 +1,9 @@
+.arena-path {
+    position: absolute;
+}
+
+.arena-path-node {
+    position: absolute;
+    height: 4px;
+    background: black;
+}
