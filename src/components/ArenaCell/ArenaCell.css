@@ -48,7 +48,7 @@
     stroke-width: var(--border-width);
     stroke-linejoin: round;
 
-    opacity: 0.2;
+    opacity: 0.4;
 }
 
 
@@ -56,7 +56,7 @@
 .arena-cell.selectable svg .hexagon {
     fill: #404040;
 
-    opacity: 0.4;
+    opacity: 0.5;
 }
 
 

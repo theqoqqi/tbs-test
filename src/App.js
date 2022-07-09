@@ -48,11 +48,15 @@ export default class App extends React.Component {
             // this.forceUpdate();
 
             this.selectedPawn = null;
+            this.path = null;
+            this.passables = [];
         }
     }
 
     handleCellMouseEnter(cell) {
-        if (this.selectedPawn) {
+        let cellModel = this.fight.arena.getCell(cell.position);
+
+        if (this.selectedPawn && this.passables.includes(cellModel)) {
             this.path = this.fight.arena.findPath(this.selectedPawn.position, cell.position);
         }
     }
@@ -74,30 +78,16 @@ export default class App extends React.Component {
     }
 
     getCellProps() {
-        let neighbors = [];
-        if (this.selectedPawn) {
-            neighbors = this.passables;
-        }
-
-
-
-        // if (this.path.length) {
-        //     for (const position of this.path) {
-        //         neighbors.push(this.fight.arena.getCell(position));
-        //     }
-        // }
-
-
-
-        let neighborIds = neighbors.map(cell => cell.id);
+        let selectableCells = this.selectedPawn ? this.passables : [];
+        let selectableCellIds = selectableCells.map(cell => cell.id);
 
         return this.fight.arena.getAllCells().map(arenaCell => {
             return {
                 id: arenaCell.id,
                 position: arenaCell.position,
-                selectable: neighborIds.includes(arenaCell.id),
+                selectable: selectableCellIds.includes(arenaCell.id),
                 distance: this.selectedPawn
-                    ? this.fight.arena.findPath(this.selectedPawn.position, arenaCell.position).length - 1 // HexagonUtils.axialDistance(this.selectedPawn.position, arenaCell.position)
+                    ? this.fight.arena.findPath(this.selectedPawn.position, arenaCell.position).length - 1
                     : null,
             };
         });
@@ -117,6 +107,7 @@ export default class App extends React.Component {
     render() {
         let cells = this.getCellProps();
         let pawns = this.getPawnProps();
+        let path = this.selectedPawn ? this.path : [];
 
         return (
             <div className='App'>
@@ -126,7 +117,7 @@ export default class App extends React.Component {
                         cellSize: 128,
                         spacing: 4,
                     }}
-                    path={this.path}
+                    path={path}
                     pawns={pawns}
                     onCellClick={this.handleCellClick}
                     onCellMouseEnter={this.handleCellMouseEnter}

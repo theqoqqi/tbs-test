@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 
 export default class ArenaPath extends React.Component {
 
+    static LINE_WIDTH = 12;
+
     static propTypes = {
         path: PropTypes.arrayOf(PropTypes.instanceOf(Vector)),
     };
@@ -17,27 +19,58 @@ export default class ArenaPath extends React.Component {
             return HexagonUtils.axialToPlainPosition(p, 128, 4);
         });
 
-        return eachCons(plainPositions, 2)
-            .map((positions, index) => this.createNode(positions[0], positions[1], index));
+        let index = 0;
+        return eachCons(plainPositions.reverse(), 2)
+            .flatMap(positions => {
+                let from = positions[0];
+                let to = positions[1];
+                let difference = Vector.subtract(from, to);
+                let center = from.add(difference.multiply(-0.5));
+
+                return [
+                    this.createNode(from, center, index++),
+                    this.createNode(center, to, index++),
+                    // this.testNode(from, index++),
+                    // this.testNode(center, index++),
+                    // this.testNode(to, index++),
+                ];
+            });
+    }
+
+    testNode(position, index) {
+        return <div key={index++} style={{
+            position: 'absolute',
+            left: position.x + 'px',
+            top: position.y + 'px',
+            width: ArenaPath.LINE_WIDTH / 2 + 'px',
+            height: ArenaPath.LINE_WIDTH / 2 + 'px',
+            backgroundColor: 'black',
+            border: '2px solid black',
+            borderRadius: '222px',
+            transform: `translate(-${ArenaPath.LINE_WIDTH / 4}px, -${ArenaPath.LINE_WIDTH / 4}px)`,
+            // zIndex: 3333,
+            boxSizing: 'border-box',
+        }} />;
     }
 
     createNode(from, to, index) {
         let difference = Vector.subtract(from, to);
-        let distance = difference.length();
+        let distance = difference.length() + ArenaPath.LINE_WIDTH;
         let center = from.add(difference.multiply(-0.5));
         let angle = Vector.angleBetween(from, to);
-
-        console.log('angle', from, to, angle)
 
         return (
             <div
                 key={index}
                 className='arena-path-node'
                 style={{
-                    left: -66 + center.x + 'px',
+                    left: center.x + 'px',
                     top: center.y + 'px',
                     width: distance + 'px',
-                    transform: `rotate(${angle}deg)`,
+                    height: ArenaPath.LINE_WIDTH + 'px',
+                    transform: `translate(${-difference.x / 2 - ArenaPath.LINE_WIDTH / 2}px, ${-difference.y / 2 - ArenaPath.LINE_WIDTH / 2}px) rotate(${angle}deg)`,
+                    transformOrigin: `${ArenaPath.LINE_WIDTH / 2}px ${ArenaPath.LINE_WIDTH / 2}px`,
+                    // filter: `hue-rotate(${index * 90}deg)`,
                 }}
             />
         );
@@ -47,11 +80,7 @@ export default class ArenaPath extends React.Component {
         let $pathNodes = this.getPathNodes();
 
         return (
-            <div className='arena-path' style={{
-                width: '4px',
-                height: '4px',
-                background: 'red',
-            }}>
+            <div className='arena-path'>
                 {$pathNodes}
             </div>
         );

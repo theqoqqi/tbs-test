@@ -57,8 +57,8 @@ export default class Arena extends React.Component {
                     onCellMouseLeave={onCellMouseLeave}
                     {...gridProps}
                 />
-                {$pawns}
                 {path?.length > 0 && <ArenaPath path={path} />}
+                {$pawns}
             </div>
         );
     }
