@@ -17,8 +17,6 @@ export default class ArenaGrid extends React.Component {
 
     static defaultProps = {
         cells: [],
-        cellSize: 128,
-        spacing: 4,
     };
 
     render() {

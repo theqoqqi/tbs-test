@@ -6,6 +6,7 @@ import ArenaPawn from '../ArenaPawn/ArenaPawn.js';
 import HexagonUtils from '../../cls/util/HexagonUtils.js';
 import Vector from '../../cls/util/Vector.js';
 import ArenaPath from '../ArenaPath/ArenaPath.js';
+import ArenaContext from './ArenaContext.js';
 
 export default class Arena extends React.Component {
 
@@ -50,16 +51,18 @@ export default class Arena extends React.Component {
 
         // console.log(path)
         return (
-            <div className='arena'>
-                <ArenaGrid
-                    onClick={onCellClick}
-                    onCellMouseEnter={onCellMouseEnter}
-                    onCellMouseLeave={onCellMouseLeave}
-                    {...gridProps}
-                />
-                {path?.length > 0 && <ArenaPath path={path} />}
-                {$pawns}
-            </div>
+            <ArenaContext.Provider value={this.props}>
+                <div className='arena'>
+                    <ArenaGrid
+                        onClick={onCellClick}
+                        onCellMouseEnter={onCellMouseEnter}
+                        onCellMouseLeave={onCellMouseLeave}
+                        {...gridProps}
+                    />
+                    {path?.length > 0 && <ArenaPath path={path} />}
+                    {$pawns}
+                </div>
+            </ArenaContext.Provider>
         );
     }
 }
