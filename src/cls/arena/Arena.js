@@ -1,6 +1,7 @@
 import ArenaGrid from './ArenaGrid.js';
 import ArenaPassabilityGrid from '../pathfinding/ArenaPassabilityGrid.js';
 import AStarSearch from '../pathfinding/AStarSearch.js';
+import ArenaMove from './ArenaMove.js';
 
 export default class Arena {
 
@@ -10,15 +11,31 @@ export default class Arena {
         this.passabilityGrid = new ArenaPassabilityGrid(this);
     }
 
-    getNeighborCells(cell) {
-        return this.grid.getNeighbors(cell.position);
+    getAvailableCells(position, radius) {
+        let search = new AStarSearch(this.passabilityGrid, position);
+        let findOptions = {
+            commonPredicate: (p, costFromStart) => {
+                return this.passabilityGrid.cellExists(p)
+                    && costFromStart <= radius;
+            },
+            passabilityPredicate: p => {
+                return this.passabilityGrid.isPassable(p);
+            },
+            targetPredicate: p => {
+                return this.passabilityGrid.isPassable(p)
+                    || this.hasPawnAt(p);
+            },
+        };
+
+        return search
+            .findPositions(findOptions)
+            .map(position => this.getCell(position));
     }
 
-    getPassableCells(cell, radius) {
-        let search = new AStarSearch(this.passabilityGrid, cell);
+    getAvailableMoves(forPawn) {
+        let passableCells = this.getAvailableCells(forPawn.position, forPawn.speed);
 
-        return search.findPassablePositions(radius)
-            .map(position => this.getCell(position));
+        return passableCells.map(cell => new ArenaMove(cell));
     }
 
     findPath(from, to) {

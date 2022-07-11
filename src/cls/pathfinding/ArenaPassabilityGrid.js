@@ -12,11 +12,6 @@ export default class ArenaPassabilityGrid {
         return AStarSearch.heuristic(from, to);
     }
 
-    getAvailableNeighbors(position) {
-        return HexagonUtils.getNeighborPositions(position)
-            .filter(p => this.cellExists(p) && this.isPassable(p));
-    }
-
     cellExists(position) {
         return this.grid.cellExists(position);
     }

@@ -20,6 +20,9 @@ export default class AStarSearch {
         this.grid = grid;
         this.start = start;
         this.goal = goal ?? start;
+        this.commonPredicate = position => grid.cellExists(position) && grid.isPassable(position);
+        this.passabilityPredicate = () => true;
+        this.targetPredicate = () => true;
 
         this.init();
     }
@@ -32,14 +35,29 @@ export default class AStarSearch {
         this.costSoFar.set(startKey, 0);
     }
 
-    findPassablePositions(radius) {
-        this.radius = radius;
+    findPositions({commonPredicate, passabilityPredicate, targetPredicate}) {
+        this.commonPredicate = commonPredicate ?? (() => true);
+        this.passabilityPredicate = passabilityPredicate ?? (() => true);
+        this.targetPredicate = targetPredicate ?? (() => true);
 
         this.iterateUntilFrontier();
 
         this.cameFrom.delete(this.start.toSymbol());
         return Array.from(this.cameFrom.keys())
-            .map(key => Vector.fromSymbol(key));
+            .map(key => Vector.fromSymbol(key))
+            .filter(targetPosition => {
+                if (!this.targetPredicate(targetPosition)) {
+                    return false;
+                }
+
+                let path = this.tryCollectPathFrom(targetPosition);
+
+                if (!path) {
+                    return false;
+                }
+
+                return path.slice(1, -1).every(this.passabilityPredicate);
+            });
     }
 
     findPath() {
@@ -118,7 +136,7 @@ export default class AStarSearch {
 
     enqueueNeighbours(current) {
         let currentKey = current.toSymbol();
-        let neighbors = this.grid.getAvailableNeighbors(current);
+        let neighbors = HexagonUtils.getNeighborPositions(current);
 
         // Neighbors will return a List of valid tile Locations
         // that are next to, diagonal to, above or below current
@@ -132,7 +150,7 @@ export default class AStarSearch {
             // value assigned to costSoFar[neighbor] below.
             let costFromStart = this.costSoFar.get(currentKey) + AStarSearch.heuristic(current, neighbor);
 
-            if (this.radius !== null && costFromStart > this.radius) {
+            if (!this.commonPredicate(neighbor, costFromStart)) {
                 continue;
             }
 
@@ -191,6 +209,10 @@ export default class AStarSearch {
         path.reverse();
 
         return path;
+    }
+
+    getCostFromStart(position) {
+        return this.costSoFar.get(position.toSymbol());
     }
 
     static heuristic(a, b) {

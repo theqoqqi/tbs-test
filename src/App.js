@@ -14,7 +14,7 @@ export default class App extends React.Component {
         this.fight = new Fight(gameContext);
         this.selectedPawn = null;
         this.path = [];
-        this.passables = [];
+        this.moves = [];
 
         this.state = {
             //
@@ -43,22 +43,28 @@ export default class App extends React.Component {
         console.log(cellModel.toString());
 
         if (this.selectedPawn && cell.selectable) {
-            this.selectedPawn.position = cell.position;
+            if (this.fight.arena.hasPawnAt(cell.position)) {
+                let attackedPawn = this.fight.arena.getPawn(cell.position);
 
-            console.log('Moved', this.selectedPawn.toString(), 'to', cellModel.toString());
+                console.log('Attacked', attackedPawn.toString(), 'by', this.selectedPawn.toString());
+            } else {
+                this.selectedPawn.position = cell.position;
+
+                console.log('Moved', this.selectedPawn.toString(), 'to', cellModel.toString());
+            }
 
             // this.forceUpdate();
 
             this.selectedPawn = null;
             this.path = null;
-            this.passables = [];
+            this.moves = [];
         }
     }
 
     handleCellMouseEnter(cell) {
         let cellModel = this.fight.arena.getCell(cell.position);
 
-        if (this.selectedPawn && this.passables.includes(cellModel)) {
+        if (this.selectedPawn && this.moves.includes(cellModel)) {
             this.path = this.fight.arena.findPath(this.selectedPawn.position, cell.position);
         }
     }
@@ -73,15 +79,16 @@ export default class App extends React.Component {
         this.selectedPawn = this.selectedPawn === arenaPawn ? null : arenaPawn;
 
         if (this.selectedPawn) {
-            this.passables = this.fight.arena.getPassableCells(this.selectedPawn.position, this.selectedPawn.props.speed);
+            this.moves = this.fight.arena.getAvailableMoves(this.selectedPawn);
+        } else {
+            this.moves = [];
         }
 
         console.log(arenaPawn.toString());
     }
 
     getCellProps() {
-        let selectableCells = this.selectedPawn ? this.passables : [];
-        let selectableCellIds = selectableCells.map(cell => cell.id);
+        let selectableCellIds = this.moves.map(move => move.targetCell.id);
 
         return this.fight.arena.getAllCells().map(arenaCell => {
             return {
@@ -100,8 +107,11 @@ export default class App extends React.Component {
             return {
                 id: arenaPawn.id,
                 position: arenaPawn.position,
-                pawnProps: arenaPawn.props,
                 name: arenaPawn.props.name,
+
+                health: arenaPawn.currentHealth,
+                maxHealth: arenaPawn.maxHealth,
+                damage: arenaPawn.damage,
             };
         });
     }
@@ -119,8 +129,10 @@ export default class App extends React.Component {
                         cellSize: 128,
                         spacing: 4,
                     }}
+
                     path={path}
                     pawns={pawns}
+
                     onCellClick={this.handleCellClick}
                     onCellMouseEnter={this.handleCellMouseEnter}
                     onCellMouseLeave={this.handleCellMouseLeave}

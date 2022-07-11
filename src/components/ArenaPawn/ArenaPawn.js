@@ -9,7 +9,8 @@ export default class ArenaPawn extends React.Component {
     static propTypes = {
         id: PropTypes.number.isRequired,
         position: PropTypes.instanceOf(Vector),
-        pawnProps: PropTypes.instanceOf(PawnProps).isRequired,
+        damage: PropTypes.number.isRequired,
+        health: PropTypes.number.isRequired,
         name: PropTypes.string,
         onClick: PropTypes.func,
         onMouseEnter: PropTypes.func,
@@ -31,10 +32,10 @@ export default class ArenaPawn extends React.Component {
                 {this.props.name}
                 <div className='stats'>
                     <span className='damage'>
-                        {this.props.pawnProps.damage}
+                        {this.props.damage}
                     </span>
                     <span className='health'>
-                        {this.props.pawnProps.health}
+                        {this.props.health}
                     </span>
                 </div>
             </div>
