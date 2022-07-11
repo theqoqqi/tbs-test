@@ -58,7 +58,7 @@ export default class App extends React.Component {
     handleCellMouseEnter(cell) {
         let cellModel = this.fight.arena.getCell(cell.position);
 
-        if (this.selectedPawn/* && this.passables.includes(cellModel)*/) {
+        if (this.selectedPawn && this.passables.includes(cellModel)) {
             this.path = this.fight.arena.findPath(this.selectedPawn.position, cell.position);
         }
     }
