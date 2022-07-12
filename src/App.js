@@ -23,6 +23,7 @@ export default class App extends React.Component {
         this.selectedPawn = null;
         this.moves = [];
         this.path = [];
+        this.pathTargetPosition = null;
         this.pathDirection = null;
 
         this.state = {
@@ -61,6 +62,7 @@ export default class App extends React.Component {
                     this.selectedPawn = null;
                     this.moves = [];
                     this.path = [];
+                    this.pathTargetPosition = null;
                     this.pathDirection = null;
 
                     // this.forceUpdate();
@@ -71,20 +73,27 @@ export default class App extends React.Component {
     updatePath(cell, mousePosition) {
         if (!this.selectedPawn) {
             this.path = [];
+            this.pathTargetPosition = null;
+            this.pathDirection = null;
             return;
         }
 
         let pawn = this.selectedPawn;
-        let neighborCell = this.getSuitableNeighborCell(cell, mousePosition);
+        let neighborCell = this.getSuitableNeighborCell(pawn, cell, mousePosition);
+        let cellPlainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let angle = cellPlainPosition.angleTo(mousePosition);
+        let direction = HexagonUtils.angleToDirection(angle);
 
         this.path = this.arena.hasPawnAt(cell.position)
             ? this.arena.findPath(pawn.position, neighborCell.position)
             : this.arena.findPath(pawn.position, cell.position);
+        this.pathTargetPosition = cell.position;
+        this.pathDirection = direction;
 
-        console.log(this.path)
+        // console.log(this.path)
     }
 
-    getSuitableNeighborCell(originCell, mousePosition) {
+    getSuitableNeighborCell(movingPawn, originCell, mousePosition) {
         let cellPlainPosition = HexagonUtils.axialToPlainPosition(originCell.position, App.CELL_SIZE, App.CELL_SPACING);
         let angle = cellPlainPosition.angleTo(mousePosition);
         let orderedAngles = [
@@ -98,14 +107,20 @@ export default class App extends React.Component {
 
         for (const a of orderedAngles) {
             let cell = this.arena.getNeighborCell(originCell, a);
-            let move = this.moves.find(move => move.targetCell === cell);
 
-            if (cell && move && move.actionPoints < move.pawn.speed) {
+            if (cell && this.canStrafeTo(movingPawn, cell)) {
                 return cell;
             }
         }
 
         return null;
+    }
+
+    canStrafeTo(pawn, cell) {
+        let pawnCell = this.arena.getCell(pawn.position);
+        let move = this.moves.find(move => move.targetCell === cell);
+
+        return pawnCell === cell || (move && move.actionPoints < move.pawn.speed);
     }
 
     handleCellMouseMove(cellProps, cellComponent, event) {
@@ -119,7 +134,6 @@ export default class App extends React.Component {
 
         if (move && this.pathDirection !== direction) {
             this.updatePath(cell, mousePosition);
-            this.pathDirection = direction;
         }
     }
 
@@ -129,6 +143,7 @@ export default class App extends React.Component {
 
     handleCellMouseLeave(cell) {
         this.path = [];
+        this.pathTargetPosition = null;
         this.pathDirection = null;
     }
 
@@ -179,6 +194,7 @@ export default class App extends React.Component {
         let cells = this.getCellProps();
         let pawns = this.getPawnProps();
         let path = this.selectedPawn ? this.path : [];
+        let pathTargetPosition = this.pathTargetPosition;
 
         return (
             <div className='App'>
@@ -192,6 +208,7 @@ export default class App extends React.Component {
                     }}
 
                     path={path}
+                    pathTargetPosition={pathTargetPosition}
                     pawns={pawns}
 
                     onCellClick={this.handleCellClick}

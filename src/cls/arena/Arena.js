@@ -20,7 +20,6 @@ export default class Arena {
                     && costFromStart <= radius;
             },
             passabilityPredicate: p => {
-                console.log(p)
                 return this.passabilityGrid.isPassable(p);
             },
             targetPredicate: p => {

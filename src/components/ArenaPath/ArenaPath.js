@@ -14,18 +14,28 @@ export default class ArenaPath extends React.Component {
 
     static propTypes = {
         path: PropTypes.arrayOf(PropTypes.instanceOf(Vector)),
+        targetPosition: PropTypes.instanceOf(Vector),
     };
 
     getPathNodes() {
+        let {cellSize, spacing} = this.context.gridProps;
         let plainPositions = this.props.path.map(p => {
-            let {cellSize, spacing} = this.context.gridProps;
-
             return HexagonUtils.axialToPlainPosition(p, cellSize, spacing);
         });
+        let lastPlainPosition = plainPositions[plainPositions.length - 1];
+        let targetPlainPosition = HexagonUtils.axialToPlainPosition(this.props.targetPosition, cellSize, spacing);
 
         let index = 0;
+        let pathNodes = [];
 
-        return eachCons(plainPositions.reverse(), 2)
+        if (!targetPlainPosition.equals(lastPlainPosition)) {
+            let center = Vector.lerp(lastPlainPosition, targetPlainPosition, 0.5);
+            let node = this.createNode('attack', lastPlainPosition, center, index++);
+
+            pathNodes.unshift(node);
+        }
+
+        let moveNodes = eachCons(plainPositions.reverse(), 2)
             .flatMap(positions => {
                 let from = positions[0];
                 let to = positions[1];
@@ -33,13 +43,17 @@ export default class ArenaPath extends React.Component {
                 let center = from.add(difference.multiply(-0.5));
 
                 return [
-                    this.createNode(from, center, index++),
-                    this.createNode(center, to, index++),
+                    this.createNode('move', from, center, index++),
+                    this.createNode('move', center, to, index++),
                 ];
             });
+
+        pathNodes.push(...moveNodes);
+
+        return pathNodes;
     }
 
-    createNode(from, to, index) {
+    createNode(className, from, to, index) {
         let difference = Vector.subtract(from, to);
         let distance = difference.length() + ArenaPath.LINE_WIDTH;
         let center = Vector.lerp(from, to, 0.5);
@@ -50,7 +64,7 @@ export default class ArenaPath extends React.Component {
         return (
             <div
                 key={index}
-                className='arena-path-node'
+                className={`arena-path-node arena-path-node-${className}`}
                 style={{
                     left: center.x + 'px',
                     top: center.y + 'px',

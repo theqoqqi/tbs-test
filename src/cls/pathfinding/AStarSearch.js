@@ -196,7 +196,7 @@ export default class AStarSearch {
     }
 
     canBeUsedAsGoal(cell) {
-        return this.grid.cellExists(cell) && this.grid.isPassable(cell);
+        return this.targetPredicate(cell);
     }
 
     tryCollectPathFrom(position) {

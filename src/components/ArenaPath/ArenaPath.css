@@ -14,3 +14,12 @@
 
     transition: .15s;
 }
+
+.arena-path-node-move {
+
+}
+
+.arena-path-node-attack {
+    background: indianred;
+    border-color: darkred;
+}

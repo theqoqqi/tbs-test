@@ -14,6 +14,7 @@ export default class Arena extends React.Component {
         gridProps: PropTypes.shape(ArenaGrid.propTypes),
         pawns: PropTypes.arrayOf(PropTypes.shape(ArenaPawn.propTypes)),
         path: PropTypes.arrayOf(PropTypes.instanceOf(Vector)),
+        pathTargetPosition: PropTypes.instanceOf(Vector),
         onCellClick: PropTypes.func,
         onCellMouseMove: PropTypes.func,
         onCellMouseEnter: PropTypes.func,
@@ -43,6 +44,7 @@ export default class Arena extends React.Component {
             gridProps,
             pawns,
             path,
+            pathTargetPosition,
             onPawnClick,
             onCellClick,
             onCellMouseMove,
@@ -58,7 +60,8 @@ export default class Arena extends React.Component {
             return <ArenaPawn key={pawn.id} {...pawn} position={position} />;
         });
 
-        // console.log(path)
+        let shouldDrawPath = path?.length > 0 || pathTargetPosition !== null;
+
         return (
             <ArenaContext.Provider value={this.props}>
                 <div className='arena' ref={this.root}>
@@ -69,7 +72,7 @@ export default class Arena extends React.Component {
                         onCellMouseLeave={onCellMouseLeave}
                         {...gridProps}
                     />
-                    {path?.length > 0 && <ArenaPath path={path} />}
+                    {shouldDrawPath && <ArenaPath path={path} targetPosition={pathTargetPosition} />}
                     {$pawns}
                 </div>
             </ArenaContext.Provider>
