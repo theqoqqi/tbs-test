@@ -57,16 +57,13 @@ export default class App extends React.Component {
         if (pawn && cellProps.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
-            this.fight.makeMove(move, this.path)
-                .then(() => {
-                    this.selectedPawn = null;
-                    this.moves = [];
-                    this.path = [];
-                    this.pathTargetPosition = null;
-                    this.pathDirection = null;
+            this.fight.makeMove(move, this.path);
 
-                    // this.forceUpdate();
-                });
+            this.selectedPawn = null;
+            this.moves = [];
+            this.path = [];
+            this.pathTargetPosition = null;
+            this.pathDirection = null;
         }
     }
 

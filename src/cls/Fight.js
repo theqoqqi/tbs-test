@@ -130,12 +130,20 @@ export default class Fight {
             return Promise.resolve();
         }
 
+        let promise = Promise.resolve();
+
+        for (const nextPosition of path.slice(1)) {
+            promise = promise.then(() => this.#stepTo(pawn, nextPosition));
+        }
+
+        return promise;
+    }
+
+    #stepTo(pawn, position) {
         return new Promise(resolve => {
-            pawn.position = path[path.length - 1];
+            pawn.position = position;
 
-            console.log('Moved', pawn.toString(), 'to', this.arena.getCell(pawn.position).toString());
-
-            resolve();
+            setTimeout(resolve, 250);
         });
     }
 
