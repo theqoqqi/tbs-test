@@ -17,6 +17,7 @@ export default class ArenaCell extends React.Component {
         distance: PropTypes.number,
         coords: PropTypes.string,
         onClick: PropTypes.func,
+        onMouseMove: PropTypes.func,
         onMouseEnter: PropTypes.func,
         onMouseLeave: PropTypes.func,
     };
@@ -54,7 +55,8 @@ export default class ArenaCell extends React.Component {
                     left: this.props.position.x + 'px',
                     top: this.props.position.y + 'px',
                 }}
-                onClick={e => this.props.onClick(this, e)}
+                onClick={e => this.props.onClick?.(this, e)}
+                onMouseMove={e => this.props.onMouseMove?.(this, e)}
                 onMouseEnter={e => this.props.onMouseEnter?.(this, e)}
                 onMouseLeave={e => this.props.onMouseLeave?.(this, e)}
             >

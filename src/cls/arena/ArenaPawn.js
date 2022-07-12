@@ -30,6 +30,10 @@ export default class ArenaPawn {
     //
     // }
 
+    applyDamage(damage) {
+        this.health -= damage;
+    }
+
     toString() {
         return `Pawn #${this.id} (${this.position.x}, ${this.position.y})`;
     }

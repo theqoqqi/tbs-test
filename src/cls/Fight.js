@@ -77,25 +77,27 @@ export default class Fight {
         this.addCell(1, 3);
         this.addCell(2, 3);
 
-        if (true) {
-            const shuffleArray = arr => arr
-                .map(a => [Math.random(), a])
-                .sort((a, b) => a[0] - b[0])
-                .map(a => a[1]);
-
-            let keys = Array.from(this.arena.grid.cells.keys());
-            keys = shuffleArray(keys);
-            keys = keys.slice(0, 20);
-
-            for (const key of keys) {
-                this.arena.grid.cells.delete(key);
-            }
-        }
+        // if (true) {
+        //     const shuffleArray = arr => arr
+        //         .map(a => [Math.random(), a])
+        //         .sort((a, b) => a[0] - b[0])
+        //         .map(a => a[1]);
+        //
+        //     let keys = Array.from(this.arena.grid.cells.keys());
+        //     keys = shuffleArray(keys);
+        //     keys = keys.slice(0, 20);
+        //
+        //     for (const key of keys) {
+        //         this.arena.grid.cells.delete(key);
+        //     }
+        // }
 
         this.pawnRegistry = gameContext.pawnRegistry;
 
-        this.createPawn(Vector.from(-4, -1), 'qwer');
-        this.createPawn(Vector.from(5, -1), 'asdf');
+        this.createPawn(Vector.from(1, 0), 'qwer');
+        this.createPawn(Vector.from(1, -1), 'asdf');
+        // this.createPawn(Vector.from(-4, -1), 'qwer');
+        // this.createPawn(Vector.from(5, -1), 'asdf');
     }
 
     addCell(x, y) {
@@ -107,5 +109,43 @@ export default class Fight {
         let pawn = new ArenaPawn(position, props);
 
         this.arena.addPawn(pawn);
+    }
+
+    makeMove(move, path) {
+        let pawn = move.pawn;
+        let cell = move.targetCell;
+
+        if (this.arena.hasPawnAt(cell.position)) {
+            let attackedPawn = this.arena.getPawn(cell.position);
+
+            return this.moveByPath(pawn, path)
+                .then(() => this.attack(pawn, attackedPawn));
+        } else {
+            return this.moveByPath(pawn, path);
+        }
+    }
+
+    moveByPath(pawn, path) {
+        if (path.length === 0) {
+            return Promise.resolve();
+        }
+
+        return new Promise(resolve => {
+            pawn.position = path[path.length - 1];
+
+            console.log('Moved', pawn.toString(), 'to', this.arena.getCell(pawn.position).toString());
+
+            resolve();
+        });
+    }
+
+    attack(attacker, target) {
+        return new Promise(resolve => {
+            target.applyDamage(attacker.damage);
+
+            console.log('Attacked', target.toString(), 'by', attacker.toString());
+
+            resolve();
+        });
     }
 }

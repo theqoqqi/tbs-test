@@ -1,7 +1,9 @@
 
 export default class ArenaMove {
 
-    constructor(targetCell) {
+    constructor(pawn, targetCell, actionPoints) {
+        this.pawn = pawn;
         this.targetCell = targetCell;
+        this.actionPoints = actionPoints;
     }
 }

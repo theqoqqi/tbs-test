@@ -3,12 +3,12 @@ import Vector from './Vector.js';
 export default class HexagonUtils {
 
     static NEIGHBOR_DIRECTIONS = [
-        new Vector(1, 0),
-        new Vector(1, -1),
-        new Vector(0, -1),
         new Vector(-1, 0),
-        new Vector(-1, 1),
+        new Vector(0, -1),
+        new Vector(1, -1),
+        new Vector(1, 0),
         new Vector(0, 1),
+        new Vector(-1, 1),
     ];
 
     static axialToPlainPosition(position, cellSize, spacing) {
@@ -38,5 +38,21 @@ export default class HexagonUtils {
         let {x, y} = Vector.subtract(from, to);
 
         return (Math.abs(x) + Math.abs(x + y) + Math.abs(y)) / 2;
+    }
+
+    static angleToDirection(angle) {
+        let index = Math.floor(this.normalizeAngle(angle + 30) / 60);
+
+        return this.NEIGHBOR_DIRECTIONS[index];
+    }
+
+    static normalizeAngle(angle) {
+        while (angle < 0) {
+            angle += 360;
+        }
+        while (angle >= 360) {
+            angle -= 360;
+        }
+        return angle;
     }
 }

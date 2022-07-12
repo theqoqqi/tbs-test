@@ -15,6 +15,7 @@ export default class Arena extends React.Component {
         pawns: PropTypes.arrayOf(PropTypes.shape(ArenaPawn.propTypes)),
         path: PropTypes.arrayOf(PropTypes.instanceOf(Vector)),
         onCellClick: PropTypes.func,
+        onCellMouseMove: PropTypes.func,
         onCellMouseEnter: PropTypes.func,
         onCellMouseLeave: PropTypes.func,
         onPawnClick: PropTypes.func,
@@ -25,6 +26,13 @@ export default class Arena extends React.Component {
         pawns: [],
         path: [],
     };
+
+    constructor(props) {
+        super(props);
+
+        this.root = React.createRef();
+    }
+
 
     render() {
         let {
@@ -37,6 +45,7 @@ export default class Arena extends React.Component {
             path,
             onPawnClick,
             onCellClick,
+            onCellMouseMove,
             onCellMouseEnter,
             onCellMouseLeave,
         } = this.props;
@@ -52,9 +61,10 @@ export default class Arena extends React.Component {
         // console.log(path)
         return (
             <ArenaContext.Provider value={this.props}>
-                <div className='arena'>
+                <div className='arena' ref={this.root}>
                     <ArenaGrid
                         onClick={onCellClick}
+                        onMouseMove={onCellMouseMove}
                         onCellMouseEnter={onCellMouseEnter}
                         onCellMouseLeave={onCellMouseLeave}
                         {...gridProps}
@@ -64,5 +74,9 @@ export default class Arena extends React.Component {
                 </div>
             </ArenaContext.Provider>
         );
+    }
+
+    getRootElement() {
+        return this.root.current;
     }
 }

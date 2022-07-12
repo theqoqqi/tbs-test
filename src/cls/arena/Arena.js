@@ -2,6 +2,7 @@ import ArenaGrid from './ArenaGrid.js';
 import ArenaPassabilityGrid from '../pathfinding/ArenaPassabilityGrid.js';
 import AStarSearch from '../pathfinding/AStarSearch.js';
 import ArenaMove from './ArenaMove.js';
+import HexagonUtils from '../util/HexagonUtils.js';
 
 export default class Arena {
 
@@ -11,7 +12,7 @@ export default class Arena {
         this.passabilityGrid = new ArenaPassabilityGrid(this);
     }
 
-    getAvailableCells(position, radius) {
+    #getAvailableCells(position, radius) {
         let search = new AStarSearch(this.passabilityGrid, position);
         let findOptions = {
             commonPredicate: (p, costFromStart) => {
@@ -19,6 +20,7 @@ export default class Arena {
                     && costFromStart <= radius;
             },
             passabilityPredicate: p => {
+                console.log(p)
                 return this.passabilityGrid.isPassable(p);
             },
             targetPredicate: p => {
@@ -27,15 +29,21 @@ export default class Arena {
             },
         };
 
-        return search
+        let cells = search
             .findPositions(findOptions)
             .map(position => this.getCell(position));
+
+        return { search, cells };
     }
 
     getAvailableMoves(forPawn) {
-        let passableCells = this.getAvailableCells(forPawn.position, forPawn.speed);
+        let { search, cells } = this.#getAvailableCells(forPawn.position, forPawn.speed);
 
-        return passableCells.map(cell => new ArenaMove(cell));
+        return cells.map(cell => {
+            let actionPoints = search.getCostFromStart(cell.position);
+
+            return new ArenaMove(forPawn, cell, actionPoints);
+        });
     }
 
     findPath(from, to) {
@@ -54,6 +62,13 @@ export default class Arena {
 
     getAllCells() {
         return this.grid.getAllCells();
+    }
+
+    getNeighborCell(originCell, angle) {
+        let neighborDirection = HexagonUtils.angleToDirection(angle);
+        let neighborPosition = originCell.position.add(neighborDirection);
+
+        return this.getCell(neighborPosition);
     }
 
     addPawn(pawn) {

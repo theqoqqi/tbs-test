@@ -156,6 +156,15 @@ export default class AStarSearch {
 
             let neighborKey = neighbor.toSymbol();
 
+            // If we can't pass that cell but cell is allowed as target,
+            // just store values in costSoFar and cameFrom without enqueueing to frontier
+            if (!this.passabilityPredicate(neighbor) && this.targetPredicate(neighbor)) {
+                this.costSoFar.set(neighborKey, costFromStart);
+                this.cameFrom.set(neighborKey, current);
+
+                continue;
+            }
+
             // If there's no cost assigned to the neighbor yet, or if the new
             // cost is lower than the assigned one, add costFromStart for this neighbor
             if (this.costSoFar.has(neighborKey) && !(costFromStart < this.costSoFar.get(neighborKey))) {

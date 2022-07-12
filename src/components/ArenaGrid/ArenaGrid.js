@@ -11,6 +11,7 @@ export default class ArenaGrid extends React.Component {
         cellSize: PropTypes.number.isRequired,
         spacing: PropTypes.number.isRequired,
         onClick: PropTypes.func,
+        onMouseMove: PropTypes.func,
         onCellMouseEnter: PropTypes.func,
         onCellMouseLeave: PropTypes.func,
     };
@@ -30,6 +31,7 @@ export default class ArenaGrid extends React.Component {
                     coords={cell.position.x + ' ' + cell.position.y}
                     key={cell.id}
                     onClick={(boardCell, e) => this.props.onClick?.(cell, boardCell, e)}
+                    onMouseMove={(boardCell, e) => this.props.onMouseMove?.(cell, boardCell, e)}
                     onMouseEnter={(boardCell, e) => this.props.onCellMouseEnter?.(cell, boardCell, e)}
                     onMouseLeave={(boardCell, e) => this.props.onCellMouseLeave?.(cell, boardCell, e)}
                 />
