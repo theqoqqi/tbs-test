@@ -47,7 +47,7 @@ export default class ArenaCell extends React.Component {
             </span>
         );
 
-        let passabilityClassName = paramCase(PassabilityTypes.keyOf(this.props.passability));
+        let passabilityClassName = paramCase(this.props.passability.enumKey);
 
         return (
             <div

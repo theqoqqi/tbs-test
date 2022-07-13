@@ -1,15 +1,9 @@
-const PassabilityTypes = Object.freeze({
-    WALKING_PASSABLE: Symbol('PassabilityTypes.WALKING_PASSABLE'),
-    SOARING_PASSABLE: Symbol('PassabilityTypes.SOARING_PASSABLE'),
-    FLYING_PASSABLE: Symbol('PassabilityTypes.FLYING_PASSABLE'),
-    IMPASSABLE: Symbol('PassabilityTypes.IMPASSABLE'),
-    keyOf(type) {
-        if (typeof type !== 'symbol') {
-            return null;
-        }
+import Enum from '../util/Enum.js';
 
-        return Object.keys(this).find(key => this[key] === type);
-    }
-});
-
-export default PassabilityTypes;
+export default class PassabilityTypes extends Enum {
+    static WALKING_PASSABLE = new PassabilityTypes();
+    static SOARING_PASSABLE = new PassabilityTypes();
+    static FLYING_PASSABLE = new PassabilityTypes();
+    static IMPASSABLE = new PassabilityTypes();
+    static _ = this.closeEnum();
+}

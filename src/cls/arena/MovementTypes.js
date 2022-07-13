@@ -1,7 +1,8 @@
-const MovementTypes = Object.freeze({
-    WALKING: Symbol('MovementTypes.WALKING'),
-    SOARING: Symbol('MovementTypes.SOARING'),
-    FLYING: Symbol('MovementTypes.FLYING')
-});
+import Enum from '../util/Enum.js';
 
-export default MovementTypes;
+export default class MovementTypes extends Enum {
+    static WALKING = new MovementTypes();
+    static SOARING = new MovementTypes();
+    static FLYING = new MovementTypes();
+    static _ = this.closeEnum();
+}

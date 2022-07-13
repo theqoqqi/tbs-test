@@ -17,7 +17,7 @@ export default class Fight {
             let cell = this.addCell(...cellData['position']);
 
             if (cellData.passability) {
-                cell.passability = PassabilityTypes[cellData.passability];
+                cell.passability = PassabilityTypes.enumValueOf(cellData.passability);
             }
         }
 
