@@ -116,8 +116,9 @@ export default class App extends React.Component {
     canStrafeTo(pawn, cell) {
         let pawnCell = this.arena.getCell(pawn.position);
         let move = this.moves.find(move => move.targetCell === cell);
+        let isCellFree = !this.arena.hasPawnAt(cell.position);
 
-        return pawnCell === cell || (move && move.actionPoints < move.pawn.speed);
+        return pawnCell === cell || (isCellFree && move && move.actionPoints < move.pawn.speed);
     }
 
     handleCellMouseMove(cellProps, cellComponent, event) {
