@@ -34,7 +34,6 @@ export default class Arena extends React.Component {
         this.root = React.createRef();
     }
 
-
     render() {
         let {
             gridProps: {
@@ -79,7 +78,11 @@ export default class Arena extends React.Component {
         );
     }
 
-    getRootElement() {
-        return this.root.current;
+    getMousePosition(event) {
+        let offset = this.root.current.getBoundingClientRect();
+        let x = event.pageX - offset.left;
+        let y = event.pageY - offset.top;
+
+        return new Vector(x, y);
     }
 }

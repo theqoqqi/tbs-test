@@ -124,8 +124,7 @@ export default class App extends React.Component {
     handleCellMouseMove(cellProps, cellComponent, event) {
         let cell = this.arena.getCell(cellProps.position);
         let move = this.moves.find(move => move.targetCell === cell);
-        let arenaElement = this.arenaRef.current.getRootElement();
-        let mousePosition = this.getRelativeMousePosition(event, arenaElement);
+        let mousePosition = this.arenaRef.current.getMousePosition(event);
         let cellPlainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
         let angle = cellPlainPosition.angleTo(mousePosition);
         let direction = HexagonUtils.angleToDirection(angle);
@@ -219,14 +218,6 @@ export default class App extends React.Component {
         );
     }
 
-    getRelativeMousePosition(event, relativeTo) {
-        let offset = relativeTo.getBoundingClientRect();
-        let x = event.pageX - offset.left;
-        let y = event.pageY - offset.top;
-
-        return new Vector(x, y);
-    }
-    
     get arena() {
         return this.fight.arena;
     }
