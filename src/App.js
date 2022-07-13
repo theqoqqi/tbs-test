@@ -81,9 +81,9 @@ export default class App extends React.Component {
         let angle = cellPlainPosition.angleTo(mousePosition);
         let direction = HexagonUtils.angleToDirection(angle);
 
-        this.path = this.arena.hasPawnAt(cell.position)
-            ? this.arena.findPath(pawn.position, neighborCell.position)
-            : this.arena.findPath(pawn.position, cell.position);
+        this.path = this.arena.isCellFree(cell.position)
+            ? this.arena.findPath(pawn.position, cell.position)
+            : this.arena.findPath(pawn.position, neighborCell.position);
         this.pathTargetPosition = cell.position;
         this.pathDirection = direction;
 
@@ -116,7 +116,7 @@ export default class App extends React.Component {
     canStrafeTo(pawn, cell) {
         let pawnCell = this.arena.getCell(pawn.position);
         let move = this.moves.find(move => move.targetCell === cell);
-        let isCellFree = !this.arena.hasPawnAt(cell.position);
+        let isCellFree = this.arena.isCellFree(cell.position);
 
         return pawnCell === cell || (isCellFree && move && move.actionPoints < move.pawn.speed);
     }

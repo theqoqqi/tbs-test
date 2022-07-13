@@ -63,6 +63,10 @@ export default class Arena {
         return this.grid.getAllCells();
     }
 
+    isCellFree(position) {
+        return !this.hasPawnAt(position);
+    }
+
     getNeighborCell(originCell, angle) {
         let neighborDirection = HexagonUtils.angleToDirection(angle);
         let neighborPosition = originCell.position.add(neighborDirection);

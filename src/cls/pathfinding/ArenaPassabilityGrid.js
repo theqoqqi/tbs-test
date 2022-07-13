@@ -17,6 +17,6 @@ export default class ArenaPassabilityGrid {
     }
 
     isPassable(position) {
-        return !this.arena.hasPawnAt(position);
+        return this.arena.isCellFree(position);
     }
 }
