@@ -12,21 +12,9 @@ export default class Arena {
         this.passabilityGrid = new ArenaPassabilityGrid(this);
     }
 
-    #getAvailableCells(position, radius) {
-        let search = new AStarSearch(this.passabilityGrid, position);
-        let findOptions = {
-            commonPredicate: (p, costFromStart) => {
-                return this.passabilityGrid.cellExists(p)
-                    && costFromStart <= radius;
-            },
-            passabilityPredicate: p => {
-                return this.passabilityGrid.isPassable(p);
-            },
-            targetPredicate: p => {
-                return this.passabilityGrid.isPassable(p)
-                    || this.hasPawnAt(p);
-            },
-        };
+    #getAvailableCells(forPawn, radius) {
+        let search = new AStarSearch(this.passabilityGrid, forPawn.position);
+        let findOptions = this.createFindPathOptions(forPawn, radius);
 
         let cells = search
             .findPositions(findOptions)
@@ -36,7 +24,7 @@ export default class Arena {
     }
 
     getAvailableMoves(forPawn) {
-        let { search, cells } = this.#getAvailableCells(forPawn.position, forPawn.speed);
+        let { search, cells } = this.#getAvailableCells(forPawn, forPawn.speed);
 
         return cells.map(cell => {
             let actionPoints = search.getCostFromStart(cell.position);
@@ -45,10 +33,28 @@ export default class Arena {
         });
     }
 
-    findPath(from, to) {
+    findPath(forPawn, to) {
+        let from = forPawn.position;
         let search = new AStarSearch(this.passabilityGrid, from, to);
+        let findOptions = this.createFindPathOptions(forPawn);
 
-        return search.findPath();
+        return search.findPath(findOptions);
+    }
+
+    createFindPathOptions(forPawn, radius = 999) {
+        return {
+            commonPredicate: (p, costFromStart) => {
+                return this.passabilityGrid.cellExists(p)
+                    && costFromStart <= radius;
+            },
+            passabilityPredicate: p => {
+                return this.passabilityGrid.isThroughPassable(p, forPawn);
+            },
+            targetPredicate: p => {
+                return this.passabilityGrid.isPassable(p)
+                    || this.hasPawnAt(p);
+            },
+        };
     }
 
     addCell(position) {

@@ -20,9 +20,9 @@ export default class AStarSearch {
         this.grid = grid;
         this.start = start;
         this.goal = goal ?? start;
-        this.commonPredicate = position => grid.cellExists(position) && grid.isPassable(position);
+        this.commonPredicate = position => grid.cellExists(position);
         this.passabilityPredicate = () => true;
-        this.targetPredicate = () => true;
+        this.targetPredicate = position => grid.isPassable(position);
 
         this.init();
     }
@@ -35,10 +35,14 @@ export default class AStarSearch {
         this.costSoFar.set(startKey, 0);
     }
 
-    findPositions({commonPredicate, passabilityPredicate, targetPredicate}) {
+    setOptions({commonPredicate, passabilityPredicate, targetPredicate}) {
         this.commonPredicate = commonPredicate ?? (() => true);
         this.passabilityPredicate = passabilityPredicate ?? (() => true);
         this.targetPredicate = targetPredicate ?? (() => true);
+    }
+
+    findPositions(options) {
+        this.setOptions(options);
 
         this.iterateUntilFrontier();
 
@@ -60,7 +64,9 @@ export default class AStarSearch {
             });
     }
 
-    findPath() {
+    findPath(options) {
+        this.setOptions(options);
+
         this.iterateUntilGoal();
 
         if (!this.foundGoal) {
@@ -158,9 +164,11 @@ export default class AStarSearch {
 
             // If we can't pass that cell but cell is allowed as target,
             // just store values in costSoFar and cameFrom without enqueueing to frontier
-            if (!this.passabilityPredicate(neighbor) && this.targetPredicate(neighbor)) {
-                this.costSoFar.set(neighborKey, costFromStart);
-                this.cameFrom.set(neighborKey, current);
+            if (!this.passabilityPredicate(neighbor)) {
+                if (this.targetPredicate(neighbor)) {
+                    this.costSoFar.set(neighborKey, costFromStart);
+                    this.cameFrom.set(neighborKey, current);
+                }
 
                 continue;
             }
@@ -195,8 +203,8 @@ export default class AStarSearch {
         return path ?? [];
     }
 
-    canBeUsedAsGoal(cell) {
-        return this.targetPredicate(cell);
+    canBeUsedAsGoal(position) {
+        return this.targetPredicate(position);
     }
 
     tryCollectPathFrom(position) {

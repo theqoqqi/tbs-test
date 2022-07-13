@@ -1,0 +1,196 @@
+{
+  "cells": [
+    {
+      "position": [-2, -3]
+    },
+    {
+      "position": [-1, -3]
+    },
+    {
+      "position": [0, -3]
+    },
+    {
+      "position": [1, -3]
+    },
+    {
+      "position": [2, -3]
+    },
+    {
+      "position": [3, -3]
+    },
+    {
+      "position": [4, -3]
+    },
+    {
+      "position": [5, -3]
+    },
+    {
+      "position": [-3, -2]
+    },
+    {
+      "position": [-2, -2]
+    },
+    {
+      "position": [-1, -2]
+    },
+    {
+      "position": [0, -2]
+    },
+    {
+      "position": [1, -2]
+    },
+    {
+      "position": [2, -2]
+    },
+    {
+      "position": [3, -2]
+    },
+    {
+      "position": [4, -2]
+    },
+    {
+      "position": [5, -2]
+    },
+    {
+      "position": [-4, -1]
+    },
+    {
+      "position": [-3, -1]
+    },
+    {
+      "position": [-2, -1]
+    },
+    {
+      "position": [-1, -1]
+    },
+    {
+      "position": [0, -1]
+    },
+    {
+      "position": [1, -1]
+    },
+    {
+      "position": [2, -1]
+    },
+    {
+      "position": [3, -1]
+    },
+    {
+      "position": [4, -1]
+    },
+    {
+      "position": [5, -1]
+    },
+    {
+      "position": [-4, 0]
+    },
+    {
+      "position": [-3, 0]
+    },
+    {
+      "position": [-2, 0],
+      "passability": "SOARING_PASSABLE"
+    },
+    {
+      "position": [-1, 0]
+    },
+    {
+      "position": [0, 0],
+      "passability": "IMPASSABLE"
+    },
+    {
+      "position": [1, 0]
+    },
+    {
+      "position": [2, 0],
+      "passability": "FLYING_PASSABLE"
+    },
+    {
+      "position": [3, 0]
+    },
+    {
+      "position": [4, 0]
+    },
+    {
+      "position": [-5, 1]
+    },
+    {
+      "position": [-4, 1]
+    },
+    {
+      "position": [-3, 1]
+    },
+    {
+      "position": [-2, 1]
+    },
+    {
+      "position": [-1, 1]
+    },
+    {
+      "position": [0, 1]
+    },
+    {
+      "position": [1, 1]
+    },
+    {
+      "position": [2, 1]
+    },
+    {
+      "position": [3, 1]
+    },
+    {
+      "position": [4, 1]
+    },
+    {
+      "position": [-5, 2]
+    },
+    {
+      "position": [-4, 2]
+    },
+    {
+      "position": [-3, 2]
+    },
+    {
+      "position": [-2, 2]
+    },
+    {
+      "position": [-1, 2]
+    },
+    {
+      "position": [0, 2]
+    },
+    {
+      "position": [1, 2]
+    },
+    {
+      "position": [2, 2]
+    },
+    {
+      "position": [3, 2]
+    },
+    {
+      "position": [-5, 3]
+    },
+    {
+      "position": [-4, 3]
+    },
+    {
+      "position": [-3, 3]
+    },
+    {
+      "position": [-2, 3]
+    },
+    {
+      "position": [-1, 3]
+    },
+    {
+      "position": [0, 3]
+    },
+    {
+      "position": [1, 3]
+    },
+    {
+      "position": [2, 3]
+    }
+  ]
+}

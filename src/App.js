@@ -5,6 +5,7 @@ import Arena from './components/Arena/Arena.js';
 import GameContext from './cls/context/GameContext.js';
 import Vector from './cls/util/Vector.js';
 import HexagonUtils from './cls/util/HexagonUtils.js';
+import PassabilityTypes from './cls/arena/PassabilityTypes.js';
 
 export default class App extends React.Component {
 
@@ -82,8 +83,8 @@ export default class App extends React.Component {
         let direction = HexagonUtils.angleToDirection(angle);
 
         this.path = this.arena.isCellFree(cell.position)
-            ? this.arena.findPath(pawn.position, cell.position)
-            : this.arena.findPath(pawn.position, neighborCell.position);
+            ? this.arena.findPath(pawn, cell.position)
+            : this.arena.findPath(pawn, neighborCell.position);
         this.pathTargetPosition = cell.position;
         this.pathDirection = direction;
 
@@ -160,15 +161,22 @@ export default class App extends React.Component {
 
     getCellProps() {
         let selectableCellIds = this.moves.map(move => move.targetCell.id);
+        let passabilityContentMap = {
+            [PassabilityTypes.SOARING_PASSABLE]: <span style={{fontSize: '40px'}}>S</span>,
+            [PassabilityTypes.FLYING_PASSABLE]: <span style={{fontSize: '40px'}}>F</span>,
+            [PassabilityTypes.IMPASSABLE]: <span style={{fontSize: '40px'}}>I</span>,
+        };
 
         return this.arena.getAllCells().map(arenaCell => {
             return {
                 id: arenaCell.id,
                 position: arenaCell.position,
                 selectable: selectableCellIds.includes(arenaCell.id),
-                distance: this.selectedPawn
-                    ? this.arena.findPath(this.selectedPawn.position, arenaCell.position).length - 1 // TODO: каждый тик, каждый cell - дохуя
+                passability: arenaCell.passability,
+                distance: this.selectedPawn && arenaCell.passability === PassabilityTypes.WALKING_PASSABLE
+                    ? this.arena.findPath(this.selectedPawn, arenaCell.position).length - 1 // TODO: каждый тик, каждый cell - дохуя
                     : null,
+                content: passabilityContentMap[arenaCell.passability] ?? null,
             };
         });
     }

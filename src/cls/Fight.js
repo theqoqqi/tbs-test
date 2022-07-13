@@ -1,103 +1,33 @@
 import ArenaPawn from './arena/ArenaPawn.js';
 import Arena from './arena/Arena.js';
 import Vector from './util/Vector.js';
+import arenaData from '../json/arenas/generic_with_obstacles.json';
+import PassabilityTypes from './arena/PassabilityTypes.js';
 
 export default class Fight {
 
     constructor(gameContext) {
         this.arena = new Arena();
 
-        this.addCell(-2, -3);
-        this.addCell(-1, -3);
-        this.addCell(0, -3);
-        this.addCell(1, -3);
-        this.addCell(2, -3);
-        this.addCell(3, -3);
-        this.addCell(4, -3);
-        this.addCell(5, -3);
+        for (const cellData of arenaData.cells) {
+            if (cellData['obstacles'] === 'IMPASSABLE') {
+                continue;
+            }
 
-        this.addCell(-3, -2);
-        this.addCell(-2, -2);
-        this.addCell(-1, -2);
-        this.addCell(0, -2);
-        this.addCell(1, -2);
-        this.addCell(2, -2);
-        this.addCell(3, -2);
-        this.addCell(4, -2);
-        this.addCell(5, -2);
+            let cell = this.addCell(...cellData['position']);
 
-        this.addCell(-4, -1);
-        this.addCell(-3, -1);
-        this.addCell(-2, -1);
-        this.addCell(-1, -1);
-        this.addCell(0, -1);
-        this.addCell(1, -1);
-        this.addCell(2, -1);
-        this.addCell(3, -1);
-        this.addCell(4, -1);
-        this.addCell(5, -1);
-
-        this.addCell(-4, 0);
-        this.addCell(-3, 0);
-        this.addCell(-2, 0);
-        this.addCell(-1, 0);
-        this.addCell(0, 0);
-        this.addCell(1, 0);
-        this.addCell(2, 0);
-        this.addCell(3, 0);
-        this.addCell(4, 0);
-
-        this.addCell(-5, 1);
-        this.addCell(-4, 1);
-        this.addCell(-3, 1);
-        this.addCell(-2, 1);
-        this.addCell(-1, 1);
-        this.addCell(0, 1);
-        this.addCell(1, 1);
-        this.addCell(2, 1);
-        this.addCell(3, 1);
-        this.addCell(4, 1);
-
-        this.addCell(-5, 2);
-        this.addCell(-4, 2);
-        this.addCell(-3, 2);
-        this.addCell(-2, 2);
-        this.addCell(-1, 2);
-        this.addCell(0, 2);
-        this.addCell(1, 2);
-        this.addCell(2, 2);
-        this.addCell(3, 2);
-
-        this.addCell(-5, 3);
-        this.addCell(-4, 3);
-        this.addCell(-3, 3);
-        this.addCell(-2, 3);
-        this.addCell(-1, 3);
-        this.addCell(0, 3);
-        this.addCell(1, 3);
-        this.addCell(2, 3);
-
-        // if (true) {
-        //     const shuffleArray = arr => arr
-        //         .map(a => [Math.random(), a])
-        //         .sort((a, b) => a[0] - b[0])
-        //         .map(a => a[1]);
-        //
-        //     let keys = Array.from(this.arena.grid.cells.keys());
-        //     keys = shuffleArray(keys);
-        //     keys = keys.slice(0, 20);
-        //
-        //     for (const key of keys) {
-        //         this.arena.grid.cells.delete(key);
-        //     }
-        // }
+            if (cellData.passability) {
+                cell.passability = PassabilityTypes[cellData.passability];
+            }
+        }
 
         this.pawnRegistry = gameContext.pawnRegistry;
 
-        this.createPawn(Vector.from(1, 0), 'qwer');
-        this.createPawn(Vector.from(1, -1), 'asdf');
-        // this.createPawn(Vector.from(-4, -1), 'qwer');
-        // this.createPawn(Vector.from(5, -1), 'asdf');
+        // this.createPawn(Vector.from(1, 0), 'walker');
+        // this.createPawn(Vector.from(1, -1), 'soarer');
+        this.createPawn(Vector.from(-4, -1), 'walker');
+        this.createPawn(Vector.from(5, -1), 'soarer');
+        this.createPawn(Vector.from(4, 1), 'dragon');
     }
 
     addCell(x, y) {
@@ -143,7 +73,7 @@ export default class Fight {
         return new Promise(resolve => {
             pawn.position = position;
 
-            setTimeout(resolve, 250);
+            setTimeout(resolve, 200);
         });
     }
 

@@ -26,6 +26,10 @@ export default class ArenaPawn {
         return this.props.damage;
     }
 
+    get movementType() {
+        return this.props.movementType;
+    }
+
     // getProperty(propertyName) {
     //
     // }

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Vector from '../../cls/util/Vector.js';
 import ArenaContext from '../Arena/ArenaContext.js';
+import PassabilityTypes from '../../cls/arena/PassabilityTypes.js';
+import {paramCase} from 'change-case';
 
 export default class ArenaCell extends React.Component {
 
@@ -14,6 +16,7 @@ export default class ArenaCell extends React.Component {
         position: PropTypes.instanceOf(Vector),
         selectable: PropTypes.bool,
         content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+        passability: PropTypes.oneOf(Object.values(PassabilityTypes)),
         distance: PropTypes.number,
         coords: PropTypes.string,
         onClick: PropTypes.func,
@@ -44,11 +47,14 @@ export default class ArenaCell extends React.Component {
             </span>
         );
 
+        let passabilityClassName = paramCase(PassabilityTypes.keyOf(this.props.passability));
+
         return (
             <div
                 className={classNames({
                     'arena-cell': true,
                     'selectable': this.props.selectable,
+                    [passabilityClassName]: true,
                 })}
                 style={{
                     '--cell-size': this.context.gridProps.cellSize,

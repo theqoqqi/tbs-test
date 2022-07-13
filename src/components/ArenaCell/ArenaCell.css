@@ -35,6 +35,24 @@
 
 
 
+.arena-cell.walking-passable {
+
+}
+
+.arena-cell.soaring-passable .hexagon {
+    opacity: 0 !important;
+}
+
+.arena-cell.flying-passable .hexagon {
+    opacity: 0 !important;
+}
+
+.arena-cell.impassable .hexagon {
+    opacity: 0 !important;
+}
+
+
+
 .arena-cell .content {
     position: absolute;
 }
