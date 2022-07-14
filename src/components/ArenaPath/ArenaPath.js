@@ -72,7 +72,6 @@ export default class ArenaPath extends React.Component {
                     height: ArenaPath.LINE_WIDTH + 'px',
                     transform: `translate(${translateBy.x}px, ${translateBy.y}px) rotate(${angle}deg)`,
                     transformOrigin: `${halfLineWidth}px ${halfLineWidth}px`,
-                    // filter: `hue-rotate(${index * 90}deg)`,
                 }}
             />
         );

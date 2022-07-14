@@ -26,20 +26,55 @@ export default class Fight {
 
         this.createPawn(Vector.from(-1, -1), 'walker', {
             team: ArenaTeam.DEFAULT_1,
-            count: 100,
+            stackSize: 100,
         });
         this.createPawn(Vector.from(-2, 1), 'soarer', {
             team: ArenaTeam.DEFAULT_1,
-            count: 20,
+            stackSize: 20,
         });
         this.createPawn(Vector.from(2, -1), 'walker', {
             team: ArenaTeam.DEFAULT_2,
-            count: 50,
+            stackSize: 50,
         });
         this.createPawn(Vector.from(1, 1), 'dragon', {
             team: ArenaTeam.DEFAULT_2,
-            count: 1,
+            stackSize: 1,
         });
+    }
+
+    getAttackInfo(attackerPawn, targetPawn) {
+        return [
+            this.getEstimatedDamage(attackerPawn, targetPawn),
+        ];
+    }
+
+    getEstimatedDamage(attackerPawn, targetPawn) {
+        let minDamage = attackerPawn.stackMinDamage;
+        let maxDamage = attackerPawn.stackMaxDamage;
+        let minKills = targetPawn.getKillCount(minDamage);
+        let maxKills = targetPawn.getKillCount(maxDamage);
+
+        return {
+            minDamage,
+            maxDamage,
+            minKills,
+            maxKills,
+        };
+    }
+
+    getRandomDamageInfo(attackerPawn, targetPawn) {
+        let estimatedDamage = this.getEstimatedDamage(attackerPawn, targetPawn);
+        let damage = this.randomInt(estimatedDamage.minDamage, estimatedDamage.maxDamage);
+        let kills = targetPawn.getKillCount(damage);
+
+        return {
+            kills,
+            damage,
+        };
+    }
+
+    randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     addCell(x, y) {
@@ -91,9 +126,12 @@ export default class Fight {
 
     attack(attacker, target) {
         return new Promise(resolve => {
-            target.applyDamage(attacker.damage);
+            let damageInfo = this.getRandomDamageInfo(attacker, target);
+
+            target.applyDamage(damageInfo.damage);
 
             console.log('Attacked', target.toString(), 'by', attacker.toString());
+            console.log('Damage:', damageInfo.damage, 'Kills:', damageInfo.kills);
 
             resolve();
         });

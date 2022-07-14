@@ -9,8 +9,7 @@ export default class ArenaPawn extends React.Component {
         id: PropTypes.number.isRequired,
         axialPosition: PropTypes.instanceOf(Vector),
         position: PropTypes.instanceOf(Vector),
-        damage: PropTypes.number.isRequired,
-        count: PropTypes.number.isRequired,
+        stackSize: PropTypes.number.isRequired,
         health: PropTypes.number.isRequired,
         maxHealth: PropTypes.number.isRequired,
         name: PropTypes.string,
@@ -38,16 +37,11 @@ export default class ArenaPawn extends React.Component {
                 onMouseLeave={e => this.props.onMouseLeave?.(this, e)}
             >
                 {this.props.name}
-                <div className='stats'>
-                    <span className='damage'>
-                        {this.props.damage}
-                    </span>
-                </div>
                 <div className='health-bar' style={{'--percent': healthPercent}}>
                     <div className='health' />
                 </div>
-                <span className='count'>
-                    {this.props.count}
+                <span className='stack-size'>
+                    {this.props.stackSize}
                 </span>
             </div>
         );

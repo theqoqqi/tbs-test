@@ -71,7 +71,7 @@
 
 
 
-.arena-pawn .count {
+.arena-pawn .stack-size {
     position: absolute;
     display: flex;
     justify-content: center;

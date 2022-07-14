@@ -9,28 +9,32 @@ export default class GameContext {
 
         this.registerTestPawn(pawnRegistry, 'walker', {
             health: 5,
-            damage: 1,
+            minDamage: 1,
+            maxDamage: 2,
             speed: 22,
             movementType: MovementTypes.WALKING,
         });
 
         this.registerTestPawn(pawnRegistry, 'soarer', {
             health: 10,
-            damage: 2,
+            minDamage: 1,
+            maxDamage: 3,
             speed: 33,
             movementType: MovementTypes.SOARING,
         });
 
         this.registerTestPawn(pawnRegistry, 'peasant', {
             health: 6,
-            damage: 1,
+            minDamage: 1,
+            maxDamage: 2,
             speed: 2,
             movementType: MovementTypes.WALKING,
         });
 
         this.registerTestPawn(pawnRegistry, 'dragon', {
             health: 800,
-            damage: 120,
+            minDamage: 100,
+            maxDamage: 120,
             speed: 100,
             movementType: MovementTypes.FLYING,
         });

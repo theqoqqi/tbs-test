@@ -247,10 +247,9 @@ export default class App extends React.Component {
                 name: pawn.props.name,
                 teamColor: pawn.team.hexColor,
 
-                count: pawn.count,
+                stackSize: pawn.stackSize,
                 health: pawn.currentHealth,
                 maxHealth: pawn.maxHealth,
-                damage: pawn.damage,
             };
         });
     }
