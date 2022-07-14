@@ -3,11 +3,13 @@ let nextUniqueId = 0;
 
 export default class ArenaPawn {
 
-    constructor(position, props) {
+    constructor(position, props, options) {
         this.id = nextUniqueId++;
         this.props = props;
         this.position = position;
         this.health = props.health;
+        this.count = options.count;
+        this.team = options.team;
     }
 
     get currentHealth() {

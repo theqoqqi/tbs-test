@@ -13,12 +13,12 @@ export default class ArenaCell extends React.Component {
 
     static propTypes = {
         id: PropTypes.number.isRequired,
+        axialPosition: PropTypes.instanceOf(Vector),
         position: PropTypes.instanceOf(Vector),
         selectable: PropTypes.bool,
         content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
         passability: PropTypes.oneOf(Object.values(PassabilityTypes)),
         distance: PropTypes.number,
-        coords: PropTypes.string,
         onClick: PropTypes.func,
         onMouseMove: PropTypes.func,
         onMouseEnter: PropTypes.func,
@@ -87,7 +87,7 @@ export default class ArenaCell extends React.Component {
                     {distanceSpan}
                 </span>
                 <span className='coords'>
-                    {this.props.coords}
+                    {this.props.axialPosition.x} {this.props.axialPosition.y}
                 </span>
             </div>
         );

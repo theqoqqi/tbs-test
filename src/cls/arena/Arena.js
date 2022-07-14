@@ -51,10 +51,27 @@ export default class Arena {
                 return this.passabilityGrid.isThroughPassable(p, forPawn);
             },
             targetPredicate: p => {
-                return this.passabilityGrid.isPassable(p)
-                    || this.hasPawnAt(p);
+                if (this.passabilityGrid.isPassable(p)) {
+                    return true;
+                }
+
+                if (!this.hasPawnAt(p)) {
+                    return false;
+                }
+
+                let otherPawn = this.getPawn(p);
+
+                return this.isOpponents(forPawn, otherPawn);
             },
         };
+    }
+
+    isOpponents(pawnA, pawnB) {
+        return this.isOpponentTeams(pawnA.team, pawnB.team);
+    }
+
+    isOpponentTeams(teamA, teamB) {
+        return teamA !== teamB;
     }
 
     addCell(position) {

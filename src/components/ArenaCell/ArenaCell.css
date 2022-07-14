@@ -109,6 +109,6 @@
     justify-content: center;
 
     font-size: calc(16px * var(--scale));
-    bottom: calc(12px * var(--scale));
+    top: calc(12px * var(--scale));
     color: #333;
 }

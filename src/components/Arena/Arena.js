@@ -20,6 +20,7 @@ export default class Arena extends React.Component {
         onCellMouseEnter: PropTypes.func,
         onCellMouseLeave: PropTypes.func,
         onPawnClick: PropTypes.func,
+        onPawnMouseMove: PropTypes.func,
     };
 
     static defaultProps = {
@@ -31,7 +32,8 @@ export default class Arena extends React.Component {
     constructor(props) {
         super(props);
 
-        this.root = React.createRef();
+        this.rootRef = React.createRef();
+        this.gridRef = React.createRef();
     }
 
     render() {
@@ -44,27 +46,36 @@ export default class Arena extends React.Component {
             pawns,
             path,
             pathTargetPosition,
-            onPawnClick,
             onCellClick,
             onCellMouseMove,
             onCellMouseEnter,
             onCellMouseLeave,
+            onPawnClick,
+            onPawnMouseMove,
         } = this.props;
 
         let $pawns = pawns.map(pawn => {
-            let position = HexagonUtils.axialToPlainPosition(pawn.position, cellSize, spacing);
+            let position = HexagonUtils.axialToPlainPosition(pawn.axialPosition, cellSize, spacing);
 
-            pawn.onClick = () => onPawnClick(pawn);
-
-            return <ArenaPawn key={pawn.id} {...pawn} position={position} />;
+            return (
+                <ArenaPawn
+                    key={pawn.id}
+                    {...pawn}
+                    axialPosition={pawn.axialPosition}
+                    position={position}
+                    onClick={onPawnClick}
+                    onMouseMove={onPawnMouseMove}
+                />
+            );
         });
 
         let shouldDrawPath = path?.length > 0 || pathTargetPosition !== null;
 
         return (
             <ArenaContext.Provider value={this.props}>
-                <div className='arena' ref={this.root}>
+                <div className='arena' ref={this.rootRef}>
                     <ArenaGrid
+                        ref={this.gridRef}
                         onClick={onCellClick}
                         onMouseMove={onCellMouseMove}
                         onCellMouseEnter={onCellMouseEnter}
@@ -78,8 +89,12 @@ export default class Arena extends React.Component {
         );
     }
 
+    getCell(position) {
+        return this.gridRef.current.getCell(position);
+    }
+
     getMousePosition(event) {
-        let offset = this.root.current.getBoundingClientRect();
+        let offset = this.rootRef.current.getBoundingClientRect();
         let x = event.pageX - offset.left;
         let y = event.pageY - offset.top;
 

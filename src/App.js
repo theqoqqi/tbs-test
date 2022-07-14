@@ -3,7 +3,6 @@ import React from 'react';
 import Fight from './cls/Fight.js';
 import Arena from './components/Arena/Arena.js';
 import GameContext from './cls/context/GameContext.js';
-import Vector from './cls/util/Vector.js';
 import HexagonUtils from './cls/util/HexagonUtils.js';
 import PassabilityTypes from './cls/arena/PassabilityTypes.js';
 
@@ -36,6 +35,7 @@ export default class App extends React.Component {
         this.handleCellMouseEnter = this.handleCellMouseEnter.bind(this);
         this.handleCellMouseLeave = this.handleCellMouseLeave.bind(this);
         this.handlePawnClick = this.handlePawnClick.bind(this);
+        this.handlePawnMouseMove = this.handlePawnMouseMove.bind(this);
         this.handleAnimationFrame = this.handleAnimationFrame.bind(this);
     }
 
@@ -49,46 +49,138 @@ export default class App extends React.Component {
         });
     }
 
-    handleCellClick(cellProps) {
-        let cell = this.arena.getCell(cellProps.position);
-        let pawn = this.selectedPawn;
+    handleCellClick(cellComponent) {
+        let cell = this.arena.getCell(cellComponent.props.axialPosition);
 
         console.log(cell.toString());
 
-        if (pawn && cellProps.selectable) {
+        if (this.selectedPawn && cellComponent.props.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
             this.fight.makeMove(move, this.path);
 
-            this.selectedPawn = null;
-            this.moves = [];
-            this.path = [];
-            this.pathTargetPosition = null;
-            this.pathDirection = null;
+            this.clearSelectedPawn();
+            this.clearPath();
         }
+    }
+
+    handleCellMouseMove(cellComponent, event) {
+        let cell = this.arena.getCell(cellComponent.props.axialPosition);
+
+        this.handleMouseMove(cell, event);
+    }
+
+    handleCellMouseEnter(cellComponent) {
+
+    }
+
+    handleCellMouseLeave(cellComponent) {
+        this.clearPath();
+    }
+
+    handlePawnClick(pawnComponent, event) {
+        let cellComponent = this.arenaRef.current.getCell(pawnComponent.props.axialPosition);
+
+        if (cellComponent.props.selectable) {
+            this.handleCellClick(cellComponent, event);
+            return;
+        }
+
+        let pawn = this.arena.getPawn(pawnComponent.props.axialPosition);
+
+        if (this.selectedPawn === pawn) {
+            this.clearSelectedPawn();
+        } else {
+            this.setSelectedPawn(pawn);
+        }
+
+        console.log(pawn.toString());
+    }
+
+    handlePawnMouseMove(pawnComponent, event) {
+        let cell = this.arena.getCell(pawnComponent.props.axialPosition);
+
+        this.handleMouseMove(cell, event);
+    }
+
+    handleMouseMove(cell, event) {
+        let move = this.moves.find(move => move.targetCell === cell);
+        let mousePosition = this.arenaRef.current.getMousePosition(event);
+        let cellPlainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let angle = cellPlainPosition.angleTo(mousePosition);
+        let direction = HexagonUtils.angleToDirection(angle);
+
+        if (move && this.pathDirection !== direction) {
+            this.updatePath(cell, mousePosition);
+        }
+    }
+
+    setSelectedPawn(pawn) {
+        this.selectedPawn = pawn;
+        this.moves = [];
+
+        if (pawn) {
+            this.moves = this.arena.getAvailableMoves(pawn);
+        }
+    }
+
+    setPath(path, targetPosition) {
+        this.path = path;
+        this.pathTargetPosition = targetPosition;
+        this.pathDirection = this.getDirectionToTarget(path, targetPosition);
+    }
+
+    getDirectionToTarget(path, targetDirection) {
+        let positionBeforeTarget = this.getPositionBeforeTarget(path, targetDirection);
+        let angle = positionBeforeTarget.angleTo(targetDirection);
+
+        return HexagonUtils.angleToDirection(angle);
+    }
+
+    getPositionBeforeTarget(path, targetPosition) {
+        if (!path.length) {
+            return null;
+        }
+
+        let lastPathPosition = path[path.length - 1];
+
+        if (lastPathPosition !== targetPosition) {
+            return lastPathPosition;
+        }
+
+        if (path.length < 2) {
+            return null;
+        }
+
+        return path[path.length - 2];
+    }
+
+    clearSelectedPawn() {
+        this.selectedPawn = null;
+        this.moves = [];
+    }
+
+    clearPath() {
+        this.path = [];
+        this.pathTargetPosition = null;
+        this.pathDirection = null;
     }
 
     updatePath(cell, mousePosition) {
         if (!this.selectedPawn) {
-            this.path = [];
-            this.pathTargetPosition = null;
-            this.pathDirection = null;
+            this.clearPath();
             return;
         }
 
         let pawn = this.selectedPawn;
         let neighborCell = this.getSuitableNeighborCell(pawn, cell, mousePosition);
-        let cellPlainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
-        let angle = cellPlainPosition.angleTo(mousePosition);
-        let direction = HexagonUtils.angleToDirection(angle);
 
-        this.path = this.arena.isCellFree(cell.position)
+        let path = this.arena.isCellFree(cell.position)
             ? this.arena.findPath(pawn, cell.position)
             : this.arena.findPath(pawn, neighborCell.position);
-        this.pathTargetPosition = cell.position;
-        this.pathDirection = direction;
+        let pathTargetPosition = cell.position;
 
-        // console.log(this.path)
+        this.setPath(path, pathTargetPosition);
     }
 
     getSuitableNeighborCell(movingPawn, originCell, mousePosition) {
@@ -102,6 +194,8 @@ export default class App extends React.Component {
             angle - 120,
             angle + 180,
         ];
+
+        // TODO: sort angles by angular distance to mouse
 
         for (const a of orderedAngles) {
             let cell = this.arena.getNeighborCell(originCell, a);
@@ -122,43 +216,6 @@ export default class App extends React.Component {
         return pawnCell === cell || (isCellFree && move && move.actionPoints < move.pawn.speed);
     }
 
-    handleCellMouseMove(cellProps, cellComponent, event) {
-        let cell = this.arena.getCell(cellProps.position);
-        let move = this.moves.find(move => move.targetCell === cell);
-        let mousePosition = this.arenaRef.current.getMousePosition(event);
-        let cellPlainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
-        let angle = cellPlainPosition.angleTo(mousePosition);
-        let direction = HexagonUtils.angleToDirection(angle);
-
-        if (move && this.pathDirection !== direction) {
-            this.updatePath(cell, mousePosition);
-        }
-    }
-
-    handleCellMouseEnter(cellProps) {
-
-    }
-
-    handleCellMouseLeave(cell) {
-        this.path = [];
-        this.pathTargetPosition = null;
-        this.pathDirection = null;
-    }
-
-    handlePawnClick(pawnProps) {
-        let pawn = this.arena.getPawn(pawnProps.position);
-
-        this.selectedPawn = this.selectedPawn === pawn ? null : pawn;
-
-        if (this.selectedPawn) {
-            this.moves = this.arena.getAvailableMoves(this.selectedPawn);
-        } else {
-            this.moves = [];
-        }
-
-        console.log(pawn.toString());
-    }
-
     getCellProps() {
         let selectableCellIds = this.moves.map(move => move.targetCell.id);
         let passabilityContentMap = {
@@ -167,30 +224,32 @@ export default class App extends React.Component {
             [PassabilityTypes.IMPASSABLE]: <span style={{fontSize: '40px'}}>I</span>,
         };
 
-        return this.arena.getAllCells().map(arenaCell => {
+        return this.arena.getAllCells().map(cell => {
             return {
-                id: arenaCell.id,
-                position: arenaCell.position,
-                selectable: selectableCellIds.includes(arenaCell.id),
-                passability: arenaCell.passability,
-                distance: this.selectedPawn && arenaCell.passability === PassabilityTypes.WALKING_PASSABLE
-                    ? this.arena.findPath(this.selectedPawn, arenaCell.position).length - 1 // TODO: каждый тик, каждый cell - дохуя
+                id: cell.id,
+                axialPosition: cell.position,
+                selectable: selectableCellIds.includes(cell.id),
+                passability: cell.passability,
+                distance: this.selectedPawn && cell.passability === PassabilityTypes.WALKING_PASSABLE
+                    ? this.arena.findPath(this.selectedPawn, cell.position).length - 1 // TODO: каждый тик, каждый cell - дохуя
                     : null,
-                content: passabilityContentMap[arenaCell.passability] ?? null,
+                content: passabilityContentMap[cell.passability] ?? null,
             };
         });
     }
 
     getPawnProps() {
-        return this.arena.getAllPawns().map(arenaPawn => {
+        return this.arena.getAllPawns().map(pawn => {
             return {
-                id: arenaPawn.id,
-                position: arenaPawn.position,
-                name: arenaPawn.props.name,
+                id: pawn.id,
+                axialPosition: pawn.position,
+                name: pawn.props.name,
+                teamColor: pawn.team.hexColor,
 
-                health: arenaPawn.currentHealth,
-                maxHealth: arenaPawn.maxHealth,
-                damage: arenaPawn.damage,
+                count: pawn.count,
+                health: pawn.currentHealth,
+                maxHealth: pawn.maxHealth,
+                damage: pawn.damage,
             };
         });
     }
@@ -220,7 +279,9 @@ export default class App extends React.Component {
                     onCellMouseMove={this.handleCellMouseMove}
                     onCellMouseEnter={this.handleCellMouseEnter}
                     onCellMouseLeave={this.handleCellMouseLeave}
+
                     onPawnClick={this.handlePawnClick}
+                    onPawnMouseMove={this.handlePawnMouseMove}
                 />
             </div>
         );

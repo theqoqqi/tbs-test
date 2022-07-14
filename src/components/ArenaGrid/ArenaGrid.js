@@ -20,20 +20,34 @@ export default class ArenaGrid extends React.Component {
         cells: [],
     };
 
+    constructor(props) {
+        super(props);
+
+        this.cellRefs = new Map();
+
+        for (let cell of props.cells) {
+            let cellRef = React.createRef();
+
+            this.cellRefs.set(cell.id, cellRef);
+        }
+    }
+
     render() {
         let $cells = this.props.cells.map(cell => {
-            let position = this.coordsToPosition(cell.position);
+            let position = this.coordsToPosition(cell.axialPosition);
+            let cellRef = this.cellRefs.get(cell.id);
 
             return (
                 <ArenaCell
                     {...cell}
+                    ref={cellRef}
+                    axialPosition={cell.axialPosition}
                     position={position}
-                    coords={cell.position.x + ' ' + cell.position.y}
                     key={cell.id}
-                    onClick={(boardCell, e) => this.props.onClick?.(cell, boardCell, e)}
-                    onMouseMove={(boardCell, e) => this.props.onMouseMove?.(cell, boardCell, e)}
-                    onMouseEnter={(boardCell, e) => this.props.onCellMouseEnter?.(cell, boardCell, e)}
-                    onMouseLeave={(boardCell, e) => this.props.onCellMouseLeave?.(cell, boardCell, e)}
+                    onClick={this.props.onClick}
+                    onMouseMove={this.props.onMouseMove}
+                    onMouseEnter={this.props.onCellMouseEnter}
+                    onMouseLeave={this.props.onCellMouseLeave}
                 />
             );
         });
@@ -43,6 +57,15 @@ export default class ArenaGrid extends React.Component {
                 {$cells}
             </div>
         );
+    }
+
+    getCell(position) {
+        let cellRefs = Array.from(this.cellRefs.values());
+        let cellRef = cellRefs.find(cellRef => {
+            return cellRef.current.props.axialPosition.equals(position);
+        });
+
+        return cellRef?.current;
     }
 
     coordsToPosition(position) {

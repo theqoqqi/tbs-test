@@ -204,7 +204,7 @@ export default class AStarSearch {
     }
 
     canBeUsedAsGoal(position) {
-        return this.targetPredicate(position);
+        return position.equals(this.start) || this.targetPredicate(position);
     }
 
     tryCollectPathFrom(position) {
