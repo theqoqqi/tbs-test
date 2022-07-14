@@ -30,7 +30,7 @@ export default class ArenaPath extends React.Component {
 
         if (!targetPlainPosition.equals(lastPlainPosition)) {
             let center = Vector.lerp(lastPlainPosition, targetPlainPosition, 0.5);
-            let node = this.createNode('attack', lastPlainPosition, center, index++);
+            let node = this.createNode('attack', center, lastPlainPosition, index++);
 
             pathNodes.unshift(node);
         }
