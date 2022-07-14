@@ -33,6 +33,10 @@
     --border-width: 6;
 }
 
+.arena-cell.selected {
+    --border-width: 6;
+}
+
 
 
 .arena-cell.walking-passable {
@@ -99,6 +103,15 @@
     fill: #404040;
 
     opacity: 0.5;
+}
+
+.arena-cell.selected svg .hexagon {
+    fill-opacity: 0.25;
+
+    stroke: white;
+    stroke-opacity: 1;
+
+    opacity: 1;
 }
 
 

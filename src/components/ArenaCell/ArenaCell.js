@@ -16,6 +16,7 @@ export default class ArenaCell extends React.Component {
         axialPosition: PropTypes.instanceOf(Vector),
         position: PropTypes.instanceOf(Vector),
         selectable: PropTypes.bool,
+        selected: PropTypes.bool,
         content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
         passability: PropTypes.oneOf(Object.values(PassabilityTypes)),
         distance: PropTypes.number,
@@ -54,6 +55,7 @@ export default class ArenaCell extends React.Component {
                 className={classNames({
                     'arena-cell': true,
                     'selectable': this.props.selectable,
+                    'selected': this.props.selected,
                     [passabilityClassName]: true,
                 })}
                 style={{

@@ -229,6 +229,7 @@ export default class App extends React.Component {
                 id: cell.id,
                 axialPosition: cell.position,
                 selectable: selectableCellIds.includes(cell.id),
+                selected: this.selectedPawn && this.selectedPawn.position.equals(cell.position),
                 passability: cell.passability,
                 distance: this.selectedPawn && cell.passability === PassabilityTypes.WALKING_PASSABLE
                     ? this.arena.findPath(this.selectedPawn, cell.position).length - 1 // TODO: каждый тик, каждый cell - дохуя
