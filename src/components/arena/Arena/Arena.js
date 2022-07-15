@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ArenaGrid from '../ArenaGrid/ArenaGrid.js';
 import ArenaPawn from '../ArenaPawn/ArenaPawn.js';
-import HexagonUtils from '../../cls/util/HexagonUtils.js';
-import Vector from '../../cls/util/Vector.js';
+import HexagonUtils from '../../../cls/util/HexagonUtils.js';
+import Vector from '../../../cls/util/Vector.js';
 import ArenaPath from '../ArenaPath/ArenaPath.js';
 import ArenaContext from './ArenaContext.js';
 

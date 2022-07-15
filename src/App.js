@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import Fight from './cls/Fight.js';
-import Arena from './components/Arena/Arena.js';
+import Arena from './components/arena/Arena/Arena.js';
 import GameContext from './cls/context/GameContext.js';
 import HexagonUtils from './cls/util/HexagonUtils.js';
 import PassabilityTypes from './cls/arena/PassabilityTypes.js';

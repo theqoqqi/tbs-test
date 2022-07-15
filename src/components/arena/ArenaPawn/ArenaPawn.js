@@ -1,7 +1,7 @@
 import './ArenaPawn.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Vector from '../../cls/util/Vector.js';
+import Vector from '../../../cls/util/Vector.js';
 
 export default class ArenaPawn extends React.Component {
 

@@ -2,9 +2,9 @@ import './ArenaCell.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Vector from '../../cls/util/Vector.js';
-import ArenaContext from '../Arena/ArenaContext.js';
-import PassabilityTypes from '../../cls/arena/PassabilityTypes.js';
+import Vector from '../../../cls/util/Vector.js';
+import ArenaContext from '../../arena/Arena/ArenaContext.js';
+import PassabilityTypes from '../../../cls/arena/PassabilityTypes.js';
 import {paramCase} from 'change-case';
 
 export default class ArenaCell extends React.Component {

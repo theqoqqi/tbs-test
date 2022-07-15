@@ -1,8 +1,8 @@
 import './ArenaPath.css';
 import React from 'react';
 import eachCons from 'each-cons';
-import Vector from '../../cls/util/Vector.js';
-import HexagonUtils from '../../cls/util/HexagonUtils.js';
+import Vector from '../../../cls/util/Vector.js';
+import HexagonUtils from '../../../cls/util/HexagonUtils.js';
 import PropTypes from 'prop-types';
 import ArenaContext from '../Arena/ArenaContext.js';
 
