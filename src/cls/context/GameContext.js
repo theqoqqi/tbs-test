@@ -17,7 +17,7 @@ export default class GameContext {
 
         this.registerTestPawn(pawnRegistry, 'soarer', {
             health: 10,
-            minDamage: 1,
+            minDamage: 2,
             maxDamage: 3,
             speed: 33,
             movementType: MovementTypes.SOARING,
