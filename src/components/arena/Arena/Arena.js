@@ -20,6 +20,7 @@ export default class Arena extends React.Component {
         onCellMouseEnter: PropTypes.func,
         onCellMouseLeave: PropTypes.func,
         onPawnClick: PropTypes.func,
+        onPawnRightClick: PropTypes.func,
         onPawnMouseMove: PropTypes.func,
     };
 
@@ -51,6 +52,7 @@ export default class Arena extends React.Component {
             onCellMouseEnter,
             onCellMouseLeave,
             onPawnClick,
+            onPawnRightClick,
             onPawnMouseMove,
         } = this.props;
 
@@ -64,6 +66,7 @@ export default class Arena extends React.Component {
                     axialPosition={pawn.axialPosition}
                     position={position}
                     onClick={onPawnClick}
+                    onRightClick={onPawnRightClick}
                     onMouseMove={onPawnMouseMove}
                 />
             );

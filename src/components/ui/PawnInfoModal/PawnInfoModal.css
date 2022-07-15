@@ -1,0 +1,37 @@
+.modal.pawn-info-modal {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1300;
+}
+
+.modal.pawn-info-modal .modal-content {
+    width: 100%;
+    padding: 16px;
+
+    border: 2px solid black;
+}
+
+.pawn-info-modal .pawn-parameter {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 14px;
+}
+
+.pawn-info-modal .pawn-parameter-title {
+
+}
+
+.pawn-info-modal .pawn-parameter-value {
+
+}
+
+.pawn-info-modal footer {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 16px;
+}

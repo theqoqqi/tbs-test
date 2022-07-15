@@ -1,4 +1,9 @@
 .App {
+    width: 100vw;
+    height: 100vh;
+}
+
+.App .arena-container {
     position: absolute;
     display: flex;
     justify-content: center;

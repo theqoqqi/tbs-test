@@ -15,6 +15,7 @@ export default class ArenaPawn extends React.Component {
         name: PropTypes.string,
         teamColor: PropTypes.string,
         onClick: PropTypes.func,
+        onRightClick: PropTypes.func,
         onMouseMove: PropTypes.func,
         onMouseEnter: PropTypes.func,
         onMouseLeave: PropTypes.func,
@@ -32,6 +33,7 @@ export default class ArenaPawn extends React.Component {
                     top: this.props.position.y + 'px',
                 }}
                 onClick={e => this.props.onClick?.(this, e)}
+                onContextMenu={e => this.props.onRightClick?.(this, e)}
                 onMouseMove={e => this.props.onMouseMove?.(this, e)}
                 onMouseEnter={e => this.props.onMouseEnter?.(this, e)}
                 onMouseLeave={e => this.props.onMouseLeave?.(this, e)}
@@ -46,5 +48,4 @@ export default class ArenaPawn extends React.Component {
             </div>
         );
     }
-
 }

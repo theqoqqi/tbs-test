@@ -5,6 +5,8 @@ import Arena from './components/arena/Arena/Arena.js';
 import GameContext from './cls/context/GameContext.js';
 import HexagonUtils from './cls/util/HexagonUtils.js';
 import PassabilityTypes from './cls/arena/PassabilityTypes.js';
+import PawnInfoModal from './components/ui/PawnInfoModal/PawnInfoModal.js';
+import Vector from './cls/util/Vector.js';
 
 export default class App extends React.Component {
 
@@ -29,6 +31,7 @@ export default class App extends React.Component {
             pawns: [],
             path: [],
             pathTargetPosition: null,
+            viewedPawnInfo: null,
         };
 
         this.handleCellClick = this.handleCellClick.bind(this);
@@ -36,6 +39,7 @@ export default class App extends React.Component {
         this.handleCellMouseEnter = this.handleCellMouseEnter.bind(this);
         this.handleCellMouseLeave = this.handleCellMouseLeave.bind(this);
         this.handlePawnClick = this.handlePawnClick.bind(this);
+        this.handlePawnRightClick = this.handlePawnRightClick.bind(this);
         this.handlePawnMouseMove = this.handlePawnMouseMove.bind(this);
         this.handleAnimationFrame = this.handleAnimationFrame.bind(this);
     }
@@ -101,6 +105,14 @@ export default class App extends React.Component {
         console.log(pawn.toString());
     }
 
+    handlePawnRightClick(pawnComponent, event) {
+        event.preventDefault();
+
+        let pawn = this.arena.getPawn(pawnComponent.props.axialPosition);
+
+        this.openPawnInfoModalFor(pawn);
+    }
+
     handlePawnMouseMove(pawnComponent, event) {
         let cell = this.arena.getCell(pawnComponent.props.axialPosition);
 
@@ -117,6 +129,29 @@ export default class App extends React.Component {
         if (move && this.pathDirection !== direction) {
             this.updatePath(cell, mousePosition);
         }
+    }
+
+    openPawnInfoModalFor(pawn) {
+        this.setState({
+            viewedPawnInfo: this.getPawnInfo(pawn),
+        })
+    }
+
+    closePawnInfoModal() {
+        this.setState({
+            viewedPawnInfo: null,
+        })
+    }
+
+    getPawnInfo(pawn) {
+        return {
+            currentHealth: pawn.currentHealth,
+            maxHealth: pawn.maxHealth,
+            speed: pawn.speed,
+            minDamage: pawn.minDamage,
+            maxDamage: pawn.maxDamage,
+            movementType: pawn.movementType,
+        };
     }
 
     setSelectedPawn(pawn) {
@@ -271,33 +306,41 @@ export default class App extends React.Component {
             cells,
             pawns,
             path,
-            pathTargetPosition
+            pathTargetPosition,
+            viewedPawnInfo
         } = this.state;
-
-        // console.log('render')
 
         return (
             <div className='App'>
-                <Arena
-                    ref={this.arenaRef}
+                <div className='arena-container'>
+                    <Arena
+                        ref={this.arenaRef}
 
-                    gridProps={{
-                        cells: cells,
-                        cellSize: App.CELL_SIZE,
-                        spacing: App.CELL_SPACING,
-                    }}
+                        gridProps={{
+                            cells: cells,
+                            cellSize: App.CELL_SIZE,
+                            spacing: App.CELL_SPACING,
+                        }}
 
-                    path={path}
-                    pathTargetPosition={pathTargetPosition}
-                    pawns={pawns}
+                        path={path}
+                        pathTargetPosition={pathTargetPosition}
+                        pawns={pawns}
 
-                    onCellClick={this.handleCellClick}
-                    onCellMouseMove={this.handleCellMouseMove}
-                    onCellMouseEnter={this.handleCellMouseEnter}
-                    onCellMouseLeave={this.handleCellMouseLeave}
+                        onCellClick={this.handleCellClick}
+                        onCellMouseMove={this.handleCellMouseMove}
+                        onCellMouseEnter={this.handleCellMouseEnter}
+                        onCellMouseLeave={this.handleCellMouseLeave}
 
-                    onPawnClick={this.handlePawnClick}
-                    onPawnMouseMove={this.handlePawnMouseMove}
+                        onPawnClick={this.handlePawnClick}
+                        onPawnRightClick={this.handlePawnRightClick}
+                        onPawnMouseMove={this.handlePawnMouseMove}
+                    />
+                </div>
+                <PawnInfoModal
+                    opened={!!viewedPawnInfo}
+                    pawnInfo={viewedPawnInfo}
+                    position={new Vector(100, 100)}
+                    onClose={() => this.closePawnInfoModal()}
                 />
             </div>
         );
