@@ -22,12 +22,13 @@ export default class App extends React.Component {
         this.fight = new Fight(gameContext);
         this.selectedPawn = null;
         this.moves = [];
-        this.path = [];
-        this.pathTargetPosition = null;
         this.pathDirection = null;
 
         this.state = {
-            //
+            cells: [],
+            pawns: [],
+            path: [],
+            pathTargetPosition: null,
         };
 
         this.handleCellClick = this.handleCellClick.bind(this);
@@ -44,9 +45,12 @@ export default class App extends React.Component {
     }
 
     handleAnimationFrame() {
-        this.forceUpdate(() => {
-            requestAnimationFrame(this.handleAnimationFrame);
+        this.setState({
+            cells: this.getCellProps(),
+            pawns: this.getPawnProps(),
         });
+
+        requestAnimationFrame(this.handleAnimationFrame);
     }
 
     handleCellClick(cellComponent) {
@@ -57,7 +61,7 @@ export default class App extends React.Component {
         if (this.selectedPawn && cellComponent.props.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
-            this.fight.makeMove(move, this.path);
+            this.fight.makeMove(move, this.state.path);
 
             this.clearSelectedPawn();
             this.clearPath();
@@ -117,17 +121,30 @@ export default class App extends React.Component {
 
     setSelectedPawn(pawn) {
         this.selectedPawn = pawn;
-        this.moves = [];
-
-        if (pawn) {
-            this.moves = this.arena.getAvailableMoves(pawn);
-        }
+        this.moves = this.arena.getAvailableMoves(pawn);
     }
 
     setPath(path, targetPosition) {
-        this.path = path;
-        this.pathTargetPosition = targetPosition;
         this.pathDirection = this.getDirectionToTarget(path, targetPosition);
+
+        this.setState({
+            path: path,
+            pathTargetPosition: targetPosition,
+        });
+    }
+
+    clearSelectedPawn() {
+        this.selectedPawn = null;
+        this.moves = [];
+    }
+
+    clearPath() {
+        this.pathDirection = null;
+
+        this.setState({
+            path: [],
+            pathTargetPosition: null,
+        });
     }
 
     getDirectionToTarget(path, targetDirection) {
@@ -155,24 +172,14 @@ export default class App extends React.Component {
         return path[path.length - 2];
     }
 
-    clearSelectedPawn() {
-        this.selectedPawn = null;
-        this.moves = [];
-    }
-
-    clearPath() {
-        this.path = [];
-        this.pathTargetPosition = null;
-        this.pathDirection = null;
-    }
-
     updatePath(cell, mousePosition) {
-        if (!this.selectedPawn) {
+        let pawn = this.selectedPawn;
+
+        if (!pawn) {
             this.clearPath();
             return;
         }
 
-        let pawn = this.selectedPawn;
         let neighborCell = this.getSuitableNeighborCell(pawn, cell, mousePosition);
 
         let path = this.arena.isCellFree(cell.position)
@@ -217,6 +224,7 @@ export default class App extends React.Component {
     }
 
     getCellProps() {
+        let selectedPawn = this.selectedPawn;
         let selectableCellIds = this.moves.map(move => move.targetCell.id);
         let passabilityContentMap = {
             [PassabilityTypes.SOARING_PASSABLE]: <span style={{fontSize: '40px'}}>S</span>,
@@ -229,10 +237,10 @@ export default class App extends React.Component {
                 id: cell.id,
                 axialPosition: cell.position,
                 selectable: selectableCellIds.includes(cell.id),
-                selected: this.selectedPawn && this.selectedPawn.position.equals(cell.position),
+                selected: selectedPawn && selectedPawn.position.equals(cell.position),
                 passability: cell.passability,
-                distance: this.selectedPawn && cell.passability === PassabilityTypes.WALKING_PASSABLE
-                    ? this.arena.findPath(this.selectedPawn, cell.position).length - 1 // TODO: каждый тик, каждый cell - дохуя
+                distance: selectedPawn && cell.passability === PassabilityTypes.WALKING_PASSABLE
+                    ? this.arena.findPath(selectedPawn, cell.position).length - 1 // TODO: каждый тик, каждый cell - дохуя
                     : null,
                 content: passabilityContentMap[cell.passability] ?? null,
             };
@@ -254,11 +262,19 @@ export default class App extends React.Component {
         });
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return true;
+    }
+
     render() {
-        let cells = this.getCellProps();
-        let pawns = this.getPawnProps();
-        let path = this.selectedPawn ? this.path : [];
-        let pathTargetPosition = this.pathTargetPosition;
+        let {
+            cells,
+            pawns,
+            path,
+            pathTargetPosition
+        } = this.state;
+
+        // console.log('render')
 
         return (
             <div className='App'>

@@ -24,12 +24,18 @@ export default class ArenaGrid extends React.Component {
         super(props);
 
         this.cellRefs = new Map();
+    }
 
-        for (let cell of props.cells) {
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        this.cellRefs.clear();
+
+        for (let cell of nextProps.cells) {
             let cellRef = React.createRef();
 
             this.cellRefs.set(cell.id, cellRef);
         }
+
+        return true;
     }
 
     render() {
