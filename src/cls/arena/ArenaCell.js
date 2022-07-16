@@ -1,4 +1,4 @@
-import PassabilityTypes from './PassabilityTypes.js';
+import PassabilityType from '../enums/PassabilityType.js';
 
 let nextUniqueId = 0;
 
@@ -7,7 +7,7 @@ export default class ArenaCell {
     constructor(position) {
         this.id = nextUniqueId++;
         this.position = position;
-        this.passability = PassabilityTypes.WALKING_PASSABLE;
+        this.passability = PassabilityType.WALKING_PASSABLE;
     }
 
     toString() {

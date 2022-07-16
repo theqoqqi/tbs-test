@@ -1,6 +1,6 @@
 import AStarSearch from './AStarSearch.js';
-import PassabilityTypes from '../arena/PassabilityTypes.js';
-import MovementTypes from '../arena/MovementTypes.js';
+import MovementType from '../enums/MovementType.js';
+import PassabilityType from '../enums/PassabilityType.js';
 
 export default class ArenaPassabilityGrid {
 
@@ -20,7 +20,7 @@ export default class ArenaPassabilityGrid {
     isThroughPassable(position, byPawn) {
         let cell = this.arena.getCell(position);
 
-        return (byPawn.movementType === MovementTypes.FLYING || this.arena.isCellFree(position))
+        return (byPawn.movementType === MovementType.FLYING || this.arena.isCellFree(position))
             && ArenaPassabilityGrid.#checkPassability(cell.passability, byPawn.movementType);
     }
 
@@ -28,21 +28,21 @@ export default class ArenaPassabilityGrid {
         let cell = this.arena.getCell(position);
 
         return this.arena.isCellFree(position)
-            && ArenaPassabilityGrid.#checkPassability(cell.passability, MovementTypes.WALKING);
+            && ArenaPassabilityGrid.#checkPassability(cell.passability, MovementType.WALKING);
     }
 
     static #passabilityMap = {
-        [MovementTypes.WALKING]: [
-            PassabilityTypes.WALKING_PASSABLE,
+        [MovementType.WALKING]: [
+            PassabilityType.WALKING_PASSABLE,
         ],
-        [MovementTypes.SOARING]: [
-            PassabilityTypes.WALKING_PASSABLE,
-            PassabilityTypes.SOARING_PASSABLE,
+        [MovementType.SOARING]: [
+            PassabilityType.WALKING_PASSABLE,
+            PassabilityType.SOARING_PASSABLE,
         ],
-        [MovementTypes.FLYING]: [
-            PassabilityTypes.WALKING_PASSABLE,
-            PassabilityTypes.SOARING_PASSABLE,
-            PassabilityTypes.FLYING_PASSABLE,
+        [MovementType.FLYING]: [
+            PassabilityType.WALKING_PASSABLE,
+            PassabilityType.SOARING_PASSABLE,
+            PassabilityType.FLYING_PASSABLE,
         ],
     };
 

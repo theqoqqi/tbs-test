@@ -4,9 +4,9 @@ import Fight from './cls/Fight.js';
 import Arena from './components/arena/Arena/Arena.js';
 import GameContext from './cls/context/GameContext.js';
 import HexagonUtils from './cls/util/HexagonUtils.js';
-import PassabilityTypes from './cls/arena/PassabilityTypes.js';
 import PawnInfoModal from './components/ui/PawnInfoModal/PawnInfoModal.js';
 import Vector from './cls/util/Vector.js';
+import PassabilityType from './cls/enums/PassabilityType.js';
 
 export default class App extends React.Component {
 
@@ -132,6 +132,7 @@ export default class App extends React.Component {
     }
 
     openPawnInfoModalFor(pawn) {
+        console.log(this.getPawnInfo(pawn))
         this.setState({
             viewedPawnInfo: this.getPawnInfo(pawn),
         })
@@ -145,12 +146,24 @@ export default class App extends React.Component {
 
     getPawnInfo(pawn) {
         return {
+            attack: pawn.attack,
+            defence: pawn.defence,
+            initiative: pawn.initiative,
+            currentSpeed: pawn.currentSpeed,
+            speed: pawn.speed,
+            criticalHitChance: pawn.criticalHitChance,
             currentHealth: pawn.currentHealth,
             maxHealth: pawn.maxHealth,
-            speed: pawn.speed,
-            minDamage: pawn.minDamage,
-            maxDamage: pawn.maxDamage,
+            resistances: pawn.resistances,
+            damageRanges: pawn.damageRanges,
             movementType: pawn.movementType,
+
+            baseAttack: pawn.baseAttack,
+            baseDefence: pawn.baseDefence,
+            baseInitiative: pawn.baseInitiative,
+            baseSpeed: pawn.baseSpeed,
+            baseCriticalHitChance: pawn.baseCriticalHitChance,
+            baseMaxHealth: pawn.baseMaxHealth,
         };
     }
 
@@ -262,9 +275,9 @@ export default class App extends React.Component {
         let selectedPawn = this.selectedPawn;
         let selectableCellIds = this.moves.map(move => move.targetCell.id);
         let passabilityContentMap = {
-            [PassabilityTypes.SOARING_PASSABLE]: <span style={{fontSize: '40px'}}>S</span>,
-            [PassabilityTypes.FLYING_PASSABLE]: <span style={{fontSize: '40px'}}>F</span>,
-            [PassabilityTypes.IMPASSABLE]: <span style={{fontSize: '40px'}}>I</span>,
+            [PassabilityType.SOARING_PASSABLE]: <span style={{fontSize: '40px'}}>S</span>,
+            [PassabilityType.FLYING_PASSABLE]: <span style={{fontSize: '40px'}}>F</span>,
+            [PassabilityType.IMPASSABLE]: <span style={{fontSize: '40px'}}>I</span>,
         };
 
         return this.arena.getAllCells().map(cell => {
@@ -274,7 +287,7 @@ export default class App extends React.Component {
                 selectable: selectableCellIds.includes(cell.id),
                 selected: selectedPawn && selectedPawn.position.equals(cell.position),
                 passability: cell.passability,
-                distance: selectedPawn && cell.passability === PassabilityTypes.WALKING_PASSABLE
+                distance: selectedPawn && cell.passability === PassabilityType.WALKING_PASSABLE
                     ? this.arena.findPath(selectedPawn, cell.position).length - 1 // TODO: каждый тик, каждый cell - дохуя
                     : null,
                 content: passabilityContentMap[cell.passability] ?? null,

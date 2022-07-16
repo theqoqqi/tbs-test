@@ -2,8 +2,8 @@ import ArenaPawn from './arena/ArenaPawn.js';
 import Arena from './arena/Arena.js';
 import Vector from './util/Vector.js';
 import arenaData from '../json/arenas/generic_with_obstacles.json';
-import PassabilityTypes from './arena/PassabilityTypes.js';
 import ArenaTeam from './arena/ArenaTeam.js';
+import PassabilityType from './enums/PassabilityType.js';
 
 export default class Fight {
 
@@ -18,7 +18,7 @@ export default class Fight {
             let cell = this.addCell(...cellData['position']);
 
             if (cellData.passability) {
-                cell.passability = PassabilityTypes.enumValueOf(cellData.passability);
+                cell.passability = PassabilityType.enumValueOf(cellData.passability);
             }
         }
 

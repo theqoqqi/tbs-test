@@ -4,6 +4,8 @@
     align-items: center;
     justify-content: center;
 
+    width: 220px;
+
     z-index: 1300;
 }
 
@@ -14,19 +16,49 @@
     border: 2px solid black;
 }
 
-.pawn-info-modal .pawn-parameter {
+.pawn-parameter {
     display: flex;
-    justify-content: space-between;
+
+    padding: 1px 5px;
 
     font-size: 14px;
 }
 
-.pawn-info-modal .pawn-parameter-title {
+.pawn-parameter:hover {
+    background-color: #ddd;
+}
+
+.pawn-parameter main {
+    display: flex;
+    justify-content: space-between;
+
+    flex: 4;
+}
+
+.pawn-parameter aside {
+    flex: 1;
+}
+
+.pawn-parameter-title {
+    padding-right: 5px;
+}
+
+.pawn-parameter-value {
+    padding-left: 5px;
+}
+
+.pawn-parameter-base-value {
+    padding-left: 5px;
+
+    color: gray;
+}
+
+.resistances-tooltip {
 
 }
 
-.pawn-info-modal .pawn-parameter-value {
-
+.resistances-tooltip .pawn-parameter {
+    font-size: 11px;
 }
 
 .pawn-info-modal footer {

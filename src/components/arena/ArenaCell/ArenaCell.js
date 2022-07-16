@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Vector from '../../../cls/util/Vector.js';
 import ArenaContext from '../../arena/Arena/ArenaContext.js';
-import PassabilityTypes from '../../../cls/arena/PassabilityTypes.js';
 import {paramCase} from 'change-case';
+import PassabilityType from '../../../cls/enums/PassabilityType.js';
 
 export default class ArenaCell extends React.Component {
 
@@ -18,7 +18,7 @@ export default class ArenaCell extends React.Component {
         selectable: PropTypes.bool,
         selected: PropTypes.bool,
         content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-        passability: PropTypes.oneOf(Object.values(PassabilityTypes)),
+        passability: PropTypes.oneOf(Object.values(PassabilityType)),
         distance: PropTypes.number,
         onClick: PropTypes.func,
         onMouseMove: PropTypes.func,
