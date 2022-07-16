@@ -4,6 +4,7 @@ import Race from '../types/Race.js';
 import Ranges from '../util/Ranges.js';
 import DamageType from '../enums/DamageType.js';
 import Resistances from '../util/Resistances.js';
+import Ability from '../types/Ability.js';
 
 export default class PawnProps {
 
@@ -12,7 +13,6 @@ export default class PawnProps {
     static leadership = 'leadership';
     static health = 'health';
     static speed = 'speed';
-    static damageRanges = 'damageRanges';
     static resistances = 'resistances';
     static movementType = 'movementType';
     static initiative = 'initiative';
@@ -23,6 +23,8 @@ export default class PawnProps {
     static defenceBonus = 'defenceBonus';
     static hitback = 'hitback';
     static hitbackProtection = 'hitbackProtection';
+
+    static abilities = 'abilities';
 
     static propDescriptors = new Map([
         [PawnProps.level, {
@@ -39,11 +41,6 @@ export default class PawnProps {
         }],
         [PawnProps.speed, {
             defaultValue: 1,
-        }],
-        [PawnProps.damageRanges, {
-            defaultValue: new Ranges([
-                [DamageType.PHYSICAL, 1, 1],
-            ]),
         }],
         [PawnProps.resistances, {
             defaultValue: new Resistances(),
@@ -74,6 +71,14 @@ export default class PawnProps {
         }],
         [PawnProps.hitbackProtection, {
             defaultValue: false,
+        }],
+
+        [PawnProps.abilities, {
+            defaultValue: new Ability({
+                damageRanges: new Ranges([
+                    [DamageType.PHYSICAL, 1, 1],
+                ]),
+            }),
         }],
     ]);
 

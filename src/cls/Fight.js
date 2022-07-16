@@ -4,6 +4,8 @@ import Vector from './util/Vector.js';
 import arenaData from '../json/arenas/generic_with_obstacles.json';
 import ArenaTeam from './arena/ArenaTeam.js';
 import PassabilityType from './enums/PassabilityType.js';
+import Formulas from './Formulas.js';
+import AbilitySlot from './enums/AbilitySlot.js';
 
 export default class Fight {
 
@@ -26,15 +28,19 @@ export default class Fight {
 
         this.createPawn(Vector.from(-1, -1), 'walker', {
             team: ArenaTeam.DEFAULT_1,
-            stackSize: 100,
+            stackSize: 250,
         });
         this.createPawn(Vector.from(-2, 1), 'soarer', {
             team: ArenaTeam.DEFAULT_1,
-            stackSize: 60,
+            stackSize: 100,
+        });
+        this.createPawn(Vector.from(-3, 0), 'archer', {
+            team: ArenaTeam.DEFAULT_1,
+            stackSize: 20,
         });
         this.createPawn(Vector.from(2, -1), 'walker', {
             team: ArenaTeam.DEFAULT_2,
-            stackSize: 50,
+            stackSize: 150,
         });
         this.createPawn(Vector.from(1, 1), 'dragon', {
             team: ArenaTeam.DEFAULT_2,
@@ -42,15 +48,16 @@ export default class Fight {
         });
     }
 
-    getAttackInfo(attackerPawn, targetPawn) {
+    getAttackInfo(attackerPawn, targetPawn, ability) {
         return [
-            this.getEstimatedDamage(attackerPawn, targetPawn),
+            this.getEstimatedDamage(attackerPawn, targetPawn, ability),
         ];
     }
 
-    getEstimatedDamage(attackerPawn, targetPawn) {
-        let minDamage = attackerPawn.stackMinDamage;
-        let maxDamage = attackerPawn.stackMaxDamage;
+    getEstimatedDamage(attackerPawn, targetPawn, ability) {
+        let damageRanges = this.getEstimatedDamageRanges(attackerPawn, targetPawn, ability);
+        let minDamage = damageRanges.combinedMin;
+        let maxDamage = damageRanges.combinedMax;
         let minKills = targetPawn.getKillCount(minDamage);
         let maxKills = targetPawn.getKillCount(maxDamage);
 
@@ -62,15 +69,19 @@ export default class Fight {
         };
     }
 
-    getRandomDamageInfo(attackerPawn, targetPawn) {
-        let estimatedDamage = this.getEstimatedDamage(attackerPawn, targetPawn);
-        let damage = this.randomInt(estimatedDamage.minDamage, estimatedDamage.maxDamage);
+    getRandomDamageInfo(attackerPawn, targetPawn, ability) {
+        let damageRanges = this.getEstimatedDamageRanges(attackerPawn, targetPawn, ability);
+        let damage = this.randomInt(damageRanges.combinedMin, damageRanges.combinedMax);
         let kills = targetPawn.getKillCount(damage);
 
         return {
             kills,
             damage,
         };
+    }
+
+    getEstimatedDamageRanges(attackerPawn, targetPawn, ability) {
+        return Formulas.calculateDamageRange(attackerPawn, targetPawn, ability);
     }
 
     randomInt(min, max) {
@@ -88,7 +99,7 @@ export default class Fight {
         this.arena.addPawn(pawn);
     }
 
-    makeMove(move, path) {
+    makeMove(move, path, ability) {
         let pawn = move.pawn;
         let cell = move.targetCell;
 
@@ -96,7 +107,7 @@ export default class Fight {
             let attackedPawn = this.arena.getPawn(cell.position);
 
             return this.moveByPath(pawn, path)
-                .then(() => this.attack(pawn, attackedPawn));
+                .then(() => this.attack(pawn, attackedPawn, ability));
         } else {
             return this.moveByPath(pawn, path);
         }
@@ -124,9 +135,21 @@ export default class Fight {
         });
     }
 
-    attack(attacker, target) {
+    getRegularAbility(forPawn) {
+        return this.getAbilityInSlot(forPawn, AbilitySlot.REGULAR);
+    }
+
+    getAbilityInSlot(forPawn, abilitySlot) {
+        return forPawn.abilities
+            .filter(a => a.slot === abilitySlot)
+            .find(ability => {
+                return true;
+            });
+    }
+
+    attack(attacker, target, ability) {
         return new Promise(resolve => {
-            let damageInfo = this.getRandomDamageInfo(attacker, target);
+            let damageInfo = this.getRandomDamageInfo(attacker, target, ability);
 
             target.applyDamage(damageInfo.damage);
 

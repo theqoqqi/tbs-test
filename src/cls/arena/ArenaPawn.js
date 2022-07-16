@@ -17,6 +17,7 @@ export default class ArenaPawn {
         this.#speed = props.speed;
 
         this.stackSize = options.stackSize;
+        this.initialStackSize = options.stackSize;
         this.team = options.team;
     }
 
@@ -62,10 +63,6 @@ export default class ArenaPawn {
         return this.#getPropertyValue(PawnProps.speed);
     }
 
-    get damageRanges() {
-        return this.#getPropertyValue(PawnProps.damageRanges);
-    }
-
     get resistances() {
         return this.#getPropertyValue(PawnProps.resistances);
     }
@@ -106,6 +103,10 @@ export default class ArenaPawn {
         return this.#getPropertyValue(PawnProps.hitbackProtection);
     }
 
+    get abilities() {
+        return this.#getPropertyValue(PawnProps.abilities);
+    }
+
 
 
     get baseLevel() {
@@ -126,10 +127,6 @@ export default class ArenaPawn {
 
     get baseSpeed() {
         return this.#getBasePropertyValue(PawnProps.speed);
-    }
-
-    get baseDamageRanges() {
-        return this.#getBasePropertyValue(PawnProps.damageRanges);
     }
 
     get baseResistances() {
@@ -172,6 +169,10 @@ export default class ArenaPawn {
         return this.#getBasePropertyValue(PawnProps.hitbackProtection);
     }
 
+    get baseRegularAbility() {
+        return this.#getBasePropertyValue(PawnProps.abilities);
+    }
+
 
 
     applyDamage(damage) {
@@ -196,8 +197,10 @@ export default class ArenaPawn {
 
     getKillCount(forDamage) {
         let killingDamage = forDamage - this.currentHealth + 1;
+        let kills = Math.ceil(killingDamage / this.maxHealth);
+        let lostStackSize = this.initialStackSize - this.stackSize;
 
-        return Math.ceil(killingDamage / this.maxHealth);
+        return Math.max(-lostStackSize, Math.min(this.stackSize, kills));
     }
 
 

@@ -1,4 +1,5 @@
 import DamageType from '../enums/DamageType.js';
+import Constants from '../Constants.js';
 
 export default class Resistances {
 
@@ -17,6 +18,8 @@ export default class Resistances {
     }
 
     get(damageType) {
-        return this.#resistances.get(damageType) ?? 0;
+        let resistance = this.#resistances.get(damageType) ?? 0;
+
+        return Math.min(Constants.MAX_RESISTANCE, resistance);
     }
 }

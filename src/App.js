@@ -23,6 +23,7 @@ export default class App extends React.Component {
 
         this.fight = new Fight(gameContext);
         this.selectedPawn = null;
+        this.activeAbility = null;
         this.moves = [];
         this.pathDirection = null;
 
@@ -65,7 +66,7 @@ export default class App extends React.Component {
         if (this.selectedPawn && cellComponent.props.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
-            this.fight.makeMove(move, this.state.path);
+            this.fight.makeMove(move, this.state.path, this.activeAbility);
 
             this.clearSelectedPawn();
             this.clearPath();
@@ -145,6 +146,8 @@ export default class App extends React.Component {
     }
 
     getPawnInfo(pawn) {
+        let regularAbility = this.fight.getRegularAbility(pawn);
+
         return {
             attack: pawn.attack,
             defence: pawn.defence,
@@ -155,7 +158,7 @@ export default class App extends React.Component {
             currentHealth: pawn.currentHealth,
             maxHealth: pawn.maxHealth,
             resistances: pawn.resistances,
-            damageRanges: pawn.damageRanges,
+            damageRanges: regularAbility.damageRanges,
             movementType: pawn.movementType,
 
             baseAttack: pawn.baseAttack,
@@ -169,6 +172,7 @@ export default class App extends React.Component {
 
     setSelectedPawn(pawn) {
         this.selectedPawn = pawn;
+        this.activeAbility = this.fight.getRegularAbility(pawn);
         this.moves = this.arena.getAvailableMoves(pawn);
     }
 
@@ -183,6 +187,7 @@ export default class App extends React.Component {
 
     clearSelectedPawn() {
         this.selectedPawn = null;
+        this.activeAbility = null;
         this.moves = [];
     }
 

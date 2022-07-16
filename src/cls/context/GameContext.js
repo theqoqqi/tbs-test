@@ -5,6 +5,8 @@ import Race from '../types/Race.js';
 import Ranges from '../util/Ranges.js';
 import DamageType from '../enums/DamageType.js';
 import Resistances from '../util/Resistances.js';
+import Ability from '../types/Ability.js';
+import AbilitySlot from '../enums/AbilitySlot.js';
 
 export default class GameContext {
 
@@ -42,14 +44,19 @@ export default class GameContext {
             [PawnProps.defenceBonus]: 1,
             [PawnProps.hitback]: 1,
             [PawnProps.hitbackProtection]: 0,
+
+            [PawnProps.abilities]: [
+                new Ability({
+                    slot: AbilitySlot.REGULAR,
+                    damageRanges: new Ranges([
+                        [DamageType.PHYSICAL, 1, 2],
+                    ]),
+                }),
+            ],
         });
 
         this.registerTestPawn('soarer', {
             [PawnProps.health]: 10,
-            [PawnProps.damageRanges]: new Ranges([
-                [DamageType.PHYSICAL, 1, 2],
-                [DamageType.MAGIC, 1, 1],
-            ]),
             [PawnProps.resistances]: new Resistances([
                 [DamageType.PHYSICAL, 0.5],
             ]),
@@ -65,13 +72,49 @@ export default class GameContext {
             [PawnProps.defenceBonus]: 2,
             [PawnProps.hitback]: 1,
             [PawnProps.hitbackProtection]: 0,
+
+            [PawnProps.abilities]: [
+                new Ability({
+                    slot: AbilitySlot.REGULAR,
+                    damageRanges: new Ranges([
+                        [DamageType.PHYSICAL, 1, 2],
+                        [DamageType.MAGIC, 1, 1],
+                    ]),
+                }),
+            ],
+        });
+
+        this.registerTestPawn('archer', {
+            [PawnProps.health]: 30,
+            [PawnProps.resistances]: new Resistances(),
+            [PawnProps.speed]: 2,
+            [PawnProps.movementType]: MovementType.WALKING,
+            [PawnProps.level]: 2,
+            [PawnProps.race]: this.races.get('human'),
+            [PawnProps.leadership]: 50,
+            [PawnProps.initiative]: 5,
+            [PawnProps.criticalHitChance]: 0.12,
+            [PawnProps.attack]: 15,
+            [PawnProps.defence]: 8,
+            [PawnProps.defenceBonus]: 2,
+            [PawnProps.hitback]: 1,
+            [PawnProps.hitbackProtection]: 0,
+
+            [PawnProps.abilities]: [
+                new Ability({
+                    slot: AbilitySlot.REGULAR,
+                    damageRanges: new Ranges([
+                        [DamageType.PHYSICAL, 4, 5],
+                    ]),
+                    minDistance: 2,
+                    maxDistance: 5,
+                    distancePenalty: 0.5,
+                }),
+            ],
         });
 
         this.registerTestPawn('peasant', {
             [PawnProps.health]: 6,
-            [PawnProps.damageRanges]: new Ranges([
-                [DamageType.PHYSICAL, 1, 2],
-            ]),
             [PawnProps.resistances]: new Resistances(),
             [PawnProps.speed]: 2,
             [PawnProps.movementType]: MovementType.WALKING,
@@ -85,16 +128,22 @@ export default class GameContext {
             [PawnProps.defenceBonus]: 1,
             [PawnProps.hitback]: 1,
             [PawnProps.hitbackProtection]: 0,
+
+            [PawnProps.abilities]: [
+                new Ability({
+                    slot: AbilitySlot.REGULAR,
+                    damageRanges: new Ranges([
+                        [DamageType.PHYSICAL, 1, 2],
+                    ]),
+                }),
+            ],
         });
 
         this.registerTestPawn('dragon', {
             [PawnProps.health]: 800,
-            [PawnProps.damageRanges]: new Ranges([
-                [DamageType.FIRE, 100, 120],
-            ]),
             [PawnProps.resistances]: new Resistances([
                 [DamageType.PHYSICAL, 0.25],
-                [DamageType.MAGIC, 0.25],
+                [DamageType.MAGIC, 0.50],
                 [DamageType.FIRE, 0.80],
             ]),
             [PawnProps.speed]: 8,
@@ -109,6 +158,15 @@ export default class GameContext {
             [PawnProps.defenceBonus]: 8,
             [PawnProps.hitback]: 1,
             [PawnProps.hitbackProtection]: 0,
+
+            [PawnProps.abilities]: [
+                new Ability({
+                    slot: AbilitySlot.REGULAR,
+                    damageRanges: new Ranges([
+                        [DamageType.FIRE, 100, 120],
+                    ]),
+                }),
+            ],
         });
     }
 
