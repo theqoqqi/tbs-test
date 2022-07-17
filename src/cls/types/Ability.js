@@ -1,4 +1,3 @@
-import AbilityTargetCollector from '../enums/AbilityTargetCollector.js';
 
 export default class Ability {
 
@@ -18,7 +17,7 @@ export default class Ability {
 
     constructor({slot, targetCollector, damageRanges, minDistance, maxDistance, distancePenalty, disabledIfNearEnemy}) {
         this.#slot = slot;
-        this.#targetCollector = targetCollector ?? AbilityTargetCollector.MELEE;
+        this.#targetCollector = targetCollector ?? (() => []);
         this.#damageRanges = damageRanges;
         this.#minDistance = minDistance ?? null;
         this.#maxDistance = maxDistance ?? null;
