@@ -31,9 +31,13 @@ export default class App extends React.Component {
         this.state = {
             cells: [],
             pawns: [],
+
             path: [],
             pathTargetPosition: null,
+
             viewedPawnInfo: null,
+
+            showActionInfo: false,
             viewedActionInfo: null,
             viewedActionInfoPosition: null,
         };
@@ -188,6 +192,7 @@ export default class App extends React.Component {
         viewportPosition = viewportPosition.add(0, -App.CELL_SIZE / 2);
 
         this.setState({
+            showActionInfo: true,
             viewedActionInfo: actionInfo,
             viewedActionInfoPosition: viewportPosition,
         })
@@ -195,7 +200,7 @@ export default class App extends React.Component {
 
     hideActionInfoTooltip() {
         this.setState({
-            viewedActionInfo: null,
+            showActionInfo: false,
             viewedActionInfoPosition: null,
         })
     }
@@ -387,6 +392,7 @@ export default class App extends React.Component {
             path,
             pathTargetPosition,
             viewedPawnInfo,
+            showActionInfo,
             viewedActionInfo,
             viewedActionInfoPosition,
         } = this.state;
@@ -424,7 +430,7 @@ export default class App extends React.Component {
                     onClose={() => this.hidePawnInfoModal()}
                 />
                 <ActionInfoTooltip
-                    opened={!!viewedActionInfo}
+                    opened={showActionInfo}
                     actionInfo={viewedActionInfo}
                     position={viewedActionInfoPosition ?? undefined}
                 />
