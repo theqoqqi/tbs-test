@@ -39,14 +39,12 @@ export default class ArenaGrid {
         return Array.from(this.cells.values());
     }
 
-    getNeighbors(position) {
+    getNeighborPositions(position) {
         let neighbors = [];
 
         for (const neighborPosition of HexagonUtils.getNeighborPositions(position)) {
             if (this.cellExists(neighborPosition)) {
-                let cell = this.getCell(neighborPosition);
-
-                neighbors.push(cell);
+                neighbors.push(neighborPosition);
             }
         }
 

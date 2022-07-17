@@ -69,6 +69,7 @@ export default class App extends React.Component {
             this.fight.makeMove(move, this.state.path, this.activeAbility);
 
             this.clearSelectedPawn();
+            this.clearActiveAbility();
             this.clearPath();
         }
     }
@@ -99,8 +100,10 @@ export default class App extends React.Component {
 
         if (this.selectedPawn === pawn) {
             this.clearSelectedPawn();
+            this.clearActiveAbility();
         } else {
             this.setSelectedPawn(pawn);
+            this.setActiveAbility(this.fight.getRegularAbility(pawn));
         }
 
         console.log(pawn.toString());
@@ -122,18 +125,22 @@ export default class App extends React.Component {
 
     handleMouseMove(cell, event) {
         let move = this.moves.find(move => move.targetCell === cell);
+
+        if (!move || move.isRanged) {
+            return;
+        }
+
         let mousePosition = this.arenaRef.current.getMousePosition(event);
         let cellPlainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
         let angle = cellPlainPosition.angleTo(mousePosition);
         let direction = HexagonUtils.angleToDirection(angle);
 
-        if (move && this.pathDirection !== direction) {
+        if (this.pathDirection !== direction) {
             this.updatePath(cell, mousePosition);
         }
     }
 
     openPawnInfoModalFor(pawn) {
-        console.log(this.getPawnInfo(pawn))
         this.setState({
             viewedPawnInfo: this.getPawnInfo(pawn),
         })
@@ -172,8 +179,11 @@ export default class App extends React.Component {
 
     setSelectedPawn(pawn) {
         this.selectedPawn = pawn;
-        this.activeAbility = this.fight.getRegularAbility(pawn);
-        this.moves = this.arena.getAvailableMoves(pawn);
+    }
+
+    setActiveAbility(ability) {
+        this.activeAbility = ability;
+        this.moves = this.fight.getAvailableMoves(this.selectedPawn, ability);
     }
 
     setPath(path, targetPosition) {
@@ -187,6 +197,9 @@ export default class App extends React.Component {
 
     clearSelectedPawn() {
         this.selectedPawn = null;
+    }
+
+    clearActiveAbility() {
         this.activeAbility = null;
         this.moves = [];
     }

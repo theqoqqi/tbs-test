@@ -12,25 +12,18 @@ export default class Arena {
         this.passabilityGrid = new ArenaPassabilityGrid(this);
     }
 
-    #getAvailableCells(forPawn, radius) {
+    getAvailableCells(forPawn, radius) {
         let search = new AStarSearch(this.passabilityGrid, forPawn.position);
         let findOptions = this.createFindPathOptions(forPawn, radius);
 
-        let cells = search
+        return search
             .findPositions(findOptions)
-            .map(position => this.getCell(position));
+            .map(position => {
+                let cell = this.getCell(position);
+                let distance = search.getCostFromStart(position);
 
-        return { search, cells };
-    }
-
-    getAvailableMoves(forPawn) {
-        let { search, cells } = this.#getAvailableCells(forPawn, forPawn.speed);
-
-        return cells.map(cell => {
-            let actionPoints = search.getCostFromStart(cell.position);
-
-            return new ArenaMove(forPawn, cell, actionPoints);
-        });
+                return { cell, distance };
+            });
     }
 
     findPath(forPawn, to) {
@@ -51,27 +44,9 @@ export default class Arena {
                 return this.passabilityGrid.isThroughPassable(p, forPawn);
             },
             targetPredicate: p => {
-                if (this.passabilityGrid.isPassable(p)) {
-                    return true;
-                }
-
-                if (!this.hasPawnAt(p)) {
-                    return false;
-                }
-
-                let otherPawn = this.getPawn(p);
-
-                return this.isOpponents(forPawn, otherPawn);
+                return this.passabilityGrid.isPassable(p);
             },
         };
-    }
-
-    isOpponents(pawnA, pawnB) {
-        return this.isOpponentTeams(pawnA.team, pawnB.team);
-    }
-
-    isOpponentTeams(teamA, teamB) {
-        return teamA !== teamB;
     }
 
     addCell(position) {
@@ -88,6 +63,10 @@ export default class Arena {
 
     isCellFree(position) {
         return !this.hasPawnAt(position);
+    }
+
+    getNeighborPositions(originPosition) {
+        return this.grid.getNeighborPositions(originPosition);
     }
 
     getNeighborCell(originCell, angle) {

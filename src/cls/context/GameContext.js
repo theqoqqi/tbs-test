@@ -7,6 +7,7 @@ import DamageType from '../enums/DamageType.js';
 import Resistances from '../util/Resistances.js';
 import Ability from '../types/Ability.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
+import AbilityTargetCollector from '../enums/AbilityTargetCollector.js';
 
 export default class GameContext {
 
@@ -103,6 +104,7 @@ export default class GameContext {
             [PawnProps.abilities]: [
                 new Ability({
                     slot: AbilitySlot.REGULAR,
+                    targetCollector: AbilityTargetCollector.RANGED,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 4, 5],
                     ]),

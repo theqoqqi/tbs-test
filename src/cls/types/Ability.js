@@ -1,7 +1,10 @@
+import AbilityTargetCollector from '../enums/AbilityTargetCollector.js';
 
 export default class Ability {
 
     #slot;
+
+    #targetCollector;
 
     #damageRanges;
 
@@ -11,8 +14,9 @@ export default class Ability {
 
     #distancePenalty;
 
-    constructor({slot, damageRanges, minDistance, maxDistance, distancePenalty}) {
+    constructor({slot, targetCollector, damageRanges, minDistance, maxDistance, distancePenalty}) {
         this.#slot = slot;
+        this.#targetCollector = targetCollector ?? AbilityTargetCollector.MELEE;
         this.#damageRanges = damageRanges;
         this.#minDistance = minDistance ?? null;
         this.#maxDistance = maxDistance ?? 1;
@@ -21,6 +25,10 @@ export default class Ability {
 
     get slot() {
         return this.#slot;
+    }
+
+    get targetCollector() {
+        return this.#targetCollector;
     }
 
     get damageRanges() {
@@ -36,6 +44,6 @@ export default class Ability {
     }
 
     get distancePenalty() {
-        return this.#maxDistance;
+        return this.#distancePenalty;
     }
 }

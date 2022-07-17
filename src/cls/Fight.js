@@ -6,6 +6,7 @@ import ArenaTeam from './arena/ArenaTeam.js';
 import PassabilityType from './enums/PassabilityType.js';
 import Formulas from './Formulas.js';
 import AbilitySlot from './enums/AbilitySlot.js';
+import ArenaMove from './arena/ArenaMove.js';
 
 export default class Fight {
 
@@ -46,6 +47,37 @@ export default class Fight {
             team: ArenaTeam.DEFAULT_2,
             stackSize: 1,
         });
+    }
+
+    getAvailableMoves(forPawn, ability) {
+        let moves = this.#getMovementMoves(forPawn);
+
+        if (ability) {
+            let abilityMoves = this.#getAbilityMoves(forPawn, ability, moves);
+
+            moves = moves.concat(abilityMoves);
+        }
+
+        return moves;
+    }
+
+    #getMovementMoves(forPawn) {
+        let searchResults = this.arena.getAvailableCells(forPawn, forPawn.speed);
+
+        return searchResults.map(searchResult => {
+            let { cell, distance } = searchResult;
+
+            return new ArenaMove({
+                pawn: forPawn,
+                targetCell: cell,
+                actionPoints: distance,
+                isRanged: false,
+            });
+        });
+    }
+
+    #getAbilityMoves(forPawn, ability, movementMoves) {
+        return ability.targetCollector(forPawn, ability, this, this.arena, movementMoves);
     }
 
     getAttackInfo(attackerPawn, targetPawn, ability) {
@@ -158,5 +190,13 @@ export default class Fight {
 
             resolve();
         });
+    }
+
+    isOpponents(pawnA, pawnB) {
+        return this.isOpponentTeams(pawnA.team, pawnB.team);
+    }
+
+    isOpponentTeams(teamA, teamB) {
+        return teamA !== teamB;
     }
 }
