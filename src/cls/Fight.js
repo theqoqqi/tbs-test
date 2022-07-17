@@ -148,6 +148,10 @@ export default class Fight {
         this.arena.addPawn(pawn);
     }
 
+    removePawn(pawn) {
+        this.arena.removePawn(pawn);
+    }
+
     makeMove(move, path, ability) {
         let pawn = move.pawn;
         let cell = move.targetCell;
@@ -217,6 +221,10 @@ export default class Fight {
             let damageInfo = this.getRandomDamageInfo(attacker, target, ability);
 
             target.applyDamage(damageInfo.damage);
+
+            if (target.stackSize === 0) {
+                this.removePawn(target);
+            }
 
             console.log('Attacked', target.toString(), 'by', attacker.toString());
             console.log('Damage:', damageInfo.damage, 'Kills:', damageInfo.kills, 'Is Crit:', damageInfo.isCriticalHit);

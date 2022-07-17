@@ -79,6 +79,10 @@ export default class Arena {
         this.pawns.set(pawn.id, pawn);
     }
 
+    removePawn(pawn) {
+        this.pawns.delete(pawn.id);
+    }
+
     getPawn(position) {
         return this.getAllPawns().find(pawn => {
             return pawn.position.equals(position);
