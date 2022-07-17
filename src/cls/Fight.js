@@ -175,8 +175,24 @@ export default class Fight {
         return forPawn.abilities
             .filter(a => a.slot === abilitySlot)
             .find(ability => {
+                if (ability.disabledIfNearEnemy) {
+                    if (this.hasEnemiesNearby(forPawn)) {
+                        return false;
+                    }
+                }
+
                 return true;
             });
+    }
+
+    hasEnemiesNearby(forPawn) {
+        let neighborPositions = this.arena.getNeighborPositions(forPawn.position);
+
+        return neighborPositions.some(position => {
+            let otherPawn = this.arena.getPawn(position);
+
+            return otherPawn && this.isOpponents(forPawn, otherPawn);
+        });
     }
 
     attack(attacker, target, ability) {

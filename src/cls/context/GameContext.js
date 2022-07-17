@@ -111,6 +111,14 @@ export default class GameContext {
                     minDistance: 2,
                     maxDistance: 5,
                     distancePenalty: 0.5,
+                    disabledIfNearEnemy: true,
+                }),
+                new Ability({
+                    slot: AbilitySlot.REGULAR,
+                    targetCollector: AbilityTargetCollector.MELEE,
+                    damageRanges: new Ranges([
+                        [DamageType.PHYSICAL, 2, 3],
+                    ]),
                 }),
             ],
         });

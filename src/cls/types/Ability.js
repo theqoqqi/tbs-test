@@ -14,13 +14,16 @@ export default class Ability {
 
     #distancePenalty;
 
-    constructor({slot, targetCollector, damageRanges, minDistance, maxDistance, distancePenalty}) {
+    #disabledIfNearEnemy;
+
+    constructor({slot, targetCollector, damageRanges, minDistance, maxDistance, distancePenalty, disabledIfNearEnemy}) {
         this.#slot = slot;
         this.#targetCollector = targetCollector ?? AbilityTargetCollector.MELEE;
         this.#damageRanges = damageRanges;
         this.#minDistance = minDistance ?? null;
         this.#maxDistance = maxDistance ?? 1;
         this.#distancePenalty = distancePenalty ?? 1;
+        this.#disabledIfNearEnemy = disabledIfNearEnemy ?? false;
     }
 
     get slot() {
@@ -45,5 +48,9 @@ export default class Ability {
 
     get distancePenalty() {
         return this.#distancePenalty;
+    }
+
+    get disabledIfNearEnemy() {
+        return this.#disabledIfNearEnemy;
     }
 }
