@@ -21,7 +21,7 @@ export default class Ability {
         this.#targetCollector = targetCollector ?? AbilityTargetCollector.MELEE;
         this.#damageRanges = damageRanges;
         this.#minDistance = minDistance ?? null;
-        this.#maxDistance = maxDistance ?? 1;
+        this.#maxDistance = maxDistance ?? null;
         this.#distancePenalty = distancePenalty ?? 1;
         this.#disabledIfNearEnemy = disabledIfNearEnemy ?? false;
     }

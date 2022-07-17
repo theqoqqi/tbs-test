@@ -5,18 +5,9 @@ import Modal from '../Modal/Modal.js';
 import MovementType from '../../../cls/enums/MovementType.js';
 import Ranges from '../../../cls/util/Ranges.js';
 import Resistances from '../../../cls/util/Resistances.js';
-import {Tooltip, tooltipClasses} from '@mui/material';
+import {Tooltip} from '@mui/material';
 import DamageType from '../../../cls/enums/DamageType.js';
-import styled from '@emotion/styled';
-
-// noinspection RequiredAttributes
-const CustomWidthTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className }} />
-))({
-    [`& .${tooltipClasses.tooltip}`]: {
-        // width: 100,
-    },
-});
+import Vector from '../../../cls/util/Vector.js';
 
 class PawnParameter extends React.Component {
 
@@ -35,8 +26,8 @@ class PawnParameter extends React.Component {
 
     render() {
         return (
-            <CustomWidthTooltip
-                className='resistances-tooltip'
+            <Tooltip
+                classes={{ popper: 'resistances-tooltip' }}
                 title={this.props.tooltip ?? ''}
                 open={this.props.tooltip ? undefined : false}
                 disableInteractive>
@@ -59,7 +50,7 @@ class PawnParameter extends React.Component {
                         </aside>
                     )}
                 </div>
-            </CustomWidthTooltip>
+            </Tooltip>
         );
     }
 }
@@ -106,6 +97,8 @@ class DamageRangesTooltipContent extends React.Component {
 export default class PawnInfoModal extends React.Component {
 
     static propTypes = {
+        opened: PropTypes.bool,
+        position: PropTypes.instanceOf(Vector),
         pawnInfo: PropTypes.shape({
             attack: PropTypes.number,
             baseAttack: PropTypes.number,
@@ -133,6 +126,7 @@ export default class PawnInfoModal extends React.Component {
 
             movementType: PropTypes.oneOf(Object.values(MovementType)),
         }),
+        onClose: PropTypes.func,
     };
 
     render() {

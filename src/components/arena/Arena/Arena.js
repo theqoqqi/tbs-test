@@ -97,9 +97,23 @@ export default class Arena extends React.Component {
     }
 
     getMousePosition(event) {
+        let mousePosition = new Vector(event.pageX, event.pageY);
+
+        return this.viewportPositionToLocalPosition(mousePosition);
+    }
+
+    viewportPositionToLocalPosition(localPosition) {
         let offset = this.rootRef.current.getBoundingClientRect();
-        let x = event.pageX - offset.left;
-        let y = event.pageY - offset.top;
+        let x = localPosition.x - offset.left;
+        let y = localPosition.y - offset.top;
+
+        return new Vector(x, y);
+    }
+
+    localPositionToViewportPosition(viewportPosition) {
+        let offset = this.rootRef.current.getBoundingClientRect();
+        let x = viewportPosition.x + offset.left;
+        let y = viewportPosition.y + offset.top;
 
         return new Vector(x, y);
     }

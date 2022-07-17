@@ -10,7 +10,7 @@ export default class Formulas {
         let stackSize = attackerPawn.stackSize;
         let differenceMultiplier = this.#getDifferenceMultiplier(attackerPawn.attack, targetPawn.defence);
         let axialDistance = HexagonUtils.axialDistance(attackerPawn.position, targetPawn.position);
-        let penalty = axialDistance > ability.maxDistance ? ability.distancePenalty : 0;
+        let penalty = ability.maxDistance && axialDistance > ability.maxDistance ? ability.distancePenalty : 0;
 
         return ability.damageRanges.map((damageType, min, max) => {
             let resistance = targetPawn.resistances.get(damageType);
@@ -31,11 +31,13 @@ export default class Formulas {
     };
 
     static #calculateDamage(damage, context) {
-        return damage
+        damage = damage
             * context.stackSize
             * context.differenceMultiplier
             * (1 - context.resistance)
             * (1 - context.penalty);
+
+        return Math.round(damage);
     }
 
     static #getDifferenceMultiplier(attack, defence) {

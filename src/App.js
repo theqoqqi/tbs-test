@@ -7,6 +7,7 @@ import HexagonUtils from './cls/util/HexagonUtils.js';
 import PawnInfoModal from './components/ui/PawnInfoModal/PawnInfoModal.js';
 import Vector from './cls/util/Vector.js';
 import PassabilityType from './cls/enums/PassabilityType.js';
+import ActionInfoTooltip from './components/ui/ActionInfoTooltip/ActionInfoTooltip.js';
 
 export default class App extends React.Component {
 
@@ -33,6 +34,8 @@ export default class App extends React.Component {
             path: [],
             pathTargetPosition: null,
             viewedPawnInfo: null,
+            viewedActionInfo: null,
+            viewedActionInfoPosition: null,
         };
 
         this.handleCellClick = this.handleCellClick.bind(this);
@@ -126,6 +129,33 @@ export default class App extends React.Component {
     handleMouseMove(cell, event) {
         let move = this.moves.find(move => move.targetCell === cell);
 
+        this.tryUpdatePath(event, cell, move);
+        this.updateActionInfoTooltip(event, cell, move);
+    }
+
+    updateActionInfoTooltip(event, cell, move) {
+        if (!move) {
+            this.hideActionInfoTooltip();
+            return;
+        }
+
+        let targetPawn = this.arena.getPawn(move.targetCell.position);
+
+        if (!targetPawn) {
+            this.hideActionInfoTooltip();
+            return;
+        }
+
+        let actionInfo = this.fight.getActionInfo(move.pawn, targetPawn, this.activeAbility);
+
+        if (actionInfo) {
+            this.showActionInfoTooltip(actionInfo, cell);
+        } else {
+            this.hideActionInfoTooltip();
+        }
+    }
+
+    tryUpdatePath(event, cell, move) {
         if (!move || move.isRanged) {
             return;
         }
@@ -146,9 +176,27 @@ export default class App extends React.Component {
         })
     }
 
-    closePawnInfoModal() {
+    hidePawnInfoModal() {
         this.setState({
             viewedPawnInfo: null,
+        })
+    }
+
+    showActionInfoTooltip(actionInfo, targetCell) {
+        let position = HexagonUtils.axialToPlainPosition(targetCell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let viewportPosition = this.arenaRef.current.localPositionToViewportPosition(position);
+        viewportPosition = viewportPosition.add(0, -App.CELL_SIZE / 2);
+
+        this.setState({
+            viewedActionInfo: actionInfo,
+            viewedActionInfoPosition: viewportPosition,
+        })
+    }
+
+    hideActionInfoTooltip() {
+        this.setState({
+            viewedActionInfo: null,
+            viewedActionInfoPosition: null,
         })
     }
 
@@ -338,7 +386,9 @@ export default class App extends React.Component {
             pawns,
             path,
             pathTargetPosition,
-            viewedPawnInfo
+            viewedPawnInfo,
+            viewedActionInfo,
+            viewedActionInfoPosition,
         } = this.state;
 
         return (
@@ -371,7 +421,12 @@ export default class App extends React.Component {
                     opened={!!viewedPawnInfo}
                     pawnInfo={viewedPawnInfo}
                     position={new Vector(100, 100)}
-                    onClose={() => this.closePawnInfoModal()}
+                    onClose={() => this.hidePawnInfoModal()}
+                />
+                <ActionInfoTooltip
+                    opened={!!viewedActionInfo}
+                    actionInfo={viewedActionInfo}
+                    position={viewedActionInfoPosition ?? undefined}
                 />
             </div>
         );

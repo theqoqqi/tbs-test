@@ -1,7 +1,6 @@
 import ArenaGrid from './ArenaGrid.js';
 import ArenaPassabilityGrid from '../pathfinding/ArenaPassabilityGrid.js';
 import AStarSearch from '../pathfinding/AStarSearch.js';
-import ArenaMove from './ArenaMove.js';
 import HexagonUtils from '../util/HexagonUtils.js';
 
 export default class Arena {

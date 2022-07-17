@@ -80,7 +80,7 @@ export default class Fight {
         return ability.targetCollector(forPawn, ability, this, this.arena, movementMoves);
     }
 
-    getAttackInfo(attackerPawn, targetPawn, ability) {
+    getActionInfo(attackerPawn, targetPawn, ability) {
         return [
             this.getEstimatedDamage(attackerPawn, targetPawn, ability),
         ];
