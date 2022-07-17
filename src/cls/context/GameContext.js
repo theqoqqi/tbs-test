@@ -189,6 +189,7 @@ export default class GameContext {
 
     registerTestPawn(name, props) {
         let pawnProps = new PawnProps(props);
+        pawnProps.internalName = name;
 
         this.pawnRegistry.register(name, pawnProps);
     }

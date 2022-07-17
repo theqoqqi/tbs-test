@@ -7,7 +7,7 @@ import HexagonUtils from './cls/util/HexagonUtils.js';
 import PawnInfoModal from './components/ui/PawnInfoModal/PawnInfoModal.js';
 import Vector from './cls/util/Vector.js';
 import PassabilityType from './cls/enums/PassabilityType.js';
-import ActionInfoTooltip from './components/ui/ActionInfoTooltip/ActionInfoTooltip.js';
+import MoveInfoTooltip from './components/ui/MoveInfoTooltip/MoveInfoTooltip.js';
 
 export default class App extends React.Component {
 
@@ -37,9 +37,9 @@ export default class App extends React.Component {
 
             viewedPawnInfo: null,
 
-            showActionInfo: false,
-            viewedActionInfo: null,
-            viewedActionInfoPosition: null,
+            showMoveInfo: false,
+            viewedMoveInfo: null,
+            viewedMoveInfoPosition: null,
         };
 
         this.handleCellClick = this.handleCellClick.bind(this);
@@ -134,28 +134,28 @@ export default class App extends React.Component {
         let move = this.moves.find(move => move.targetCell === cell);
 
         this.tryUpdatePath(event, cell, move);
-        this.updateActionInfoTooltip(event, cell, move);
+        this.updateMoveInfoTooltip(event, cell, move);
     }
 
-    updateActionInfoTooltip(event, cell, move) {
+    updateMoveInfoTooltip(event, cell, move) {
         if (!move) {
-            this.hideActionInfoTooltip();
+            this.hideMoveInfoTooltip();
             return;
         }
 
         let targetPawn = this.arena.getPawn(move.targetCell.position);
 
         if (!targetPawn) {
-            this.hideActionInfoTooltip();
+            this.hideMoveInfoTooltip();
             return;
         }
 
-        let actionInfo = this.fight.getActionInfo(move.pawn, targetPawn, this.activeAbility);
+        let moveInfo = this.fight.getMoveInfo(move.pawn, targetPawn, this.activeAbility);
 
-        if (actionInfo) {
-            this.showActionInfoTooltip(actionInfo, cell);
+        if (moveInfo) {
+            this.showMoveInfoTooltip(moveInfo, cell);
         } else {
-            this.hideActionInfoTooltip();
+            this.hideMoveInfoTooltip();
         }
     }
 
@@ -186,22 +186,22 @@ export default class App extends React.Component {
         })
     }
 
-    showActionInfoTooltip(actionInfo, targetCell) {
+    showMoveInfoTooltip(moveInfo, targetCell) {
         let position = HexagonUtils.axialToPlainPosition(targetCell.position, App.CELL_SIZE, App.CELL_SPACING);
         let viewportPosition = this.arenaRef.current.localPositionToViewportPosition(position);
         viewportPosition = viewportPosition.add(0, -App.CELL_SIZE / 2);
 
         this.setState({
-            showActionInfo: true,
-            viewedActionInfo: actionInfo,
-            viewedActionInfoPosition: viewportPosition,
+            showMoveInfo: true,
+            viewedMoveInfo: moveInfo,
+            viewedMoveInfoPosition: viewportPosition,
         })
     }
 
-    hideActionInfoTooltip() {
+    hideMoveInfoTooltip() {
         this.setState({
-            showActionInfo: false,
-            viewedActionInfoPosition: null,
+            showMoveInfo: false,
+            viewedMoveInfoPosition: null,
         })
     }
 
@@ -392,9 +392,9 @@ export default class App extends React.Component {
             path,
             pathTargetPosition,
             viewedPawnInfo,
-            showActionInfo,
-            viewedActionInfo,
-            viewedActionInfoPosition,
+            showMoveInfo,
+            viewedMoveInfo,
+            viewedMoveInfoPosition,
         } = this.state;
 
         return (
@@ -429,10 +429,10 @@ export default class App extends React.Component {
                     position={new Vector(100, 100)}
                     onClose={() => this.hidePawnInfoModal()}
                 />
-                <ActionInfoTooltip
-                    opened={showActionInfo}
-                    actionInfo={viewedActionInfo}
-                    position={viewedActionInfoPosition ?? undefined}
+                <MoveInfoTooltip
+                    opened={showMoveInfo}
+                    moveInfo={viewedMoveInfo}
+                    position={viewedMoveInfoPosition ?? undefined}
                 />
             </div>
         );

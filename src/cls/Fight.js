@@ -7,6 +7,8 @@ import PassabilityType from './enums/PassabilityType.js';
 import Formulas from './Formulas.js';
 import AbilitySlot from './enums/AbilitySlot.js';
 import ArenaMove from './arena/ArenaMove.js';
+import MoveInfo from './util/MoveInfo.js';
+import HitInfo from './util/HitInfo.js';
 
 export default class Fight {
 
@@ -80,10 +82,12 @@ export default class Fight {
         return ability.targetCollector(forPawn, ability, this, this.arena, movementMoves);
     }
 
-    getActionInfo(attackerPawn, targetPawn, ability) {
-        return [
-            this.getEstimatedDamage(attackerPawn, targetPawn, ability),
-        ];
+    getMoveInfo(attackerPawn, targetPawn, ability) {
+        return new MoveInfo({
+            actionInfos: [
+                this.getEstimatedDamage(attackerPawn, targetPawn, ability),
+            ],
+        });
     }
 
     getEstimatedDamage(attackerPawn, targetPawn, ability) {
@@ -92,13 +96,15 @@ export default class Fight {
         let maxDamage = damageRanges.combinedMax;
         let minKills = targetPawn.getKillCount(minDamage);
         let maxKills = targetPawn.getKillCount(maxDamage);
+        let targetName = targetPawn.props.internalName;
 
-        return {
+        return new HitInfo({
+            targetName,
             minDamage,
             maxDamage,
             minKills,
             maxKills,
-        };
+        });
     }
 
     getRandomDamageInfo(attackerPawn, targetPawn, ability) {
