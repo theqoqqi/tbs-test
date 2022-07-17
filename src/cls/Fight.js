@@ -109,13 +109,24 @@ export default class Fight {
 
     getRandomDamageInfo(attackerPawn, targetPawn, ability) {
         let damageRanges = this.getEstimatedDamageRanges(attackerPawn, targetPawn, ability);
-        let damage = this.randomInt(damageRanges.combinedMin, damageRanges.combinedMax);
+        let isCriticalHit = Math.random() < attackerPawn.criticalHitChance;
+        let damage = this.getDamage(attackerPawn, damageRanges, isCriticalHit);
+
         let kills = targetPawn.getKillCount(damage);
 
         return {
             kills,
             damage,
+            isCriticalHit,
         };
+    }
+
+    getDamage(attackerPawn, damageRanges, isCriticalHit) {
+        if (isCriticalHit) {
+            return damageRanges.combinedMax * attackerPawn.criticalHitMultiplier;
+        } else {
+            return this.randomInt(damageRanges.combinedMin, damageRanges.combinedMax);
+        }
     }
 
     getEstimatedDamageRanges(attackerPawn, targetPawn, ability) {
@@ -208,7 +219,7 @@ export default class Fight {
             target.applyDamage(damageInfo.damage);
 
             console.log('Attacked', target.toString(), 'by', attacker.toString());
-            console.log('Damage:', damageInfo.damage, 'Kills:', damageInfo.kills);
+            console.log('Damage:', damageInfo.damage, 'Kills:', damageInfo.kills, 'Is Crit:', damageInfo.isCriticalHit);
 
             resolve();
         });
