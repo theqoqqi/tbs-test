@@ -8,25 +8,39 @@ export default class MoveExecutor {
     }
 
     makeMove(move, path, ability) {
+        if (!ability?.apply) {
+            return Promise.resolve();
+        }
+
+        return ability.apply({
+            fight: this.#fight,
+            arena: this.#fight.arena,
+            moveExecutor: this.#fight.moveExecutor,
+            ability,
+            move,
+            path,
+        });
+    }
+
+    makeMovementMove(move, path) {
+        return this.moveByPath(move.pawn, path);
+    }
+
+    makeAttackMove(move, path, ability) {
         let attacker = move.pawn;
         let cell = move.targetCell;
+        let victim = this.#fight.arena.getPawn(cell.position);
 
-        if (this.#fight.arena.hasPawnAt(cell.position)) {
-            let victim = this.#fight.arena.getPawn(cell.position);
-
-            return this.#moveByPath(attacker, path)
-                .then(() => this.#attack(attacker, victim, ability))
-                .then(() => this.#tryHitback(attacker, victim, ability));
-        } else {
-            return this.#moveByPath(attacker, path);
-        }
+        return this.moveByPath(attacker, path)
+            .then(() => this.attack(attacker, victim, ability))
+            .then(() => this.tryHitback(attacker, victim, ability));
     }
 
     static shouldHitback(attacker, victim, ability) {
         return victim.canHitback && !attacker.hitbackProtection && !ability.noHitbacks;
     }
 
-    #tryHitback(attacker, victim, attackerAbility) {
+    tryHitback(attacker, victim, attackerAbility) {
         if (victim.stackSize === 0) {
             return Promise.resolve();
         }
@@ -43,10 +57,10 @@ export default class MoveExecutor {
 
         victim.consumeHitback();
 
-        return this.#attack(victim, attacker, hitbackAbility, false);
+        return this.attack(victim, attacker, hitbackAbility, false);
     }
 
-    #moveByPath(pawn, path) {
+    moveByPath(pawn, path) {
         if (path.length === 0) {
             return Promise.resolve();
         }
@@ -69,7 +83,7 @@ export default class MoveExecutor {
         });
     }
 
-    #attack(attacker, target, ability, consumeSpeed = true) {
+    attack(attacker, target, ability, consumeSpeed = true) {
         return new Promise(resolve => {
             let damageInfo = this.#fight.getRandomDamageInfo(attacker, target, ability);
 

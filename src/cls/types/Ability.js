@@ -5,9 +5,26 @@ export default class Ability {
 
     #props;
 
+    #currentReload;
+
+    #currentCharges;
+
     constructor(props) {
         this.id = nextUniqueId++;
         this.#props = props;
+
+        this.#currentReload = 0;
+        this.#currentCharges = props.charges;
+    }
+
+
+
+    get currentReload() {
+        return this.#currentReload;
+    }
+
+    get currentCharges() {
+        return this.#currentCharges;
     }
 
 
@@ -18,6 +35,10 @@ export default class Ability {
 
     get targetCollector() {
         return this.#getPropertyValue('targetCollector');
+    }
+
+    get apply() {
+        return this.#getPropertyValue('apply');
     }
 
     get damageRanges() {
@@ -40,8 +61,24 @@ export default class Ability {
         return this.#getPropertyValue('disabledIfNearEnemy');
     }
 
+    get endsTurn() {
+        return this.#getPropertyValue('endsTurn');
+    }
+
+    get mutedIfNearEnemy() {
+        return this.#getPropertyValue('mutedIfNearEnemy');
+    }
+
     get noHitbacks() {
         return this.#getPropertyValue('noHitbacks');
+    }
+
+    get reload() {
+        return this.#getPropertyValue('reload');
+    }
+
+    get charges() {
+        return this.#getPropertyValue('charges');
     }
 
 

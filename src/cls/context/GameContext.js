@@ -51,9 +51,15 @@ export default class GameContext {
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
+                    apply: abilityScripts.defaultMelee.apply,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 1, 2],
                     ]),
+                }),
+                new AbilityProps({
+                    slot: AbilitySlot.ABILITY_1,
+                    charges: 1,
+                    apply: abilityScripts.defaultRun.apply,
                 }),
             ],
         });
@@ -80,9 +86,19 @@ export default class GameContext {
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
+                    apply: abilityScripts.defaultMelee.apply,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 1, 2],
                         [DamageType.MAGIC, 1, 1],
+                    ]),
+                }),
+                new AbilityProps({
+                    slot: AbilitySlot.ABILITY_1,
+                    targetCollector: abilityScripts.defaultMelee.targetCollector,
+                    apply: abilityScripts.defaultMelee.apply,
+                    reload: 2,
+                    damageRanges: new Ranges([
+                        [DamageType.MAGIC, 3, 4],
                     ]),
                 }),
             ],
@@ -108,6 +124,7 @@ export default class GameContext {
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultRanged.targetCollector,
+                    apply: abilityScripts.defaultRanged.apply,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 4, 5],
                     ]),
@@ -120,9 +137,23 @@ export default class GameContext {
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
+                    apply: abilityScripts.defaultMelee.apply,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 2, 3],
                     ]),
+                }),
+                new AbilityProps({
+                    slot: AbilitySlot.ABILITY_1,
+                    targetCollector: abilityScripts.defaultRanged.targetCollector,
+                    apply: abilityScripts.defaultRanged.apply,
+                    damageRanges: new Ranges([
+                        [DamageType.PHYSICAL, 6, 8],
+                    ]),
+                    minDistance: 2,
+                    maxDistance: 5,
+                    distancePenalty: 0.5,
+                    mutedIfNearEnemy: true,
+                    noHitbacks: true,
                 }),
             ],
         });
@@ -147,6 +178,7 @@ export default class GameContext {
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
+                    apply: abilityScripts.defaultMelee.apply,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 1, 2],
                     ]),
@@ -178,6 +210,7 @@ export default class GameContext {
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
+                    apply: abilityScripts.defaultMelee.apply,
                     damageRanges: new Ranges([
                         [DamageType.FIRE, 100, 120],
                     ]),

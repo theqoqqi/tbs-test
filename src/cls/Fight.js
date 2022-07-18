@@ -215,4 +215,8 @@ export default class Fight {
     isOpponentTeams(teamA, teamB) {
         return teamA !== teamB;
     }
+
+    get moveExecutor() {
+        return this.#moveExecutor;
+    }
 }

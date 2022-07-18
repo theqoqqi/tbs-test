@@ -210,6 +210,10 @@ export default class ArenaPawn {
         this.#speed = Math.max(0, this.#speed - amount);
     }
 
+    giveSpeed(amount) {
+        this.#speed = Math.max(0, this.#speed + amount);
+    }
+
     refillSpeed() {
         this.#speed = this.speed;
     }
