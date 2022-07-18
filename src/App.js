@@ -70,16 +70,21 @@ export default class App extends React.Component {
 
     handleCellClick(cellComponent) {
         let cell = this.arena.getCell(cellComponent.props.axialPosition);
+        let pawn = this.selectedPawn;
 
         console.log(cell.toString());
 
-        if (this.selectedPawn && cellComponent.props.selectable) {
+        if (pawn && cellComponent.props.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
             this.fight.makeMove(move, this.state.path, this.activeAbility)
                 .then(() => {
-                    this.fight.nextTurn();
-                    this.setSelectedPawn(this.fight.currentPawn);
+                    if (pawn.currentSpeed > 0) {
+                        this.setSelectedPawn(pawn);
+                    } else {
+                        this.fight.nextTurn();
+                        this.setSelectedPawn(this.fight.currentPawn);
+                    }
                 });
 
             this.clearSelectedPawn();

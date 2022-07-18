@@ -81,7 +81,7 @@ export default class Fight {
     }
 
     #getMovementMoves(forPawn) {
-        let searchResults = this.arena.getAvailableCells(forPawn, forPawn.speed);
+        let searchResults = this.arena.getAvailableCells(forPawn, forPawn.currentSpeed);
 
         return searchResults.map(searchResult => {
             let { cell, distance } = searchResult;
@@ -209,7 +209,7 @@ export default class Fight {
 
         victim.consumeHitback();
 
-        return this.attack(victim, attacker, hitbackAbility);
+        return this.attack(victim, attacker, hitbackAbility, false);
     }
 
     moveByPath(pawn, path) {
@@ -229,6 +229,7 @@ export default class Fight {
     #stepTo(pawn, position) {
         return new Promise(resolve => {
             pawn.position = position;
+            pawn.consumeSpeed(1);
 
             setTimeout(resolve, 200);
         });
@@ -262,7 +263,7 @@ export default class Fight {
         });
     }
 
-    attack(attacker, target, ability) {
+    attack(attacker, target, ability, consumeSpeed = true) {
         return new Promise(resolve => {
             let damageInfo = this.getRandomDamageInfo(attacker, target, ability);
 
@@ -270,6 +271,10 @@ export default class Fight {
 
             if (target.stackSize === 0) {
                 this.removePawn(target);
+            }
+
+            if (consumeSpeed) {
+                attacker.consumeSpeed(attacker.currentSpeed);
             }
 
             console.log('Attacked', target.toString(), 'by', attacker.toString());
