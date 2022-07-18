@@ -14,7 +14,8 @@ export default function default_melee(forPawn, ability, fight, arena, movementMo
             })
             .sort((a, b) => {
                 return a.actionPoints - b.actionPoints;
-            });
+            })
+            .filter(move => move !== undefined);
 
         return sorted[0];
     };
@@ -28,13 +29,18 @@ export default function default_melee(forPawn, ability, fight, arena, movementMo
 
             let cell = arena.getCell(targetPawn.position);
             let neighborPositions = arena.getNeighborPositions(targetPawn.position);
-            let movementMove = getMovementMove(neighborPositions);
+            let isNearby = neighborPositions.some(position => position.equals(forPawn.position));
+            let actionPoints = 1;
 
-            if (!movementMove) {
-                return null;
+            if (!isNearby) {
+                let movementMove = getMovementMove(neighborPositions);
+
+                if (!movementMove) {
+                    return null;
+                }
+
+                actionPoints += movementMove.actionPoints;
             }
-
-            let actionPoints = movementMove.actionPoints + 1;
 
             if (forPawn.currentSpeed < actionPoints) {
                 return null;
