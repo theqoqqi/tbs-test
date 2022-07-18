@@ -37,7 +37,7 @@ export default class HitInfo {
         return this.#maxKills;
     }
 
-    get hitback() {
+    get willHitback() {
         return this.#willHitback;
     }
 }
