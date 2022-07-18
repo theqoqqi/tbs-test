@@ -193,6 +193,10 @@ export default class Fight {
     }
 
     tryHitback(attacker, victim) {
+        if (victim.stackSize === 0) {
+            return Promise.resolve();
+        }
+
         if (!this.shouldHitback(attacker, victim)) {
             return Promise.resolve();
         }
