@@ -9,11 +9,15 @@ import AbilitySlot from './enums/AbilitySlot.js';
 import ArenaMove from './arena/ArenaMove.js';
 import MoveInfo from './util/MoveInfo.js';
 import HitInfo from './util/HitInfo.js';
+import Gamecycle from './Gamecycle.js';
 
 export default class Fight {
 
+    #gamecycle;
+
     constructor(gameContext) {
         this.arena = new Arena();
+        this.#gamecycle = new Gamecycle(this);
 
         for (const cellData of arenaData.cells) {
             if (cellData['obstacles'] === 'IMPASSABLE') {
@@ -49,6 +53,18 @@ export default class Fight {
             team: ArenaTeam.DEFAULT_2,
             stackSize: 1,
         });
+    }
+
+    start() {
+        this.#gamecycle.nextTurn();
+    }
+
+    nextTurn() {
+        this.#gamecycle.nextTurn();
+    }
+
+    get currentPawn() {
+        return this.#gamecycle.currentPawn;
     }
 
     getAvailableMoves(forPawn, ability) {
@@ -146,10 +162,12 @@ export default class Fight {
         let pawn = new ArenaPawn(position, props, options);
 
         this.arena.addPawn(pawn);
+        this.#gamecycle.addPawn(pawn, false);
     }
 
     removePawn(pawn) {
         this.arena.removePawn(pawn);
+        this.#gamecycle.removePawn(pawn);
     }
 
     makeMove(move, path, ability) {

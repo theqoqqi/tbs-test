@@ -54,6 +54,9 @@ export default class App extends React.Component {
 
     componentDidMount() {
         requestAnimationFrame(this.handleAnimationFrame);
+
+        this.fight.start();
+        this.setSelectedPawn(this.fight.currentPawn);
     }
 
     handleAnimationFrame() {
@@ -73,7 +76,11 @@ export default class App extends React.Component {
         if (this.selectedPawn && cellComponent.props.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
-            this.fight.makeMove(move, this.state.path, this.activeAbility);
+            this.fight.makeMove(move, this.state.path, this.activeAbility)
+                .then(() => {
+                    this.fight.nextTurn();
+                    this.setSelectedPawn(this.fight.currentPawn);
+                });
 
             this.clearSelectedPawn();
         }
