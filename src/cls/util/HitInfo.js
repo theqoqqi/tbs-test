@@ -8,7 +8,7 @@ export default class HitInfo {
     #maxKills;
     #willHitback;
 
-    constructor({targetName, minDamage, maxDamage, minKills, maxKills, hitback: willHitback}) {
+    constructor({targetName, minDamage, maxDamage, minKills, maxKills, willHitback}) {
         this.#targetName = targetName;
         this.#minDamage = minDamage;
         this.#maxDamage = maxDamage;
