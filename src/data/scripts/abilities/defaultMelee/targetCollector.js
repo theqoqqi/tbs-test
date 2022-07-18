@@ -1,6 +1,6 @@
-import ArenaMove from '../../../cls/arena/ArenaMove.js';
+import ArenaMove from '../../../../cls/arena/ArenaMove.js';
 
-export default function default_melee(forPawn, ability, fight, arena, movementMoves) {
+export default function targetCollector(forPawn, ability, fight, arena, movementMoves) {
     let allPawns = arena.getAllPawns();
 
     let getMovementMove = neighborPositions => {

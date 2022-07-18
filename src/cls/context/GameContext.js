@@ -6,9 +6,9 @@ import Ranges from '../util/Ranges.js';
 import DamageType from '../enums/DamageType.js';
 import Resistances from '../util/Resistances.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
-import Resources from './Resources.js';
 import HitbackFrequency from '../enums/HitbackFrequency.js';
 import AbilityProps from './AbilityProps.js';
+import * as abilityScripts from '../../data/scripts/abilities';
 
 export default class GameContext {
 
@@ -50,7 +50,7 @@ export default class GameContext {
             [PawnProps.abilities]: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
-                    targetCollector: Resources.getTargetCollector('default_melee'),
+                    targetCollector: abilityScripts.defaultMelee.targetCollector,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 1, 2],
                     ]),
@@ -79,7 +79,7 @@ export default class GameContext {
             [PawnProps.abilities]: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
-                    targetCollector: Resources.getTargetCollector('default_melee'),
+                    targetCollector: abilityScripts.defaultMelee.targetCollector,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 1, 2],
                         [DamageType.MAGIC, 1, 1],
@@ -107,7 +107,7 @@ export default class GameContext {
             [PawnProps.abilities]: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
-                    targetCollector: Resources.getTargetCollector('default_ranged'),
+                    targetCollector: abilityScripts.defaultRanged.targetCollector,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 4, 5],
                     ]),
@@ -119,7 +119,7 @@ export default class GameContext {
                 }),
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
-                    targetCollector: Resources.getTargetCollector('default_melee'),
+                    targetCollector: abilityScripts.defaultMelee.targetCollector,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 2, 3],
                     ]),
@@ -146,7 +146,7 @@ export default class GameContext {
             [PawnProps.abilities]: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
-                    targetCollector: Resources.getTargetCollector('default_melee'),
+                    targetCollector: abilityScripts.defaultMelee.targetCollector,
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 1, 2],
                     ]),
@@ -177,7 +177,7 @@ export default class GameContext {
             [PawnProps.abilities]: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
-                    targetCollector: Resources.getTargetCollector('default_melee'),
+                    targetCollector: abilityScripts.defaultMelee.targetCollector,
                     damageRanges: new Ranges([
                         [DamageType.FIRE, 100, 120],
                     ]),

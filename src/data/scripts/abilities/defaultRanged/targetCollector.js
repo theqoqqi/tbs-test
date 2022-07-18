@@ -1,7 +1,7 @@
-import HexagonUtils from '../../../cls/util/HexagonUtils.js';
-import ArenaMove from '../../../cls/arena/ArenaMove.js';
+import HexagonUtils from '../../../../cls/util/HexagonUtils.js';
+import ArenaMove from '../../../../cls/arena/ArenaMove.js';
 
-export default function default_ranged(forPawn, ability, fight, arena, movementMoves) {
+export default function targetCollector(forPawn, ability, fight, arena, movementMoves) {
     let allPawns = arena.getAllPawns();
 
     return allPawns
