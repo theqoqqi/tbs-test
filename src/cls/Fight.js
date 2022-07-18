@@ -44,7 +44,7 @@ export default class Fight {
         });
         this.createPawn(Vector.from(-3, 0), 'archer', {
             team: ArenaTeam.DEFAULT_1,
-            stackSize: 20,
+            stackSize: 50,
         });
         this.createPawn(Vector.from(2, -1), 'walker', {
             team: ArenaTeam.DEFAULT_2,
