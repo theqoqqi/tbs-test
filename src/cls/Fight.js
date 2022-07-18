@@ -123,7 +123,7 @@ export default class Fight {
 
     getDamage(attackerPawn, damageRanges, isCriticalHit) {
         if (isCriticalHit) {
-            return damageRanges.combinedMax * attackerPawn.criticalHitMultiplier;
+            return Math.floor(damageRanges.combinedMax * attackerPawn.criticalHitMultiplier);
         } else {
             return this.randomInt(damageRanges.combinedMin, damageRanges.combinedMax);
         }
