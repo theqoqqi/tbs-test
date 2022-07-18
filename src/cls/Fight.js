@@ -10,15 +10,18 @@ import ArenaMove from './arena/ArenaMove.js';
 import MoveInfo from './util/MoveInfo.js';
 import HitInfo from './util/HitInfo.js';
 import Gamecycle from './Gamecycle.js';
-import HexagonUtils from './util/HexagonUtils.js';
+import MoveExecutor from './MoveExecutor.js';
 
 export default class Fight {
 
     #gamecycle;
 
+    #moveExecutor;
+
     constructor(gameContext) {
         this.arena = new Arena();
         this.#gamecycle = new Gamecycle(this);
+        this.#moveExecutor = new MoveExecutor(this);
 
         for (const cellData of arenaData.cells) {
             if (cellData['obstacles'] === 'IMPASSABLE') {
@@ -172,67 +175,7 @@ export default class Fight {
     }
 
     makeMove(move, path, ability) {
-        let attacker = move.pawn;
-        let cell = move.targetCell;
-
-        if (this.arena.hasPawnAt(cell.position)) {
-            let victim = this.arena.getPawn(cell.position);
-
-            return this.moveByPath(attacker, path)
-                .then(() => this.attack(attacker, victim, ability))
-                .then(() => this.tryHitback(attacker, victim));
-        } else {
-            return this.moveByPath(attacker, path);
-        }
-    }
-
-    shouldHitback(attacker, victim) {
-        let distance = HexagonUtils.axialDistance(attacker.position, victim.position);
-
-        return victim.canHitback && !attacker.hitbackProtection && distance === 1;
-    }
-
-    tryHitback(attacker, victim) {
-        if (victim.stackSize === 0) {
-            return Promise.resolve();
-        }
-
-        if (!this.shouldHitback(attacker, victim)) {
-            return Promise.resolve();
-        }
-
-        return this.hitback(attacker, victim);
-    }
-
-    hitback(attacker, victim) {
-        let hitbackAbility = this.getRegularAbility(victim);
-
-        victim.consumeHitback();
-
-        return this.attack(victim, attacker, hitbackAbility, false);
-    }
-
-    moveByPath(pawn, path) {
-        if (path.length === 0) {
-            return Promise.resolve();
-        }
-
-        let promise = Promise.resolve();
-
-        for (const nextPosition of path.slice(1)) {
-            promise = promise.then(() => this.#stepTo(pawn, nextPosition));
-        }
-
-        return promise;
-    }
-
-    #stepTo(pawn, position) {
-        return new Promise(resolve => {
-            pawn.position = position;
-            pawn.consumeSpeed(1);
-
-            setTimeout(resolve, 200);
-        });
+        return this.#moveExecutor.makeMove(move, path, ability);
     }
 
     getRegularAbility(forPawn) {
@@ -260,27 +203,6 @@ export default class Fight {
             let otherPawn = this.arena.getPawn(position);
 
             return otherPawn && this.isOpponents(forPawn, otherPawn);
-        });
-    }
-
-    attack(attacker, target, ability, consumeSpeed = true) {
-        return new Promise(resolve => {
-            let damageInfo = this.getRandomDamageInfo(attacker, target, ability);
-
-            target.applyDamage(damageInfo.damage);
-
-            if (target.stackSize === 0) {
-                this.removePawn(target);
-            }
-
-            if (consumeSpeed) {
-                attacker.consumeSpeed(attacker.currentSpeed);
-            }
-
-            console.log('Attacked', target.toString(), 'by', attacker.toString());
-            console.log('Damage:', damageInfo.damage, 'Kills:', damageInfo.kills, 'Is Crit:', damageInfo.isCriticalHit);
-
-            setTimeout(resolve, 500);
         });
     }
 
