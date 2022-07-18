@@ -60,15 +60,25 @@ export default class Gamecycle {
     #startNextRound() {
         this.#round++;
         this.#turn = 0;
+
+        for (const pawn of this.#allPawns) {
+            pawn.refillSpeed();
+            pawn.refillHitbacks();
+        }
+
         this.#resort();
     }
 
     #resort(pawns) {
-        pawns ??= this.#fight.arena.getAllPawns();
+        pawns ??= this.#allPawns;
 
         this.#pawnsInOrder = pawns.sort((a, b) => {
             return Gamecycle.#comparePawns(a, b);
         });
+    }
+
+    get #allPawns() {
+        return this.#fight.arena.getAllPawns();
     }
 
     static #comparePawns(a, b) {

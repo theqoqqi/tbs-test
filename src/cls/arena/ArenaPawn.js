@@ -1,4 +1,5 @@
 import PawnProps from '../context/PawnProps.js';
+import HitbackFrequency from '../enums/HitbackFrequency.js';
 
 let nextUniqueId = 0;
 
@@ -8,13 +9,16 @@ export default class ArenaPawn {
 
     #speed;
 
+    #hitbacks;
+
     constructor(position, props, options) {
         this.id = nextUniqueId++;
         this.props = props;
         this.position = position;
 
-        this.#health = props.health;
-        this.#speed = props.speed;
+        this.refillHealth();
+        this.refillSpeed();
+        this.refillHitbacks();
 
         this.stackSize = options.stackSize;
         this.initialStackSize = options.stackSize;
@@ -29,6 +33,10 @@ export default class ArenaPawn {
 
     get currentSpeed() {
         return this.#speed;
+    }
+
+    get canHitback() {
+        return this.#hitbacks > 0;
     }
 
 
@@ -187,12 +195,32 @@ export default class ArenaPawn {
         }
     }
 
+    refillHealth() {
+        this.#health = this.maxHealth;
+    }
+
     consumeSpeed(amount) {
         this.#speed = Math.max(0, this.#speed - amount);
     }
 
     refillSpeed() {
         this.#speed = this.speed;
+    }
+
+    consumeHitback() {
+        this.#hitbacks--;
+    }
+
+    refillHitbacks() {
+        this.#hitbacks = 0;
+
+        if (this.hitback === HitbackFrequency.ONCE_PER_ROUND) {
+            this.#hitbacks = 1;
+        }
+
+        if (this.hitback === HitbackFrequency.ALWAYS) {
+            this.#hitbacks = 999;
+        }
     }
 
     getKillCount(forDamage) {

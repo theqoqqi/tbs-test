@@ -10,6 +10,7 @@ import ArenaMove from './arena/ArenaMove.js';
 import MoveInfo from './util/MoveInfo.js';
 import HitInfo from './util/HitInfo.js';
 import Gamecycle from './Gamecycle.js';
+import HexagonUtils from './util/HexagonUtils.js';
 
 export default class Fight {
 
@@ -171,17 +172,40 @@ export default class Fight {
     }
 
     makeMove(move, path, ability) {
-        let pawn = move.pawn;
+        let attacker = move.pawn;
         let cell = move.targetCell;
 
         if (this.arena.hasPawnAt(cell.position)) {
-            let attackedPawn = this.arena.getPawn(cell.position);
+            let victim = this.arena.getPawn(cell.position);
 
-            return this.moveByPath(pawn, path)
-                .then(() => this.attack(pawn, attackedPawn, ability));
+            return this.moveByPath(attacker, path)
+                .then(() => this.attack(attacker, victim, ability))
+                .then(() => this.tryHitback(attacker, victim));
         } else {
-            return this.moveByPath(pawn, path);
+            return this.moveByPath(attacker, path);
         }
+    }
+
+    shouldHitback(attacker, victim) {
+        let distance = HexagonUtils.axialDistance(attacker.position, victim.position);
+
+        return victim.canHitback && !attacker.hitbackProtection && distance === 1;
+    }
+
+    tryHitback(attacker, victim) {
+        if (!this.shouldHitback(attacker, victim)) {
+            return Promise.resolve();
+        }
+
+        return this.hitback(attacker, victim);
+    }
+
+    hitback(attacker, victim) {
+        let hitbackAbility = this.getRegularAbility(victim);
+
+        victim.consumeHitback();
+
+        return this.attack(victim, attacker, hitbackAbility);
     }
 
     moveByPath(pawn, path) {
