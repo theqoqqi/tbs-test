@@ -115,6 +115,7 @@ export default class GameContext {
                     maxDistance: 5,
                     distancePenalty: 0.5,
                     disabledIfNearEnemy: true,
+                    noHitbacks: true,
                 }),
                 new Ability({
                     slot: AbilitySlot.REGULAR,

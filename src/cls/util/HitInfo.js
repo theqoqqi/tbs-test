@@ -6,13 +6,15 @@ export default class HitInfo {
     #maxDamage;
     #minKills;
     #maxKills;
+    #willHitback;
 
-    constructor({targetName, minDamage, maxDamage, minKills, maxKills}) {
+    constructor({targetName, minDamage, maxDamage, minKills, maxKills, hitback: willHitback}) {
         this.#targetName = targetName;
         this.#minDamage = minDamage;
         this.#maxDamage = maxDamage;
         this.#minKills = minKills;
         this.#maxKills = maxKills;
+        this.#willHitback = willHitback;
     }
 
     get targetName() {
@@ -33,5 +35,9 @@ export default class HitInfo {
 
     get maxKills() {
         return this.#maxKills;
+    }
+
+    get hitback() {
+        return this.#willHitback;
     }
 }

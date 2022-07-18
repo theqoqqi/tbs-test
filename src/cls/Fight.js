@@ -116,6 +116,7 @@ export default class Fight {
         let maxDamage = damageRanges.combinedMax;
         let minKills = targetPawn.getKillCount(minDamage);
         let maxKills = targetPawn.getKillCount(maxDamage);
+        let willHitback = MoveExecutor.shouldHitback(attackerPawn, targetPawn, ability);
         let targetName = targetPawn.props.internalName;
 
         return new HitInfo({
@@ -124,6 +125,7 @@ export default class Fight {
             maxDamage,
             minKills,
             maxKills,
+            willHitback,
         });
     }
 

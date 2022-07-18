@@ -1,4 +1,3 @@
-import HexagonUtils from './util/HexagonUtils.js';
 
 export default class MoveExecutor {
 
@@ -23,10 +22,8 @@ export default class MoveExecutor {
         }
     }
 
-    static #shouldHitback(attacker, victim) {
-        let distance = HexagonUtils.axialDistance(attacker.position, victim.position);
-
-        return victim.canHitback && !attacker.hitbackProtection && distance === 1;
+    static shouldHitback(attacker, victim, ability) {
+        return victim.canHitback && !attacker.hitbackProtection && !ability.noHitbacks;
     }
 
     #tryHitback(attacker, victim) {
@@ -34,7 +31,7 @@ export default class MoveExecutor {
             return Promise.resolve();
         }
 
-        if (!MoveExecutor.#shouldHitback(attacker, victim)) {
+        if (!MoveExecutor.shouldHitback(attacker, victim)) {
             return Promise.resolve();
         }
 

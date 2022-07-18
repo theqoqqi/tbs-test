@@ -15,7 +15,9 @@ export default class Ability {
 
     #disabledIfNearEnemy;
 
-    constructor({slot, targetCollector, damageRanges, minDistance, maxDistance, distancePenalty, disabledIfNearEnemy}) {
+    #noHitbacks;
+
+    constructor({slot, targetCollector, damageRanges, minDistance, maxDistance, distancePenalty, disabledIfNearEnemy, noHitbacks}) {
         this.#slot = slot;
         this.#targetCollector = targetCollector ?? (() => []);
         this.#damageRanges = damageRanges;
@@ -23,6 +25,7 @@ export default class Ability {
         this.#maxDistance = maxDistance ?? null;
         this.#distancePenalty = distancePenalty ?? 1;
         this.#disabledIfNearEnemy = disabledIfNearEnemy ?? false;
+        this.#noHitbacks = noHitbacks ?? false;
     }
 
     get slot() {
@@ -51,5 +54,9 @@ export default class Ability {
 
     get disabledIfNearEnemy() {
         return this.#disabledIfNearEnemy;
+    }
+
+    get noHitbacks() {
+        return this.#noHitbacks;
     }
 }
