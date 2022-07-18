@@ -16,7 +16,7 @@ export default class MoveExecutor {
 
             return this.#moveByPath(attacker, path)
                 .then(() => this.#attack(attacker, victim, ability))
-                .then(() => this.#tryHitback(attacker, victim));
+                .then(() => this.#tryHitback(attacker, victim, ability));
         } else {
             return this.#moveByPath(attacker, path);
         }
@@ -26,12 +26,12 @@ export default class MoveExecutor {
         return victim.canHitback && !attacker.hitbackProtection && !ability.noHitbacks;
     }
 
-    #tryHitback(attacker, victim) {
+    #tryHitback(attacker, victim, attackerAbility) {
         if (victim.stackSize === 0) {
             return Promise.resolve();
         }
 
-        if (!MoveExecutor.shouldHitback(attacker, victim)) {
+        if (!MoveExecutor.shouldHitback(attacker, victim, attackerAbility)) {
             return Promise.resolve();
         }
 
