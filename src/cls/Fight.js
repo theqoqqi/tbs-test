@@ -271,7 +271,7 @@ export default class Fight {
             console.log('Attacked', target.toString(), 'by', attacker.toString());
             console.log('Damage:', damageInfo.damage, 'Kills:', damageInfo.kills, 'Is Crit:', damageInfo.isCriticalHit);
 
-            resolve();
+            setTimeout(resolve, 500);
         });
     }
 
