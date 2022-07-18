@@ -10,11 +10,13 @@ export default function default_melee(forPawn, ability, fight, arena, movementMo
 
         let sorted = neighborPositions
             .map(position => {
-                return movementMoves.find(move => position.equals(move.targetCell.position));
+                return position.equals(forPawn.position)
+                    || movementMoves.find(move => position.equals(move.targetCell.position));
             })
             .sort((a, b) => {
                 return a.actionPoints - b.actionPoints;
-            });
+            })
+            .filter(move => move !== undefined);
 
         return sorted[0];
     };
