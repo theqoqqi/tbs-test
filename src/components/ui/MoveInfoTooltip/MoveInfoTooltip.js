@@ -62,6 +62,11 @@ export default class MoveInfoTooltip extends React.Component {
                     <div className='titled-range'>
                         Погибает: {info.minKills} - {info.maxKills}
                     </div>
+                    {info.willHitback && (
+                        <div className='hitback'>
+                            Враг ответит на удар
+                        </div>
+                    )}
                 </div>
             );
         });
