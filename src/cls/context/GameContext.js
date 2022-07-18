@@ -8,6 +8,7 @@ import Resistances from '../util/Resistances.js';
 import Ability from '../types/Ability.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
 import Resources from './Resources.js';
+import HitbackFrequency from '../enums/HitbackFrequency.js';
 
 export default class GameContext {
 
@@ -43,7 +44,7 @@ export default class GameContext {
             [PawnProps.attack]: 3,
             [PawnProps.defence]: 1,
             [PawnProps.defenceBonus]: 1,
-            [PawnProps.hitback]: 1,
+            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
@@ -72,7 +73,7 @@ export default class GameContext {
             [PawnProps.attack]: 3,
             [PawnProps.defence]: 5,
             [PawnProps.defenceBonus]: 2,
-            [PawnProps.hitback]: 1,
+            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
@@ -100,7 +101,7 @@ export default class GameContext {
             [PawnProps.attack]: 15,
             [PawnProps.defence]: 8,
             [PawnProps.defenceBonus]: 2,
-            [PawnProps.hitback]: 1,
+            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
@@ -138,7 +139,7 @@ export default class GameContext {
             [PawnProps.attack]: 1,
             [PawnProps.defence]: 1,
             [PawnProps.defenceBonus]: 1,
-            [PawnProps.hitback]: 1,
+            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
@@ -169,7 +170,7 @@ export default class GameContext {
             [PawnProps.attack]: 50,
             [PawnProps.defence]: 40,
             [PawnProps.defenceBonus]: 8,
-            [PawnProps.hitback]: 1,
+            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
