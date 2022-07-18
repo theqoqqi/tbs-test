@@ -1,5 +1,6 @@
 import PawnProps from '../context/PawnProps.js';
 import HitbackFrequency from '../enums/HitbackFrequency.js';
+import Ability from '../types/Ability.js';
 
 let nextUniqueId = 0;
 
@@ -11,18 +12,28 @@ export default class ArenaPawn {
 
     #hitbacks;
 
+    #abilities;
+
     constructor(position, props, options) {
         this.id = nextUniqueId++;
         this.props = props;
         this.position = position;
 
-        this.refillHealth();
-        this.refillSpeed();
-        this.refillHitbacks();
-
         this.stackSize = options.stackSize;
         this.initialStackSize = options.stackSize;
         this.team = options.team;
+
+        this.#initAbilities();
+
+        this.refillHealth();
+        this.refillSpeed();
+        this.refillHitbacks();
+    }
+
+    #initAbilities() {
+        this.#abilities = this.props.abilities.map(abilityProps => {
+            return new Ability(abilityProps);
+        });
     }
 
 
@@ -37,6 +48,10 @@ export default class ArenaPawn {
 
     get canHitback() {
         return this.#hitbacks > 0;
+    }
+
+    get abilities() {
+        return this.#abilities;
     }
 
 
@@ -111,10 +126,6 @@ export default class ArenaPawn {
         return this.#getPropertyValue(PawnProps.hitbackProtection);
     }
 
-    get abilities() {
-        return this.#getPropertyValue(PawnProps.abilities);
-    }
-
 
 
     get baseLevel() {
@@ -175,10 +186,6 @@ export default class ArenaPawn {
 
     get baseHitbackProtection() {
         return this.#getBasePropertyValue(PawnProps.hitbackProtection);
-    }
-
-    get baseRegularAbility() {
-        return this.#getBasePropertyValue(PawnProps.abilities);
     }
 
 

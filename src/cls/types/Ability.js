@@ -1,62 +1,53 @@
 
+let nextUniqueId = 0;
+
 export default class Ability {
 
-    #slot;
+    #props;
 
-    #targetCollector;
-
-    #damageRanges;
-
-    #minDistance;
-
-    #maxDistance;
-
-    #distancePenalty;
-
-    #disabledIfNearEnemy;
-
-    #noHitbacks;
-
-    constructor({slot, targetCollector, damageRanges, minDistance, maxDistance, distancePenalty, disabledIfNearEnemy, noHitbacks}) {
-        this.#slot = slot;
-        this.#targetCollector = targetCollector ?? (() => []);
-        this.#damageRanges = damageRanges;
-        this.#minDistance = minDistance ?? null;
-        this.#maxDistance = maxDistance ?? null;
-        this.#distancePenalty = distancePenalty ?? 1;
-        this.#disabledIfNearEnemy = disabledIfNearEnemy ?? false;
-        this.#noHitbacks = noHitbacks ?? false;
+    constructor(props) {
+        this.id = nextUniqueId++;
+        this.#props = props;
     }
 
+
+
     get slot() {
-        return this.#slot;
+        return this.#getPropertyValue('slot');
     }
 
     get targetCollector() {
-        return this.#targetCollector;
+        return this.#getPropertyValue('targetCollector');
     }
 
     get damageRanges() {
-        return this.#damageRanges;
+        return this.#getPropertyValue('damageRanges');
     }
 
     get minDistance() {
-        return this.#minDistance;
+        return this.#getPropertyValue('minDistance');
     }
 
     get maxDistance() {
-        return this.#maxDistance;
+        return this.#getPropertyValue('maxDistance');
     }
 
     get distancePenalty() {
-        return this.#distancePenalty;
+        return this.#getPropertyValue('distancePenalty');
     }
 
     get disabledIfNearEnemy() {
-        return this.#disabledIfNearEnemy;
+        return this.#getPropertyValue('disabledIfNearEnemy');
     }
 
     get noHitbacks() {
-        return this.#noHitbacks;
+        return this.#getPropertyValue('noHitbacks');
+    }
+
+
+
+
+    #getPropertyValue(propertyName) {
+        return this.#props[propertyName];
     }
 }

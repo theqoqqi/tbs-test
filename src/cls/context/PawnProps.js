@@ -4,7 +4,7 @@ import Race from '../types/Race.js';
 import Ranges from '../util/Ranges.js';
 import DamageType from '../enums/DamageType.js';
 import Resistances from '../util/Resistances.js';
-import Ability from '../types/Ability.js';
+import AbilityProps from './AbilityProps.js';
 
 export default class PawnProps {
 
@@ -74,7 +74,7 @@ export default class PawnProps {
         }],
 
         [PawnProps.abilities, {
-            defaultValue: new Ability({
+            defaultValue: new AbilityProps({
                 damageRanges: new Ranges([
                     [DamageType.PHYSICAL, 1, 1],
                 ]),

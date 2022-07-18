@@ -5,10 +5,10 @@ import Race from '../types/Race.js';
 import Ranges from '../util/Ranges.js';
 import DamageType from '../enums/DamageType.js';
 import Resistances from '../util/Resistances.js';
-import Ability from '../types/Ability.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
 import Resources from './Resources.js';
 import HitbackFrequency from '../enums/HitbackFrequency.js';
+import AbilityProps from './AbilityProps.js';
 
 export default class GameContext {
 
@@ -48,7 +48,7 @@ export default class GameContext {
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
-                new Ability({
+                new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: Resources.getTargetCollector('default_melee'),
                     damageRanges: new Ranges([
@@ -77,7 +77,7 @@ export default class GameContext {
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
-                new Ability({
+                new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: Resources.getTargetCollector('default_melee'),
                     damageRanges: new Ranges([
@@ -105,7 +105,7 @@ export default class GameContext {
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
-                new Ability({
+                new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: Resources.getTargetCollector('default_ranged'),
                     damageRanges: new Ranges([
@@ -117,7 +117,7 @@ export default class GameContext {
                     disabledIfNearEnemy: true,
                     noHitbacks: true,
                 }),
-                new Ability({
+                new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: Resources.getTargetCollector('default_melee'),
                     damageRanges: new Ranges([
@@ -144,7 +144,7 @@ export default class GameContext {
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
-                new Ability({
+                new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: Resources.getTargetCollector('default_melee'),
                     damageRanges: new Ranges([
@@ -175,7 +175,7 @@ export default class GameContext {
             [PawnProps.hitbackProtection]: 0,
 
             [PawnProps.abilities]: [
-                new Ability({
+                new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: Resources.getTargetCollector('default_melee'),
                     damageRanges: new Ranges([
