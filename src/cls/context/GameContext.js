@@ -49,6 +49,7 @@ export default class GameContext {
             [PawnProps.abilities]: [
                 new Ability({
                     slot: AbilitySlot.REGULAR,
+                    targetCollector: Resources.getTargetCollector('default_melee'),
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 1, 2],
                     ]),
