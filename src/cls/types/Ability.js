@@ -23,8 +23,20 @@ export default class Ability {
         return this.#currentReload;
     }
 
+    get isReloading() {
+        return this.#currentReload > 0;
+    }
+
     get currentCharges() {
         return this.#currentCharges;
+    }
+
+    get hasCharges() {
+        return this.#currentCharges > 0;
+    }
+
+    get usesCharges() {
+        return this.charges !== null;
     }
 
 
@@ -93,6 +105,29 @@ export default class Ability {
         return this.#getPropertyValue('hintDescription');
     }
 
+
+
+    consumeCharges(charges) {
+        this.#currentCharges = Math.max(0, this.currentCharges - charges);
+    }
+
+    giveCharges(charges) {
+        this.#currentCharges = Math.max(0, this.currentCharges + charges);
+    }
+
+    startReloading() {
+        this.#currentReload = this.reload;
+    }
+
+    finishReloading() {
+        this.#currentReload = 0;
+    }
+
+    tickReloading() {
+        if (this.isReloading) {
+            this.#currentReload--;
+        }
+    }
 
 
 

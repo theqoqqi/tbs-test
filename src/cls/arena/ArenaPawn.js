@@ -14,6 +14,8 @@ export default class ArenaPawn {
 
     #abilities;
 
+    #isWaiting = false;
+
     constructor(position, props, options) {
         this.id = nextUniqueId++;
         this.props = props;
@@ -52,6 +54,10 @@ export default class ArenaPawn {
 
     get abilities() {
         return this.#abilities;
+    }
+
+    get isWaiting() {
+        return this.#isWaiting;
     }
 
 
@@ -206,6 +212,10 @@ export default class ArenaPawn {
         this.#health = this.maxHealth;
     }
 
+    consumeAllSpeed() {
+        this.#speed = 0;
+    }
+
     consumeSpeed(amount) {
         this.#speed = Math.max(0, this.#speed - amount);
     }
@@ -232,6 +242,14 @@ export default class ArenaPawn {
         if (this.hitback === HitbackFrequency.ALWAYS) {
             this.#hitbacks = 999;
         }
+    }
+
+    setWaiting() {
+        this.#isWaiting = true;
+    }
+
+    resetWaiting() {
+        this.#isWaiting = false;
     }
 
     getKillCount(forDamage) {

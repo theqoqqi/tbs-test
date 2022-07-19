@@ -12,31 +12,35 @@ export default class MoveExecutor {
             return Promise.resolve();
         }
 
-        return ability.apply({
-            fight: this.#fight,
-            arena: this.#fight.arena,
-            moveExecutor: this.#fight.moveExecutor,
-            ability,
-            pawn: move.pawn,
-            move,
-            path,
-        });
+        return this.applyAbility(move.pawn, ability, move, path);
     }
 
-    applyAbility(pawn, ability) {
+    makeDefenceMove(pawn) {
+        pawn.consumeAllSpeed();
+        // TODO: применить эффект доп. брони (когда добавлю сами эффекты)
+
+        return Promise.resolve();
+    }
+
+    applyAbility(pawn, ability, move = null, path = []) {
         if (!ability?.apply) {
             return Promise.resolve();
         }
 
-        return ability.apply({
-            fight: this.#fight,
-            arena: this.#fight.arena,
-            moveExecutor: this.#fight.moveExecutor,
-            ability,
-            pawn,
-            move: null,
-            path: [],
-        });
+        return ability
+            .apply({
+                fight: this.#fight,
+                arena: this.#fight.arena,
+                moveExecutor: this.#fight.moveExecutor,
+                ability,
+                pawn,
+                move,
+                path,
+            })
+            .then(() => {
+                ability.consumeCharges(1);
+                ability.startReloading();
+            });
     }
 
     makeMovementMove(move, path) {
@@ -111,7 +115,7 @@ export default class MoveExecutor {
             }
 
             if (consumeSpeed) {
-                attacker.consumeSpeed(attacker.currentSpeed);
+                attacker.consumeAllSpeed();
             }
 
             console.log('Attacked', target.toString(), 'by', attacker.toString());

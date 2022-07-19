@@ -21,6 +21,7 @@ export default class Gamecycle {
         if (!this.#hasNextPawn()) {
             this.#startNextRound();
 
+            // TODO: это условие не будет работать, т.к. всегда остаются выигравшие войска
             if (!this.#hasNextPawn()) {
                 this.#isGameOver = true;
 
@@ -31,13 +32,28 @@ export default class Gamecycle {
         this.#turn++;
         this.#currentPawn = this.#consumeNextPawn();
 
+        for (const ability of this.#currentPawn.abilities) {
+            ability.tickReloading();
+        }
+
         console.log('Round:', this.#round, 'Turn:', this.#turn)
+    }
+
+    updateOrder() {
+        this.#sortFrom(this.#pawnsInOrder);
+    }
+
+    postponeMove(pawn) {
+        pawn.setWaiting();
+        this.#resort(pawn);
+
+        return Promise.resolve();
     }
 
     addPawn(pawn, resort) {
         if (resort) {
             this.#pawnsInOrder.push(pawn);
-            this.#resort(this.#pawnsInOrder);
+            this.updateOrder();
         }
     }
 
@@ -64,17 +80,21 @@ export default class Gamecycle {
         for (const pawn of this.#allPawns) {
             pawn.refillSpeed();
             pawn.refillHitbacks();
+            pawn.resetWaiting();
         }
 
-        this.#resort();
+        this.#sortFrom(this.#allPawns);
     }
 
-    #resort(pawns) {
-        pawns ??= this.#allPawns;
-
+    #sortFrom(pawns) {
         this.#pawnsInOrder = pawns.sort((a, b) => {
             return Gamecycle.#comparePawns(a, b);
         });
+    }
+
+    #resort(pawn) {
+        this.#pawnsInOrder.push(pawn);
+        this.updateOrder();
     }
 
     get #allPawns() {
@@ -82,12 +102,25 @@ export default class Gamecycle {
     }
 
     static #comparePawns(a, b) {
-        let comparisons = [
-            b.initiative - a.initiative,
-            b.speed - a.speed,
-            b.level - a.level,
-            -(b.maxHealth - a.maxHealth),
+        // Первыми ходят войска с наибольшей инициативой,
+        // если она равна, то войска с наибольшей скоростью,
+        // либо наибольшим уровнем, либо наименьшим здоровьем.
+        // Если все параметры равны, просто сравниваем id.
+
+        let compareBy = [
+            pawn => pawn.initiative,
+            pawn => pawn.speed,
+            pawn => pawn.level,
+            pawn => -pawn.maxHealth,
+            pawn => pawn.id,
         ];
+
+        let comparisons = compareBy.map(getter => {
+            let valueA = a.isWaiting ? -getter(a) : getter(a);
+            let valueB = a.isWaiting ? -getter(b) : getter(b);
+
+            return valueB - valueA;
+        });
 
         return comparisons.find(c => c !== 0) ?? 0;
     }

@@ -63,7 +63,13 @@ export default class Fight {
         this.#gamecycle.nextTurn();
     }
 
-    nextTurn() {
+    #nextTurnIfNoSpeed(pawn) {
+        if (pawn.currentSpeed <= 0) {
+            this.#nextTurn();
+        }
+    }
+
+    #nextTurn() {
         this.#gamecycle.nextTurn();
     }
 
@@ -181,7 +187,18 @@ export default class Fight {
     }
 
     makeMove(move, path, ability) {
-        return this.#moveExecutor.makeMove(move, path, ability);
+        return this.#moveExecutor.makeMove(move, path, ability)
+            .then(() => this.#nextTurnIfNoSpeed(move.pawn));
+    }
+
+    makeWaitMove(pawn) {
+        return this.#gamecycle.postponeMove(pawn)
+            .then(() => this.#nextTurn());
+    }
+
+    makeDefenceMove(pawn) {
+        return this.#moveExecutor.makeDefenceMove(pawn)
+            .then(() => this.#nextTurn());
     }
 
     applyAbility(pawn, ability) {
@@ -192,7 +209,7 @@ export default class Fight {
         return this.getAbilityInSlot(forPawn, AbilitySlot.REGULAR);
     }
 
-    getAvailableAbilities(forPawn, slots = null) {
+    getReadyAbilities(forPawn, slots = null) {
         slots ??= AbilitySlot.enumValues;
 
         return slots.map(slot => this.getAbilityInSlot(forPawn, slot))
@@ -211,6 +228,16 @@ export default class Fight {
 
                 return true;
             });
+    }
+
+    isAbilityReady(pawn, ability) {
+        return !ability.isReloading
+            && (!ability.usesCharges || ability.hasCharges)
+            && !this.isAbilityMuted(pawn, ability);
+    }
+
+    isAbilityMuted(pawn, ability) {
+        return ability.mutedIfNearEnemy && this.hasEnemiesNearby(pawn);
     }
 
     hasEnemiesNearby(forPawn) {
