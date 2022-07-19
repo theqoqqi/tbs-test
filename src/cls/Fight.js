@@ -99,6 +99,10 @@ export default class Fight {
     }
 
     #getAbilityMoves(forPawn, ability, movementMoves) {
+        if (!ability.targetCollector) {
+            return [];
+        }
+
         return ability.targetCollector(forPawn, ability, this, this.arena, movementMoves);
     }
 
@@ -180,8 +184,19 @@ export default class Fight {
         return this.#moveExecutor.makeMove(move, path, ability);
     }
 
+    applyAbility(pawn, ability) {
+        return this.#moveExecutor.applyAbility(pawn, ability);
+    }
+
     getRegularAbility(forPawn) {
         return this.getAbilityInSlot(forPawn, AbilitySlot.REGULAR);
+    }
+
+    getAvailableAbilities(forPawn, slots = null) {
+        slots ??= AbilitySlot.enumValues;
+
+        return slots.map(slot => this.getAbilityInSlot(forPawn, slot))
+            .filter(ability => ability);
     }
 
     getAbilityInSlot(forPawn, abilitySlot) {

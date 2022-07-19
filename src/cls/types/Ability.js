@@ -33,6 +33,10 @@ export default class Ability {
         return this.#getPropertyValue('slot');
     }
 
+    get scriptParams() {
+        return this.#getPropertyValue('scriptParams');
+    }
+
     get targetCollector() {
         return this.#getPropertyValue('targetCollector');
     }
@@ -79,6 +83,14 @@ export default class Ability {
 
     get charges() {
         return this.#getPropertyValue('charges');
+    }
+
+    get hintTitle() {
+        return this.#getPropertyValue('hintTitle');
+    }
+
+    get hintDescription() {
+        return this.#getPropertyValue('hintDescription');
     }
 
 

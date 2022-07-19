@@ -17,8 +17,25 @@ export default class MoveExecutor {
             arena: this.#fight.arena,
             moveExecutor: this.#fight.moveExecutor,
             ability,
+            pawn: move.pawn,
             move,
             path,
+        });
+    }
+
+    applyAbility(pawn, ability) {
+        if (!ability?.apply) {
+            return Promise.resolve();
+        }
+
+        return ability.apply({
+            fight: this.#fight,
+            arena: this.#fight.arena,
+            moveExecutor: this.#fight.moveExecutor,
+            ability,
+            pawn,
+            move: null,
+            path: [],
         });
     }
 

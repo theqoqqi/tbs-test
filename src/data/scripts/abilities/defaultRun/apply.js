@@ -1,6 +1,6 @@
 
-export default function apply(forPawn, ability, fight, arena, movementMoves) {
-    forPawn.giveSpeed(ability.params.speed);
+export default function apply({ability, pawn, move, path, fight, arena, moveExecutor}) {
+    pawn.giveSpeed(ability.scriptParams.speed);
 
-    return true;
+    return Promise.resolve();
 }

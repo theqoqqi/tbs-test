@@ -60,6 +60,9 @@ export default class GameContext {
                     slot: AbilitySlot.ABILITY_1,
                     charges: 1,
                     apply: abilityScripts.defaultRun.apply,
+                    scriptParams: {
+                        speed: 2,
+                    },
                 }),
             ],
         });
@@ -149,6 +152,7 @@ export default class GameContext {
                     damageRanges: new Ranges([
                         [DamageType.PHYSICAL, 6, 8],
                     ]),
+                    reload: 2,
                     minDistance: 2,
                     maxDistance: 5,
                     distancePenalty: 0.5,
@@ -214,6 +218,28 @@ export default class GameContext {
                     damageRanges: new Ranges([
                         [DamageType.FIRE, 100, 120],
                     ]),
+                }),
+                new AbilityProps({
+                    slot: AbilitySlot.ABILITY_1,
+                    charges: 1,
+                    apply: abilityScripts.defaultRun.apply,
+                    scriptParams: {
+                        speed: 2,
+                    },
+                }),
+                new AbilityProps({
+                    slot: AbilitySlot.ABILITY_3,
+                    targetCollector: abilityScripts.defaultRanged.targetCollector,
+                    apply: abilityScripts.defaultRanged.apply,
+                    damageRanges: new Ranges([
+                        [DamageType.PHYSICAL, 6, 8],
+                    ]),
+                    reload: 2,
+                    minDistance: 2,
+                    maxDistance: 5,
+                    distancePenalty: 0.5,
+                    mutedIfNearEnemy: true,
+                    noHitbacks: true,
                 }),
             ],
         });
