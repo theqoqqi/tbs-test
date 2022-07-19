@@ -59,6 +59,14 @@ export default class App extends React.Component {
         this.setSelectedPawn(this.fight.currentPawn);
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return true;
+    }
+
+
+
+    // Коллбеки
+
     handleAnimationFrame() {
         this.setState({
             cells: this.getCellProps(),
@@ -145,6 +153,10 @@ export default class App extends React.Component {
         this.updateMoveInfoTooltip(event, cell, move);
     }
 
+
+
+    // Подсказки и модальные окна
+
     updateMoveInfoTooltip(event, cell, move) {
         if (!move) {
             this.hideMoveInfoTooltip();
@@ -167,24 +179,9 @@ export default class App extends React.Component {
         }
     }
 
-    tryUpdatePath(event, cell, move) {
-        if (!move || move.isRanged) {
-            return;
-        }
-
-        let mousePosition = this.arenaRef.current.getMousePosition(event);
-        let cellPlainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
-        let angle = cellPlainPosition.angleTo(mousePosition);
-        let direction = HexagonUtils.angleToDirection(angle);
-
-        if (this.pathDirection !== direction) {
-            this.updatePath(cell, mousePosition);
-        }
-    }
-
     openPawnInfoModalFor(pawn) {
         this.setState({
-            viewedPawnInfo: this.getPawnInfo(pawn),
+            viewedPawnInfo: this.collectViewedPawnInfo(pawn),
         })
     }
 
@@ -213,30 +210,9 @@ export default class App extends React.Component {
         })
     }
 
-    getPawnInfo(pawn) {
-        let regularAbility = this.fight.getRegularAbility(pawn);
 
-        return {
-            attack: pawn.attack,
-            defence: pawn.defence,
-            initiative: pawn.initiative,
-            currentSpeed: pawn.currentSpeed,
-            speed: pawn.speed,
-            criticalHitChance: pawn.criticalHitChance,
-            currentHealth: pawn.currentHealth,
-            maxHealth: pawn.maxHealth,
-            resistances: pawn.resistances,
-            damageRanges: regularAbility.damageRanges,
-            movementType: pawn.movementType,
 
-            baseAttack: pawn.baseAttack,
-            baseDefence: pawn.baseDefence,
-            baseInitiative: pawn.baseInitiative,
-            baseSpeed: pawn.baseSpeed,
-            baseCriticalHitChance: pawn.baseCriticalHitChance,
-            baseMaxHealth: pawn.baseMaxHealth,
-        };
-    }
+    // Изменение состояния и полей
 
     setSelectedPawn(pawn) {
         this.selectedPawn = pawn;
@@ -245,7 +221,7 @@ export default class App extends React.Component {
 
     setActiveAbility(ability) {
         this.activeAbility = ability;
-        this.moves = this.fight.getAvailableMoves(this.selectedPawn, ability);
+        this.updateAvailableMoves();
     }
 
     setPath(path, targetPosition) {
@@ -277,6 +253,43 @@ export default class App extends React.Component {
         });
     }
 
+
+
+    // Обновление/поиск пути
+
+    tryUpdatePath(event, cell, move) {
+        if (!move || move.isRanged) {
+            return;
+        }
+
+        let mousePosition = this.arenaRef.current.getMousePosition(event);
+        let cellPlainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let angle = cellPlainPosition.angleTo(mousePosition);
+        let direction = HexagonUtils.angleToDirection(angle);
+
+        if (this.pathDirection !== direction) {
+            this.updatePath(cell, mousePosition);
+        }
+    }
+
+    updatePath(cell, mousePosition) {
+        let pawn = this.selectedPawn;
+
+        if (!pawn) {
+            this.clearPath();
+            return;
+        }
+
+        let neighborCell = this.getSuitableNeighborCell(pawn, cell, mousePosition);
+
+        let path = this.arena.isCellFree(cell.position)
+            ? this.arena.findPath(pawn, cell.position)
+            : this.arena.findPath(pawn, neighborCell.position);
+        let pathTargetPosition = cell.position;
+
+        this.setPath(path, pathTargetPosition);
+    }
+
     getDirectionToTarget(path, targetDirection) {
         let positionBeforeTarget = this.getPositionBeforeTarget(path, targetDirection);
         let angle = positionBeforeTarget.angleTo(targetDirection);
@@ -300,24 +313,6 @@ export default class App extends React.Component {
         }
 
         return path[path.length - 2];
-    }
-
-    updatePath(cell, mousePosition) {
-        let pawn = this.selectedPawn;
-
-        if (!pawn) {
-            this.clearPath();
-            return;
-        }
-
-        let neighborCell = this.getSuitableNeighborCell(pawn, cell, mousePosition);
-
-        let path = this.arena.isCellFree(cell.position)
-            ? this.arena.findPath(pawn, cell.position)
-            : this.arena.findPath(pawn, neighborCell.position);
-        let pathTargetPosition = cell.position;
-
-        this.setPath(path, pathTargetPosition);
     }
 
     getSuitableNeighborCell(movingPawn, originCell, mousePosition) {
@@ -351,6 +346,14 @@ export default class App extends React.Component {
         let isCellFree = this.arena.isCellFree(cell.position);
 
         return pawnCell === cell || (isCellFree && move && move.actionPoints < move.pawn.speed);
+    }
+
+
+
+    // Прочее
+
+    updateAvailableMoves() {
+        this.moves = this.fight.getAvailableMoves(this.selectedPawn, this.activeAbility);
     }
 
     getCellProps() {
@@ -392,9 +395,36 @@ export default class App extends React.Component {
         });
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return true;
+    collectViewedPawnInfo(pawn) {
+        let regularAbility = this.fight.getRegularAbility(pawn);
+
+        return {
+            attack: pawn.attack,
+            defence: pawn.defence,
+            initiative: pawn.initiative,
+            currentSpeed: pawn.currentSpeed,
+            speed: pawn.speed,
+            criticalHitChance: pawn.criticalHitChance,
+            currentHealth: pawn.currentHealth,
+            maxHealth: pawn.maxHealth,
+            resistances: pawn.resistances,
+            damageRanges: regularAbility.damageRanges,
+            movementType: pawn.movementType,
+
+            baseAttack: pawn.baseAttack,
+            baseDefence: pawn.baseDefence,
+            baseInitiative: pawn.baseInitiative,
+            baseSpeed: pawn.baseSpeed,
+            baseCriticalHitChance: pawn.baseCriticalHitChance,
+            baseMaxHealth: pawn.baseMaxHealth,
+        };
     }
+
+    get arena() {
+        return this.fight.arena;
+    }
+
+
 
     render() {
         let {
@@ -447,9 +477,5 @@ export default class App extends React.Component {
                 />
             </div>
         );
-    }
-
-    get arena() {
-        return this.fight.arena;
     }
 }
