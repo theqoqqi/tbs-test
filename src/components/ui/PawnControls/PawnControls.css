@@ -1,0 +1,59 @@
+
+.pawn-controls {
+    position: fixed;
+    display: flex;
+    align-items: center;
+
+    right: 0;
+    bottom: 0;
+
+    height: 80px;
+    padding-right: 8px;
+
+    background-color: white;
+    border: 0 solid black;
+    border-top-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 20px;
+}
+
+.pawn-controls .abilities {
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+    margin: 0 8px;
+}
+
+.pawn-controls .abilities > * {
+    margin: 8px;
+}
+
+
+
+.move-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+    margin: 8px;
+
+    background-color: #ffeedd;
+    border: 2px solid black;
+    border-radius: 8px;
+
+    font-size: 24px;
+
+    transition: .1s ease-in-out;
+}
+
+.move-button.muted {
+    filter: grayscale(0.5);
+}
+
+.move-button:hover {
+    border-color: darkgreen;
+    cursor: pointer;
+}

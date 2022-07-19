@@ -8,6 +8,8 @@ import PawnInfoModal from './components/ui/PawnInfoModal/PawnInfoModal.js';
 import Vector from './cls/util/Vector.js';
 import PassabilityType from './cls/enums/PassabilityType.js';
 import MoveInfoTooltip from './components/ui/MoveInfoTooltip/MoveInfoTooltip.js';
+import PawnControls from './components/ui/PawnControls/PawnControls.js';
+import AbilitySlot from './cls/enums/AbilitySlot.js';
 
 export default class App extends React.Component {
 
@@ -24,7 +26,7 @@ export default class App extends React.Component {
 
         this.fight = new Fight(gameContext);
         this.selectedPawn = null;
-        this.activeAbility = null;
+        this.selectedAbility = null;
         this.moves = [];
         this.pathDirection = null;
 
@@ -35,21 +37,14 @@ export default class App extends React.Component {
             path: [],
             pathTargetPosition: null,
 
+            currentPawnInfo: null,
+
             viewedPawnInfo: null,
 
             showMoveInfo: false,
             viewedMoveInfo: null,
             viewedMoveInfoPosition: null,
         };
-
-        this.handleCellClick = this.handleCellClick.bind(this);
-        this.handleCellMouseMove = this.handleCellMouseMove.bind(this);
-        this.handleCellMouseEnter = this.handleCellMouseEnter.bind(this);
-        this.handleCellMouseLeave = this.handleCellMouseLeave.bind(this);
-        this.handlePawnClick = this.handlePawnClick.bind(this);
-        this.handlePawnRightClick = this.handlePawnRightClick.bind(this);
-        this.handlePawnMouseMove = this.handlePawnMouseMove.bind(this);
-        this.handleAnimationFrame = this.handleAnimationFrame.bind(this);
     }
 
     componentDidMount() {
@@ -67,16 +62,19 @@ export default class App extends React.Component {
 
     // Коллбеки
 
-    handleAnimationFrame() {
+    handleAnimationFrame = () => {
         this.setState({
             cells: this.getCellProps(),
             pawns: this.getPawnProps(),
+            currentPawnInfo: this.selectedPawn
+                ? this.collectCurrentPawnInfo(this.selectedPawn)
+                : null,
         });
 
         requestAnimationFrame(this.handleAnimationFrame);
     }
 
-    handleCellClick(cellComponent) {
+    handleCellClick = (cellComponent) => {
         let cell = this.arena.getCell(cellComponent.props.axialPosition);
         let pawn = this.selectedPawn;
 
@@ -85,35 +83,28 @@ export default class App extends React.Component {
         if (pawn && cellComponent.props.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
-            this.fight.makeMove(move, this.state.path, this.activeAbility)
-                .then(() => {
-                    if (pawn.currentSpeed > 0) {
-                        this.setSelectedPawn(pawn);
-                    } else {
-                        this.fight.nextTurn();
-                        this.setSelectedPawn(this.fight.currentPawn);
-                    }
-                });
+            this.fight.makeMove(move, this.state.path, this.selectedAbility)
+                .then(() => this.setSelectedPawn(this.fight.currentPawn));
 
             this.clearSelectedPawn();
         }
     }
 
-    handleCellMouseMove(cellComponent, event) {
+    handleCellMouseMove = (cellComponent, event) => {
         let cell = this.arena.getCell(cellComponent.props.axialPosition);
 
         this.handleMouseMove(cell, event);
     }
 
-    handleCellMouseEnter(cellComponent) {
+    handleCellMouseEnter = (cellComponent) => {
 
     }
 
-    handleCellMouseLeave(cellComponent) {
+    handleCellMouseLeave = (cellComponent) => {
         this.clearPath();
     }
 
-    handlePawnClick(pawnComponent, event) {
+    handlePawnClick = (pawnComponent, event) => {
         let cellComponent = this.arenaRef.current.getCell(pawnComponent.props.axialPosition);
 
         if (cellComponent.props.selectable) {
@@ -132,7 +123,7 @@ export default class App extends React.Component {
         console.log(pawn.toString());
     }
 
-    handlePawnRightClick(pawnComponent, event) {
+    handlePawnRightClick = (pawnComponent, event) => {
         event.preventDefault();
 
         let pawn = this.arena.getPawn(pawnComponent.props.axialPosition);
@@ -140,17 +131,61 @@ export default class App extends React.Component {
         this.openPawnInfoModalFor(pawn);
     }
 
-    handlePawnMouseMove(pawnComponent, event) {
+    handlePawnMouseMove = (pawnComponent, event) => {
         let cell = this.arena.getCell(pawnComponent.props.axialPosition);
 
         this.handleMouseMove(cell, event);
     }
 
-    handleMouseMove(cell, event) {
+    handleMouseMove = (cell, event) => {
         let move = this.moves.find(move => move.targetCell === cell);
 
         this.tryUpdatePath(event, cell, move);
         this.updateMoveInfoTooltip(event, cell, move);
+    }
+
+    handleAbilityClick = (abilitySlot) => {
+        let pawn = this.selectedPawn;
+
+        if (!pawn) {
+            return;
+        }
+
+        let ability = this.fight.getAbilityInSlot(pawn, abilitySlot);
+
+        if (!this.fight.isAbilityReady(pawn, ability)) {
+            return;
+        }
+
+        if (this.selectedAbility === ability) {
+            this.setSelectedAbility(this.fight.getRegularAbility(pawn));
+            return;
+        }
+
+        if (ability.targetCollector) {
+            this.setSelectedAbility(ability);
+        } else {
+            this.fight.applyAbility(pawn, ability)
+                .then(() => this.setSelectedAbility(this.selectedAbility));
+        }
+    }
+
+    handleWaitButtonClick = () => {
+        if (!this.selectedPawn || this.selectedPawn.isWaiting) {
+            return;
+        }
+
+        this.fight.makeWaitMove(this.selectedPawn)
+            .then(() => this.setSelectedPawn(this.fight.currentPawn));
+    }
+
+    handleDefenceButtonClick = () => {
+        if (!this.selectedPawn) {
+            return;
+        }
+
+        this.fight.makeDefenceMove(this.selectedPawn)
+            .then(() => this.setSelectedPawn(this.fight.currentPawn));
     }
 
 
@@ -170,7 +205,7 @@ export default class App extends React.Component {
             return;
         }
 
-        let moveInfo = this.fight.getMoveInfo(move.pawn, targetPawn, this.activeAbility);
+        let moveInfo = this.fight.getMoveInfo(move.pawn, targetPawn, this.selectedAbility);
 
         if (moveInfo) {
             this.showMoveInfoTooltip(moveInfo, cell);
@@ -216,11 +251,11 @@ export default class App extends React.Component {
 
     setSelectedPawn(pawn) {
         this.selectedPawn = pawn;
-        this.setActiveAbility(this.fight.getRegularAbility(pawn));
+        this.setSelectedAbility(this.fight.getRegularAbility(pawn));
     }
 
-    setActiveAbility(ability) {
-        this.activeAbility = ability;
+    setSelectedAbility(ability) {
+        this.selectedAbility = ability;
         this.updateAvailableMoves();
     }
 
@@ -235,12 +270,12 @@ export default class App extends React.Component {
 
     clearSelectedPawn() {
         this.selectedPawn = null;
-        this.clearActiveAbility();
+        this.clearSelectedAbility();
         this.clearPath();
     }
 
-    clearActiveAbility() {
-        this.activeAbility = null;
+    clearSelectedAbility() {
+        this.selectedAbility = null;
         this.moves = [];
     }
 
@@ -353,7 +388,7 @@ export default class App extends React.Component {
     // Прочее
 
     updateAvailableMoves() {
-        this.moves = this.fight.getAvailableMoves(this.selectedPawn, this.activeAbility);
+        this.moves = this.fight.getAvailableMoves(this.selectedPawn, this.selectedAbility);
     }
 
     getCellProps() {
@@ -420,6 +455,30 @@ export default class App extends React.Component {
         };
     }
 
+    collectCurrentPawnInfo(pawn) {
+        let slots = [AbilitySlot.ABILITY_1, AbilitySlot.ABILITY_2, AbilitySlot.ABILITY_3];
+        let abilities = this.fight.getReadyAbilities(pawn, slots)
+            .map(ability => {
+                return {
+                    slot: ability.slot,
+                    title: ability.hintTitle,
+                    description: ability.hintDescription,
+                    currentReload: ability.currentReload,
+                    maxReload: ability.reload,
+                    usesCharges: ability.usesCharges,
+                    charges: ability.currentCharges,
+                    muted: this.fight.isAbilityMuted(pawn, ability),
+                    ready: this.fight.isAbilityReady(pawn, ability),
+                    selected: this.selectedAbility === ability,
+                };
+            });
+
+        return {
+            abilities,
+            canWait: !pawn.isWaiting,
+        };
+    }
+
     get arena() {
         return this.fight.arena;
     }
@@ -432,6 +491,7 @@ export default class App extends React.Component {
             pawns,
             path,
             pathTargetPosition,
+            currentPawnInfo,
             viewedPawnInfo,
             showMoveInfo,
             viewedMoveInfo,
@@ -464,6 +524,12 @@ export default class App extends React.Component {
                         onPawnMouseMove={this.handlePawnMouseMove}
                     />
                 </div>
+                <PawnControls
+                    pawnInfo={currentPawnInfo}
+                    onAbilityClick={this.handleAbilityClick}
+                    onWaitButtonClick={this.handleWaitButtonClick}
+                    onDefenceButtonClick={this.handleDefenceButtonClick}
+                />
                 <PawnInfoModal
                     opened={!!viewedPawnInfo}
                     pawnInfo={viewedPawnInfo}

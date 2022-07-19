@@ -1,0 +1,73 @@
+
+.ability-slot {
+    --border-color: black;
+    --border-width: 2px;
+
+    position: relative;
+    width: 48px;
+    height: 48px;
+
+    background-color: #ffeedd;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 8px;
+
+    box-sizing: border-box;
+    transition: .1s ease-in-out;
+}
+
+.ability-slot.empty {
+    opacity: 0.25;
+}
+
+.ability-slot.muted {
+    filter: grayscale(1);
+}
+
+.ability-slot:not(.ready):not(.empty) {
+    filter: grayscale(1);
+}
+
+.ability-slot.selected {
+    --border-color: green;
+    --border-width: 4px;
+}
+
+.ability-slot.ready:hover {
+    --border-color: darkgreen;
+    cursor: pointer;
+}
+
+
+
+.ability-slot .ability-charges {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    left: -6px;
+    bottom: -6px;
+    width: 14px;
+    height: 14px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    background-color: white;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+
+    z-index: 1;
+    transition: .1s ease-in-out;
+}
+
+
+
+.ability-slot .ability-reload-container {
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.ability-slot .ability-reload {
+    transform: scale(2);
+}
