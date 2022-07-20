@@ -481,6 +481,8 @@ export default class App extends React.Component {
         return {
             abilities,
             canWait: !pawn.isWaiting,
+            currentSpeed: pawn.currentSpeed,
+            maxSpeed: pawn.speed,
         };
     }
 

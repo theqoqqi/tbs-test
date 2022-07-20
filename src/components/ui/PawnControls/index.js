@@ -3,11 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AbilitySlot from '../AbilitySlot';
 import classNames from 'classnames';
+import ActionPointsBar from '../ActionPointsBar';
 
 export default class PawnControls extends React.Component {
 
     static propTypes = {
         pawnInfo: PropTypes.shape({
+            currentSpeed: PropTypes.number,
+            maxSpeed: PropTypes.number,
             abilities: PropTypes.arrayOf(PropTypes.shape(AbilitySlot.propTypes)),
             canWait: PropTypes.bool,
         }),
@@ -75,6 +78,13 @@ export default class PawnControls extends React.Component {
                     onClick={onDefenceButtonClick}
                 >
                     D
+                </div>
+                <div className='action-points-bar-container'>
+                    <ActionPointsBar
+                        current={pawnInfo?.currentSpeed}
+                        max={pawnInfo?.maxSpeed}
+                        length={10}
+                    />
                 </div>
             </div>
         );
