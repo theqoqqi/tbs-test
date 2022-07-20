@@ -23,10 +23,6 @@ export default class AbilitySlot extends React.Component {
         onClick: PropTypes.func,
     };
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         if (this.props.empty) {
             return (

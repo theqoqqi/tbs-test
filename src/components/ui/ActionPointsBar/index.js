@@ -10,10 +10,6 @@ export default class ActionPointsBar extends React.Component {
         max: PropTypes.number,
         length: PropTypes.number,
     };
-    
-    constructor(props) {
-        super(props);
-    }
 
     getPoints() {
         let $points = [];
