@@ -1,11 +1,11 @@
-import './Arena.css';
+import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import ArenaGrid from '../ArenaGrid/ArenaGrid.js';
-import ArenaPawn from '../ArenaPawn/ArenaPawn.js';
+import ArenaGrid from '../ArenaGrid';
+import ArenaPawn from '../ArenaPawn';
 import HexagonUtils from '../../../cls/util/HexagonUtils.js';
 import Vector from '../../../cls/util/Vector.js';
-import ArenaPath from '../ArenaPath/ArenaPath.js';
+import ArenaPath from '../ArenaPath';
 import ArenaContext from './ArenaContext.js';
 
 export default class Arena extends React.Component {

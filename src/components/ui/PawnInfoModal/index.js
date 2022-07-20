@@ -1,7 +1,7 @@
-import './PawnInfoModal.css';
+import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../../util/Modal/Modal.js';
+import Modal from '../../util/Modal';
 import MovementType from '../../../cls/enums/MovementType.js';
 import Ranges from '../../../cls/util/Ranges.js';
 import Resistances from '../../../cls/util/Resistances.js';

@@ -1,4 +1,4 @@
-import './MoveInfoTooltip.css';
+import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Popover} from '@mui/material';

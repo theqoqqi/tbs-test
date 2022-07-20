@@ -1,7 +1,7 @@
-import './PawnControls.css';
+import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbilitySlot from '../AbilitySlot/AbilitySlot.js';
+import AbilitySlot from '../AbilitySlot';
 import classNames from 'classnames';
 
 export default class PawnControls extends React.Component {

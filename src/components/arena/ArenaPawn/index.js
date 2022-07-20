@@ -1,4 +1,4 @@
-import './ArenaPawn.css';
+import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Vector from '../../../cls/util/Vector.js';

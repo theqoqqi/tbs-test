@@ -1,7 +1,7 @@
-import './ArenaGrid.css';
+import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import ArenaCell from '../ArenaCell/ArenaCell.js';
+import ArenaCell from '../ArenaCell';
 import HexagonUtils from '../../../cls/util/HexagonUtils.js';
 
 export default class ArenaGrid extends React.Component {

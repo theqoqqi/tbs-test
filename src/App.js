@@ -1,14 +1,14 @@
 import './App.css';
 import React from 'react';
 import Fight from './cls/Fight.js';
-import Arena from './components/arena/Arena/Arena.js';
+import Arena from './components/arena/Arena';
 import GameContext from './cls/context/GameContext.js';
 import HexagonUtils from './cls/util/HexagonUtils.js';
-import PawnInfoModal from './components/ui/PawnInfoModal/PawnInfoModal.js';
+import PawnInfoModal from './components/ui/PawnInfoModal';
 import Vector from './cls/util/Vector.js';
 import PassabilityType from './cls/enums/PassabilityType.js';
-import MoveInfoTooltip from './components/ui/MoveInfoTooltip/MoveInfoTooltip.js';
-import PawnControls from './components/ui/PawnControls/PawnControls.js';
+import MoveInfoTooltip from './components/ui/MoveInfoTooltip';
+import PawnControls from './components/ui/PawnControls';
 import AbilitySlot from './cls/enums/AbilitySlot.js';
 
 export default class App extends React.Component {

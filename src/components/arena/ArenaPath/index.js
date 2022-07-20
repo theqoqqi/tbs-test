@@ -1,4 +1,4 @@
-import './ArenaPath.css';
+import './index.css';
 import React from 'react';
 import eachCons from 'each-cons';
 import Vector from '../../../cls/util/Vector.js';

@@ -1,4 +1,4 @@
-import './AbilitySlot.css';
+import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Tooltip} from '@mui/material';
