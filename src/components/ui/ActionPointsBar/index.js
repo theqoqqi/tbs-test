@@ -25,6 +25,7 @@ export default class ActionPointsBar extends React.Component {
 
             let $point = (
                 <div
+                    key={i}
                     className={classNames('action-point', {
                         'usable': usable,
                         'used': used,
