@@ -251,7 +251,12 @@ export default class App extends React.Component {
 
     setSelectedPawn(pawn) {
         this.selectedPawn = pawn;
-        this.setSelectedAbility(this.fight.getRegularAbility(pawn));
+
+        if (pawn) {
+            this.setSelectedAbility(this.fight.getRegularAbility(pawn));
+        } else {
+            this.clearSelectedAbility();
+        }
     }
 
     setSelectedAbility(ability) {

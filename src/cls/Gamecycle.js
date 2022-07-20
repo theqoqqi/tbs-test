@@ -13,20 +13,22 @@ export default class Gamecycle {
 
     #isGameOver = false;
 
+    #winner = null;
+
     constructor(fight) {
         this.#fight = fight;
     }
 
     nextTurn() {
+        this.#checkGameOver();
+
+        if (this.#isGameOver) {
+            this.#currentPawn = null;
+            return;
+        }
+
         if (!this.#hasNextPawn()) {
             this.#startNextRound();
-
-            // TODO: это условие не будет работать, т.к. всегда остаются выигравшие войска
-            if (!this.#hasNextPawn()) {
-                this.#isGameOver = true;
-
-                return;
-            }
         }
 
         this.#turn++;
@@ -71,6 +73,31 @@ export default class Gamecycle {
 
     get isGameOver() {
         return this.#isGameOver;
+    }
+
+    get winner() {
+        return this.#winner;
+    }
+
+    #checkGameOver() {
+        let aliveTeams = this.#findAliveTeams();
+
+        if (aliveTeams.length <= 1) {
+            this.#isGameOver = true;
+            this.#winner = aliveTeams[0] ?? null;
+
+            console.log('Game over. Winner:', this.#winner);
+        }
+    }
+
+    #findAliveTeams() {
+        let teams = new Set();
+
+        for (let pawn of this.#allPawns) {
+            teams.add(pawn.team);
+        }
+
+        return Array.from(teams.values());
     }
 
     #startNextRound() {
