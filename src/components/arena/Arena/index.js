@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ArenaGrid from '../ArenaGrid';
 import ArenaPawn from '../ArenaPawn';
-import HexagonUtils from '../../../cls/util/HexagonUtils.js';
 import Vector from '../../../cls/util/Vector.js';
 import ArenaPath from '../ArenaPath';
 import ArenaContext from './ArenaContext.js';
+import ArenaPawns from '../ArenaPawns';
 
 export default class Arena extends React.Component {
 
@@ -39,10 +39,6 @@ export default class Arena extends React.Component {
 
     render() {
         let {
-            gridProps: {
-                cellSize,
-                spacing
-            },
             gridProps,
             pawns,
             path,
@@ -55,22 +51,6 @@ export default class Arena extends React.Component {
             onPawnRightClick,
             onPawnMouseMove,
         } = this.props;
-
-        let $pawns = pawns.map(pawn => {
-            let position = HexagonUtils.axialToPlainPosition(pawn.axialPosition, cellSize, spacing);
-
-            return (
-                <ArenaPawn
-                    key={pawn.id}
-                    {...pawn}
-                    axialPosition={pawn.axialPosition}
-                    position={position}
-                    onClick={onPawnClick}
-                    onRightClick={onPawnRightClick}
-                    onMouseMove={onPawnMouseMove}
-                />
-            );
-        });
 
         let shouldDrawPath = path?.length > 0 || pathTargetPosition !== null;
 
@@ -85,8 +65,19 @@ export default class Arena extends React.Component {
                         onCellMouseLeave={onCellMouseLeave}
                         {...gridProps}
                     />
-                    {shouldDrawPath && <ArenaPath path={path} targetPosition={pathTargetPosition} />}
-                    {$pawns}
+                    {shouldDrawPath && (
+                        <ArenaPath
+                            path={path}
+                            targetPosition={pathTargetPosition}
+                        />
+                    )}
+                    <ArenaPawns
+                        gridProps={gridProps}
+                        pawns={pawns}
+                        onPawnClick={onPawnClick}
+                        onPawnRightClick={onPawnRightClick}
+                        onPawnMouseMove={onPawnMouseMove}
+                    />
                 </div>
             </ArenaContext.Provider>
         );

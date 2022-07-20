@@ -29,6 +29,26 @@
 
 
 
+.arena-pawn-enter {
+    opacity: 0;
+}
+
+.arena-pawn-enter-active {
+    opacity: 1;
+    transition: opacity .2s ease-in;
+}
+
+.arena-pawn-exit {
+    opacity: 1;
+}
+
+.arena-pawn-exit-active {
+    opacity: 0;
+    transition: opacity .5s ease-in;
+}
+
+
+
 .arena-pawn .health-bar {
     --percent: 0.8;
     --hue: calc(var(--percent) * 105);
