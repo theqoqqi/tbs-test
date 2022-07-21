@@ -156,7 +156,7 @@ export default class Fight {
         let minKills = targetPawn.getKillCount(minDamage);
         let maxKills = targetPawn.getKillCount(maxDamage);
         let willHitback = MoveExecutor.shouldHitback(attackerPawn, targetPawn, ability);
-        let targetName = targetPawn.props.internalName;
+        let targetName = targetPawn.unitName;
 
         return new PotentialHitInfo({
             targetName,
@@ -270,11 +270,13 @@ export default class Fight {
         return this.arena.addCell(Vector.from(x, y));
     }
 
-    createPawn(position, name, options) {
-        let props = this.pawnRegistry.getProps(name);
-        let defaultOptions = this.pawnRegistry.getOptions(name);
+    createPawn(position, unitName, options) {
+        let props = this.pawnRegistry.getProps(unitName);
+        let defaultOptions = this.pawnRegistry.getOptions(unitName);
         let allOptions = Object.assign({}, defaultOptions, options);
-        let pawn = new Pawn(position, props, allOptions);
+        let pawn = new Pawn(unitName, props, allOptions);
+
+        pawn.position = position;
 
         this.arena.addPawn(pawn);
         this.#gamecycle.addPawn(pawn, false);

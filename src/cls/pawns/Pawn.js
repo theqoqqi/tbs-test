@@ -1,6 +1,7 @@
 import HitbackFrequency from '../enums/HitbackFrequency.js';
 import PawnProps from '../context/PawnProps.js';
 import Ability from './Ability.js';
+import Vector from '../util/Vector.js';
 
 let nextUniqueId = 0;
 
@@ -16,10 +17,11 @@ export default class Pawn {
 
     #isWaiting = false;
 
-    constructor(position, props, options) {
+    constructor(unitName, props, options) {
         this.id = nextUniqueId++;
+        this.unitName = unitName;
         this.props = props;
-        this.position = position;
+        this.position = Vector.ZERO;
 
         this.stackSize = options.stackSize;
         this.initialStackSize = options.stackSize;

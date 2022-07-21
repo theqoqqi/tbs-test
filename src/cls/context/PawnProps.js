@@ -69,8 +69,6 @@ export default class PawnProps {
         }],
     ]);
 
-    #internalName;
-
     constructor(props) {
         this.initProps(props);
     }
@@ -91,18 +89,6 @@ export default class PawnProps {
 
     get(propertyName) {
         return this[propertyName];
-    }
-
-    set internalName(value) {
-        if (this.#internalName) {
-            throw new Error('Internal name is already set.');
-        }
-
-        this.#internalName = value;
-    }
-
-    get internalName() {
-        return this.#internalName;
     }
 
     static get propNames() {
