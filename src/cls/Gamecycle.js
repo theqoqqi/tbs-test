@@ -164,7 +164,7 @@ export default class Gamecycle {
 
         let comparisons = compareBy.map(getter => {
             let valueA = a.isWaiting ? -getter(a) : getter(a);
-            let valueB = a.isWaiting ? -getter(b) : getter(b);
+            let valueB = b.isWaiting ? -getter(b) : getter(b);
 
             return valueB - valueA;
         });
