@@ -22,6 +22,13 @@
     -webkit-text-stroke: 2px #dd8800;
 }
 
+.splash.crit {
+    font-size: 40px;
+    font-weight: 500;
+    color: #ff8888;
+    -webkit-text-stroke: 2px #dd0000;
+}
+
 .splash.kills {
     font-size: 40px;
     font-weight: 500;
