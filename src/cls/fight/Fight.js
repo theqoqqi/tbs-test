@@ -5,14 +5,14 @@ import PassabilityType from '../enums/PassabilityType.js';
 import Vector from '../util/Vector.js';
 import ArenaTeam from '../arena/ArenaTeam.js';
 import ArenaMove from '../arena/ArenaMove.js';
-import MoveInfo from '../util/MoveInfo.js';
-import PotentialHitInfo from '../util/PotentialHitInfo.js';
-import ExactHitInfo from '../util/ExactHitInfo.js';
 import Formulas from '../Formulas.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
 import ArenaPawn from '../arena/ArenaPawn.js';
 import Gamecycle from './Gamecycle.js';
 import MoveExecutor from './MoveExecutor.js';
+import MoveInfo from '../util/info/MoveInfo.js';
+import PotentialHitInfo from '../util/info/PotentialHitInfo.js';
+import ExactHitInfo from '../util/info/ExactHitInfo.js';
 
 export default class Fight {
 

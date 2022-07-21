@@ -1,4 +1,3 @@
-
 export default class PotentialHitInfo {
 
     constructor(props) {

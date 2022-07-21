@@ -1,4 +1,3 @@
-
 export default class ExactHitInfo {
 
     constructor(props) {

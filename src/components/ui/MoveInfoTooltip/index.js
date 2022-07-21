@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Popover} from '@mui/material';
 import Vector from '../../../cls/util/Vector.js';
-import MoveInfo from '../../../cls/util/MoveInfo.js';
+import MoveInfo from '../../../cls/util/info/MoveInfo.js';
 
 export default class MoveInfoTooltip extends React.Component {
 
