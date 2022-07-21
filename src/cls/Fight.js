@@ -8,7 +8,7 @@ import Formulas from './Formulas.js';
 import AbilitySlot from './enums/AbilitySlot.js';
 import ArenaMove from './arena/ArenaMove.js';
 import MoveInfo from './util/MoveInfo.js';
-import HitInfo from './util/HitInfo.js';
+import PotentialHitInfo from './util/PotentialHitInfo.js';
 import Gamecycle from './Gamecycle.js';
 import MoveExecutor from './MoveExecutor.js';
 import EventEmitter from 'eventemitter3';
@@ -157,7 +157,7 @@ export default class Fight {
         let willHitback = MoveExecutor.shouldHitback(attackerPawn, targetPawn, ability);
         let targetName = targetPawn.props.internalName;
 
-        return new HitInfo({
+        return new PotentialHitInfo({
             targetName,
             minDamage,
             maxDamage,

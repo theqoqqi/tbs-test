@@ -1,5 +1,5 @@
 
-export default class HitInfo {
+export default class PotentialHitInfo {
 
     constructor(props) {
         this.targetName = props.targetName;
