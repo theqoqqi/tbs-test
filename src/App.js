@@ -53,6 +53,7 @@ export default class App extends React.Component {
         requestAnimationFrame(this.handleAnimationFrame);
 
         this.fight.start();
+        this.fight.on('pawn.damage.received', this.handlePawnDamageReceived);
         this.setSelectedPawn(this.fight.currentPawn);
     }
 
@@ -75,6 +76,32 @@ export default class App extends React.Component {
 
         requestAnimationFrame(this.handleAnimationFrame);
     }
+
+
+
+    handlePawnDamageReceived = ({attacker, victim, damageInfo}) => {
+        let cell = this.arena.getCell(victim.position);
+        let attackerPlainPosition = this.axialToPlainPosition(attacker.position);
+        let victimPlainPosition = this.axialToPlainPosition(victim.position);
+        let fromRight = attackerPlainPosition.x > victimPlainPosition.x;
+        let damageOffset = new Vector(0, App.CELL_SIZE * -0.5);
+
+        console.log(attackerPlainPosition, victimPlainPosition)
+
+        if (damageInfo.isCriticalHit) {
+            this.createCritSplash(cell, damageOffset, damageInfo.damage)
+        } else {
+            this.createDamageSplash(cell, damageOffset, damageInfo.damage);
+        }
+
+        if (damageInfo.kills) {
+            let xOffset = App.CELL_SIZE * (fromRight ? -0.5 : 0.5);
+            let killsOffset = new Vector(xOffset, 0);
+            this.createKillsSplash(cell, killsOffset, damageInfo.kills);
+        }
+    }
+
+
 
     handleCellClick = (cellComponent) => {
         let cell = this.arena.getCell(cellComponent.props.axialPosition);

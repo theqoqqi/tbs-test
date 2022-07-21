@@ -3,6 +3,8 @@ export default class Gamecycle {
 
     #fight;
 
+    #eventBus;
+
     #round = 0;
 
     #turn = 0;
@@ -15,8 +17,14 @@ export default class Gamecycle {
 
     #winner = null;
 
-    constructor(fight) {
+    constructor(fight, eventBus) {
         this.#fight = fight;
+        this.#eventBus = eventBus;
+    }
+
+    start() {
+        this.#eventBus.emit('gamecycle.start');
+        this.nextTurn();
     }
 
     nextTurn() {
@@ -37,6 +45,11 @@ export default class Gamecycle {
         for (const ability of this.#currentPawn.abilities) {
             ability.tickReloading();
         }
+
+        this.#eventBus.emit('gamecycle.turn.start', {
+            round: this.#round,
+            turn: this.#turn,
+        });
 
         console.log('Round:', this.#round, 'Turn:', this.#turn)
     }
@@ -111,6 +124,10 @@ export default class Gamecycle {
         }
 
         this.#sortFrom(this.#allPawns);
+
+        this.#eventBus.emit('gamecycle.round.start', {
+            round: this.#round,
+        });
     }
 
     #sortFrom(pawns) {

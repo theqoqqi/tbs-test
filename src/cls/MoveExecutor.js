@@ -3,8 +3,11 @@ export default class MoveExecutor {
 
     #fight;
 
-    constructor(fight) {
+    #eventBus;
+
+    constructor(fight, eventBus) {
         this.#fight = fight;
+        this.#eventBus = eventBus;
     }
 
     makeMove(move, path, ability) {
@@ -104,22 +107,31 @@ export default class MoveExecutor {
         });
     }
 
-    attack(attacker, target, ability, consumeSpeed = true) {
+    attack(attacker, victim, ability, consumeSpeed = true) {
         return new Promise(resolve => {
-            let damageInfo = this.#fight.getRandomDamageInfo(attacker, target, ability);
+            let damageInfo = this.#fight.getRandomDamageInfo(attacker, victim, ability);
 
-            target.applyDamage(damageInfo.damage);
+            victim.applyDamage(damageInfo.damage);
 
-            if (target.stackSize === 0) {
-                this.#fight.removePawn(target);
+            if (victim.stackSize === 0) {
+                this.#fight.removePawn(victim);
             }
+
+            let eventData = {
+                attacker,
+                victim,
+                damageInfo,
+            };
+
+            this.#eventBus.emit('pawn.damage.dealt', eventData);
+            this.#eventBus.emit('pawn.damage.received', eventData);
+
+            console.log('Attacked', victim.toString(), 'by', attacker.toString());
+            console.log('Damage:', damageInfo.damage, 'Kills:', damageInfo.kills, 'Is Crit:', damageInfo.isCriticalHit);
 
             if (consumeSpeed) {
                 attacker.consumeAllSpeed();
             }
-
-            console.log('Attacked', target.toString(), 'by', attacker.toString());
-            console.log('Damage:', damageInfo.damage, 'Kills:', damageInfo.kills, 'Is Crit:', damageInfo.isCriticalHit);
 
             setTimeout(resolve, 500);
         });

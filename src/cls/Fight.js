@@ -11,8 +11,11 @@ import MoveInfo from './util/MoveInfo.js';
 import HitInfo from './util/HitInfo.js';
 import Gamecycle from './Gamecycle.js';
 import MoveExecutor from './MoveExecutor.js';
+import EventEmitter from 'eventemitter3';
 
 export default class Fight {
+
+    #eventBus;
 
     #gamecycle;
 
@@ -20,8 +23,9 @@ export default class Fight {
 
     constructor(gameContext) {
         this.arena = new Arena();
-        this.#gamecycle = new Gamecycle(this);
-        this.#moveExecutor = new MoveExecutor(this);
+        this.#eventBus = new EventEmitter();
+        this.#gamecycle = new Gamecycle(this, this.#eventBus);
+        this.#moveExecutor = new MoveExecutor(this, this.#eventBus);
 
         for (const cellData of arenaData.cells) {
             if (cellData['obstacles'] === 'IMPASSABLE') {
@@ -61,10 +65,24 @@ export default class Fight {
 
 
 
+    //region События
+
+    on(eventName, callback, context = undefined) {
+        this.#eventBus.on(eventName, callback, context);
+    }
+
+    off(eventName, callback) {
+        this.#eventBus.off(eventName, callback);
+    }
+
+    //endregion
+
+
+
     //region Игровой цикл
 
     start() {
-        this.#gamecycle.nextTurn();
+        this.#gamecycle.start();
     }
 
     #nextTurnIfNoSpeed(pawn) {
