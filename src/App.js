@@ -86,8 +86,6 @@ export default class App extends React.Component {
         let fromRight = attackerPlainPosition.x > victimPlainPosition.x;
         let damageOffset = new Vector(0, App.CELL_SIZE * -0.5);
 
-        console.log(attackerPlainPosition, victimPlainPosition)
-
         if (hitInfo.isCriticalHit) {
             this.createCritSplash(cell, damageOffset, hitInfo.damage)
         } else {
@@ -97,6 +95,7 @@ export default class App extends React.Component {
         if (hitInfo.kills) {
             let xOffset = App.CELL_SIZE * (fromRight ? -0.5 : 0.5);
             let killsOffset = new Vector(xOffset, 0);
+
             this.createKillsSplash(cell, killsOffset, hitInfo.kills);
         }
     }
