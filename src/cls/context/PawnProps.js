@@ -96,6 +96,10 @@ export default class PawnProps {
         }
     }
 
+    get(propertyName) {
+        return this[propertyName];
+    }
+
     set internalName(value) {
         if (this.#internalName) {
             throw new Error('Internal name is already set.');

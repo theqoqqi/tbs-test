@@ -112,12 +112,12 @@ export default class Pawn {
 
     //region Приватные методы
 
-    #getPropertyValue(propertyName) {
-        return this.#getBasePropertyValue(propertyName);
+    #getProperty(propertyName) {
+        return this.#getBaseProperty(propertyName);
     }
 
-    #getBasePropertyValue(propertyName) {
-        return this.props[propertyName];
+    #getBaseProperty(propertyName) {
+        return this.props.get(propertyName);
     }
 
     toString() {
@@ -171,63 +171,63 @@ export default class Pawn {
     //region Текущие свойства отряда
 
     get level() {
-        return this.#getPropertyValue(PawnProps.level);
+        return this.#getProperty(PawnProps.level);
     }
 
     get race() {
-        return this.#getPropertyValue(PawnProps.race);
+        return this.#getProperty(PawnProps.race);
     }
 
     get leadership() {
-        return this.#getPropertyValue(PawnProps.leadership);
+        return this.#getProperty(PawnProps.leadership);
     }
 
     get maxHealth() {
-        return this.#getPropertyValue(PawnProps.health);
+        return this.#getProperty(PawnProps.health);
     }
 
     get maxSpeed() {
-        return this.#getPropertyValue(PawnProps.speed);
+        return this.#getProperty(PawnProps.speed);
     }
 
     get resistances() {
-        return this.#getPropertyValue(PawnProps.resistances);
+        return this.#getProperty(PawnProps.resistances);
     }
 
     get movementType() {
-        return this.#getPropertyValue(PawnProps.movementType);
+        return this.#getProperty(PawnProps.movementType);
     }
 
     get initiative() {
-        return this.#getPropertyValue(PawnProps.initiative);
+        return this.#getProperty(PawnProps.initiative);
     }
 
     get criticalHitChance() {
-        return this.#getPropertyValue(PawnProps.criticalHitChance);
+        return this.#getProperty(PawnProps.criticalHitChance);
     }
 
     get criticalHitMultiplier() {
-        return this.#getPropertyValue(PawnProps.criticalHitMultiplier);
+        return this.#getProperty(PawnProps.criticalHitMultiplier);
     }
 
     get attack() {
-        return this.#getPropertyValue(PawnProps.attack);
+        return this.#getProperty(PawnProps.attack);
     }
 
     get defence() {
-        return this.#getPropertyValue(PawnProps.defence);
+        return this.#getProperty(PawnProps.defence);
     }
 
     get defenceBonus() {
-        return this.#getPropertyValue(PawnProps.defenceBonus);
+        return this.#getProperty(PawnProps.defenceBonus);
     }
 
     get hitback() {
-        return this.#getPropertyValue(PawnProps.hitback);
+        return this.#getProperty(PawnProps.hitback);
     }
 
     get hitbackProtection() {
-        return this.#getPropertyValue(PawnProps.hitbackProtection);
+        return this.#getProperty(PawnProps.hitbackProtection);
     }
 
     //endregion
@@ -237,63 +237,63 @@ export default class Pawn {
     //region Базовые свойства отряда
 
     get baseLevel() {
-        return this.#getBasePropertyValue(PawnProps.level);
+        return this.#getBaseProperty(PawnProps.level);
     }
 
     get baseRace() {
-        return this.#getBasePropertyValue(PawnProps.race);
+        return this.#getBaseProperty(PawnProps.race);
     }
 
     get baseLeadership() {
-        return this.#getBasePropertyValue(PawnProps.leadership);
+        return this.#getBaseProperty(PawnProps.leadership);
     }
 
     get baseMaxHealth() {
-        return this.#getBasePropertyValue(PawnProps.health);
+        return this.#getBaseProperty(PawnProps.health);
     }
 
     get baseMaxSpeed() {
-        return this.#getBasePropertyValue(PawnProps.speed);
+        return this.#getBaseProperty(PawnProps.speed);
     }
 
     get baseResistances() {
-        return this.#getBasePropertyValue(PawnProps.resistances);
+        return this.#getBaseProperty(PawnProps.resistances);
     }
 
     get baseMovementType() {
-        return this.#getBasePropertyValue(PawnProps.movementType);
+        return this.#getBaseProperty(PawnProps.movementType);
     }
 
     get baseInitiative() {
-        return this.#getBasePropertyValue(PawnProps.initiative);
+        return this.#getBaseProperty(PawnProps.initiative);
     }
 
     get baseCriticalHitChance() {
-        return this.#getBasePropertyValue(PawnProps.criticalHitChance);
+        return this.#getBaseProperty(PawnProps.criticalHitChance);
     }
 
     get baseCriticalHitMultiplier() {
-        return this.#getBasePropertyValue(PawnProps.criticalHitMultiplier);
+        return this.#getBaseProperty(PawnProps.criticalHitMultiplier);
     }
 
     get baseAttack() {
-        return this.#getBasePropertyValue(PawnProps.attack);
+        return this.#getBaseProperty(PawnProps.attack);
     }
 
     get baseDefence() {
-        return this.#getBasePropertyValue(PawnProps.defence);
+        return this.#getBaseProperty(PawnProps.defence);
     }
 
     get baseDefenseBonus() {
-        return this.#getBasePropertyValue(PawnProps.defenceBonus);
+        return this.#getBaseProperty(PawnProps.defenceBonus);
     }
 
     get baseHitback() {
-        return this.#getBasePropertyValue(PawnProps.hitback);
+        return this.#getBaseProperty(PawnProps.hitback);
     }
 
     get baseHitbackProtection() {
-        return this.#getBasePropertyValue(PawnProps.hitbackProtection);
+        return this.#getBaseProperty(PawnProps.hitbackProtection);
     }
 
     //endregion
