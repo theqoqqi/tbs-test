@@ -100,7 +100,7 @@ export default class Pawn {
 
     getKillCount(forDamage) {
         let killingDamage = forDamage - this.currentHealth + 1;
-        let kills = Math.ceil(killingDamage / this.maxHealth);
+        let kills = Math.max(0, Math.ceil(killingDamage / this.maxHealth));
         let lostStackSize = this.initialStackSize - this.stackSize;
 
         return Math.max(-lostStackSize, Math.min(this.stackSize, kills));
