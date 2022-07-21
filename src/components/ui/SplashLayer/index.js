@@ -17,9 +17,9 @@ export default class SplashLayer extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.splashes.length > 0) {
-            this.setState({
+            this.setState(state => ({
                 splashes: [],
-            });
+            }));
         }
     }
 
@@ -31,9 +31,9 @@ export default class SplashLayer extends React.Component {
             text,
         };
 
-        this.setState({
-            splashes: [...this.state.splashes, splash],
-        });
+        this.setState(state => ({
+            splashes: [...state.splashes, splash],
+        }));
     }
 
     render() {
