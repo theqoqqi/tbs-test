@@ -387,7 +387,7 @@ export default class App extends React.Component {
         let move = this.moves.find(move => move.targetCell === cell);
         let isCellFree = this.arena.isCellFree(cell.position);
 
-        return pawnCell === cell || (isCellFree && move && move.actionPoints < move.pawn.speed);
+        return pawnCell === cell || (isCellFree && move && move.actionPoints < move.pawn.currentSpeed);
     }
 
 
