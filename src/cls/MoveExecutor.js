@@ -111,23 +111,11 @@ export default class MoveExecutor {
         return new Promise(resolve => {
             let hitInfo = this.#fight.getRandomHitInfo(attacker, victim, ability);
 
-            victim.applyDamage(hitInfo.damage);
+            this.#applyDamage(attacker, victim, ability, hitInfo);
 
             if (victim.stackSize === 0) {
                 this.#fight.removePawn(victim);
             }
-
-            let eventData = {
-                attacker,
-                victim,
-                hitInfo,
-            };
-
-            this.#eventBus.emit('pawn.damage.dealt', eventData);
-            this.#eventBus.emit('pawn.damage.received', eventData);
-
-            console.log('Attacked', victim.toString(), 'by', attacker.toString());
-            console.log('Damage:', hitInfo.damage, 'Kills:', hitInfo.kills, 'Is Crit:', hitInfo.isCriticalHit);
 
             if (consumeSpeed) {
                 attacker.consumeAllSpeed();
@@ -135,5 +123,22 @@ export default class MoveExecutor {
 
             setTimeout(resolve, 500);
         });
+    }
+
+    #applyDamage(attacker, victim, ability, hitInfo) {
+        victim.applyDamage(hitInfo.damage);
+
+        let eventData = {
+            attacker,
+            victim,
+            ability,
+            hitInfo,
+        };
+
+        this.#eventBus.emit('pawn.damage.dealt', eventData);
+        this.#eventBus.emit('pawn.damage.received', eventData);
+
+        console.log('Attacked', victim.toString(), 'by', attacker.toString());
+        console.log('Damage:', hitInfo.damage, 'Kills:', hitInfo.kills, 'Is Crit:', hitInfo.isCriticalHit);
     }
 }
