@@ -78,8 +78,10 @@ export default class Vector {
         return Math.sqrt(this.dot(this));
     }
 
-    unit() {
-        return this.divide(this.length());
+    normalize() {
+        let length = this.length();
+
+        return length ? this.divide(length) : this;
     }
 
     min() {
