@@ -26,7 +26,7 @@ export default class Gamecycle {
     }
 
     start() {
-        this.#eventBus.emit(GamecycleStartEvent);
+        this.#eventBus.dispatch(GamecycleStartEvent);
         this.nextTurn();
     }
 
@@ -49,7 +49,7 @@ export default class Gamecycle {
             ability.tickReloading();
         }
 
-        this.#eventBus.emit(GamecycleTurnStartEvent, {
+        this.#eventBus.dispatch(GamecycleTurnStartEvent, {
             round: this.#round,
             turn: this.#turn,
         });
@@ -128,7 +128,7 @@ export default class Gamecycle {
 
         this.#sortFrom(this.#allPawns);
 
-        this.#eventBus.emit(GamecycleRoundStartEvent, {
+        this.#eventBus.dispatch(GamecycleRoundStartEvent, {
             round: this.#round,
         });
     }
