@@ -31,8 +31,10 @@ export default class SplashLayer extends React.Component {
             text,
         };
 
-        this.setState({
-            splashes: [...this.state.splashes, splash],
+        this.setState(state => {
+            return {
+                splashes: [...state.splashes, splash],
+            };
         });
     }
 
