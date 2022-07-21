@@ -475,7 +475,7 @@ export default class App extends React.Component {
             defence: pawn.defence,
             initiative: pawn.initiative,
             currentSpeed: pawn.currentSpeed,
-            speed: pawn.speed,
+            maxSpeed: pawn.maxSpeed,
             criticalHitChance: pawn.criticalHitChance,
             currentHealth: pawn.currentHealth,
             maxHealth: pawn.maxHealth,
@@ -486,7 +486,7 @@ export default class App extends React.Component {
             baseAttack: pawn.baseAttack,
             baseDefence: pawn.baseDefence,
             baseInitiative: pawn.baseInitiative,
-            baseSpeed: pawn.baseSpeed,
+            baseMaxSpeed: pawn.baseMaxSpeed,
             baseCriticalHitChance: pawn.baseCriticalHitChance,
             baseMaxHealth: pawn.baseMaxHealth,
         };
@@ -514,7 +514,7 @@ export default class App extends React.Component {
             abilities,
             canWait: !pawn.isWaiting,
             currentSpeed: pawn.currentSpeed,
-            maxSpeed: pawn.speed,
+            maxSpeed: pawn.maxSpeed,
         };
     }
 

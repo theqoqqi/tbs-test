@@ -40,6 +40,96 @@ export default class ArenaPawn {
 
 
 
+    //region Публичные методы
+
+    applyDamage(damage) {
+        let kills = this.getKillCount(damage);
+
+        this.#health -= damage - kills * this.maxHealth;
+        this.stackSize -= kills;
+
+        if (this.stackSize <= 0) {
+            this.stackSize = 0;
+            this.#health = 0;
+        }
+    }
+
+    refillHealth() {
+        this.#health = this.maxHealth;
+    }
+
+    consumeAllSpeed() {
+        this.#speed = 0;
+    }
+
+    consumeSpeed(amount) {
+        this.#speed = Math.max(0, this.#speed - amount);
+    }
+
+    giveSpeed(amount) {
+        this.#speed = Math.max(0, this.#speed + amount);
+    }
+
+    refillSpeed() {
+        this.#speed = this.maxSpeed;
+    }
+
+    consumeHitback() {
+        this.#hitbacks--;
+    }
+
+    refillHitbacks() {
+        this.#hitbacks = 0;
+
+        if (this.hitback === HitbackFrequency.ONCE_PER_ROUND) {
+            this.#hitbacks = 1;
+        }
+
+        if (this.hitback === HitbackFrequency.ALWAYS) {
+            this.#hitbacks = 999;
+        }
+    }
+
+    setWaiting() {
+        this.#isWaiting = true;
+    }
+
+    resetWaiting() {
+        this.#isWaiting = false;
+    }
+
+    getKillCount(forDamage) {
+        let killingDamage = forDamage - this.currentHealth + 1;
+        let kills = Math.ceil(killingDamage / this.maxHealth);
+        let lostStackSize = this.initialStackSize - this.stackSize;
+
+        return Math.max(-lostStackSize, Math.min(this.stackSize, kills));
+    }
+
+    //endregion
+
+
+
+    //region Приватные методы
+
+    #getPropertyValue(propertyName) {
+        return this.#getBasePropertyValue(propertyName);
+    }
+
+    #getBasePropertyValue(propertyName) {
+        return this.props[propertyName];
+    }
+
+    toString() {
+        return `Pawn #${this.id} (${this.position.x}, ${this.position.y})`;
+    }
+
+    //endregion
+
+
+
+    //region Текущие показатели отряда
+
     get currentHealth() {
         return this.#health;
     }
@@ -60,7 +150,11 @@ export default class ArenaPawn {
         return this.#isWaiting;
     }
 
+    //endregion
 
+
+
+    //region Суммарные показатели отряда
 
     get stackLeadership() {
         return this.leadership * this.stackSize;
@@ -70,7 +164,11 @@ export default class ArenaPawn {
         return this.maxHealth * (this.stackSize - 1) + this.currentHealth;
     }
 
+    //endregion
 
+
+
+    //region Текущие свойства отряда
 
     get level() {
         return this.#getPropertyValue(PawnProps.level);
@@ -88,7 +186,7 @@ export default class ArenaPawn {
         return this.#getPropertyValue(PawnProps.health);
     }
 
-    get speed() {
+    get maxSpeed() {
         return this.#getPropertyValue(PawnProps.speed);
     }
 
@@ -132,7 +230,11 @@ export default class ArenaPawn {
         return this.#getPropertyValue(PawnProps.hitbackProtection);
     }
 
+    //endregion
 
+
+
+    //region Базовые свойства отряда
 
     get baseLevel() {
         return this.#getBasePropertyValue(PawnProps.level);
@@ -150,7 +252,7 @@ export default class ArenaPawn {
         return this.#getBasePropertyValue(PawnProps.health);
     }
 
-    get baseSpeed() {
+    get baseMaxSpeed() {
         return this.#getBasePropertyValue(PawnProps.speed);
     }
 
@@ -194,83 +296,5 @@ export default class ArenaPawn {
         return this.#getBasePropertyValue(PawnProps.hitbackProtection);
     }
 
-
-
-    applyDamage(damage) {
-        let kills = this.getKillCount(damage);
-
-        this.#health -= damage - kills * this.maxHealth;
-        this.stackSize -= kills;
-
-        if (this.stackSize <= 0) {
-            this.stackSize = 0;
-            this.#health = 0;
-        }
-    }
-
-    refillHealth() {
-        this.#health = this.maxHealth;
-    }
-
-    consumeAllSpeed() {
-        this.#speed = 0;
-    }
-
-    consumeSpeed(amount) {
-        this.#speed = Math.max(0, this.#speed - amount);
-    }
-
-    giveSpeed(amount) {
-        this.#speed = Math.max(0, this.#speed + amount);
-    }
-
-    refillSpeed() {
-        this.#speed = this.speed;
-    }
-
-    consumeHitback() {
-        this.#hitbacks--;
-    }
-
-    refillHitbacks() {
-        this.#hitbacks = 0;
-
-        if (this.hitback === HitbackFrequency.ONCE_PER_ROUND) {
-            this.#hitbacks = 1;
-        }
-
-        if (this.hitback === HitbackFrequency.ALWAYS) {
-            this.#hitbacks = 999;
-        }
-    }
-
-    setWaiting() {
-        this.#isWaiting = true;
-    }
-
-    resetWaiting() {
-        this.#isWaiting = false;
-    }
-
-    getKillCount(forDamage) {
-        let killingDamage = forDamage - this.currentHealth + 1;
-        let kills = Math.ceil(killingDamage / this.maxHealth);
-        let lostStackSize = this.initialStackSize - this.stackSize;
-
-        return Math.max(-lostStackSize, Math.min(this.stackSize, kills));
-    }
-
-
-
-    #getPropertyValue(propertyName) {
-        return this.#getBasePropertyValue(propertyName);
-    }
-
-    #getBasePropertyValue(propertyName) {
-        return this.props[propertyName];
-    }
-
-    toString() {
-        return `Pawn #${this.id} (${this.position.x}, ${this.position.y})`;
-    }
+    //endregion
 }

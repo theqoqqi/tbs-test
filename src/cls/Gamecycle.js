@@ -136,7 +136,7 @@ export default class Gamecycle {
 
         let compareBy = [
             pawn => pawn.initiative,
-            pawn => pawn.speed,
+            pawn => pawn.maxSpeed,
             pawn => pawn.level,
             pawn => -pawn.maxHealth,
             pawn => pawn.id,

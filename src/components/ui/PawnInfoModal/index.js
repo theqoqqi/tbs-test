@@ -110,8 +110,8 @@ export default class PawnInfoModal extends React.Component {
             baseInitiative: PropTypes.number,
 
             currentSpeed: PropTypes.number,
-            speed: PropTypes.number,
-            baseSpeed: PropTypes.number,
+            maxSpeed: PropTypes.number,
+            baseMaxSpeed: PropTypes.number,
 
             criticalHitChance: PropTypes.number,
             baseCriticalHitChance: PropTypes.number,
@@ -174,8 +174,8 @@ export default class PawnInfoModal extends React.Component {
                     />
                     <PawnParameter
                         title='Скорость'
-                        value={`${p.currentSpeed} / ${p.speed}`}
-                        baseValue={p.baseSpeed}
+                        value={`${p.currentSpeed} / ${p.maxSpeed}`}
+                        baseValue={p.baseMaxSpeed}
                     />
                     <PawnParameter
                         title='Крит'
