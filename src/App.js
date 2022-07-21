@@ -394,27 +394,27 @@ export default class App extends React.Component {
 
     // Сплэши
 
-    createDamageSplash(cell, damage) {
-        this.createSplashAtCell(cell, Vector.ZERO, damage, 'damage');
+    createDamageSplash(cell, offset, damage) {
+        this.createSplashAtCell(cell, offset, damage, 'damage');
     }
 
-    createKillsSplash(cell, damage) {
-        this.createSplashAtCell(cell, Vector.ZERO, damage, 'kills');
+    createKillsSplash(cell, offset, damage) {
+        this.createSplashAtCell(cell, offset, damage, 'kills');
     }
 
-    createMissSplash(cell) {
+    createMissSplash(cell, offset) {
         // TODO: брать текст из локализации
-        this.createSplashAtCell(cell, Vector.ZERO, 'Промах!', 'miss');
+        this.createSplashAtCell(cell, offset, 'Промах!', 'miss');
     }
 
-    createHalfSplash(cell) {
+    createHalfSplash(cell, offset) {
         // TODO: брать текст из локализации
-        this.createSplashAtCell(cell, Vector.ZERO, 'Половина!', 'half');
+        this.createSplashAtCell(cell, offset, 'Половина!', 'half');
     }
 
     createSplashAtCell(cell, offset, text, type) {
-        let plainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
-        let viewportPosition = this.arenaRef.current.localPositionToViewportPosition(plainPosition);
+        let localPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let viewportPosition = this.arenaRef.current.localPositionToViewportPosition(localPosition);
         let position = viewportPosition.add(offset);
 
         this.splashLayerRef.current.createSplash(position, text, type);
