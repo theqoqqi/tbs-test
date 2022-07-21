@@ -1,18 +1,18 @@
-import ArenaPawn from './arena/ArenaPawn.js';
-import Arena from './arena/Arena.js';
-import Vector from './util/Vector.js';
-import arenaData from '../data/json/arenas/generic_with_obstacles.json';
-import ArenaTeam from './arena/ArenaTeam.js';
-import PassabilityType from './enums/PassabilityType.js';
-import Formulas from './Formulas.js';
-import AbilitySlot from './enums/AbilitySlot.js';
-import ArenaMove from './arena/ArenaMove.js';
-import MoveInfo from './util/MoveInfo.js';
-import PotentialHitInfo from './util/PotentialHitInfo.js';
+import Arena from '../arena/Arena.js';
+import EventBus from '../events/EventBus.js';
+import arenaData from '../../data/json/arenas/generic_with_obstacles.json';
+import PassabilityType from '../enums/PassabilityType.js';
+import Vector from '../util/Vector.js';
+import ArenaTeam from '../arena/ArenaTeam.js';
+import ArenaMove from '../arena/ArenaMove.js';
+import MoveInfo from '../util/MoveInfo.js';
+import PotentialHitInfo from '../util/PotentialHitInfo.js';
+import ExactHitInfo from '../util/ExactHitInfo.js';
+import Formulas from '../Formulas.js';
+import AbilitySlot from '../enums/AbilitySlot.js';
+import ArenaPawn from '../arena/ArenaPawn.js';
 import Gamecycle from './Gamecycle.js';
 import MoveExecutor from './MoveExecutor.js';
-import ExactHitInfo from './util/ExactHitInfo.js';
-import EventBus from './events/EventBus.js';
 
 export default class Fight {
 
@@ -122,7 +122,7 @@ export default class Fight {
         let searchResults = this.arena.getAvailableCells(forPawn, forPawn.currentSpeed);
 
         return searchResults.map(searchResult => {
-            let { cell, distance } = searchResult;
+            let {cell, distance} = searchResult;
 
             return new ArenaMove({
                 pawn: forPawn,

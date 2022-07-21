@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import Fight from './cls/Fight.js';
 import Arena from './components/arena/Arena';
 import GameContext from './cls/context/GameContext.js';
 import HexagonUtils from './cls/util/HexagonUtils.js';
@@ -12,6 +11,7 @@ import PawnControls from './components/ui/PawnControls';
 import AbilitySlot from './cls/enums/AbilitySlot.js';
 import SplashLayer from './components/ui/SplashLayer';
 import PawnDamageReceivedEvent from './cls/events/types/PawnDamageReceivedEvent.js';
+import Fight from './cls/fight/Fight.js';
 
 export default class App extends React.Component {
 

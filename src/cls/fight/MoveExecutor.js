@@ -1,5 +1,5 @@
-import PawnDamageReceivedEvent from './events/types/PawnDamageReceivedEvent.js';
-import PawnDamageDealtEvent from './events/types/PawnDamageDealtEvent.js';
+import PawnDamageDealtEvent from '../events/types/PawnDamageDealtEvent.js';
+import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js';
 
 export default class MoveExecutor {
 

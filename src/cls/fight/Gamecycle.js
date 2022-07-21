@@ -1,6 +1,6 @@
-import GamecycleRoundStartEvent from './events/types/GamecycleRoundStartEvent.js';
-import GamecycleTurnStartEvent from './events/types/GamecycleTurnStartEvent.js';
-import GamecycleStartEvent from './events/types/GamecycleStartEvent.js';
+import GamecycleStartEvent from '../events/types/GamecycleStartEvent.js';
+import GamecycleTurnStartEvent from '../events/types/GamecycleTurnStartEvent.js';
+import GamecycleRoundStartEvent from '../events/types/GamecycleRoundStartEvent.js';
 
 export default class Gamecycle {
 
