@@ -11,6 +11,7 @@ import MoveInfoTooltip from './components/ui/MoveInfoTooltip';
 import PawnControls from './components/ui/PawnControls';
 import AbilitySlot from './cls/enums/AbilitySlot.js';
 import SplashLayer from './components/ui/SplashLayer';
+import PawnDamageReceivedEvent from './cls/events/types/PawnDamageReceivedEvent.js';
 
 export default class App extends React.Component {
 
@@ -53,7 +54,7 @@ export default class App extends React.Component {
         requestAnimationFrame(this.handleAnimationFrame);
 
         this.fight.start();
-        this.fight.on('pawn.damage.received', this.handlePawnDamageReceived);
+        this.fight.on(PawnDamageReceivedEvent, this.handlePawnDamageReceived);
         this.setSelectedPawn(this.fight.currentPawn);
     }
 

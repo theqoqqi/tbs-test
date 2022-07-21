@@ -1,3 +1,6 @@
+import GamecycleRoundStartEvent from './events/types/GamecycleRoundStartEvent.js';
+import GamecycleTurnStartEvent from './events/types/GamecycleTurnStartEvent.js';
+import GamecycleStartEvent from './events/types/GamecycleStartEvent.js';
 
 export default class Gamecycle {
 
@@ -23,7 +26,7 @@ export default class Gamecycle {
     }
 
     start() {
-        this.#eventBus.emit('gamecycle.start');
+        this.#eventBus.emit(GamecycleStartEvent);
         this.nextTurn();
     }
 
@@ -46,7 +49,7 @@ export default class Gamecycle {
             ability.tickReloading();
         }
 
-        this.#eventBus.emit('gamecycle.turn.start', {
+        this.#eventBus.emit(GamecycleTurnStartEvent, {
             round: this.#round,
             turn: this.#turn,
         });
@@ -125,7 +128,7 @@ export default class Gamecycle {
 
         this.#sortFrom(this.#allPawns);
 
-        this.#eventBus.emit('gamecycle.round.start', {
+        this.#eventBus.emit(GamecycleRoundStartEvent, {
             round: this.#round,
         });
     }

@@ -1,3 +1,5 @@
+import PawnDamageReceivedEvent from './events/types/PawnDamageReceivedEvent.js';
+import PawnDamageDealtEvent from './events/types/PawnDamageDealtEvent.js';
 
 export default class MoveExecutor {
 
@@ -135,8 +137,8 @@ export default class MoveExecutor {
             hitInfo,
         };
 
-        this.#eventBus.emit('pawn.damage.dealt', eventData);
-        this.#eventBus.emit('pawn.damage.received', eventData);
+        this.#eventBus.dispatch(PawnDamageDealtEvent, eventData);
+        this.#eventBus.dispatch(PawnDamageReceivedEvent, eventData);
 
         console.log('Attacked', victim.toString(), 'by', attacker.toString());
         console.log('Damage:', hitInfo.damage, 'Kills:', hitInfo.kills, 'Is Crit:', hitInfo.isCriticalHit);

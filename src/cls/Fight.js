@@ -11,8 +11,8 @@ import MoveInfo from './util/MoveInfo.js';
 import PotentialHitInfo from './util/PotentialHitInfo.js';
 import Gamecycle from './Gamecycle.js';
 import MoveExecutor from './MoveExecutor.js';
-import EventEmitter from 'eventemitter3';
 import ExactHitInfo from './util/ExactHitInfo.js';
+import EventBus from './events/EventBus.js';
 
 export default class Fight {
 
@@ -24,7 +24,7 @@ export default class Fight {
 
     constructor(gameContext) {
         this.arena = new Arena();
-        this.#eventBus = new EventEmitter();
+        this.#eventBus = new EventBus();
         this.#gamecycle = new Gamecycle(this, this.#eventBus);
         this.#moveExecutor = new MoveExecutor(this, this.#eventBus);
 
@@ -68,12 +68,12 @@ export default class Fight {
 
     //region События
 
-    on(eventName, callback, context = undefined) {
-        this.#eventBus.on(eventName, callback, context);
+    on(eventType, callback, context = undefined) {
+        this.#eventBus.on(eventType, callback, context);
     }
 
-    off(eventName, callback) {
-        this.#eventBus.off(eventName, callback);
+    off(eventType, callback) {
+        this.#eventBus.off(eventType, callback);
     }
 
     //endregion
