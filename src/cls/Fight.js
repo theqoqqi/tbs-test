@@ -59,6 +59,10 @@ export default class Fight {
         });
     }
 
+
+
+    //region Игровой цикл
+
     start() {
         this.#gamecycle.nextTurn();
     }
@@ -76,6 +80,12 @@ export default class Fight {
     get currentPawn() {
         return this.#gamecycle.currentPawn;
     }
+
+    //endregion
+
+
+
+    //region Информация о ходах
 
     getAvailableMoves(forPawn, ability) {
         let moves = this.#getMovementMoves(forPawn);
@@ -165,26 +175,11 @@ export default class Fight {
         return Formulas.calculateDamageRange(attackerPawn, targetPawn, ability);
     }
 
-    randomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    }
+    //endregion
 
-    addCell(x, y) {
-        return this.arena.addCell(Vector.from(x, y));
-    }
 
-    createPawn(position, name, options) {
-        let props = this.pawnRegistry.get(name);
-        let pawn = new ArenaPawn(position, props, options);
 
-        this.arena.addPawn(pawn);
-        this.#gamecycle.addPawn(pawn, false);
-    }
-
-    removePawn(pawn) {
-        this.arena.removePawn(pawn);
-        this.#gamecycle.removePawn(pawn);
-    }
+    //region Применение ходов
 
     makeMove(move, path, ability) {
         return this.#moveExecutor.makeMove(move, path, ability)
@@ -204,6 +199,12 @@ export default class Fight {
     applyAbility(pawn, ability) {
         return this.#moveExecutor.applyAbility(pawn, ability);
     }
+
+    //endregion
+
+
+
+    //region Способности
 
     getRegularAbility(forPawn) {
         return this.getAbilityInSlot(forPawn, AbilitySlot.REGULAR);
@@ -240,6 +241,39 @@ export default class Fight {
         return ability.mutedIfNearEnemy && this.hasEnemiesNearby(pawn);
     }
 
+    //endregion
+
+
+
+    //region Управление ареной
+
+    addCell(x, y) {
+        return this.arena.addCell(Vector.from(x, y));
+    }
+
+    createPawn(position, name, options) {
+        let props = this.pawnRegistry.get(name);
+        let pawn = new ArenaPawn(position, props, options);
+
+        this.arena.addPawn(pawn);
+        this.#gamecycle.addPawn(pawn, false);
+    }
+
+    removePawn(pawn) {
+        this.arena.removePawn(pawn);
+        this.#gamecycle.removePawn(pawn);
+    }
+
+    //endregion
+
+
+
+    //region Прочее
+
+    randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
     hasEnemiesNearby(forPawn) {
         let neighborPositions = this.arena.getNeighborPositions(forPawn.position);
 
@@ -261,4 +295,6 @@ export default class Fight {
     get moveExecutor() {
         return this.#moveExecutor;
     }
+
+    //endregion
 }
