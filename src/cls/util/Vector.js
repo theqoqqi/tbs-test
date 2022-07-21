@@ -1,16 +1,33 @@
 export default class Vector {
 
+    static ZERO = new Vector();
+
+    #x;
+
+    #y;
+
+    #z;
+
     constructor(x, y, z) {
-        this.x = x || 0;
-        this.y = y || 0;
-        this.z = z || 0;
+        this.#x = x || 0;
+        this.#y = y || 0;
+        this.#z = z || 0;
+    }
+
+    get x() {
+        return this.#x;
+    }
+
+    get y() {
+        return this.#y;
+    }
+
+    get z() {
+        return this.#z;
     }
 
     set(xOrVector, yy, zz) {
         let {x, y, z} = Vector.#unifyArgs(arguments);
-        // this.x = x;
-        // this.y = y;
-        // this.z = z;
         return new Vector(x, y, z);
     }
 
