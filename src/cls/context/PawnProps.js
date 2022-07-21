@@ -1,10 +1,7 @@
 import MovementType from '../enums/MovementType.js';
 import HitbackFrequency from '../enums/HitbackFrequency.js';
 import Race from '../types/Race.js';
-import Ranges from '../util/Ranges.js';
-import DamageType from '../enums/DamageType.js';
 import Resistances from '../util/Resistances.js';
-import AbilityProps from './AbilityProps.js';
 
 export default class PawnProps {
 
@@ -23,8 +20,6 @@ export default class PawnProps {
     static defenceBonus = 'defenceBonus';
     static hitback = 'hitback';
     static hitbackProtection = 'hitbackProtection';
-
-    static abilities = 'abilities';
 
     static propDescriptors = new Map([
         [PawnProps.level, {
@@ -72,14 +67,6 @@ export default class PawnProps {
         [PawnProps.hitbackProtection, {
             defaultValue: false,
         }],
-
-        [PawnProps.abilities, {
-            defaultValue: new AbilityProps({
-                damageRanges: new Ranges([
-                    [DamageType.PHYSICAL, 1, 1],
-                ]),
-            }),
-        }],
     ]);
 
     #internalName;
@@ -90,9 +77,15 @@ export default class PawnProps {
 
     initProps(props) {
         for (const propName of PawnProps.propNames) {
+            this[propName] = props[propName] ?? null;
+        }
+    }
+
+    initDefaultValues() {
+        for (const propName of PawnProps.propNames) {
             let descriptor = PawnProps.propDescriptors.get(propName);
 
-            this[propName] = props[propName] ?? descriptor.defaultValue;
+            this[propName] ??= descriptor.defaultValue;
         }
     }
 

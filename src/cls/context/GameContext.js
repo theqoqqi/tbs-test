@@ -46,8 +46,8 @@ export default class GameContext {
             [PawnProps.defenceBonus]: 1,
             [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
-
-            [PawnProps.abilities]: [
+        }, {
+            abilities: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
@@ -84,8 +84,8 @@ export default class GameContext {
             [PawnProps.defenceBonus]: 2,
             [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
-
-            [PawnProps.abilities]: [
+        }, {
+            abilities: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
@@ -122,8 +122,8 @@ export default class GameContext {
             [PawnProps.defenceBonus]: 2,
             [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
-
-            [PawnProps.abilities]: [
+        }, {
+            abilities: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultRanged.targetCollector,
@@ -177,8 +177,8 @@ export default class GameContext {
             [PawnProps.defenceBonus]: 1,
             [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
-
-            [PawnProps.abilities]: [
+        }, {
+            abilities: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
@@ -209,8 +209,8 @@ export default class GameContext {
             [PawnProps.defenceBonus]: 8,
             [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
-
-            [PawnProps.abilities]: [
+        }, {
+            abilities: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
@@ -252,10 +252,11 @@ export default class GameContext {
         this.races.set(name, race);
     }
 
-    registerTestPawn(name, props) {
+    registerTestPawn(name, props, options) {
         let pawnProps = new PawnProps(props);
         pawnProps.internalName = name;
+        pawnProps.initDefaultValues();
 
-        this.pawnRegistry.register(name, pawnProps);
+        this.pawnRegistry.register(name, pawnProps, options);
     }
 }

@@ -271,8 +271,10 @@ export default class Fight {
     }
 
     createPawn(position, name, options) {
-        let props = this.pawnRegistry.get(name);
-        let pawn = new Pawn(position, props, options);
+        let props = this.pawnRegistry.getProps(name);
+        let defaultOptions = this.pawnRegistry.getOptions(name);
+        let allOptions = Object.assign({}, defaultOptions, options);
+        let pawn = new Pawn(position, props, allOptions);
 
         this.arena.addPawn(pawn);
         this.#gamecycle.addPawn(pawn, false);

@@ -25,15 +25,15 @@ export default class Pawn {
         this.initialStackSize = options.stackSize;
         this.team = options.team;
 
-        this.#initAbilities();
+        this.#initAbilities(options.abilities);
 
         this.refillHealth();
         this.refillSpeed();
         this.refillHitbacks();
     }
 
-    #initAbilities() {
-        this.#abilities = this.props.abilities.map(abilityProps => {
+    #initAbilities(abilities) {
+        this.#abilities = abilities.map(abilityProps => {
             return new Ability(abilityProps);
         });
     }
