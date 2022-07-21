@@ -229,7 +229,7 @@ export default class App extends React.Component {
     }
 
     showMoveInfoTooltip(moveInfo, targetCell) {
-        let position = HexagonUtils.axialToPlainPosition(targetCell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let position = this.axialToPlainPosition(targetCell.position);
         let viewportPosition = this.arenaRef.current.localPositionToViewportPosition(position);
         viewportPosition = viewportPosition.add(0, -App.CELL_SIZE / 2);
 
@@ -305,7 +305,7 @@ export default class App extends React.Component {
         }
 
         let mousePosition = this.arenaRef.current.getMousePosition(event);
-        let cellPlainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let cellPlainPosition = this.axialToPlainPosition(cell.position);
         let angle = cellPlainPosition.angleTo(mousePosition);
         let direction = HexagonUtils.angleToDirection(angle);
 
@@ -358,7 +358,7 @@ export default class App extends React.Component {
     }
 
     getSuitableNeighborCell(movingPawn, originCell, mousePosition) {
-        let cellPlainPosition = HexagonUtils.axialToPlainPosition(originCell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let cellPlainPosition = this.axialToPlainPosition(originCell.position);
         let angle = cellPlainPosition.angleTo(mousePosition);
         let orderedAngles = [
             angle,
@@ -417,7 +417,7 @@ export default class App extends React.Component {
     }
 
     createSplashAtCell(cell, offset, text, type) {
-        let localPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let localPosition = this.axialToPlainPosition(cell.position);
         let viewportPosition = this.arenaRef.current.localPositionToViewportPosition(localPosition);
         let position = viewportPosition.add(offset);
 
@@ -427,6 +427,10 @@ export default class App extends React.Component {
 
 
     // Прочее
+
+    axialToPlainPosition(axialPosition) {
+        return HexagonUtils.axialToPlainPosition(axialPosition, App.CELL_SIZE, App.CELL_SPACING);
+    }
 
     updateAvailableMoves() {
         this.moves = this.fight.getAvailableMoves(this.selectedPawn, this.selectedAbility);
