@@ -1,4 +1,3 @@
-
 let nextUniqueId = 0;
 
 export default class Ability {

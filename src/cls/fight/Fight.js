@@ -3,16 +3,16 @@ import EventBus from '../events/EventBus.js';
 import arenaData from '../../data/json/arenas/generic_with_obstacles.json';
 import PassabilityType from '../enums/PassabilityType.js';
 import Vector from '../util/Vector.js';
-import ArenaTeam from '../arena/ArenaTeam.js';
 import ArenaMove from '../arena/ArenaMove.js';
 import Formulas from '../Formulas.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
-import ArenaPawn from '../arena/ArenaPawn.js';
 import Gamecycle from './Gamecycle.js';
 import MoveExecutor from './MoveExecutor.js';
 import MoveInfo from '../util/info/MoveInfo.js';
 import PotentialHitInfo from '../util/info/PotentialHitInfo.js';
 import ExactHitInfo from '../util/info/ExactHitInfo.js';
+import Pawn from '../pawns/Pawn.js';
+import Team from '../pawns/Team.js';
 
 export default class Fight {
 
@@ -43,23 +43,23 @@ export default class Fight {
         this.pawnRegistry = gameContext.pawnRegistry;
 
         this.createPawn(Vector.from(-1, -1), 'walker', {
-            team: ArenaTeam.DEFAULT_1,
+            team: Team.DEFAULT_1,
             stackSize: 250,
         });
         this.createPawn(Vector.from(-2, 1), 'soarer', {
-            team: ArenaTeam.DEFAULT_1,
+            team: Team.DEFAULT_1,
             stackSize: 100,
         });
         this.createPawn(Vector.from(-3, 0), 'archer', {
-            team: ArenaTeam.DEFAULT_1,
+            team: Team.DEFAULT_1,
             stackSize: 50,
         });
         this.createPawn(Vector.from(2, -1), 'walker', {
-            team: ArenaTeam.DEFAULT_2,
+            team: Team.DEFAULT_2,
             stackSize: 150,
         });
         this.createPawn(Vector.from(1, 1), 'dragon', {
-            team: ArenaTeam.DEFAULT_2,
+            team: Team.DEFAULT_2,
             stackSize: 1,
         });
     }
@@ -272,7 +272,7 @@ export default class Fight {
 
     createPawn(position, name, options) {
         let props = this.pawnRegistry.get(name);
-        let pawn = new ArenaPawn(position, props, options);
+        let pawn = new Pawn(position, props, options);
 
         this.arena.addPawn(pawn);
         this.#gamecycle.addPawn(pawn, false);

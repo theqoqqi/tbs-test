@@ -1,10 +1,10 @@
-import PawnProps from '../context/PawnProps.js';
 import HitbackFrequency from '../enums/HitbackFrequency.js';
-import Ability from '../types/Ability.js';
+import PawnProps from '../context/PawnProps.js';
+import Ability from './Ability.js';
 
 let nextUniqueId = 0;
 
-export default class ArenaPawn {
+export default class Pawn {
 
     #health;
 
