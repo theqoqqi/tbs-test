@@ -1,0 +1,66 @@
+
+.splash-layer {
+    position: relative;
+}
+
+
+
+.splash {
+    position: absolute;
+
+    text-shadow: 0 0 4px white, 0 0 4px white, 0 0 4px white, 0 0 4px white;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+.splash.damage {
+    font-size: 40px;
+    font-weight: 500;
+    color: #ffffff;
+    -webkit-text-stroke: 2px #dd8800;
+}
+
+.splash.kills {
+    font-size: 40px;
+    font-weight: 500;
+    color: #ffcccc;
+    -webkit-text-stroke: 2px #880000;
+}
+
+.splash.miss {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ccffcc;
+    -webkit-text-stroke: 1px #008800;
+}
+
+.splash.half {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ff8888;
+    -webkit-text-stroke: 1px #ff0000;
+}
+
+
+
+.splash-enter {
+    opacity: 0;
+}
+
+.splash-enter-active {
+    opacity: 1;
+    transition: .2s ease-in;
+}
+
+.splash-exit {
+    opacity: 1;
+}
+
+.splash-exit-active {
+    opacity: 0;
+    transition: 3s ease-in;
+
+    transform: translate(-50%, -150%);
+}

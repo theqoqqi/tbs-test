@@ -10,6 +10,7 @@ import PassabilityType from './cls/enums/PassabilityType.js';
 import MoveInfoTooltip from './components/ui/MoveInfoTooltip';
 import PawnControls from './components/ui/PawnControls';
 import AbilitySlot from './cls/enums/AbilitySlot.js';
+import SplashLayer from './components/ui/SplashLayer';
 
 export default class App extends React.Component {
 
@@ -23,6 +24,7 @@ export default class App extends React.Component {
         let gameContext = new GameContext();
 
         this.arenaRef = React.createRef();
+        this.splashLayerRef = React.createRef();
 
         this.fight = new Fight(gameContext);
         this.selectedPawn = null;
@@ -390,6 +392,36 @@ export default class App extends React.Component {
 
 
 
+    // Сплэши
+
+    createDamageSplash(cell, damage) {
+        this.createSplashAtCell(cell, Vector.ZERO, damage, 'damage');
+    }
+
+    createKillsSplash(cell, damage) {
+        this.createSplashAtCell(cell, Vector.ZERO, damage, 'kills');
+    }
+
+    createMissSplash(cell) {
+        // TODO: брать текст из локализации
+        this.createSplashAtCell(cell, Vector.ZERO, 'Промах!', 'miss');
+    }
+
+    createHalfSplash(cell) {
+        // TODO: брать текст из локализации
+        this.createSplashAtCell(cell, Vector.ZERO, 'Половина!', 'half');
+    }
+
+    createSplashAtCell(cell, offset, text, type) {
+        let plainPosition = HexagonUtils.axialToPlainPosition(cell.position, App.CELL_SIZE, App.CELL_SPACING);
+        let viewportPosition = this.arenaRef.current.localPositionToViewportPosition(plainPosition);
+        let position = viewportPosition.add(offset);
+
+        this.splashLayerRef.current.createSplash(position, text, type);
+    }
+
+
+
     // Прочее
 
     updateAvailableMoves() {
@@ -548,6 +580,7 @@ export default class App extends React.Component {
                     moveInfo={viewedMoveInfo}
                     position={viewedMoveInfoPosition ?? undefined}
                 />
+                <SplashLayer ref={this.splashLayerRef} />
             </div>
         );
     }
