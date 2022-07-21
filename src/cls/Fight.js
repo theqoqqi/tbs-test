@@ -12,6 +12,7 @@ import PotentialHitInfo from './util/PotentialHitInfo.js';
 import Gamecycle from './Gamecycle.js';
 import MoveExecutor from './MoveExecutor.js';
 import EventEmitter from 'eventemitter3';
+import ExactHitInfo from './util/ExactHitInfo.js';
 
 export default class Fight {
 
@@ -167,18 +168,18 @@ export default class Fight {
         });
     }
 
-    getRandomDamageInfo(attackerPawn, targetPawn, ability) {
+    getRandomHitInfo(attackerPawn, targetPawn, ability) {
         let damageRanges = this.getEstimatedDamageRanges(attackerPawn, targetPawn, ability);
         let isCriticalHit = Math.random() < attackerPawn.criticalHitChance;
         let damage = this.getDamage(attackerPawn, damageRanges, isCriticalHit);
 
         let kills = targetPawn.getKillCount(damage);
 
-        return {
+        return new ExactHitInfo({
             kills,
             damage,
             isCriticalHit,
-        };
+        });
     }
 
     getDamage(attackerPawn, damageRanges, isCriticalHit) {

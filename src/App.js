@@ -79,7 +79,7 @@ export default class App extends React.Component {
 
 
 
-    handlePawnDamageReceived = ({attacker, victim, damageInfo}) => {
+    handlePawnDamageReceived = ({attacker, victim, hitInfo}) => {
         let cell = this.arena.getCell(victim.position);
         let attackerPlainPosition = this.axialToPlainPosition(attacker.position);
         let victimPlainPosition = this.axialToPlainPosition(victim.position);
@@ -88,16 +88,16 @@ export default class App extends React.Component {
 
         console.log(attackerPlainPosition, victimPlainPosition)
 
-        if (damageInfo.isCriticalHit) {
-            this.createCritSplash(cell, damageOffset, damageInfo.damage)
+        if (hitInfo.isCriticalHit) {
+            this.createCritSplash(cell, damageOffset, hitInfo.damage)
         } else {
-            this.createDamageSplash(cell, damageOffset, damageInfo.damage);
+            this.createDamageSplash(cell, damageOffset, hitInfo.damage);
         }
 
-        if (damageInfo.kills) {
+        if (hitInfo.kills) {
             let xOffset = App.CELL_SIZE * (fromRight ? -0.5 : 0.5);
             let killsOffset = new Vector(xOffset, 0);
-            this.createKillsSplash(cell, killsOffset, damageInfo.kills);
+            this.createKillsSplash(cell, killsOffset, hitInfo.kills);
         }
     }
 
