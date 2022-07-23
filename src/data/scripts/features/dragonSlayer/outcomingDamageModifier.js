@@ -1,4 +1,5 @@
 
+/** @this Feature */
 export default function outcomingDamageModifier({attacker, victim, ability, damageRanges}) {
 
     if (victim.hasFeature('dragon')) {

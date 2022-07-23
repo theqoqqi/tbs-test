@@ -1,4 +1,5 @@
 
+/** @this Ability */
 export default function apply({pawn, move, path}) {
     let arena = this.fight.arena;
     let moveExecutor = this.fight.moveExecutor;

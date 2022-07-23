@@ -2,6 +2,7 @@ import GamecycleTurnStartEvent from '../../../../cls/events/types/GamecycleTurnS
 import Ranges from '../../../../cls/util/Ranges.js';
 import DamageType from '../../../../cls/enums/DamageType.js';
 
+/** @this Effect */
 export default function start() {
 
     let fight = this.fight;

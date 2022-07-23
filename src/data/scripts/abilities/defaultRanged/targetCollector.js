@@ -1,6 +1,7 @@
 import HexagonUtils from '../../../../cls/util/HexagonUtils.js';
 import ArenaMove from '../../../../cls/arena/ArenaMove.js';
 
+/** @this Ability */
 export default function targetCollector({movementMoves}) {
     let fight = this.fight;
     let arena = fight.arena;
