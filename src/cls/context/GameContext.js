@@ -15,9 +15,10 @@ import Registry from './Registry.js';
 export default class GameContext {
 
     constructor() {
+        this.raceRegistry = new Registry();
+        this.featureRegistry = new Registry();
         this.pawnPropsRegistry = new Registry();
         this.pawnOptionsRegistry = new Registry();
-        this.raceRegistry = new Registry();
 
         this.registerRace('demon');
         this.registerRace('dwarf');
@@ -28,6 +29,17 @@ export default class GameContext {
         this.registerRace('spirit');
         this.registerRace('lizard');
         this.registerRace('undead');
+
+        this.registerFeature('dragonSlayer', {
+            internalName: 'dragonSlayer',
+            outcomingDamageModifier: featureScripts.dragonSlayer.outcomingDamageModifier,
+            scriptParams: {
+                multiplier: 1.5,
+            },
+        });
+        this.registerFeature('dragon', {
+            internalName: 'dragon',
+        });
 
         this.registerTestPawn('walker', {
             [PawnProps.health]: 5,
@@ -51,13 +63,7 @@ export default class GameContext {
             [PawnProps.hitbackProtection]: 0,
         }, {
             features: [
-                new FeatureProps({
-                    internalName: 'dragonSlayer',
-                    outcomingDamageModifier: featureScripts.dragonSlayer.outcomingDamageModifier,
-                    scriptParams: {
-                        multiplier: 1.5,
-                    },
-                }),
+                this.featureRegistry.get('dragonSlayer'),
             ],
             abilities: [
                 new AbilityProps({
@@ -223,9 +229,7 @@ export default class GameContext {
             [PawnProps.hitbackProtection]: 0,
         }, {
             features: [
-                new FeatureProps({
-                    internalName: 'dragon',
-                }),
+                this.featureRegistry.get('dragon'),
             ],
             abilities: [
                 new AbilityProps({
@@ -267,6 +271,12 @@ export default class GameContext {
         let race = new Race(iconImage);
 
         this.raceRegistry.register(name, race);
+    }
+
+    registerFeature(name, props) {
+        let featureProps = new FeatureProps(props);
+
+        this.featureRegistry.register(name, featureProps);
     }
 
     registerTestPawn(name, props, options) {
