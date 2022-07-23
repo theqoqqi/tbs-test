@@ -17,6 +17,10 @@ export default class AbstractEffect {
         return this.#getProperty('scriptParams');
     }
 
+    get start() {
+        return this.#getProperty('start');
+    }
+
     get incomingDamageModifier() {
         return this.#getProperty('incomingDamageModifier');
     }

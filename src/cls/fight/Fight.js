@@ -13,6 +13,9 @@ import PotentialHitInfo from '../util/info/PotentialHitInfo.js';
 import ExactHitInfo from '../util/info/ExactHitInfo.js';
 import Pawn from '../pawns/Pawn.js';
 import Team from '../pawns/Team.js';
+import Effect from '../pawns/Effect.js';
+import PawnDamageDealtEvent from '../events/types/PawnDamageDealtEvent.js';
+import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js';
 
 export default class Fight {
 
@@ -172,7 +175,19 @@ export default class Fight {
     getRandomHitInfo(attacker, victim, ability) {
         let damageRanges = this.getEstimatedDamageRanges(attacker, victim, ability);
         let isCriticalHit = Math.random() < attacker.criticalHitChance;
-        let damage = this.getDamage(attacker, damageRanges, isCriticalHit);
+        let criticalHitMultiplier = attacker.criticalHitMultiplier;
+
+        return this.getRandomHitInfoForDamageRanges(victim, damageRanges, isCriticalHit, criticalHitMultiplier);
+    }
+
+    getRandomHitInfoForDamageRanges(victim, damageRanges, isCriticalHit = false, criticalHitMultiplier = 1) {
+        let damage = this.getDamage(damageRanges, isCriticalHit, criticalHitMultiplier);
+
+        return this.createHitInfo(victim, damage, isCriticalHit);
+    }
+
+    createHitInfo(victim, damage, isCriticalHit) {
+        damage = Math.round(damage); // TODO: Должно ли это происходить здесь?
 
         let kills = victim.getKillCount(damage);
 
@@ -183,9 +198,9 @@ export default class Fight {
         });
     }
 
-    getDamage(attackerPawn, damageRanges, isCriticalHit) {
+    getDamage(damageRanges, isCriticalHit = false, criticalHitMultiplier = 1) {
         if (isCriticalHit) {
-            return Math.floor(damageRanges.combinedMax * attackerPawn.criticalHitMultiplier);
+            return Math.floor(damageRanges.combinedMax * criticalHitMultiplier);
         } else {
             return this.randomInt(damageRanges.combinedMin, damageRanges.combinedMax);
         }
@@ -218,6 +233,50 @@ export default class Fight {
 
     applyAbility(pawn, ability) {
         return this.#moveExecutor.applyAbility(pawn, ability);
+    }
+
+    applyDamage({attacker, victim, ability, hitInfo}) {
+        victim.applyDamage(hitInfo.damage);
+
+        let eventData = {
+            attacker,
+            victim,
+            ability,
+            hitInfo,
+        };
+
+        this.#eventBus.dispatch(PawnDamageDealtEvent, eventData);
+        this.#eventBus.dispatch(PawnDamageReceivedEvent, eventData);
+
+        console.log('Attacked', victim.toString(), 'by', attacker?.toString());
+        console.log('Damage:', hitInfo.damage, 'Kills:', hitInfo.kills, 'Is Crit:', hitInfo.isCriticalHit);
+    }
+
+    //endregion
+
+
+
+    //region Эффекты
+
+    addPawnEffect(pawn, effectName, options) {
+        let effectProps = this.#gameContext.getEffectProps(effectName);
+        let effect = new Effect(effectProps, options);
+
+        pawn.addEffect(effect);
+        effect.start?.({
+            pawn,
+            fight: this,
+        });
+    }
+
+    removePawnEffect(pawn, effectName) {
+        let effect = pawn.getEffectByName(effectName);
+
+        pawn.removeEffect(effect);
+        effect.destroy?.({
+            pawn,
+            fight: this,
+        });
     }
 
     //endregion
@@ -296,6 +355,10 @@ export default class Fight {
 
     randomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    randomFloat(min, max) {
+        return Math.random() * (max - min) + min;
     }
 
     hasEnemiesNearby(forPawn) {

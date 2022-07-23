@@ -134,6 +134,22 @@ export default class Pawn {
         return this.#features.some(feature => feature.internalName === featureName);
     }
 
+    addEffect(effect) {
+        this.#effects.push(effect);
+    }
+
+    removeEffect(effect) {
+        let index = this.#effects.indexOf(effect);
+
+        if (index !== -1) {
+            this.#effects.splice(index, 1);
+        }
+    }
+
+    getEffectByName(effectName) {
+        return this.#effects.find(effect => effect.internalName === effectName);
+    }
+
     //endregion
 
 

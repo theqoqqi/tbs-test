@@ -82,7 +82,7 @@ export default class App extends React.Component {
 
     handlePawnDamageReceived = ({attacker, victim, hitInfo}) => {
         let cell = this.arena.getCell(victim.position);
-        let attackerPlainPosition = this.axialToPlainPosition(attacker.position);
+        let attackerPlainPosition = this.axialToPlainPosition(attacker?.position ?? Vector.ZERO);
         let victimPlainPosition = this.axialToPlainPosition(victim.position);
         let fromRight = attackerPlainPosition.x > victimPlainPosition.x;
         let damageOffset = new Vector(0, App.CELL_SIZE * -0.5);

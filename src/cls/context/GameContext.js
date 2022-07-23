@@ -7,16 +7,19 @@ import AbilitySlot from '../enums/AbilitySlot.js';
 import HitbackFrequency from '../enums/HitbackFrequency.js';
 import * as abilityScripts from '../../data/scripts/abilities';
 import * as featureScripts from '../../data/scripts/features';
+import * as effectScripts from '../../data/scripts/effects';
 import AbilityProps from '../pawns/props/AbilityProps.js';
 import FeatureProps from '../pawns/props/FeatureProps.js';
 import PawnProps from '../pawns/props/PawnProps.js';
 import Registry from './Registry.js';
+import EffectProps from '../pawns/props/EffectProps.js';
 
 export default class GameContext {
 
     constructor() {
         this.raceRegistry = new Registry();
         this.featureRegistry = new Registry();
+        this.effectRegistry = new Registry();
         this.pawnPropsRegistry = new Registry();
         this.pawnOptionsRegistry = new Registry();
 
@@ -39,6 +42,11 @@ export default class GameContext {
         });
         this.registerFeature('dragon', {
             internalName: 'dragon',
+        });
+
+        this.registerEffect('burn', {
+            internalName: 'burn',
+            start: effectScripts.burn.start,
         });
 
         this.registerTestPawn('walker', {
@@ -279,6 +287,12 @@ export default class GameContext {
         this.featureRegistry.register(name, featureProps);
     }
 
+    registerEffect(name, props) {
+        let effectProps = new EffectProps(props);
+
+        this.effectRegistry.register(name, effectProps);
+    }
+
     registerTestPawn(name, props, options) {
         let pawnProps = new PawnProps(props);
         pawnProps.initDefaultValues();
@@ -295,5 +309,9 @@ export default class GameContext {
 
     getPawnOptions(name) {
         return this.pawnOptionsRegistry.get(name);
+    }
+
+    getEffectProps(name) {
+        return this.effectRegistry.get(name);
     }
 }
