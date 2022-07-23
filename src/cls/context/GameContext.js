@@ -17,7 +17,7 @@ export default class GameContext {
     constructor() {
         this.pawnPropsRegistry = new Registry();
         this.pawnOptionsRegistry = new Registry();
-        this.races = new Map();
+        this.raceRegistry = new Registry();
 
         this.registerRace('demon');
         this.registerRace('dwarf');
@@ -40,7 +40,7 @@ export default class GameContext {
             [PawnProps.speed]: 2,
             [PawnProps.movementType]: MovementType.WALKING,
             [PawnProps.level]: 1,
-            [PawnProps.race]: this.races.get('neutral'),
+            [PawnProps.race]: this.raceRegistry.get('neutral'),
             [PawnProps.leadership]: 8,
             [PawnProps.initiative]: 3,
             [PawnProps.criticalHitChance]: 0.15,
@@ -87,7 +87,7 @@ export default class GameContext {
             [PawnProps.speed]: 3,
             [PawnProps.movementType]: MovementType.SOARING,
             [PawnProps.level]: 1,
-            [PawnProps.race]: this.races.get('undead'),
+            [PawnProps.race]: this.raceRegistry.get('undead'),
             [PawnProps.leadership]: 12,
             [PawnProps.initiative]: 2,
             [PawnProps.criticalHitChance]: 0.08,
@@ -125,7 +125,7 @@ export default class GameContext {
             [PawnProps.speed]: 2,
             [PawnProps.movementType]: MovementType.WALKING,
             [PawnProps.level]: 2,
-            [PawnProps.race]: this.races.get('human'),
+            [PawnProps.race]: this.raceRegistry.get('human'),
             [PawnProps.leadership]: 50,
             [PawnProps.initiative]: 5,
             [PawnProps.criticalHitChance]: 0.12,
@@ -180,7 +180,7 @@ export default class GameContext {
             [PawnProps.speed]: 2,
             [PawnProps.movementType]: MovementType.WALKING,
             [PawnProps.level]: 1,
-            [PawnProps.race]: this.races.get('human'),
+            [PawnProps.race]: this.raceRegistry.get('human'),
             [PawnProps.leadership]: 5,
             [PawnProps.initiative]: 3,
             [PawnProps.criticalHitChance]: 0.1,
@@ -212,7 +212,7 @@ export default class GameContext {
             [PawnProps.speed]: 8,
             [PawnProps.movementType]: MovementType.FLYING,
             [PawnProps.level]: 5,
-            [PawnProps.race]: this.races.get('neutral'),
+            [PawnProps.race]: this.raceRegistry.get('neutral'),
             [PawnProps.leadership]: 2000,
             [PawnProps.initiative]: 7,
             [PawnProps.criticalHitChance]: 0.2,
@@ -266,7 +266,7 @@ export default class GameContext {
         let iconImage = `raceicon_${name}.png`;
         let race = new Race(iconImage);
 
-        this.races.set(name, race);
+        this.raceRegistry.register(name, race);
     }
 
     registerTestPawn(name, props, options) {
