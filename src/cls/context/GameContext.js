@@ -1,4 +1,3 @@
-import PawnRegistry from './PawnRegistry.js';
 import MovementType from '../enums/MovementType.js';
 import Race from '../types/Race.js';
 import Ranges from '../util/Ranges.js';
@@ -11,11 +10,13 @@ import * as featureScripts from '../../data/scripts/features';
 import AbilityProps from '../pawns/props/AbilityProps.js';
 import FeatureProps from '../pawns/props/FeatureProps.js';
 import PawnProps from '../pawns/props/PawnProps.js';
+import Registry from './Registry.js';
 
 export default class GameContext {
 
     constructor() {
-        this.pawnRegistry = new PawnRegistry();
+        this.pawnPropsRegistry = new Registry();
+        this.pawnOptionsRegistry = new Registry();
         this.races = new Map();
 
         this.registerRace('demon');
@@ -272,6 +273,17 @@ export default class GameContext {
         let pawnProps = new PawnProps(props);
         pawnProps.initDefaultValues();
 
-        this.pawnRegistry.register(name, pawnProps, options);
+        this.pawnPropsRegistry.register(name, pawnProps);
+        this.pawnOptionsRegistry.register(name, options);
+    }
+
+
+
+    getPawnProps(name) {
+        return this.pawnPropsRegistry.get(name);
+    }
+
+    getPawnOptions(name) {
+        return this.pawnOptionsRegistry.get(name);
     }
 }

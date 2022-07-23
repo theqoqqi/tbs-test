@@ -492,7 +492,7 @@ export default class App extends React.Component {
             return {
                 id: pawn.id,
                 axialPosition: pawn.position,
-                name: pawn.props.name,
+                name: pawn.unitName,
                 teamColor: pawn.team.hexColor,
 
                 stackSize: pawn.stackSize,

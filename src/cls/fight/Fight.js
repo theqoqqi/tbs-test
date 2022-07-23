@@ -16,6 +16,8 @@ import Team from '../pawns/Team.js';
 
 export default class Fight {
 
+    #gameContext;
+
     #eventBus;
 
     #gamecycle;
@@ -24,6 +26,7 @@ export default class Fight {
 
     constructor(gameContext) {
         this.arena = new Arena();
+        this.#gameContext = gameContext;
         this.#eventBus = new EventBus();
         this.#gamecycle = new Gamecycle(this, this.#eventBus);
         this.#moveExecutor = new MoveExecutor(this, this.#eventBus);
@@ -39,8 +42,6 @@ export default class Fight {
                 cell.passability = PassabilityType.enumValueOf(cellData.passability);
             }
         }
-
-        this.pawnRegistry = gameContext.pawnRegistry;
 
         this.createPawn(Vector.from(-1, -1), 'walker', {
             team: Team.DEFAULT_1,
@@ -271,8 +272,8 @@ export default class Fight {
     }
 
     createPawn(position, unitName, options) {
-        let props = this.pawnRegistry.getProps(unitName);
-        let defaultOptions = this.pawnRegistry.getOptions(unitName);
+        let props = this.#gameContext.getPawnProps(unitName);
+        let defaultOptions = this.#gameContext.getPawnOptions(unitName);
         let allOptions = Object.assign({}, defaultOptions, options);
         let pawn = new Pawn(unitName, props, allOptions);
 
