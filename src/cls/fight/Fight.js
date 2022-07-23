@@ -168,12 +168,12 @@ export default class Fight {
         });
     }
 
-    getRandomHitInfo(attackerPawn, targetPawn, ability) {
-        let damageRanges = this.getEstimatedDamageRanges(attackerPawn, targetPawn, ability);
-        let isCriticalHit = Math.random() < attackerPawn.criticalHitChance;
-        let damage = this.getDamage(attackerPawn, damageRanges, isCriticalHit);
+    getRandomHitInfo(attacker, victim, ability) {
+        let damageRanges = this.getEstimatedDamageRanges(attacker, victim, ability);
+        let isCriticalHit = Math.random() < attacker.criticalHitChance;
+        let damage = this.getDamage(attacker, damageRanges, isCriticalHit);
 
-        let kills = targetPawn.getKillCount(damage);
+        let kills = victim.getKillCount(damage);
 
         return new ExactHitInfo({
             kills,
@@ -190,8 +190,8 @@ export default class Fight {
         }
     }
 
-    getEstimatedDamageRanges(attackerPawn, targetPawn, ability) {
-        return Formulas.calculateDamageRange(attackerPawn, targetPawn, ability);
+    getEstimatedDamageRanges(attacker, victim, ability) {
+        return Formulas.calculateDamageRange(attacker, victim, ability);
     }
 
     //endregion

@@ -3,17 +3,15 @@ import HexagonUtils from './util/HexagonUtils.js';
 
 export default class Formulas {
 
-    static calculateDamageRange = (attackerPawn, targetPawn, ability) => {
+    static calculateDamageRange = (attacker, victim, ability) => {
 
-        // TODO: Модификаторы min/max урона от эффектов на отряде (только на стандартную атаку)
-
-        let stackSize = attackerPawn.stackSize;
-        let differenceMultiplier = this.#getDifferenceMultiplier(attackerPawn.attack, targetPawn.defence);
-        let axialDistance = HexagonUtils.axialDistance(attackerPawn.position, targetPawn.position);
+        let stackSize = attacker.stackSize;
+        let differenceMultiplier = this.#getDifferenceMultiplier(attacker.attack, victim.defence);
+        let axialDistance = HexagonUtils.axialDistance(attacker.position, victim.position);
         let penalty = ability.maxDistance && axialDistance > ability.maxDistance ? ability.distancePenalty : 0;
 
-        return ability.damageRanges.map((damageType, min, max) => {
-            let resistance = targetPawn.resistances.get(damageType);
+        let damageRanges = ability.damageRanges.map((damageType, min, max) => {
+            let resistance = victim.resistances.get(damageType);
 
             let context = {
                 stackSize,
@@ -28,16 +26,22 @@ export default class Formulas {
                 max: this.#calculateDamage(max, context),
             };
         });
+
+        return damageRanges.map(range => {
+            return {
+                type: range.type,
+                min: Math.round(range.min),
+                max: Math.round(range.max),
+            };
+        });
     };
 
     static #calculateDamage(damage, context) {
-        damage = damage
+        return damage
             * context.stackSize
             * context.differenceMultiplier
             * (1 - context.resistance)
             * (1 - context.penalty);
-
-        return Math.round(damage);
     }
 
     static #getDifferenceMultiplier(attack, defence) {
