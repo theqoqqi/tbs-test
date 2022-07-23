@@ -27,11 +27,29 @@ export default class Formulas {
             };
         });
 
-        return damageRanges.map(range => {
+        attacker.applyCallbacks('outcomingDamageModifier', callback => {
+            damageRanges = callback({
+                attacker,
+                victim,
+                ability,
+                damageRanges,
+            });
+        });
+
+        victim.applyCallbacks('incomingDamageModifier', callback => {
+            damageRanges = callback({
+                attacker,
+                victim,
+                ability,
+                damageRanges,
+            });
+        });
+
+        return damageRanges.map((type, min, max) => {
             return {
-                type: range.type,
-                min: Math.round(range.min),
-                max: Math.round(range.max),
+                type: type,
+                min: Math.round(min),
+                max: Math.round(max),
             };
         });
     };

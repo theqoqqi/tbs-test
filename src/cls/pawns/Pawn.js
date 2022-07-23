@@ -2,6 +2,7 @@ import HitbackFrequency from '../enums/HitbackFrequency.js';
 import PawnProps from '../context/PawnProps.js';
 import Ability from './Ability.js';
 import Vector from '../util/Vector.js';
+import Feature from './Feature.js';
 
 let nextUniqueId = 0;
 
@@ -12,6 +13,10 @@ export default class Pawn {
     #speed;
 
     #hitbacks;
+
+    #features;
+
+    #effects;
 
     #abilities;
 
@@ -27,11 +32,23 @@ export default class Pawn {
         this.initialStackSize = options.stackSize;
         this.team = options.team;
 
-        this.#initAbilities(options.abilities);
+        this.#initFeatures(options.features ?? []);
+        this.#initEffects();
+        this.#initAbilities(options.abilities ?? []);
 
         this.refillHealth();
         this.refillSpeed();
         this.refillHitbacks();
+    }
+
+    #initFeatures(features) {
+        this.#features = features.map(featureProps => {
+            return new Feature(featureProps);
+        });
+    }
+
+    #initEffects() {
+        this.#effects = [];
     }
 
     #initAbilities(abilities) {
@@ -108,11 +125,38 @@ export default class Pawn {
         return Math.max(-lostStackSize, Math.min(this.stackSize, kills));
     }
 
+    applyCallbacks(propertyName, callbackExecutor) {
+        this.#callForEachFeature(propertyName, callbackExecutor);
+        this.#callForEachEffect(propertyName, callbackExecutor);
+    }
+
+    hasFeature(featureName) {
+        return this.#features.some(feature => feature.internalName === featureName);
+    }
+
     //endregion
 
 
 
     //region Приватные методы
+
+    #callForEachFeature(propertyName, callback) {
+        Pawn.#callForEachWithBind(this.features, propertyName, callback);
+    }
+
+    #callForEachEffect(propertyName, callback) {
+        Pawn.#callForEachWithBind(this.effects, propertyName, callback);
+    }
+
+    static #callForEachWithBind(elements, propertyName, callback) {
+        for (let element of elements) {
+            let property = element[propertyName];
+
+            if (property) {
+                callback(property.bind(element));
+            }
+        }
+    }
 
     #getProperty(propertyName) {
         return this.#getBaseProperty(propertyName);
@@ -144,12 +188,20 @@ export default class Pawn {
         return this.#hitbacks > 0;
     }
 
-    get abilities() {
-        return this.#abilities;
-    }
-
     get isWaiting() {
         return this.#isWaiting;
+    }
+
+    get features() {
+        return this.#features;
+    }
+
+    get effects() {
+        return this.#effects;
+    }
+
+    get abilities() {
+        return this.#abilities;
     }
 
     //endregion

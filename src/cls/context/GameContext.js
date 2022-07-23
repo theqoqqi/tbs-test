@@ -8,7 +8,9 @@ import Resistances from '../util/Resistances.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
 import HitbackFrequency from '../enums/HitbackFrequency.js';
 import AbilityProps from './AbilityProps.js';
+import FeatureProps from './FeatureProps.js';
 import * as abilityScripts from '../../data/scripts/abilities';
+import * as featureScripts from '../../data/scripts/features';
 
 export default class GameContext {
 
@@ -47,6 +49,15 @@ export default class GameContext {
             [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
         }, {
+            features: [
+                new FeatureProps({
+                    internalName: 'dragonSlayer',
+                    outcomingDamageModifier: featureScripts.dragonSlayer.outcomingDamageModifier,
+                    scriptParams: {
+                        multiplier: 1.5,
+                    },
+                }),
+            ],
             abilities: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
@@ -210,6 +221,11 @@ export default class GameContext {
             [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
             [PawnProps.hitbackProtection]: 0,
         }, {
+            features: [
+                new FeatureProps({
+                    internalName: 'dragon',
+                }),
+            ],
             abilities: [
                 new AbilityProps({
                     slot: AbilitySlot.REGULAR,
