@@ -1,8 +1,8 @@
 import HitbackFrequency from '../enums/HitbackFrequency.js';
-import PawnProps from '../context/PawnProps.js';
 import Ability from './Ability.js';
 import Vector from '../util/Vector.js';
 import Feature from './Feature.js';
+import PawnProps from './props/PawnProps.js';
 
 let nextUniqueId = 0;
 

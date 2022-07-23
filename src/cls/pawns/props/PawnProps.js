@@ -1,7 +1,7 @@
-import MovementType from '../enums/MovementType.js';
-import HitbackFrequency from '../enums/HitbackFrequency.js';
-import Race from '../types/Race.js';
-import Resistances from '../util/Resistances.js';
+import Race from '../../types/Race.js';
+import Resistances from '../../util/Resistances.js';
+import MovementType from '../../enums/MovementType.js';
+import HitbackFrequency from '../../enums/HitbackFrequency.js';
 
 export default class PawnProps {
 

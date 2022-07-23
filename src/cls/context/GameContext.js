@@ -1,5 +1,4 @@
 import PawnRegistry from './PawnRegistry.js';
-import PawnProps from './PawnProps.js';
 import MovementType from '../enums/MovementType.js';
 import Race from '../types/Race.js';
 import Ranges from '../util/Ranges.js';
@@ -7,10 +6,11 @@ import DamageType from '../enums/DamageType.js';
 import Resistances from '../util/Resistances.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
 import HitbackFrequency from '../enums/HitbackFrequency.js';
-import AbilityProps from './AbilityProps.js';
-import FeatureProps from './FeatureProps.js';
 import * as abilityScripts from '../../data/scripts/abilities';
 import * as featureScripts from '../../data/scripts/features';
+import AbilityProps from '../pawns/props/AbilityProps.js';
+import FeatureProps from '../pawns/props/FeatureProps.js';
+import PawnProps from '../pawns/props/PawnProps.js';
 
 export default class GameContext {
 
