@@ -1,6 +1,9 @@
 import ArenaMove from '../../../../cls/arena/ArenaMove.js';
 
-export default function targetCollector(forPawn, ability, fight, arena, movementMoves) {
+export default function targetCollector({movementMoves}) {
+    let fight = this.fight;
+    let arena = fight.arena;
+    let forPawn = this.owner;
     let allPawns = arena.getAllPawns();
 
     let getMovementMove = neighborPositions => {

@@ -1,10 +1,23 @@
 
 export default class AbstractEffect {
 
+    #owner;
+
     #props;
 
-    constructor(props) {
+    constructor(owner, props) {
+        this.#owner = owner;
         this.#props = props;
+    }
+
+
+
+    get owner() {
+        return this.#owner;
+    }
+
+    get fight() {
+        return this.#owner.fight;
     }
 
 

@@ -114,7 +114,7 @@ export default class Fight {
         let moves = this.#getMovementMoves(forPawn);
 
         if (ability) {
-            let abilityMoves = this.#getAbilityMoves(forPawn, ability, moves);
+            let abilityMoves = Fight.#getAbilityMoves(ability, moves);
 
             moves = moves.concat(abilityMoves);
         }
@@ -137,12 +137,14 @@ export default class Fight {
         });
     }
 
-    #getAbilityMoves(forPawn, ability, movementMoves) {
+    static #getAbilityMoves(ability, movementMoves) {
         if (!ability.targetCollector) {
             return [];
         }
 
-        return ability.targetCollector(forPawn, ability, this, this.arena, movementMoves);
+        return ability.targetCollector({
+            movementMoves,
+        });
     }
 
     getMoveInfo(attackerPawn, targetPawn, ability) {
@@ -260,23 +262,17 @@ export default class Fight {
 
     addPawnEffect(pawn, effectName, options) {
         let effectProps = this.#gameContext.getEffectProps(effectName);
-        let effect = new Effect(effectProps, options);
+        let effect = new Effect(pawn, effectProps, options);
 
         pawn.addEffect(effect);
-        effect.start?.({
-            pawn,
-            fight: this,
-        });
+        effect.start?.();
     }
 
     removePawnEffect(pawn, effectName) {
         let effect = pawn.getEffectByName(effectName);
 
         pawn.removeEffect(effect);
-        effect.destroy?.({
-            pawn,
-            fight: this,
-        });
+        effect.destroy?.();
     }
 
     //endregion
@@ -334,7 +330,7 @@ export default class Fight {
         let props = this.#gameContext.getPawnProps(unitName);
         let defaultOptions = this.#gameContext.getPawnOptions(unitName);
         let allOptions = Object.assign({}, defaultOptions, options);
-        let pawn = new Pawn(unitName, props, allOptions);
+        let pawn = new Pawn(this, unitName, props, allOptions);
 
         pawn.position = position;
 

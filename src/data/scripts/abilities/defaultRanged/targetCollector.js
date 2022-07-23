@@ -1,7 +1,10 @@
 import HexagonUtils from '../../../../cls/util/HexagonUtils.js';
 import ArenaMove from '../../../../cls/arena/ArenaMove.js';
 
-export default function targetCollector(forPawn, ability, fight, arena, movementMoves) {
+export default function targetCollector({movementMoves}) {
+    let fight = this.fight;
+    let arena = fight.arena;
+    let forPawn = this.owner;
     let allPawns = arena.getAllPawns();
 
     return allPawns
@@ -14,11 +17,11 @@ export default function targetCollector(forPawn, ability, fight, arena, movement
             let cell = arena.getCell(targetPawn.position);
             let axialDistance = HexagonUtils.axialDistance(forPawn.position, targetPawn.position);
 
-            if (axialDistance < ability.minDistance) {
+            if (axialDistance < this.minDistance) {
                 return null;
             }
 
-            if (axialDistance > ability.maxDistance && ability.distancePenalty >= 1) {
+            if (axialDistance > this.maxDistance && this.distancePenalty >= 1) {
                 return null;
             }
 

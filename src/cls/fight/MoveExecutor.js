@@ -34,10 +34,6 @@ export default class MoveExecutor {
 
         return ability
             .apply({
-                fight: this.#fight,
-                arena: this.#fight.arena,
-                moveExecutor: this.#fight.moveExecutor,
-                ability,
                 pawn,
                 move,
                 path,

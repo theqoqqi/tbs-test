@@ -2,7 +2,10 @@ import GamecycleTurnStartEvent from '../../../../cls/events/types/GamecycleTurnS
 import Ranges from '../../../../cls/util/Ranges.js';
 import DamageType from '../../../../cls/enums/DamageType.js';
 
-export default function start({pawn, fight}) {
+export default function start() {
+
+    let fight = this.fight;
+    let pawn = this.owner;
 
     fight.on(GamecycleTurnStartEvent, event => {
         // TODO: Этот слушатель не будет отвязываться сам. Наверное, лучше все сделать,

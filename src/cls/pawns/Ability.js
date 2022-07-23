@@ -2,18 +2,31 @@ let nextUniqueId = 0;
 
 export default class Ability {
 
+    #owner;
+
     #props;
 
     #currentReload;
 
     #currentCharges;
 
-    constructor(props) {
+    constructor(owner, props) {
         this.id = nextUniqueId++;
+        this.#owner = owner;
         this.#props = props;
 
         this.#currentReload = 0;
         this.#currentCharges = props.charges;
+    }
+
+
+
+    get owner() {
+        return this.#owner;
+    }
+
+    get fight() {
+        return this.#owner.fight;
     }
 
 

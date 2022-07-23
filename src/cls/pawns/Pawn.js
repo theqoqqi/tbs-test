@@ -22,8 +22,9 @@ export default class Pawn {
 
     #isWaiting = false;
 
-    constructor(unitName, props, options) {
+    constructor(fight, unitName, props, options) {
         this.id = nextUniqueId++;
+        this.fight = fight;
         this.unitName = unitName;
         this.props = props;
         this.position = Vector.ZERO;
@@ -43,7 +44,7 @@ export default class Pawn {
 
     #initFeatures(features) {
         this.#features = features.map(featureProps => {
-            return new Feature(featureProps);
+            return new Feature(this, featureProps);
         });
     }
 
@@ -53,7 +54,7 @@ export default class Pawn {
 
     #initAbilities(abilities) {
         this.#abilities = abilities.map(abilityProps => {
-            return new Ability(abilityProps);
+            return new Ability(this, abilityProps);
         });
     }
 
