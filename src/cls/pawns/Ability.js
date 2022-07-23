@@ -41,67 +41,67 @@ export default class Ability {
 
 
     get slot() {
-        return this.#getPropertyValue('slot');
+        return this.#getProperty('slot');
     }
 
     get scriptParams() {
-        return this.#getPropertyValue('scriptParams');
+        return this.#getProperty('scriptParams');
     }
 
     get targetCollector() {
-        return this.#getPropertyValue('targetCollector');
+        return this.#getProperty('targetCollector');
     }
 
     get apply() {
-        return this.#getPropertyValue('apply');
+        return this.#getProperty('apply');
     }
 
     get damageRanges() {
-        return this.#getPropertyValue('damageRanges');
+        return this.#getProperty('damageRanges');
     }
 
     get minDistance() {
-        return this.#getPropertyValue('minDistance');
+        return this.#getProperty('minDistance');
     }
 
     get maxDistance() {
-        return this.#getPropertyValue('maxDistance');
+        return this.#getProperty('maxDistance');
     }
 
     get distancePenalty() {
-        return this.#getPropertyValue('distancePenalty');
+        return this.#getProperty('distancePenalty');
     }
 
     get disabledIfNearEnemy() {
-        return this.#getPropertyValue('disabledIfNearEnemy');
+        return this.#getProperty('disabledIfNearEnemy');
     }
 
     get endsTurn() {
-        return this.#getPropertyValue('endsTurn');
+        return this.#getProperty('endsTurn');
     }
 
     get mutedIfNearEnemy() {
-        return this.#getPropertyValue('mutedIfNearEnemy');
+        return this.#getProperty('mutedIfNearEnemy');
     }
 
     get noHitbacks() {
-        return this.#getPropertyValue('noHitbacks');
+        return this.#getProperty('noHitbacks');
     }
 
     get reload() {
-        return this.#getPropertyValue('reload');
+        return this.#getProperty('reload');
     }
 
     get charges() {
-        return this.#getPropertyValue('charges');
+        return this.#getProperty('charges');
     }
 
     get hintTitle() {
-        return this.#getPropertyValue('hintTitle');
+        return this.#getProperty('hintTitle');
     }
 
     get hintDescription() {
-        return this.#getPropertyValue('hintDescription');
+        return this.#getProperty('hintDescription');
     }
 
 
@@ -130,7 +130,7 @@ export default class Ability {
 
 
 
-    #getPropertyValue(propertyName) {
+    #getProperty(propertyName) {
         return this.#props[propertyName];
     }
 }

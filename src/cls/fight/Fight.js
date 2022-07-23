@@ -149,14 +149,14 @@ export default class Fight {
         });
     }
 
-    getEstimatedDamage(attackerPawn, targetPawn, ability) {
-        let damageRanges = this.getEstimatedDamageRanges(attackerPawn, targetPawn, ability);
+    getEstimatedDamage(attacker, victim, ability) {
+        let damageRanges = this.getEstimatedDamageRanges(attacker, victim, ability);
         let minDamage = damageRanges.combinedMin;
         let maxDamage = damageRanges.combinedMax;
-        let minKills = targetPawn.getKillCount(minDamage);
-        let maxKills = targetPawn.getKillCount(maxDamage);
-        let willHitback = MoveExecutor.shouldHitback(attackerPawn, targetPawn, ability);
-        let targetName = targetPawn.unitName;
+        let minKills = victim.getKillCount(minDamage);
+        let maxKills = victim.getKillCount(maxDamage);
+        let willHitback = MoveExecutor.shouldHitback(attacker, victim, ability);
+        let targetName = victim.unitName;
 
         return new PotentialHitInfo({
             targetName,
