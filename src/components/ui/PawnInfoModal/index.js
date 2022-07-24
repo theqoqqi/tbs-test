@@ -179,7 +179,7 @@ export default class PawnInfoModal extends React.Component {
                     />
                     <PawnParameter
                         title='Крит'
-                        value={p.criticalHitChance * 100 + ' %'}
+                        value={Math.round(p.criticalHitChance * 100) + ' %'}
                         baseValue={p.baseCriticalHitChance * 100}
                     />
                     <PawnParameter
