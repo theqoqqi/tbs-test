@@ -18,6 +18,12 @@ import PawnDamageDealtEvent from '../events/types/PawnDamageDealtEvent.js';
 import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js';
 import PawnEffectAddedEvent from '../events/types/PawnEffectAddedEvent.js';
 import PawnEffectRemovedEvent from '../events/types/PawnEffectRemovedEvent.js';
+import PawnAddedEvent from '../events/types/PawnAddedEvent.js';
+import PawnFeatureAddedEvent from '../events/types/PawnFeatureAddedEvent.js';
+import PawnAbilityAddedEvent from '../events/types/PawnAbilityAddedEvent.js';
+import PawnRemovedEvent from '../events/types/PawnRemovedEvent.js';
+import PawnFeatureRemovedEvent from '../events/types/PawnFeatureRemovedEvent.js';
+import PawnAbilityRemovedEvent from '../events/types/PawnAbilityRemovedEvent.js';
 
 export default class Fight {
 
@@ -392,11 +398,31 @@ export default class Fight {
 
         this.arena.addPawn(pawn);
         this.#gamecycle.addPawn(pawn, false);
+
+        this.#eventBus.dispatch(PawnAddedEvent, { pawn });
+
+        for (const feature of pawn.features) {
+            this.#eventBus.dispatch(PawnFeatureAddedEvent, { feature });
+        }
+
+        for (const ability of pawn.abilities) {
+            this.#eventBus.dispatch(PawnAbilityAddedEvent, { ability });
+        }
     }
 
     removePawn(pawn) {
         this.arena.removePawn(pawn);
         this.#gamecycle.removePawn(pawn);
+
+        this.#eventBus.dispatch(PawnRemovedEvent, { pawn });
+
+        for (const feature of pawn.features) {
+            this.#eventBus.dispatch(PawnFeatureRemovedEvent, { feature });
+        }
+
+        for (const ability of pawn.abilities) {
+            this.#eventBus.dispatch(PawnAbilityRemovedEvent, { ability });
+        }
     }
 
     //endregion
