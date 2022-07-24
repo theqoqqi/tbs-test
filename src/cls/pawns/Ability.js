@@ -61,6 +61,10 @@ export default class Ability {
         return this.#getProperty('scriptParams');
     }
 
+    get getEvents() {
+        return this.#getProperty('getEvents');
+    }
+
     get targetCollector() {
         return this.#getProperty('targetCollector');
     }

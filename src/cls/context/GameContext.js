@@ -244,9 +244,13 @@ export default class GameContext {
                     slot: AbilitySlot.REGULAR,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
                     apply: abilityScripts.defaultMelee.apply,
+                    getEvents: abilityScripts.burningAttack.getEvents,
                     damageRanges: new Ranges([
                         [DamageType.FIRE, 100, 120],
                     ]),
+                    scriptParams: {
+                        burnDuration: 2,
+                    },
                 }),
                 new AbilityProps({
                     slot: AbilitySlot.ABILITY_1,

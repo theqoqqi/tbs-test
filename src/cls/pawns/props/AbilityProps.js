@@ -6,6 +6,7 @@ export default class AbilityProps {
         this.charges = props.charges ?? null;
         this.scriptParams = props.scriptParams ?? {};
 
+        this.getEvents = props.getEvents ?? null;
         this.targetCollector = props.targetCollector ?? null;
         this.apply = props.apply ?? null;
 
