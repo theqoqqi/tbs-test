@@ -34,6 +34,10 @@ export default class AbstractEffect {
         return this.#getProperty('getEvents');
     }
 
+    get modifyPawnProperty() {
+        return this.#getProperty('modifyPawnProperty');
+    }
+
     get incomingDamageModifier() {
         return this.#getProperty('incomingDamageModifier');
     }

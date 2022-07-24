@@ -22,7 +22,10 @@ export default class MoveExecutor {
 
     makeDefenceMove(pawn) {
         pawn.consumeAllSpeed();
-        // TODO: применить эффект доп. брони (когда добавлю сами эффекты)
+
+        this.#fight.addPawnEffect(pawn, 'blockBonus', {
+            duration: 1,
+        });
 
         return Promise.resolve();
     }

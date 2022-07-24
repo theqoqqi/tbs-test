@@ -48,6 +48,10 @@ export default class GameContext {
             internalName: 'burn',
             getEvents: effectScripts.burn.getEvents,
         });
+        this.registerEffect('blockBonus', {
+            internalName: 'blockBonus',
+            modifyPawnProperty: effectScripts.blockBonus.modifyPawnProperty,
+        });
 
         this.registerTestPawn('walker', {
             [PawnProps.health]: 5,
