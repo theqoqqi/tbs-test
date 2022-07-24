@@ -503,7 +503,38 @@ export default class App extends React.Component {
     }
 
     collectViewedPawnInfo(pawn) {
+        let slots = [AbilitySlot.ABILITY_1, AbilitySlot.ABILITY_2, AbilitySlot.ABILITY_3];
         let regularAbility = this.fight.getRegularAbility(pawn);
+
+        let features = pawn.features
+            .filter(effect => !effect.isHidden)
+            .map(feature => {
+                return {
+                    title: feature.internalName,
+                    description: feature.internalName,
+                };
+            });
+
+        let effects = pawn.effects
+            .filter(effect => !effect.isHidden)
+            .map(effect => {
+                return {
+                    title: effect.internalName,
+                    description: effect.internalName,
+                    duration: effect.duration,
+                };
+            });
+
+        let abilities = pawn.abilities
+            .filter(ability => slots.includes(ability.slot))
+            .map(ability => {
+                return {
+                    title: ability.internalName,
+                    description: ability.internalName,
+                    currentReload: ability.currentReload,
+                    currentCharges: ability.currentCharges,
+                };
+            });
 
         return {
             attack: pawn.attack,
@@ -524,6 +555,10 @@ export default class App extends React.Component {
             baseMaxSpeed: pawn.baseMaxSpeed,
             baseCriticalHitChance: pawn.baseCriticalHitChance,
             baseMaxHealth: pawn.baseMaxHealth,
+
+            features,
+            effects,
+            abilities,
         };
     }
 

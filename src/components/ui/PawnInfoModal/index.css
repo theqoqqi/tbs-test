@@ -6,6 +6,8 @@
 
     width: 220px;
 
+    font-size: 14px;
+
     z-index: 1300;
 }
 
@@ -15,6 +17,19 @@
 
     border: 2px solid black;
 }
+
+.pawn-info-modal footer {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 16px;
+}
+
+.pawn-info-modal .subtitle {
+    font-weight: 500;
+}
+
+
 
 .pawn-parameter {
     display: flex;
@@ -53,6 +68,8 @@
     color: gray;
 }
 
+
+
 .resistances-tooltip {
 
 }
@@ -61,9 +78,24 @@
     font-size: 11px;
 }
 
-.pawn-info-modal footer {
-    display: flex;
-    justify-content: flex-end;
 
-    margin-top: 16px;
+
+.pawn-feature-list {
+    margin-top: 10px;
+}
+
+.pawn-feature {
+    display: inline-block;
+}
+
+
+
+.pawn-effect-list {
+    margin-top: 10px;
+}
+
+
+
+.pawn-ability-list {
+    margin-top: 10px;
 }
