@@ -1,6 +1,7 @@
 export default class AbilityProps {
 
     constructor(props) {
+        this.internalName = props.internalName;
         this.slot = props.slot;
         this.reload = props.reload ?? 0;
         this.charges = props.charges ?? null;

@@ -53,6 +53,10 @@ export default class Ability {
 
 
 
+    get internalName() {
+        return this.#getProperty('internalName');
+    }
+
     get slot() {
         return this.#getProperty('slot');
     }

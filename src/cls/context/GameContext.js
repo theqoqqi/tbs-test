@@ -92,6 +92,7 @@ export default class GameContext {
                     ]),
                 }),
                 new AbilityProps({
+                    internalName: 'run',
                     slot: AbilitySlot.ABILITY_1,
                     charges: 1,
                     apply: abilityScripts.defaultRun.apply,
@@ -131,6 +132,7 @@ export default class GameContext {
                     ]),
                 }),
                 new AbilityProps({
+                    internalName: 'magicAttack',
                     slot: AbilitySlot.ABILITY_1,
                     targetCollector: abilityScripts.defaultMelee.targetCollector,
                     apply: abilityScripts.defaultMelee.apply,
@@ -181,6 +183,7 @@ export default class GameContext {
                     ]),
                 }),
                 new AbilityProps({
+                    internalName: 'powerShot',
                     slot: AbilitySlot.ABILITY_1,
                     targetCollector: abilityScripts.defaultRanged.targetCollector,
                     apply: abilityScripts.defaultRanged.apply,
@@ -262,6 +265,7 @@ export default class GameContext {
                     },
                 }),
                 new AbilityProps({
+                    internalName: 'run',
                     slot: AbilitySlot.ABILITY_1,
                     charges: 1,
                     apply: abilityScripts.defaultRun.apply,
@@ -270,6 +274,7 @@ export default class GameContext {
                     },
                 }),
                 new AbilityProps({
+                    internalName: 'powerShot',
                     slot: AbilitySlot.ABILITY_3,
                     targetCollector: abilityScripts.defaultRanged.targetCollector,
                     apply: abilityScripts.defaultRanged.apply,
