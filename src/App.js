@@ -568,8 +568,8 @@ export default class App extends React.Component {
             .map(ability => {
                 return {
                     slot: ability.slot,
-                    title: ability.hintTitle,
-                    description: ability.hintDescription,
+                    title: ability.internalName,
+                    description: ability.internalName,
                     currentReload: ability.currentReload,
                     maxReload: ability.reload,
                     usesCharges: ability.usesCharges,

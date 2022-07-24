@@ -117,14 +117,6 @@ export default class Ability {
         return this.#getProperty('charges');
     }
 
-    get hintTitle() {
-        return this.#getProperty('hintTitle');
-    }
-
-    get hintDescription() {
-        return this.#getProperty('hintDescription');
-    }
-
 
 
     consumeCharges(charges) {
