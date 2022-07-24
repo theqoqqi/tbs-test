@@ -161,7 +161,7 @@ export default class Pawn {
             });
         });
 
-        return value;
+        return this.props.postProcess(propertyName, value);
     }
 
     getBaseProperty(propertyName) {
