@@ -8,6 +8,7 @@ export default class PawnProps {
     static level = 'level';
     static race = 'race';
     static leadership = 'leadership';
+    static morale = 'morale';
     static health = 'health';
     static speed = 'speed';
     static resistances = 'resistances';
@@ -30,6 +31,9 @@ export default class PawnProps {
         }],
         [PawnProps.leadership, {
             defaultValue: 1,
+        }],
+        [PawnProps.morale, {
+            defaultValue: 0,
         }],
         [PawnProps.health, {
             defaultValue: 1,

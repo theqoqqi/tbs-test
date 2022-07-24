@@ -8,5 +8,7 @@ export default class AbstractEffectProps {
         this.modifyPawnProperty = props.modifyPawnProperty ?? null;
         this.incomingDamageModifier = props.incomingDamageModifier ?? null;
         this.outcomingDamageModifier = props.outcomingDamageModifier ?? null;
+
+        this.isHidden = props.isHidden ?? false;
     }
 }

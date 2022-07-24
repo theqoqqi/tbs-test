@@ -46,6 +46,10 @@ export default class AbstractEffect {
         return this.#getProperty('outcomingDamageModifier');
     }
 
+    get isHidden() {
+        return this.#getProperty('isHidden');
+    }
+
 
 
     #getProperty(propertyName) {

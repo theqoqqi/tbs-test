@@ -33,6 +33,11 @@ export default class GameContext {
         this.registerRace('lizard');
         this.registerRace('undead');
 
+        this.registerFeature('morale', {
+            internalName: 'morale',
+            isHidden: true,
+            modifyPawnProperty: featureScripts.morale.modifyPawnProperty,
+        });
         this.registerFeature('dragonSlayer', {
             internalName: 'dragonSlayer',
             outcomingDamageModifier: featureScripts.dragonSlayer.outcomingDamageModifier,
@@ -305,8 +310,20 @@ export default class GameContext {
         let pawnProps = new PawnProps(props);
         pawnProps.initDefaultValues();
 
+        options = this.#addDefaultFeatures(options);
+
         this.pawnPropsRegistry.register(name, pawnProps);
         this.pawnOptionsRegistry.register(name, options);
+    }
+
+    #addDefaultFeatures(options) {
+        if (!options.features) {
+            options.features = [];
+        }
+
+        options.features.unshift(this.featureRegistry.get('morale'));
+
+        return options;
     }
 
 

@@ -262,6 +262,10 @@ export default class Pawn {
         return this.getProperty(PawnProps.leadership);
     }
 
+    get morale() {
+        return this.getProperty(PawnProps.morale);
+    }
+
     get maxHealth() {
         return this.getProperty(PawnProps.health);
     }
@@ -326,6 +330,10 @@ export default class Pawn {
 
     get baseLeadership() {
         return this.getBaseProperty(PawnProps.leadership);
+    }
+
+    get baseMorale() {
+        return this.getBaseProperty(PawnProps.morale);
     }
 
     get baseMaxHealth() {
