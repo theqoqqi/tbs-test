@@ -46,7 +46,7 @@ export default class GameContext {
 
         this.registerEffect('burn', {
             internalName: 'burn',
-            start: effectScripts.burn.start,
+            getEvents: effectScripts.burn.getEvents,
         });
 
         this.registerTestPawn('walker', {

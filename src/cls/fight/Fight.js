@@ -16,6 +16,8 @@ import Team from '../pawns/Team.js';
 import Effect from '../pawns/Effect.js';
 import PawnDamageDealtEvent from '../events/types/PawnDamageDealtEvent.js';
 import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js';
+import PawnEffectAddedEvent from '../events/types/PawnEffectAddedEvent.js';
+import PawnEffectRemovedEvent from '../events/types/PawnEffectRemovedEvent.js';
 
 export default class Fight {
 
@@ -33,6 +35,8 @@ export default class Fight {
         this.#eventBus = new EventBus();
         this.#gamecycle = new Gamecycle(this, this.#eventBus);
         this.#moveExecutor = new MoveExecutor(this, this.#eventBus);
+
+        this.#bindGlobalListeners();
 
         for (const cellData of arenaData.cells) {
             if (cellData['obstacles'] === 'IMPASSABLE') {
@@ -66,6 +70,38 @@ export default class Fight {
             team: Team.DEFAULT_2,
             stackSize: 1,
         });
+    }
+
+    #bindGlobalListeners() {
+        this.#eventBus.addGlobalListener((eventType, event) => {
+            let effectEvents = this.arena.getAllPawns()
+                .flatMap(pawn => pawn.effects)
+                .flatMap(Fight.#getEvents);
+
+            let featureEvents = this.arena.getAllPawns()
+                .flatMap(pawn => pawn.features)
+                .flatMap(Fight.#getEvents);
+
+            let abilityEvents = this.arena.getAllPawns()
+                .flatMap(pawn => pawn.abilities)
+                .flatMap(Fight.#getEvents);
+
+            Fight.#executeScriptedCallbacks(effectEvents, eventType, event);
+            Fight.#executeScriptedCallbacks(featureEvents, eventType, event);
+            Fight.#executeScriptedCallbacks(abilityEvents, eventType, event);
+        });
+    }
+
+    static #getEvents(effect) {
+        return effect.getEvents?.() ?? [];
+    }
+
+    static #executeScriptedCallbacks(eventDescriptors, ofType, event) {
+        for (const [type, callback] of eventDescriptors) {
+            if (type === ofType) {
+                callback(event);
+            }
+        }
     }
 
 
@@ -265,14 +301,20 @@ export default class Fight {
         let effect = new Effect(pawn, effectProps, options);
 
         pawn.addEffect(effect);
-        effect.start?.();
+
+        this.#eventBus.dispatch(PawnEffectAddedEvent, {
+            effect,
+        });
     }
 
     removePawnEffect(pawn, effectName) {
         let effect = pawn.getEffectByName(effectName);
 
         pawn.removeEffect(effect);
-        effect.destroy?.();
+
+        this.#eventBus.dispatch(PawnEffectRemovedEvent, {
+            effect,
+        });
     }
 
     //endregion

@@ -45,6 +45,12 @@ export default class Ranges {
         return Array.from(this.#ranges.keys());
     }
 
+    static single(type, min, max) {
+        return new Ranges([
+            [type, min, max],
+        ]);
+    }
+
     #combineSum(field) {
         let sum = 0;
 

@@ -1,2 +1,2 @@
 
-export {default as start} from './start.js';
+export {default as getEvents} from './getEvents.js';
