@@ -296,6 +296,16 @@ export default class Fight {
 
     //region Эффекты
 
+    ensurePawnEffect(pawn, effectName, options) {
+        let effect = pawn.getEffectByName(effectName);
+
+        if (effect) {
+            effect.ensureDuration(options.duration);
+        } else {
+            this.addPawnEffect(pawn, effectName, options);
+        }
+    }
+
     addPawnEffect(pawn, effectName, options) {
         let effectProps = this.#gameContext.getEffectProps(effectName);
         let effect = new Effect(pawn, effectProps, options);
@@ -307,14 +317,18 @@ export default class Fight {
         });
     }
 
-    removePawnEffect(pawn, effectName) {
-        let effect = pawn.getEffectByName(effectName);
-
+    removePawnEffect(pawn, effect) {
         pawn.removeEffect(effect);
 
         this.#eventBus.dispatch(PawnEffectRemovedEvent, {
             effect,
         });
+    }
+
+    removePawnEffectByName(pawn, effectName) {
+        let effect = pawn.getEffectByName(effectName);
+
+        this.removePawnEffect(pawn, effect);
     }
 
     //endregion

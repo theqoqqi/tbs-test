@@ -11,8 +11,10 @@ export default function getEvents() {
                 return;
             }
 
-            fight.addPawnEffect(event.victim, 'burn', {
-                duration: this.scriptParams.burnDuration,
+            let duration = this.scriptParams.burnDuration;
+
+            fight.ensurePawnEffect(event.victim, 'burn', {
+                duration,
             });
         }],
     ];

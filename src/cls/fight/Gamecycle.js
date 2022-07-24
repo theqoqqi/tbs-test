@@ -54,6 +54,16 @@ export default class Gamecycle {
             turn: this.#turn,
         });
 
+        for (const effect of this.#currentPawn.effects) {
+            effect.decreaseDuration();
+        }
+
+        let expiredEffects = this.#currentPawn.effects.filter(effect => effect.isExpired);
+
+        for (const effect of expiredEffects) {
+            this.#fight.removePawnEffect(this.#currentPawn, effect);
+        }
+
         console.log('Round:', this.#round, 'Turn:', this.#turn)
     }
 
