@@ -21,19 +21,20 @@ export default function modifyPawnProperty({pawn, propertyName, value}) {
         return value;
     }
 
-    let morale = this.owner.morale;
+    let owner = this.owner;
+    let morale = owner.morale;
     let multipliers = moraleBonuses.get(morale);
 
     if (propertyName === PawnProps.attack) {
-        value *= multipliers.attack;
+        value += owner.baseAttack * (multipliers.attack - 1);
     }
 
     if (propertyName === PawnProps.defence) {
-        value *= multipliers.defence;
+        value += owner.baseDefence * (multipliers.defence - 1);
     }
 
     if (propertyName === PawnProps.criticalHitChance) {
-        value *= multipliers.criticalHitChance;
+        value += owner.baseCriticalHitChance * (multipliers.criticalHitChance - 1);
     }
 
     return value;
