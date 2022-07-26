@@ -179,8 +179,4 @@ export default class MoveExecutor {
     waitForActions() {
         return this.#queuedActions.getPromise();
     }
-
-    get hasActions() {
-        return this.#queuedActions.hasActions;
-    }
 }

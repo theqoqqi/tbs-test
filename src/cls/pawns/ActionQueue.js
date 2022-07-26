@@ -48,8 +48,4 @@ export default class ActionQueue {
             this.#eventBus.dispatch(ActionQueueStopEvent);
         }
     }
-
-    get hasActions() {
-        return this.#counter > 0;
-    }
 }

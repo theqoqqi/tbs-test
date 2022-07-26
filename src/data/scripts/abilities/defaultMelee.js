@@ -11,8 +11,6 @@ export default {
         } else {
             moveExecutor.makeMovementMove(move, path);
         }
-
-        return moveExecutor.waitForActions();
     },
     /** @this Ability */
     targetCollector({movementMoves}) {

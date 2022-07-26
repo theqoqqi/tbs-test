@@ -303,10 +303,6 @@ export default class Fight {
         return index === -1 ? null : 2 + index; // start from 2
     }
 
-    get hasActions() {
-        return this.#moveExecutor.hasActions;
-    }
-
     //endregion
 
 
