@@ -533,6 +533,7 @@ export default class App extends React.Component {
                     title: effect.internalName,
                     description: effect.internalName,
                     duration: effect.duration,
+                    effectType: effect.effectType,
                 };
             });
 

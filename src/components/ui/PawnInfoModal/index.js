@@ -5,10 +5,12 @@ import Modal from '../../util/Modal';
 import MovementType from '../../../cls/enums/MovementType.js';
 import Ranges from '../../../cls/util/Ranges.js';
 import Resistances from '../../../cls/util/Resistances.js';
-import {Breadcrumbs, Tooltip} from '@mui/material';
+import {Tooltip} from '@mui/material';
 import DamageType from '../../../cls/enums/DamageType.js';
 import Vector from '../../../cls/util/Vector.js';
 import WithSeparators from '../../util/WithSeparators';
+import EffectType from '../../../cls/enums/EffectType.js';
+import classNames from 'classnames';
 
 class PawnParameter extends React.Component {
 
@@ -102,9 +104,9 @@ class PawnFeature extends React.Component {
                 title={$tooltip}
                 disableInteractive>
                 <div className='pawn-feature'>
-                    <div className='pawn-feature-title'>
+                    <span className='pawn-feature-title'>
                         {this.props.title}
-                    </div>
+                    </span>
                 </div>
             </Tooltip>
         );
@@ -117,6 +119,7 @@ class PawnEffect extends React.Component {
         title: PropTypes.string,
         description: PropTypes.string,
         duration: PropTypes.number,
+        effectType: PropTypes.instanceOf(EffectType),
     };
 
     render() {
@@ -134,12 +137,16 @@ class PawnEffect extends React.Component {
                 classes={{ popper: 'pawn-effect-tooltip' }}
                 title={$tooltip}
                 disableInteractive>
-                <div className='pawn-effect'>
-                    <div className='pawn-effect-title'>
+                <div
+                    className={classNames('pawn-effect', {
+                        [this.props.effectType.enumKey.toLowerCase()]: true,
+                    })}
+                >
+                    <span className='pawn-effect-title'>
                         {this.props.title}
-                        {' '}
-                        {duration > 0 && <>({duration})</>}
-                    </div>
+                    </span>
+                    {' '}
+                    {duration > 0 && <>({duration})</>}
                 </div>
             </Tooltip>
         );
@@ -169,15 +176,15 @@ class PawnAbility extends React.Component {
 
         return (
             <Tooltip
-                classes={{ popper: 'pawn-effect-tooltip' }}
+                classes={{ popper: 'pawn-ability-tooltip' }}
                 title={$tooltip}
                 disableInteractive>
-                <div className='pawn-effect'>
-                    <div className='pawn-effect-title'>
+                <div className='pawn-ability'>
+                    <span className='pawn-ability-title'>
                         {this.props.title}
-                        {' '}
-                        {currentCharges > 0 && <>({currentCharges})</>}
-                    </div>
+                    </span>
+                    {' '}
+                    {currentCharges > 0 && <>({currentCharges})</>}
                 </div>
             </Tooltip>
         );
