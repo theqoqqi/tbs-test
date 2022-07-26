@@ -94,6 +94,18 @@
     margin-top: 10px;
 }
 
+.pawn-effect-list .pawn-effect.neutral {
+    color: #888888;
+}
+
+.pawn-effect-list .pawn-effect.debuff {
+    color: #dd4444;
+}
+
+.pawn-effect-list .pawn-effect.buff {
+    color: #008800;
+}
+
 
 
 .pawn-ability-list {
