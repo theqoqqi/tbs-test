@@ -30,6 +30,7 @@ export default class App extends React.Component {
         this.splashLayerRef = React.createRef();
 
         this.fight = new Fight(gameContext);
+        this.viewedPawn = null;
         this.selectedPawn = null;
         this.selectedAbility = null;
         this.moves = [];
@@ -76,7 +77,10 @@ export default class App extends React.Component {
             currentPawnInfo: this.selectedPawn
                 ? this.collectCurrentPawnInfo(this.selectedPawn)
                 : null,
-        });
+            viewedPawnInfo: this.viewedPawn
+                ? this.collectViewedPawnInfo(this.viewedPawn)
+                : null,
+        })
 
         // requestAnimationFrame(this.handleAnimationFrame);
     }
@@ -247,15 +251,11 @@ export default class App extends React.Component {
     }
 
     openPawnInfoModalFor(pawn) {
-        this.setState({
-            viewedPawnInfo: this.collectViewedPawnInfo(pawn),
-        })
+        this.viewedPawn = pawn;
     }
 
     hidePawnInfoModal() {
-        this.setState({
-            viewedPawnInfo: null,
-        })
+        this.viewedPawn = null;
     }
 
     showMoveInfoTooltip(moveInfo, targetCell) {
