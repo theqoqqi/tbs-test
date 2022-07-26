@@ -35,7 +35,7 @@ export default class EventBus {
         this.#emitter.off(eventName, callback);
     }
 
-    dispatch(eventType, eventData) {
+    dispatch(eventType, eventData = {}) {
         let eventName = EventBus.#getEventName(eventType);
         let event = new eventType(eventData);
 

@@ -12,8 +12,10 @@ import AbilitySlot from './cls/enums/AbilitySlot.js';
 import SplashLayer from './components/ui/SplashLayer';
 import PawnDamageReceivedEvent from './cls/events/types/PawnDamageReceivedEvent.js';
 import Fight from './cls/fight/Fight.js';
-import PropTypes from 'prop-types';
 import EffectType from './cls/enums/EffectType.js';
+import ActionQueueStartEvent from './cls/events/types/ActionQueueStartEvent.js';
+import ActionQueueStopEvent from './cls/events/types/ActionQueueStopEvent.js';
+import GamecycleTurnStartEvent from './cls/events/types/GamecycleTurnStartEvent.js';
 
 export default class App extends React.Component {
 
@@ -59,6 +61,9 @@ export default class App extends React.Component {
 
         this.fight.start();
         this.fight.on(PawnDamageReceivedEvent, this.handlePawnDamageReceived);
+        this.fight.on(ActionQueueStartEvent, this.handleActionQueueStart);
+        this.fight.on(ActionQueueStopEvent, this.handleActionQueueStop);
+        this.fight.on(GamecycleTurnStartEvent, this.handleGamecycleTurnStart);
         this.setSelectedPawn(this.fight.currentPawn);
     }
 
@@ -71,12 +76,6 @@ export default class App extends React.Component {
     // Коллбеки
 
     handleAnimationFrame = () => {
-        if (this.fight.hasActions) {
-            this.clearSelectedPawn();
-        } else {
-            this.setSelectedPawn(this.fight.currentPawn);
-        }
-
         this.setState({
             cells: this.getCellProps(),
             pawns: this.getPawnProps(),
@@ -112,6 +111,20 @@ export default class App extends React.Component {
 
             this.createKillsSplash(cell, killsOffset, hitInfo.kills);
         }
+    }
+
+
+
+    handleActionQueueStart = () => {
+        this.clearSelectedPawn();
+    }
+
+    handleActionQueueStop = () => {
+        this.setSelectedPawn(this.fight.currentPawn);
+    }
+
+    handleGamecycleTurnStart = () => {
+        this.setSelectedPawn(this.fight.currentPawn);
     }
 
 
@@ -206,8 +219,7 @@ export default class App extends React.Component {
         if (ability.targetCollector) {
             this.setSelectedAbility(ability);
         } else {
-            this.fight.applyAbility(pawn, ability)
-                .then(() => this.setSelectedAbility(this.selectedAbility));
+            this.fight.applyAbility(pawn, ability);
         }
     }
 

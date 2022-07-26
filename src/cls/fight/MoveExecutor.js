@@ -8,11 +8,12 @@ export default class MoveExecutor {
 
     #eventBus;
 
-    #queuedActions = new ActionQueue();
+    #queuedActions;
 
     constructor(fight, eventBus) {
         this.#fight = fight;
         this.#eventBus = eventBus;
+        this.#queuedActions = new ActionQueue(this.#eventBus);
     }
 
     makeMove(move, path, ability) {

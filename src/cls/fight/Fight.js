@@ -259,36 +259,38 @@ export default class Fight {
     //region Применение ходов
 
     makeMove(move, path, ability) {
-        this.#moveExecutor.makeMove(move, path, ability);
+        let promise = this.#moveExecutor.makeMove(move, path, ability);
 
-        return this.#moveExecutor.waitForActions()
+        this.#moveExecutor.waitForActions()
             .then(() => this.#nextTurnIfNoSpeed(move.pawn));
+
+        return promise;
     }
 
     makeWaitMove(pawn) {
-        this.#gamecycle.postponeMove(pawn);
+        let promise = this.#gamecycle.postponeMove(pawn);
 
-        return this.#moveExecutor.waitForActions()
+        this.#moveExecutor.waitForActions()
             .then(() => this.#nextTurn());
+
+        return promise;
     }
 
     makeDefenceMove(pawn) {
-        this.#moveExecutor.makeDefenceMove(pawn);
+        let promise = this.#moveExecutor.makeDefenceMove(pawn);
 
-        return this.#moveExecutor.waitForActions()
+        this.#moveExecutor.waitForActions()
             .then(() => this.#nextTurn());
+
+        return promise;
     }
 
     applyAbility(pawn, ability) {
-        this.#moveExecutor.applyAbility(pawn, ability);
-
-        return this.#moveExecutor.waitForActions();
+        return this.#moveExecutor.applyAbility(pawn, ability);
     }
 
     makeDamageMove({attacker, victim, ability, hitInfo}) {
-        this.#moveExecutor.makeDamageMove({attacker, victim, ability, hitInfo});
-
-        return this.#moveExecutor.waitForActions();
+        return this.#moveExecutor.makeDamageMove({attacker, victim, ability, hitInfo});
     }
 
     getPositionInTurnOrder(pawn) {
