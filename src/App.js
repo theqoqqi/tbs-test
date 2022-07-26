@@ -71,6 +71,12 @@ export default class App extends React.Component {
     // Коллбеки
 
     handleAnimationFrame = () => {
+        if (this.fight.hasActions) {
+            this.clearSelectedPawn();
+        } else {
+            this.setSelectedPawn(this.fight.currentPawn);
+        }
+
         this.setState({
             cells: this.getCellProps(),
             pawns: this.getPawnProps(),
@@ -119,8 +125,7 @@ export default class App extends React.Component {
         if (pawn && cellComponent.props.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
-            this.fight.makeMove(move, this.state.path, this.selectedAbility)
-                .then(() => this.setSelectedPawn(this.fight.currentPawn));
+            this.fight.makeMove(move, this.state.path, this.selectedAbility);
 
             this.clearSelectedPawn();
         }
@@ -211,8 +216,7 @@ export default class App extends React.Component {
             return;
         }
 
-        this.fight.makeWaitMove(this.selectedPawn)
-            .then(() => this.setSelectedPawn(this.fight.currentPawn));
+        this.fight.makeWaitMove(this.selectedPawn);
     }
 
     handleDefenceButtonClick = () => {
@@ -220,8 +224,7 @@ export default class App extends React.Component {
             return;
         }
 
-        this.fight.makeDefenceMove(this.selectedPawn)
-            .then(() => this.setSelectedPawn(this.fight.currentPawn));
+        this.fight.makeDefenceMove(this.selectedPawn);
     }
 
 

@@ -14,8 +14,6 @@ import ExactHitInfo from '../util/info/ExactHitInfo.js';
 import Pawn from '../pawns/Pawn.js';
 import Team from '../pawns/Team.js';
 import Effect from '../pawns/Effect.js';
-import PawnDamageDealtEvent from '../events/types/PawnDamageDealtEvent.js';
-import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js';
 import PawnEffectAddedEvent from '../events/types/PawnEffectAddedEvent.js';
 import PawnEffectRemovedEvent from '../events/types/PawnEffectRemovedEvent.js';
 import PawnAddedEvent from '../events/types/PawnAddedEvent.js';
@@ -261,39 +259,36 @@ export default class Fight {
     //region Применение ходов
 
     makeMove(move, path, ability) {
-        return this.#moveExecutor.makeMove(move, path, ability)
+        this.#moveExecutor.makeMove(move, path, ability);
+
+        return this.#moveExecutor.waitForActions()
             .then(() => this.#nextTurnIfNoSpeed(move.pawn));
     }
 
     makeWaitMove(pawn) {
-        return this.#gamecycle.postponeMove(pawn)
+        this.#gamecycle.postponeMove(pawn);
+
+        return this.#moveExecutor.waitForActions()
             .then(() => this.#nextTurn());
     }
 
     makeDefenceMove(pawn) {
-        return this.#moveExecutor.makeDefenceMove(pawn)
+        this.#moveExecutor.makeDefenceMove(pawn);
+
+        return this.#moveExecutor.waitForActions()
             .then(() => this.#nextTurn());
     }
 
     applyAbility(pawn, ability) {
-        return this.#moveExecutor.applyAbility(pawn, ability);
+        this.#moveExecutor.applyAbility(pawn, ability);
+
+        return this.#moveExecutor.waitForActions();
     }
 
-    applyDamage({attacker, victim, ability, hitInfo}) {
-        victim.applyDamage(hitInfo.damage);
+    makeDamageMove({attacker, victim, ability, hitInfo}) {
+        this.#moveExecutor.makeDamageMove({attacker, victim, ability, hitInfo});
 
-        let eventData = {
-            attacker,
-            victim,
-            ability,
-            hitInfo,
-        };
-
-        this.#eventBus.dispatch(PawnDamageDealtEvent, eventData);
-        this.#eventBus.dispatch(PawnDamageReceivedEvent, eventData);
-
-        console.log('Attacked', victim.toString(), 'by', attacker?.toString());
-        console.log('Damage:', hitInfo.damage, 'Kills:', hitInfo.kills, 'Is Crit:', hitInfo.isCriticalHit);
+        return this.#moveExecutor.waitForActions();
     }
 
     getPositionInTurnOrder(pawn) {
@@ -304,6 +299,10 @@ export default class Fight {
         let index = this.#gamecycle.getTurnIndex(pawn);
 
         return index === -1 ? null : 2 + index; // start from 2
+    }
+
+    get hasActions() {
+        return this.#moveExecutor.hasActions;
     }
 
     //endregion

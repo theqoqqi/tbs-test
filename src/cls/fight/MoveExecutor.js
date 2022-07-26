@@ -1,3 +1,4 @@
+import ActionQueue from '../pawns/ActionQueue.js';
 import PawnDamageDealtEvent from '../events/types/PawnDamageDealtEvent.js';
 import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js';
 
@@ -7,27 +8,27 @@ export default class MoveExecutor {
 
     #eventBus;
 
+    #queuedActions = new ActionQueue();
+
     constructor(fight, eventBus) {
         this.#fight = fight;
         this.#eventBus = eventBus;
     }
 
     makeMove(move, path, ability) {
-        if (!ability?.apply) {
-            return Promise.resolve();
-        }
-
         return this.applyAbility(move.pawn, ability, move, path);
     }
 
     makeDefenceMove(pawn) {
-        pawn.consumeAllSpeed();
+        return this.#enqueueAction(resolve => {
+            pawn.consumeAllSpeed();
 
-        this.#fight.addPawnEffect(pawn, 'blockBonus', {
-            duration: 1,
+            this.#fight.addPawnEffect(pawn, 'blockBonus', {
+                duration: 1,
+            });
+
+            resolve();
         });
-
-        return Promise.resolve();
     }
 
     applyAbility(pawn, ability, move = null, path = []) {
@@ -35,16 +36,18 @@ export default class MoveExecutor {
             return Promise.resolve();
         }
 
-        return ability
-            .apply({
+        return this.#enqueueAction(resolve => {
+            ability.apply({
                 pawn,
                 move,
                 path,
-            })
-            .then(() => {
-                ability.consumeCharges(1);
-                ability.startReloading();
             });
+
+            ability.consumeCharges(1);
+            ability.startReloading();
+
+            resolve();
+        });
     }
 
     makeMovementMove(move, path) {
@@ -78,11 +81,15 @@ export default class MoveExecutor {
     }
 
     #hitback(attacker, victim) {
-        let hitbackAbility = this.#fight.getRegularAbility(victim);
+        return this.#enqueueAction(resolve => {
+            let hitbackAbility = this.#fight.getRegularAbility(victim);
 
-        victim.consumeHitback();
+            victim.consumeHitback();
 
-        return this.attack(victim, attacker, hitbackAbility, false);
+            this.attack(victim, attacker, hitbackAbility, false);
+
+            resolve();
+        });
     }
 
     moveByPath(pawn, path) {
@@ -93,14 +100,14 @@ export default class MoveExecutor {
         let promise = Promise.resolve();
 
         for (const nextPosition of path.slice(1)) {
-            promise = promise.then(() => this.#stepTo(pawn, nextPosition));
+            promise = this.#stepTo(pawn, nextPosition);
         }
 
         return promise;
     }
 
     #stepTo(pawn, position) {
-        return new Promise(resolve => {
+        return this.#enqueueAction(resolve => {
             pawn.position = position;
             pawn.consumeSpeed(1);
 
@@ -108,11 +115,19 @@ export default class MoveExecutor {
         });
     }
 
+    makeDamageMove({attacker, victim, ability, hitInfo}) {
+        return this.#enqueueAction(resolve => {
+            this.#applyDamage({attacker, victim, ability, hitInfo});
+
+            setTimeout(resolve, 500);
+        })
+    }
+
     attack(attacker, victim, ability, consumeSpeed = true) {
-        return new Promise(resolve => {
+        return this.#enqueueAction(resolve => {
             let hitInfo = this.#fight.getRandomHitInfo(attacker, victim, ability);
 
-            this.#fight.applyDamage({
+            this.#applyDamage({
                 attacker,
                 victim,
                 ability,
@@ -129,5 +144,42 @@ export default class MoveExecutor {
 
             setTimeout(resolve, 500);
         });
+    }
+
+    #applyDamage({attacker, victim, ability, hitInfo}) {
+        victim.applyDamage(hitInfo.damage);
+
+        let eventData = {
+            attacker,
+            victim,
+            ability,
+            hitInfo,
+        };
+
+        this.#eventBus.dispatch(PawnDamageDealtEvent, eventData);
+        this.#eventBus.dispatch(PawnDamageReceivedEvent, eventData);
+
+        console.log('Attacked', victim.toString(), 'by', attacker?.toString());
+        console.log('Damage:', hitInfo.damage, 'Kills:', hitInfo.kills, 'Is Crit:', hitInfo.isCriticalHit);
+    }
+
+    #enqueueAction(action) {
+        return this.#enqueuePromise(() => new Promise(action));
+    }
+
+    #enqueuePromise(promiseSupplier) {
+        return new Promise(resolve => {
+            this.#queuedActions.enqueue(() => {
+                return promiseSupplier().then(resolve);
+            });
+        });
+    }
+
+    waitForActions() {
+        return this.#queuedActions.getPromise();
+    }
+
+    get hasActions() {
+        return this.#queuedActions.hasActions;
     }
 }

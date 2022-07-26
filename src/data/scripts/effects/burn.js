@@ -21,7 +21,7 @@ export default {
                 );
                 let hitInfo = fight.getRandomHitInfoForDamageRanges(pawn, damageRanges);
 
-                fight.applyDamage({
+                fight.makeDamageMove({
                     victim: pawn,
                     hitInfo,
                 });
