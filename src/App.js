@@ -12,6 +12,8 @@ import AbilitySlot from './cls/enums/AbilitySlot.js';
 import SplashLayer from './components/ui/SplashLayer';
 import PawnDamageReceivedEvent from './cls/events/types/PawnDamageReceivedEvent.js';
 import Fight from './cls/fight/Fight.js';
+import PropTypes from 'prop-types';
+import EffectType from './cls/enums/EffectType.js';
 
 export default class App extends React.Component {
 
@@ -434,12 +436,10 @@ export default class App extends React.Component {
     }
 
     createMissSplash(cell, offset) {
-        // TODO: брать текст из локализации
         this.createSplashAtCell(cell, offset, 'Промах!', 'miss');
     }
 
     createHalfSplash(cell, offset) {
-        // TODO: брать текст из локализации
         this.createSplashAtCell(cell, offset, 'Половина!', 'half');
     }
 
@@ -489,6 +489,12 @@ export default class App extends React.Component {
 
     getPawnProps() {
         return this.arena.getAllPawns().map(pawn => {
+            let countEffects = ofType => {
+                let effects = pawn.effects.filter(effect => effect.effectType === ofType);
+
+                return effects.length;
+            };
+
             return {
                 id: pawn.id,
                 axialPosition: pawn.position,
@@ -498,6 +504,11 @@ export default class App extends React.Component {
                 stackSize: pawn.stackSize,
                 health: pawn.currentHealth,
                 maxHealth: pawn.maxHealth,
+
+                debuffs: countEffects(EffectType.DEBUFF),
+                buffs: countEffects(EffectType.BUFF),
+                turnOrder: this.fight.getPositionInTurnOrder(pawn),
+                showStatusBar: true,
             };
         });
     }

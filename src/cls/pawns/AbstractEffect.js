@@ -23,36 +23,36 @@ export default class AbstractEffect {
 
 
     get internalName() {
-        return this.#getProperty('internalName');
+        return this.getProperty('internalName');
     }
 
     get scriptParams() {
-        return this.#getProperty('scriptParams');
+        return this.getProperty('scriptParams');
     }
 
     get getEvents() {
-        return this.#getProperty('getEvents');
+        return this.getProperty('getEvents');
     }
 
     get modifyPawnProperty() {
-        return this.#getProperty('modifyPawnProperty');
+        return this.getProperty('modifyPawnProperty');
     }
 
     get incomingDamageModifier() {
-        return this.#getProperty('incomingDamageModifier');
+        return this.getProperty('incomingDamageModifier');
     }
 
     get outcomingDamageModifier() {
-        return this.#getProperty('outcomingDamageModifier');
+        return this.getProperty('outcomingDamageModifier');
     }
 
     get isHidden() {
-        return this.#getProperty('isHidden');
+        return this.getProperty('isHidden');
     }
 
 
 
-    #getProperty(propertyName) {
+    getProperty(propertyName) {
         return this.#props[propertyName];
     }
 }

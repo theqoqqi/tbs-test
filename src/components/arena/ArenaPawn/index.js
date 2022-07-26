@@ -2,6 +2,7 @@ import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Vector from '../../../cls/util/Vector.js';
+import classNames from 'classnames';
 
 export default class ArenaPawn extends React.Component {
 
@@ -14,6 +15,11 @@ export default class ArenaPawn extends React.Component {
         maxHealth: PropTypes.number.isRequired,
         name: PropTypes.string,
         teamColor: PropTypes.string,
+        debuffs: PropTypes.number,
+        buffs: PropTypes.number,
+        turnOrder: PropTypes.number,
+        showStatusBar: PropTypes.bool,
+
         onClick: PropTypes.func,
         onRightClick: PropTypes.func,
         onMouseMove: PropTypes.func,
@@ -22,29 +28,62 @@ export default class ArenaPawn extends React.Component {
     };
 
     render() {
-        let healthPercent = this.props.health / this.props.maxHealth;
+        let {
+            position,
+            stackSize,
+            health,
+            maxHealth,
+            name,
+            teamColor,
+            debuffs,
+            buffs,
+            turnOrder,
+            showStatusBar,
+            
+            onClick,
+            onRightClick,
+            onMouseMove,
+            onMouseEnter,
+            onMouseLeave,
+        } = this.props;
 
         return (
             <div
                 className='arena-pawn'
                 style={{
-                    '--team-color': this.props.teamColor,
-                    left: this.props.position.x + 'px',
-                    top: this.props.position.y + 'px',
+                    '--team-color': teamColor,
+                    left: Math.round(position.x) + 'px',
+                    top: Math.round(position.y) + 'px',
                 }}
-                onClick={e => this.props.onClick?.(this, e)}
-                onContextMenu={e => this.props.onRightClick?.(this, e)}
-                onMouseMove={e => this.props.onMouseMove?.(this, e)}
-                onMouseEnter={e => this.props.onMouseEnter?.(this, e)}
-                onMouseLeave={e => this.props.onMouseLeave?.(this, e)}
+                onClick={e => onClick?.(this, e)}
+                onContextMenu={e => onRightClick?.(this, e)}
+                onMouseMove={e => onMouseMove?.(this, e)}
+                onMouseEnter={e => onMouseEnter?.(this, e)}
+                onMouseLeave={e => onMouseLeave?.(this, e)}
             >
-                {this.props.name}
-                <div className='health-bar' style={{'--percent': healthPercent}}>
+                {name}
+                <div className='health-bar' style={{'--percent': health / maxHealth}}>
                     <div className='health' />
                 </div>
-                <span className='stack-size'>
-                    {this.props.stackSize}
-                </span>
+                {showStatusBar && (
+                    <div className='status-bar'>
+                        <span className='effects'>
+                            <span className={classNames('debuffs', {muted: debuffs === 0})}>
+                                {debuffs}
+                            </span>
+                            <span className='separator' />
+                            <span className={classNames('buffs', {muted: buffs === 0})}>
+                                {buffs}
+                            </span>
+                        </span>
+                        <span className='stack-size'>
+                            {stackSize}
+                        </span>
+                        <span className='turn-order' style={{'--order': turnOrder ?? 0}}>
+                            {turnOrder ?? '×'}
+                        </span>
+                    </div>
+                )}
             </div>
         );
     }

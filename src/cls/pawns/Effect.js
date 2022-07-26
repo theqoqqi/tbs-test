@@ -27,6 +27,10 @@ export default class Effect extends AbstractEffect {
         return this.#duration;
     }
 
+    get effectType() {
+        return this.getProperty('effectType');
+    }
+
     decreaseDuration() {
         if (!this.#isInfinite) {
             this.#duration--;

@@ -78,18 +78,89 @@
 
 
 
-.arena-pawn .stack-size {
+.arena-pawn .status-bar {
     position: absolute;
     display: flex;
     justify-content: center;
 
-    width: 50%;
+    width: 130%;
     height: 17px;
     bottom: -22px;
+
+    color: white;
+    font-size: 12px;
+
+    background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.6) 15%,
+            rgba(0, 0, 0, 0.6) 85%,
+            rgba(0, 0, 0, 0) 100%
+    );
+    border-radius: 4px;
+}
+
+.arena-pawn .status-bar > * {
+    margin: 0 3px;
+}
+
+.arena-pawn .effects {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    flex: 4 0 0;
+    font-weight: 500;
+}
+
+.arena-pawn .debuffs {
+    align-self: baseline;
+    margin-right: 1px;
+    color: #ff4444;
+}
+
+.arena-pawn .separator {
+    align-self: center;
+    display: inline-block;
+
+    width: 2px;
+    height: 13px;
+    margin: 0 1px;
+
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.arena-pawn .buffs {
+    align-self: baseline;
+    color: #44ff44;
+}
+
+.arena-pawn .muted {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.arena-pawn .stack-size {
+    flex: 4 0 0;
 
     background-color: var(--team-color);
     border-radius: 4px;
 
     color: white;
-    font-size: 12px;
+    text-align: center;
+}
+
+.arena-pawn .turn-order {
+    --order: 1;
+    --hue: max(0, 120 - (var(--order) - 1) * 15);
+    --saturation: min(80%, 100% * var(--order)); /* if order === 0 then 0% else 80% */
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    color: hsl(var(--hue), var(--saturation), 50%);
+    font-size: 15px;
+    font-weight: 600;
+
+    flex: 4 0 0;
 }

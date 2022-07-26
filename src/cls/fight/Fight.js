@@ -296,6 +296,16 @@ export default class Fight {
         console.log('Damage:', hitInfo.damage, 'Kills:', hitInfo.kills, 'Is Crit:', hitInfo.isCriticalHit);
     }
 
+    getPositionInTurnOrder(pawn) {
+        if (pawn === this.currentPawn) {
+            return 1;
+        }
+
+        let index = this.#gamecycle.getTurnIndex(pawn);
+
+        return index === -1 ? null : 2 + index; // start from 2
+    }
+
     //endregion
 
 

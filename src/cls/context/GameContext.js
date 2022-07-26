@@ -13,6 +13,7 @@ import FeatureProps from '../pawns/props/FeatureProps.js';
 import PawnProps from '../pawns/props/PawnProps.js';
 import Registry from './Registry.js';
 import EffectProps from '../pawns/props/EffectProps.js';
+import EffectType from '../enums/EffectType.js';
 
 export default class GameContext {
 
@@ -51,10 +52,12 @@ export default class GameContext {
 
         this.registerEffect('burn', {
             internalName: 'burn',
+            effectType: EffectType.DEBUFF,
             getEvents: effectScripts.burn.getEvents,
         });
         this.registerEffect('blockBonus', {
             internalName: 'blockBonus',
+            effectType: EffectType.BUFF,
             modifyPawnProperty: effectScripts.blockBonus.modifyPawnProperty,
         });
 

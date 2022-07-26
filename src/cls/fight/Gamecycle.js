@@ -86,11 +86,15 @@ export default class Gamecycle {
     }
 
     removePawn(pawn) {
-        let index = this.#pawnsInOrder.indexOf(pawn);
+        let index = this.getTurnIndex(pawn);
 
         if (index !== -1) {
             this.#pawnsInOrder.splice(index, 1);
         }
+    }
+
+    getTurnIndex(pawn) {
+        return this.#pawnsInOrder.indexOf(pawn);
     }
 
     get currentPawn() {
