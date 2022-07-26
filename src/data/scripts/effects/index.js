@@ -1,3 +1,3 @@
 
-export * as blockBonus from './blockBonus';
-export * as burn from './burn';
+export {default as blockBonus} from './blockBonus';
+export {default as burn} from './burn';

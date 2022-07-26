@@ -1,4 +1,3 @@
 
-export * as morale from './morale';
-export * as dragon from './dragon';
-export * as dragonSlayer from './dragonSlayer';
+export {default as morale} from './morale';
+export {default as dragonSlayer} from './dragonSlayer';

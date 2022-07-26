@@ -1,5 +1,5 @@
 
-export * as burningAttack from './burningAttack';
-export * as defaultMelee from './defaultMelee';
-export * as defaultRanged from './defaultRanged';
-export * as defaultRun from './defaultRun';
+export {default as burningAttack} from './burningAttack';
+export {default as defaultMelee} from './defaultMelee';
+export {default as defaultRanged} from './defaultRanged';
+export {default as defaultRun} from './defaultRun';
