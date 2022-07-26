@@ -53,7 +53,8 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        requestAnimationFrame(this.handleAnimationFrame);
+        // requestAnimationFrame(this.handleAnimationFrame);
+        setInterval(this.handleAnimationFrame, 100);
 
         this.fight.start();
         this.fight.on(PawnDamageReceivedEvent, this.handlePawnDamageReceived);
@@ -77,7 +78,7 @@ export default class App extends React.Component {
                 : null,
         });
 
-        requestAnimationFrame(this.handleAnimationFrame);
+        // requestAnimationFrame(this.handleAnimationFrame);
     }
 
 
