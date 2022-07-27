@@ -63,7 +63,7 @@ export default {
                     actionPoints += movementMove.actionPoints;
                 }
 
-                if (forPawn.currentSpeed < actionPoints) {
+                if (forPawn.currentActionPoints < actionPoints) {
                     return null;
                 }
 

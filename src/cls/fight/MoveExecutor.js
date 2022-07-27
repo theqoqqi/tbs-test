@@ -22,7 +22,7 @@ export default class MoveExecutor {
 
     makeDefenceMove(pawn) {
         return this.#enqueueAction(resolve => {
-            pawn.consumeAllSpeed();
+            pawn.consumeAllActionPoints();
 
             this.#fight.addPawnEffect(pawn, 'blockBonus', {
                 duration: 1,
@@ -108,7 +108,7 @@ export default class MoveExecutor {
     #stepTo(pawn, position) {
         return this.#enqueueAction(resolve => {
             pawn.position = position;
-            pawn.consumeSpeed(1);
+            pawn.consumeActionPoints(1);
 
             setTimeout(resolve, 200);
         });
@@ -122,7 +122,7 @@ export default class MoveExecutor {
         })
     }
 
-    attack(attacker, victim, ability, consumeSpeed = true) {
+    attack(attacker, victim, ability, consumeActionPoints = true) {
         return this.#enqueueAction(resolve => {
             let hitInfo = this.#fight.getRandomHitInfo(attacker, victim, ability);
 
@@ -137,8 +137,8 @@ export default class MoveExecutor {
                 this.#fight.removePawn(victim);
             }
 
-            if (consumeSpeed) {
-                attacker.consumeAllSpeed();
+            if (consumeActionPoints) {
+                attacker.consumeAllActionPoints();
             }
 
             setTimeout(resolve, 500);

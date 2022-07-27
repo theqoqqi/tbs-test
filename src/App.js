@@ -435,7 +435,7 @@ export default class App extends React.Component {
         let move = this.moves.find(move => move.targetCell === cell);
         let isCellPassable = this.arena.isCellPassable(cell.position);
 
-        return pawnCell === cell || (isCellPassable && move && move.actionPoints < move.pawn.currentSpeed);
+        return pawnCell === cell || (isCellPassable && move && move.actionPoints < move.pawn.currentActionPoints);
     }
 
 
@@ -575,8 +575,8 @@ export default class App extends React.Component {
             attack: pawn.attack,
             defence: pawn.defence,
             initiative: pawn.initiative,
-            currentSpeed: pawn.currentSpeed,
-            maxSpeed: pawn.maxSpeed,
+            currentActionPoints: pawn.currentActionPoints,
+            maxActionPoints: pawn.maxActionPoints,
             criticalHitChance: pawn.criticalHitChance,
             currentHealth: pawn.currentHealth,
             maxHealth: pawn.maxHealth,
@@ -587,7 +587,7 @@ export default class App extends React.Component {
             baseAttack: pawn.baseAttack,
             baseDefence: pawn.baseDefence,
             baseInitiative: pawn.baseInitiative,
-            baseMaxSpeed: pawn.baseMaxSpeed,
+            baseMaxActionPoints: pawn.baseMaxActionPoints,
             baseCriticalHitChance: pawn.baseCriticalHitChance,
             baseMaxHealth: pawn.baseMaxHealth,
 
@@ -618,8 +618,8 @@ export default class App extends React.Component {
         return {
             abilities,
             canWait: !pawn.isWaiting,
-            currentSpeed: pawn.currentSpeed,
-            maxSpeed: pawn.maxSpeed,
+            currentActionPoints: pawn.currentActionPoints,
+            maxActionPoints: pawn.maxActionPoints,
         };
     }
 

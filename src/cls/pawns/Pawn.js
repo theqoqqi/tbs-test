@@ -11,7 +11,7 @@ export default class Pawn {
 
     #health;
 
-    #speed;
+    #actionPoints;
 
     #hitbacks;
 
@@ -39,7 +39,7 @@ export default class Pawn {
         this.#initAbilities(options.abilities ?? []);
 
         this.refillHealth();
-        this.refillSpeed();
+        this.refillActionPoints();
         this.refillHitbacks();
     }
 
@@ -79,20 +79,20 @@ export default class Pawn {
         this.#health = this.maxHealth;
     }
 
-    consumeAllSpeed() {
-        this.#speed = 0;
+    consumeAllActionPoints() {
+        this.#actionPoints = 0;
     }
 
-    consumeSpeed(amount) {
-        this.#speed = Math.max(0, this.#speed - amount);
+    consumeActionPoints(amount) {
+        this.#actionPoints = Math.max(0, this.#actionPoints - amount);
     }
 
-    giveSpeed(amount) {
-        this.#speed = Math.max(0, this.#speed + amount);
+    giveActionPoints(amount) {
+        this.#actionPoints = Math.max(0, this.#actionPoints + amount);
     }
 
-    refillSpeed() {
-        this.#speed = this.maxSpeed;
+    refillActionPoints() {
+        this.#actionPoints = this.maxActionPoints;
     }
 
     consumeHitback() {
@@ -102,11 +102,11 @@ export default class Pawn {
     refillHitbacks() {
         this.#hitbacks = 0;
 
-        if (this.hitback === HitbackFrequency.ONCE_PER_ROUND) {
+        if (this.hitbackFrequency === HitbackFrequency.ONCE_PER_ROUND) {
             this.#hitbacks = 1;
         }
 
-        if (this.hitback === HitbackFrequency.ALWAYS) {
+        if (this.hitbackFrequency === HitbackFrequency.ALWAYS) {
             this.#hitbacks = 999;
         }
     }
@@ -182,7 +182,7 @@ export default class Pawn {
     }
 
     get performsMoves() {
-        return this.maxSpeed > 0 && [PawnType.SQUAD, PawnType.STRUCTURE].includes(this.pawnType);
+        return this.maxActionPoints > 0 && [PawnType.SQUAD, PawnType.STRUCTURE].includes(this.pawnType);
     }
 
     //endregion
@@ -223,8 +223,8 @@ export default class Pawn {
         return this.#health;
     }
 
-    get currentSpeed() {
-        return this.#speed;
+    get currentActionPoints() {
+        return this.#actionPoints;
     }
 
     get canHitback() {
@@ -291,8 +291,8 @@ export default class Pawn {
         return this.getProperty(PawnProps.health);
     }
 
-    get maxSpeed() {
-        return this.getProperty(PawnProps.speed);
+    get maxActionPoints() {
+        return this.getProperty(PawnProps.actionPoints);
     }
 
     get resistances() {
@@ -331,8 +331,8 @@ export default class Pawn {
         return this.getProperty(PawnProps.invulnerable);
     }
 
-    get hitback() {
-        return this.getProperty(PawnProps.hitback);
+    get hitbackFrequency() {
+        return this.getProperty(PawnProps.hitbackFrequency);
     }
 
     get hitbackProtection() {
@@ -369,8 +369,8 @@ export default class Pawn {
         return this.getBaseProperty(PawnProps.health);
     }
 
-    get baseMaxSpeed() {
-        return this.getBaseProperty(PawnProps.speed);
+    get baseMaxActionPoints() {
+        return this.getBaseProperty(PawnProps.actionPoints);
     }
 
     get baseResistances() {
@@ -409,8 +409,8 @@ export default class Pawn {
         return this.getBaseProperty(PawnProps.invulnerable);
     }
 
-    get baseHitback() {
-        return this.getBaseProperty(PawnProps.hitback);
+    get baseHitbackFrequency() {
+        return this.getBaseProperty(PawnProps.hitbackFrequency);
     }
 
     get baseHitbackProtection() {

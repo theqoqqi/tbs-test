@@ -73,7 +73,7 @@ export default class GameContext {
         this.registerTestPawn('ice_shard', {
             [PawnProps.pawnType]: PawnType.STRUCTURE,
             [PawnProps.health]: 1000,
-            [PawnProps.speed]: 0,
+            [PawnProps.actionPoints]: 0,
             [PawnProps.initiative]: 0,
             [PawnProps.movementType]: MovementType.IMMOBILE,
             [PawnProps.level]: 1,
@@ -81,7 +81,7 @@ export default class GameContext {
             [PawnProps.attack]: 1,
             [PawnProps.defence]: 10,
             [PawnProps.defenceBonus]: 1,
-            [PawnProps.hitback]: HitbackFrequency.NEVER,
+            [PawnProps.hitbackFrequency]: HitbackFrequency.NEVER,
         });
 
 
@@ -103,7 +103,7 @@ export default class GameContext {
             [PawnProps.resistances]: new Resistances([
                 [DamageType.MAGIC, 0.25],
             ]),
-            [PawnProps.speed]: 2,
+            [PawnProps.actionPoints]: 2,
             [PawnProps.movementType]: MovementType.WALKING,
             [PawnProps.level]: 1,
             [PawnProps.race]: this.raceRegistry.get('neutral'),
@@ -113,8 +113,8 @@ export default class GameContext {
             [PawnProps.attack]: 3,
             [PawnProps.defence]: 1,
             [PawnProps.defenceBonus]: 1,
-            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
-            [PawnProps.hitbackProtection]: 0,
+            [PawnProps.hitbackFrequency]: HitbackFrequency.ONCE_PER_ROUND,
+            [PawnProps.hitbackProtection]: false,
         }, {
             features: [
                 this.featureRegistry.get('dragonSlayer'),
@@ -134,7 +134,7 @@ export default class GameContext {
                     charges: 1,
                     apply: abilityScripts.defaultRun.apply,
                     scriptParams: {
-                        speed: 2,
+                        actionPoints: 2,
                     },
                 }),
             ],
@@ -146,7 +146,7 @@ export default class GameContext {
             [PawnProps.resistances]: new Resistances([
                 [DamageType.PHYSICAL, 0.5],
             ]),
-            [PawnProps.speed]: 3,
+            [PawnProps.actionPoints]: 3,
             [PawnProps.movementType]: MovementType.SOARING,
             [PawnProps.level]: 1,
             [PawnProps.race]: this.raceRegistry.get('undead'),
@@ -156,8 +156,8 @@ export default class GameContext {
             [PawnProps.attack]: 3,
             [PawnProps.defence]: 5,
             [PawnProps.defenceBonus]: 2,
-            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
-            [PawnProps.hitbackProtection]: 0,
+            [PawnProps.hitbackFrequency]: HitbackFrequency.ONCE_PER_ROUND,
+            [PawnProps.hitbackProtection]: false,
         }, {
             abilities: [
                 new AbilityProps({
@@ -186,7 +186,7 @@ export default class GameContext {
             [PawnProps.pawnType]: PawnType.SQUAD,
             [PawnProps.health]: 30,
             [PawnProps.resistances]: new Resistances(),
-            [PawnProps.speed]: 2,
+            [PawnProps.actionPoints]: 2,
             [PawnProps.movementType]: MovementType.WALKING,
             [PawnProps.level]: 2,
             [PawnProps.race]: this.raceRegistry.get('human'),
@@ -196,8 +196,8 @@ export default class GameContext {
             [PawnProps.attack]: 15,
             [PawnProps.defence]: 8,
             [PawnProps.defenceBonus]: 2,
-            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
-            [PawnProps.hitbackProtection]: 0,
+            [PawnProps.hitbackFrequency]: HitbackFrequency.ONCE_PER_ROUND,
+            [PawnProps.hitbackProtection]: false,
         }, {
             abilities: [
                 new AbilityProps({
@@ -243,7 +243,7 @@ export default class GameContext {
             [PawnProps.pawnType]: PawnType.SQUAD,
             [PawnProps.health]: 6,
             [PawnProps.resistances]: new Resistances(),
-            [PawnProps.speed]: 2,
+            [PawnProps.actionPoints]: 2,
             [PawnProps.movementType]: MovementType.WALKING,
             [PawnProps.level]: 1,
             [PawnProps.race]: this.raceRegistry.get('human'),
@@ -253,8 +253,8 @@ export default class GameContext {
             [PawnProps.attack]: 1,
             [PawnProps.defence]: 1,
             [PawnProps.defenceBonus]: 1,
-            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
-            [PawnProps.hitbackProtection]: 0,
+            [PawnProps.hitbackFrequency]: HitbackFrequency.ONCE_PER_ROUND,
+            [PawnProps.hitbackProtection]: false,
         }, {
             abilities: [
                 new AbilityProps({
@@ -276,7 +276,7 @@ export default class GameContext {
                 [DamageType.MAGIC, 0.50],
                 [DamageType.FIRE, 0.80],
             ]),
-            [PawnProps.speed]: 8,
+            [PawnProps.actionPoints]: 8,
             [PawnProps.movementType]: MovementType.FLYING,
             [PawnProps.level]: 5,
             [PawnProps.race]: this.raceRegistry.get('neutral'),
@@ -286,8 +286,8 @@ export default class GameContext {
             [PawnProps.attack]: 50,
             [PawnProps.defence]: 40,
             [PawnProps.defenceBonus]: 8,
-            [PawnProps.hitback]: HitbackFrequency.ONCE_PER_ROUND,
-            [PawnProps.hitbackProtection]: 0,
+            [PawnProps.hitbackFrequency]: HitbackFrequency.ONCE_PER_ROUND,
+            [PawnProps.hitbackProtection]: false,
         }, {
             features: [
                 this.featureRegistry.get('dragon'),
@@ -311,7 +311,7 @@ export default class GameContext {
                     charges: 1,
                     apply: abilityScripts.defaultRun.apply,
                     scriptParams: {
-                        speed: 2,
+                        actionPoints: 2,
                     },
                 }),
                 new AbilityProps({

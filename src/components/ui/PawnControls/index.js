@@ -9,8 +9,8 @@ export default class PawnControls extends React.Component {
 
     static propTypes = {
         pawnInfo: PropTypes.shape({
-            currentSpeed: PropTypes.number,
-            maxSpeed: PropTypes.number,
+            currentActionPoints: PropTypes.number,
+            maxActionPoints: PropTypes.number,
             abilities: PropTypes.arrayOf(PropTypes.shape(AbilitySlot.propTypes)),
             canWait: PropTypes.bool,
         }),
@@ -81,8 +81,8 @@ export default class PawnControls extends React.Component {
                 </div>
                 <div className='action-points-bar-container'>
                     <ActionPointsBar
-                        current={pawnInfo?.currentSpeed}
-                        max={pawnInfo?.maxSpeed}
+                        current={pawnInfo?.currentActionPoints}
+                        max={pawnInfo?.maxActionPoints}
                         length={10}
                     />
                 </div>

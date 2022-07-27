@@ -137,7 +137,7 @@ export default class Gamecycle {
         this.#turn = 0;
 
         for (const pawn of this.#allPawns) {
-            pawn.refillSpeed();
+            pawn.refillActionPoints();
             pawn.refillHitbacks();
             pawn.resetWaiting();
         }
@@ -173,7 +173,7 @@ export default class Gamecycle {
 
         let compareBy = [
             pawn => pawn.initiative,
-            pawn => pawn.maxSpeed,
+            pawn => pawn.maxActionPoints,
             pawn => pawn.level,
             pawn => -pawn.maxHealth,
             pawn => pawn.id,

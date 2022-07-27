@@ -12,7 +12,7 @@ export default class PawnProps {
     static leadership = 'leadership';
     static morale = 'morale';
     static health = 'health';
-    static speed = 'speed';
+    static actionPoints = 'actionPoints';
     static resistances = 'resistances';
     static movementType = 'movementType';
     static initiative = 'initiative';
@@ -22,7 +22,7 @@ export default class PawnProps {
     static defence = 'defence';
     static defenceBonus = 'defenceBonus';
     static invulnerable = 'invulnerable';
-    static hitback = 'hitback';
+    static hitbackFrequency = 'hitbackFrequency';
     static hitbackProtection = 'hitbackProtection';
 
     static propDescriptors = new Map([
@@ -57,7 +57,7 @@ export default class PawnProps {
                 Math.round,
             ],
         }],
-        [PawnProps.speed, {
+        [PawnProps.actionPoints, {
             defaultValue: 1,
             postProcessors: [
                 PawnProps.minProcessor(0),
@@ -113,7 +113,7 @@ export default class PawnProps {
         [PawnProps.invulnerable, {
             defaultValue: false,
         }],
-        [PawnProps.hitback, {
+        [PawnProps.hitbackFrequency, {
             defaultValue: HitbackFrequency.ONCE_PER_ROUND,
         }],
         [PawnProps.hitbackProtection, {

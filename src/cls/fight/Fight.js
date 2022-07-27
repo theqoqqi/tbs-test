@@ -158,8 +158,8 @@ export default class Fight {
         this.#gamecycle.start();
     }
 
-    #nextTurnIfNoSpeed(pawn) {
-        if (pawn.currentSpeed <= 0) {
+    #nextTurnIfNoActionPoints(pawn) {
+        if (pawn.currentActionPoints <= 0) {
             this.#nextTurn();
         }
     }
@@ -195,7 +195,7 @@ export default class Fight {
             return [];
         }
 
-        let searchResults = this.arena.getAvailableCells(forPawn, forPawn.currentSpeed);
+        let searchResults = this.arena.getAvailableCells(forPawn, forPawn.currentActionPoints);
 
         return searchResults.map(searchResult => {
             let {cell, distance} = searchResult;
@@ -294,7 +294,7 @@ export default class Fight {
         let promise = this.#moveExecutor.makeMove(move, path, ability);
 
         this.#moveExecutor.waitForActions()
-            .then(() => this.#nextTurnIfNoSpeed(move.pawn));
+            .then(() => this.#nextTurnIfNoActionPoints(move.pawn));
 
         return promise;
     }
