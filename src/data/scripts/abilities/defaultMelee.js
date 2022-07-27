@@ -5,8 +5,9 @@ export default {
     apply({pawn, move, path}) {
         let arena = this.fight.arena;
         let moveExecutor = this.fight.moveExecutor;
+        let victim = arena.getPawn(move.targetCell.position);
 
-        if (arena.hasPawnAt(move.targetCell.position)) {
+        if (victim && !victim.isItem) {
             moveExecutor.makeAttackMove(move, path, this);
         } else {
             moveExecutor.makeMovementMove(move, path);
@@ -39,8 +40,11 @@ export default {
 
         return allPawns
             .map(targetPawn => {
+                if (targetPawn.isItem) {
+                    return null;
+                }
+
                 if (!fight.isOpponents(forPawn, targetPawn)) {
-                    // TODO: проверять в зависимости от способности (вдруг на своих должна применяться?)
                     return null;
                 }
 

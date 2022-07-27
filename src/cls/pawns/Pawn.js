@@ -3,6 +3,7 @@ import Ability from './Ability.js';
 import Vector from '../util/Vector.js';
 import Feature from './Feature.js';
 import PawnProps from './props/PawnProps.js';
+import PawnType from '../enums/PawnType.js';
 
 let nextUniqueId = 0;
 
@@ -168,6 +169,22 @@ export default class Pawn {
         return this.props.get(propertyName);
     }
 
+    get isSquad() {
+        return this.pawnType === PawnType.SQUAD;
+    }
+
+    get isStructure() {
+        return this.pawnType === PawnType.STRUCTURE;
+    }
+
+    get isItem() {
+        return this.pawnType === PawnType.ITEM;
+    }
+
+    get performsMoves() {
+        return this.maxSpeed > 0 && [PawnType.SQUAD, PawnType.STRUCTURE].includes(this.pawnType);
+    }
+
     //endregion
 
 
@@ -250,6 +267,10 @@ export default class Pawn {
 
     //region Текущие свойства отряда
 
+    get pawnType() {
+        return this.getProperty(PawnProps.pawnType);
+    }
+
     get level() {
         return this.getProperty(PawnProps.level);
     }
@@ -306,6 +327,10 @@ export default class Pawn {
         return this.getProperty(PawnProps.defenceBonus);
     }
 
+    get invulnerable() {
+        return this.getProperty(PawnProps.invulnerable);
+    }
+
     get hitback() {
         return this.getProperty(PawnProps.hitback);
     }
@@ -319,6 +344,10 @@ export default class Pawn {
 
 
     //region Базовые свойства отряда
+
+    get basePawnType() {
+        return this.getBaseProperty(PawnProps.pawnType);
+    }
 
     get baseLevel() {
         return this.getBaseProperty(PawnProps.level);
@@ -374,6 +403,10 @@ export default class Pawn {
 
     get baseDefenseBonus() {
         return this.getBaseProperty(PawnProps.defenceBonus);
+    }
+
+    get baseInvulnerable() {
+        return this.getBaseProperty(PawnProps.invulnerable);
     }
 
     get baseHitback() {

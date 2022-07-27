@@ -14,6 +14,7 @@ import Registry from './Registry.js';
 import EffectProps from '../pawns/props/EffectProps.js';
 import EffectType from '../enums/EffectType.js';
 import Race from '../pawns/Race.js';
+import PawnType from '../enums/PawnType.js';
 
 export default class GameContext {
 
@@ -24,6 +25,8 @@ export default class GameContext {
         this.pawnPropsRegistry = new Registry();
         this.pawnOptionsRegistry = new Registry();
 
+
+
         this.registerRace('demon');
         this.registerRace('dwarf');
         this.registerRace('orc');
@@ -33,6 +36,8 @@ export default class GameContext {
         this.registerRace('spirit');
         this.registerRace('lizard');
         this.registerRace('undead');
+
+
 
         this.registerFeature('morale', {
             internalName: 'morale',
@@ -50,6 +55,8 @@ export default class GameContext {
             internalName: 'dragon',
         });
 
+
+
         this.registerEffect('burn', {
             internalName: 'burn',
             effectType: EffectType.DEBUFF,
@@ -61,7 +68,34 @@ export default class GameContext {
             modifyPawnProperty: effectScripts.blockBonus.modifyPawnProperty,
         });
 
+
+
+        this.registerTestPawn('ice_shard', {
+            [PawnProps.pawnType]: PawnType.STRUCTURE,
+            [PawnProps.health]: 1000,
+            [PawnProps.speed]: 0,
+            [PawnProps.initiative]: 0,
+            [PawnProps.movementType]: MovementType.IMMOBILE,
+            [PawnProps.level]: 1,
+            [PawnProps.race]: this.raceRegistry.get('neutral'),
+            [PawnProps.attack]: 1,
+            [PawnProps.defence]: 10,
+            [PawnProps.defenceBonus]: 1,
+            [PawnProps.hitback]: HitbackFrequency.NEVER,
+        });
+
+
+
+        this.registerTestPawn('ap_shard', {
+            [PawnProps.pawnType]: PawnType.ITEM,
+            [PawnProps.movementType]: MovementType.IMMOBILE,
+            [PawnProps.invulnerable]: true,
+        });
+
+
+
         this.registerTestPawn('walker', {
+            [PawnProps.pawnType]: PawnType.SQUAD,
             [PawnProps.health]: 5,
             [PawnProps.damageRanges]: new Ranges([
                 [DamageType.PHYSICAL, 1, 2],
@@ -107,6 +141,7 @@ export default class GameContext {
         });
 
         this.registerTestPawn('soarer', {
+            [PawnProps.pawnType]: PawnType.SQUAD,
             [PawnProps.health]: 10,
             [PawnProps.resistances]: new Resistances([
                 [DamageType.PHYSICAL, 0.5],
@@ -148,6 +183,7 @@ export default class GameContext {
         });
 
         this.registerTestPawn('archer', {
+            [PawnProps.pawnType]: PawnType.SQUAD,
             [PawnProps.health]: 30,
             [PawnProps.resistances]: new Resistances(),
             [PawnProps.speed]: 2,
@@ -204,6 +240,7 @@ export default class GameContext {
         });
 
         this.registerTestPawn('peasant', {
+            [PawnProps.pawnType]: PawnType.SQUAD,
             [PawnProps.health]: 6,
             [PawnProps.resistances]: new Resistances(),
             [PawnProps.speed]: 2,
@@ -232,6 +269,7 @@ export default class GameContext {
         });
 
         this.registerTestPawn('dragon', {
+            [PawnProps.pawnType]: PawnType.SQUAD,
             [PawnProps.health]: 800,
             [PawnProps.resistances]: new Resistances([
                 [DamageType.PHYSICAL, 0.25],
@@ -314,7 +352,7 @@ export default class GameContext {
         this.effectRegistry.register(name, effectProps);
     }
 
-    registerTestPawn(name, props, options) {
+    registerTestPawn(name, props, options = {}) {
         let pawnProps = new PawnProps(props);
         pawnProps.initDefaultValues();
 

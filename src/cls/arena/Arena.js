@@ -63,7 +63,9 @@ export default class Arena {
     }
 
     isCellPassable(position) {
-        return !this.hasPawnAt(position);
+        let pawn = this.getPawn(position);
+
+        return !pawn || pawn.isItem;
     }
 
 

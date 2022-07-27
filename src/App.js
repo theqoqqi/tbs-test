@@ -251,7 +251,7 @@ export default class App extends React.Component {
 
         let targetPawn = this.arena.getPawn(move.targetCell.position);
 
-        if (!targetPawn) {
+        if (!targetPawn || targetPawn.isItem) {
             this.hideMoveInfoTooltip();
             return;
         }
@@ -513,6 +513,7 @@ export default class App extends React.Component {
 
             return {
                 id: pawn.id,
+                pawnType: pawn.pawnType,
                 axialPosition: pawn.position,
                 name: pawn.unitName,
                 teamColor: pawn.team.hexColor,
@@ -524,7 +525,10 @@ export default class App extends React.Component {
                 debuffs: countEffects(EffectType.DEBUFF),
                 buffs: countEffects(EffectType.BUFF),
                 turnOrder: this.fight.getPositionInTurnOrder(pawn),
-                showStatusBar: true,
+                showHealthBar: !pawn.invulnerable,
+                showEffects: pawn.isSquad,
+                showStackSize: pawn.isSquad,
+                showTurnOrder: pawn.performsMoves,
             };
         });
     }

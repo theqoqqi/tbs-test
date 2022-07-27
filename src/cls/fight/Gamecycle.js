@@ -124,7 +124,9 @@ export default class Gamecycle {
         let teams = new Set();
 
         for (let pawn of this.#allPawns) {
-            teams.add(pawn.team);
+            if (pawn.team.isContender) {
+                teams.add(pawn.team);
+            }
         }
 
         return Array.from(teams.values());
@@ -159,7 +161,8 @@ export default class Gamecycle {
     }
 
     get #allPawns() {
-        return this.#fight.arena.getAllPawns();
+        return this.#fight.arena.getAllPawns()
+            .filter(pawn => pawn.performsMoves);
     }
 
     static #comparePawns(a, b) {

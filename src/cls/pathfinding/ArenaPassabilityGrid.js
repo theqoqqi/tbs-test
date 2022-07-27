@@ -32,6 +32,7 @@ export default class ArenaPassabilityGrid {
     }
 
     static #passabilityMap = {
+        [MovementType.IMMOBILE]: [],
         [MovementType.WALKING]: [
             PassabilityType.WALKING_PASSABLE,
         ],

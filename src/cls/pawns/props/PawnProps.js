@@ -2,9 +2,11 @@ import Resistances from '../../util/Resistances.js';
 import MovementType from '../../enums/MovementType.js';
 import HitbackFrequency from '../../enums/HitbackFrequency.js';
 import Race from '../Race.js';
+import PawnType from '../../enums/PawnType.js';
 
 export default class PawnProps {
 
+    static pawnType = 'pawnType';
     static level = 'level';
     static race = 'race';
     static leadership = 'leadership';
@@ -19,10 +21,14 @@ export default class PawnProps {
     static attack = 'attack';
     static defence = 'defence';
     static defenceBonus = 'defenceBonus';
+    static invulnerable = 'invulnerable';
     static hitback = 'hitback';
     static hitbackProtection = 'hitbackProtection';
 
     static propDescriptors = new Map([
+        [PawnProps.pawnType, {
+            defaultValue: PawnType.SQUAD,
+        }],
         [PawnProps.level, {
             defaultValue: 1,
         }],
@@ -54,7 +60,7 @@ export default class PawnProps {
         [PawnProps.speed, {
             defaultValue: 1,
             postProcessors: [
-                PawnProps.minProcessor(1),
+                PawnProps.minProcessor(0),
                 Math.round,
             ],
         }],
@@ -103,6 +109,9 @@ export default class PawnProps {
                 PawnProps.minProcessor(1),
                 Math.round,
             ],
+        }],
+        [PawnProps.invulnerable, {
+            defaultValue: false,
         }],
         [PawnProps.hitback, {
             defaultValue: HitbackFrequency.ONCE_PER_ROUND,

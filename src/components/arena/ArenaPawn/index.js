@@ -3,11 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Vector from '../../../cls/util/Vector.js';
 import classNames from 'classnames';
+import PawnType from '../../../cls/enums/PawnType.js';
 
 export default class ArenaPawn extends React.Component {
 
     static propTypes = {
         id: PropTypes.number.isRequired,
+        pawnType: PropTypes.instanceOf(PawnType),
         axialPosition: PropTypes.instanceOf(Vector),
         position: PropTypes.instanceOf(Vector),
         stackSize: PropTypes.number.isRequired,
@@ -18,7 +20,10 @@ export default class ArenaPawn extends React.Component {
         debuffs: PropTypes.number,
         buffs: PropTypes.number,
         turnOrder: PropTypes.number,
-        showStatusBar: PropTypes.bool,
+        showHealthBar: PropTypes.bool,
+        showEffects: PropTypes.bool,
+        showStackSize: PropTypes.bool,
+        showTurnOrder: PropTypes.bool,
 
         onClick: PropTypes.func,
         onRightClick: PropTypes.func,
@@ -29,6 +34,7 @@ export default class ArenaPawn extends React.Component {
 
     render() {
         let {
+            pawnType,
             position,
             stackSize,
             health,
@@ -38,8 +44,11 @@ export default class ArenaPawn extends React.Component {
             debuffs,
             buffs,
             turnOrder,
-            showStatusBar,
-            
+            showHealthBar,
+            showEffects,
+            showStackSize,
+            showTurnOrder,
+
             onClick,
             onRightClick,
             onMouseMove,
@@ -47,9 +56,13 @@ export default class ArenaPawn extends React.Component {
             onMouseLeave,
         } = this.props;
 
+        let showStatusBar = showStackSize || showEffects || showTurnOrder;
+
         return (
             <div
-                className='arena-pawn'
+                className={classNames('arena-pawn', {
+                    [pawnType.enumKey.toLowerCase()]: true,
+                })}
                 style={{
                     '--team-color': teamColor,
                     left: Math.round(position.x) + 'px',
@@ -62,26 +75,34 @@ export default class ArenaPawn extends React.Component {
                 onMouseLeave={e => onMouseLeave?.(this, e)}
             >
                 {name}
-                <div className='health-bar' style={{'--percent': health / maxHealth}}>
-                    <div className='health' />
-                </div>
+                {showHealthBar && (
+                    <div className='health-bar' style={{'--percent': health / maxHealth}}>
+                        <div className='health' />
+                    </div>
+                )}
                 {showStatusBar && (
                     <div className='status-bar'>
-                        <span className='effects'>
-                            <span className={classNames('debuffs', {muted: debuffs === 0})}>
-                                {debuffs}
+                        {showStackSize && (
+                            <span className='effects'>
+                                <span className={classNames('debuffs', {muted: debuffs === 0})}>
+                                    {debuffs}
+                                </span>
+                                <span className='separator' />
+                                <span className={classNames('buffs', {muted: buffs === 0})}>
+                                    {buffs}
+                                </span>
                             </span>
-                            <span className='separator' />
-                            <span className={classNames('buffs', {muted: buffs === 0})}>
-                                {buffs}
+                        )}
+                        {showEffects && (
+                            <span className='stack-size'>
+                                {stackSize}
                             </span>
-                        </span>
-                        <span className='stack-size'>
-                            {stackSize}
-                        </span>
-                        <span className='turn-order' style={{'--order': turnOrder ?? 0}}>
-                            {turnOrder ?? '×'}
-                        </span>
+                        )}
+                        {showTurnOrder && (
+                            <span className='turn-order' style={{'--order': turnOrder ?? 0}}>
+                                {turnOrder ?? '×'}
+                            </span>
+                        )}
                     </div>
                 )}
             </div>

@@ -22,6 +22,7 @@ import PawnAbilityAddedEvent from '../events/types/PawnAbilityAddedEvent.js';
 import PawnRemovedEvent from '../events/types/PawnRemovedEvent.js';
 import PawnFeatureRemovedEvent from '../events/types/PawnFeatureRemovedEvent.js';
 import PawnAbilityRemovedEvent from '../events/types/PawnAbilityRemovedEvent.js';
+import MovementType from '../enums/MovementType.js';
 
 export default class Fight {
 
@@ -72,6 +73,16 @@ export default class Fight {
         });
         this.createPawn(Vector.from(1, 1), 'dragon', {
             team: Team.DEFAULT_2,
+            stackSize: 1,
+        });
+
+        this.createPawn(Vector.from(1, -2), 'ice_shard', {
+            team: Team.NEUTRAL,
+            stackSize: 1,
+        });
+
+        this.createPawn(Vector.from(-1, 2), 'ap_shard', {
+            team: Team.NEUTRAL,
             stackSize: 1,
         });
     }
@@ -163,6 +174,10 @@ export default class Fight {
     }
 
     #getMovementMoves(forPawn) {
+        if (forPawn.movementType === MovementType.IMMOBILE) {
+            return [];
+        }
+
         let searchResults = this.arena.getAvailableCells(forPawn, forPawn.currentSpeed);
 
         return searchResults.map(searchResult => {
