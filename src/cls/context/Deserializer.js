@@ -52,6 +52,7 @@ export default class Deserializer {
 
     #featureMappings = {
         props: {
+            getEvents: scriptMapper(featureScripts),
             modifyPawnProperty: scriptMapper(featureScripts),
             outcomingDamageModifier: scriptMapper(featureScripts),
             incomingDamageModifier: scriptMapper(featureScripts),
