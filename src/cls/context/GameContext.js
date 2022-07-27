@@ -1,5 +1,4 @@
 import MovementType from '../enums/MovementType.js';
-import Race from '../types/Race.js';
 import Ranges from '../util/Ranges.js';
 import DamageType from '../enums/DamageType.js';
 import Resistances from '../util/Resistances.js';
@@ -14,6 +13,7 @@ import PawnProps from '../pawns/props/PawnProps.js';
 import Registry from './Registry.js';
 import EffectProps from '../pawns/props/EffectProps.js';
 import EffectType from '../enums/EffectType.js';
+import Race from '../pawns/Race.js';
 
 export default class GameContext {
 
