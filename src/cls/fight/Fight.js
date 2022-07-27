@@ -179,7 +179,13 @@ export default class Fight {
     //region Информация о ходах
 
     getAvailableMoves(forPawn, ability) {
-        let moves = this.#getMovementMoves(forPawn);
+        let moves = [];
+
+        if (!ability || ability.slot === AbilitySlot.REGULAR) {
+            let movementMoves = this.#getMovementMoves(forPawn);
+
+            moves = moves.concat(movementMoves);
+        }
 
         if (ability) {
             let abilityMoves = Fight.#getAbilityMoves(ability, moves);
