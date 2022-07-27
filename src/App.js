@@ -16,6 +16,7 @@ import EffectType from './cls/enums/EffectType.js';
 import ActionQueueStartEvent from './cls/events/types/ActionQueueStartEvent.js';
 import ActionQueueStopEvent from './cls/events/types/ActionQueueStopEvent.js';
 import GamecycleTurnStartEvent from './cls/events/types/GamecycleTurnStartEvent.js';
+import {arenaData, armies} from './fightInit.js';
 
 export default class App extends React.Component {
 
@@ -31,7 +32,7 @@ export default class App extends React.Component {
         this.arenaRef = React.createRef();
         this.splashLayerRef = React.createRef();
 
-        this.fight = new Fight(gameContext);
+        this.fight = new Fight(gameContext, arenaData, armies);
         this.viewedPawn = null;
         this.selectedPawn = null;
         this.selectedAbility = null;

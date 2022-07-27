@@ -1,6 +1,5 @@
 import Arena from '../arena/Arena.js';
 import EventBus from '../events/EventBus.js';
-import arenaData from '../../data/json/arenas/generic_with_obstacles.json';
 import PassabilityType from '../enums/PassabilityType.js';
 import Vector from '../util/Vector.js';
 import ArenaMove from '../arena/ArenaMove.js';
@@ -34,7 +33,7 @@ export default class Fight {
 
     #moveExecutor;
 
-    constructor(gameContext) {
+    constructor(gameContext, arenaData, armies) {
         this.arena = new Arena();
         this.#gameContext = gameContext;
         this.#eventBus = new EventBus();
@@ -42,49 +41,9 @@ export default class Fight {
         this.#moveExecutor = new MoveExecutor(this, this.#eventBus);
 
         this.#bindGlobalListeners();
-
-        for (const cellData of arenaData.cells) {
-            if (cellData['obstacles'] === 'IMPASSABLE') {
-                continue;
-            }
-
-            let cell = this.addCell(...cellData['position']);
-
-            if (cellData.passability) {
-                cell.passability = PassabilityType.enumValueOf(cellData.passability);
-            }
-        }
-
-        this.createPawn(Vector.from(-1, -1), 'walker', {
-            team: Team.DEFAULT_1,
-            stackSize: 250,
-        });
-        this.createPawn(Vector.from(-2, 1), 'soarer', {
-            team: Team.DEFAULT_1,
-            stackSize: 100,
-        });
-        this.createPawn(Vector.from(-3, 0), 'archer', {
-            team: Team.DEFAULT_1,
-            stackSize: 50,
-        });
-        this.createPawn(Vector.from(2, -1), 'walker', {
-            team: Team.DEFAULT_2,
-            stackSize: 150,
-        });
-        this.createPawn(Vector.from(1, 1), 'dragon', {
-            team: Team.DEFAULT_2,
-            stackSize: 1,
-        });
-
-        this.createPawn(Vector.from(1, -2), 'ice_shard', {
-            team: Team.NEUTRAL,
-            stackSize: 1,
-        });
-
-        this.createPawn(Vector.from(-1, 2), 'ap_shard', {
-            team: Team.NEUTRAL,
-            stackSize: 1,
-        });
+        this.#initArena(arenaData);
+        this.#initArmies(armies);
+        this.#initNeutrals();
     }
 
     #bindGlobalListeners() {
@@ -104,6 +63,64 @@ export default class Fight {
             Fight.#executeScriptedCallbacks(effectEvents, eventType, event);
             Fight.#executeScriptedCallbacks(featureEvents, eventType, event);
             Fight.#executeScriptedCallbacks(abilityEvents, eventType, event);
+        });
+    }
+
+    #initArena(arenaData) {
+        for (const cellData of arenaData.cells) {
+            if (cellData['obstacles'] === 'IMPASSABLE') {
+                continue;
+            }
+
+            let cell = this.addCell(...cellData['position']);
+
+            if (cellData.passability) {
+                cell.passability = PassabilityType.enumValueOf(cellData.passability);
+            }
+        }
+
+        this.squadPositions = arenaData.squadPositions.map(positions => {
+            return positions.map(Vector.fromArray);
+        });
+    }
+
+    #initArmies(armies) {
+        let teams = armies.map(army => army.team);
+        let squadPositionsByTeams = new Map(this.squadPositions.map(positions => {
+            let team = teams.shift();
+            positions = positions.slice();
+
+            return [ team, positions ];
+        }));
+
+        let getNextPosition = team => {
+            let positions = squadPositionsByTeams.get(team);
+
+            return positions.shift();
+        };
+
+        for (let army of armies) {
+            for (const squad of army.squads) {
+                let team = army.team;
+                let position = getNextPosition(team);
+
+                this.createPawn(position, squad.unitName, {
+                    team,
+                    ...squad.options
+                });
+            }
+        }
+    }
+
+    #initNeutrals() {
+        this.createPawn(Vector.from(1, -2), 'ice_shard', {
+            team: Team.NEUTRAL,
+            stackSize: 1,
+        });
+
+        this.createPawn(Vector.from(-1, 2), 'ap_shard', {
+            team: Team.NEUTRAL,
+            stackSize: 1,
         });
     }
 
