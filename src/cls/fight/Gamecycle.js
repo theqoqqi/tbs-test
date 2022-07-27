@@ -1,6 +1,7 @@
 import GamecycleStartEvent from '../events/types/GamecycleStartEvent.js';
 import GamecycleTurnStartEvent from '../events/types/GamecycleTurnStartEvent.js';
 import GamecycleRoundStartEvent from '../events/types/GamecycleRoundStartEvent.js';
+import GamecycleGameOverEvent from '../events/types/GamecycleGameOverEvent.js';
 
 export default class Gamecycle {
 
@@ -115,6 +116,8 @@ export default class Gamecycle {
         if (aliveTeams.length <= 1) {
             this.#isGameOver = true;
             this.#winner = aliveTeams[0] ?? null;
+
+            this.#eventBus.dispatch(GamecycleGameOverEvent);
 
             console.log('Game over. Winner:', this.#winner);
         }

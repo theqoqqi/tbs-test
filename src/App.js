@@ -18,6 +18,8 @@ import ActionQueueStopEvent from './cls/events/types/ActionQueueStopEvent.js';
 import GamecycleTurnStartEvent from './cls/events/types/GamecycleTurnStartEvent.js';
 import {arenaData, armies} from './fightInit.js';
 import {GlobalHotKeys} from 'react-hotkeys';
+import FightSummaryModal from './components/ui/FightSummaryModal';
+import GamecycleGameOverEvent from './cls/events/types/GamecycleGameOverEvent.js';
 
 const globalKeyMap = {
     WAIT: {
@@ -77,18 +79,21 @@ export default class App extends React.Component {
             showMoveInfo: false,
             viewedMoveInfo: null,
             viewedMoveInfoPosition: null,
+
+            fightSummary: null,
         };
     }
 
     componentDidMount() {
-        setInterval(this.handleAnimationFrame, 100);
-
-        this.fight.start();
         this.fight.on(PawnDamageReceivedEvent, this.handlePawnDamageReceived);
         this.fight.on(ActionQueueStartEvent, this.handleActionQueueStart);
         this.fight.on(ActionQueueStopEvent, this.handleActionQueueStop);
         this.fight.on(GamecycleTurnStartEvent, this.handleGamecycleTurnStart);
+        this.fight.on(GamecycleGameOverEvent, this.handleGamecycleGameOver);
 
+        setInterval(this.handleAnimationFrame, 100);
+
+        this.fight.start();
         this.setSelectedPawn(this.fight.currentPawn);
     }
 
@@ -144,6 +149,12 @@ export default class App extends React.Component {
 
     handleGamecycleTurnStart = () => {
         this.setSelectedPawn(this.fight.currentPawn);
+    }
+
+    handleGamecycleGameOver = () => {
+        let fightSummary = this.fight.calculateSummary();
+
+        this.setFightSummary(fightSummary);
     }
 
     //endregion
@@ -324,6 +335,12 @@ export default class App extends React.Component {
 
 
     //region Изменение состояния и полей
+
+    setFightSummary(fightSummary) {
+        this.setState({
+            fightSummary,
+        });
+    }
 
     setSelectedPawn(pawn) {
         this.selectedPawn = pawn;
@@ -674,6 +691,7 @@ export default class App extends React.Component {
             showMoveInfo,
             viewedMoveInfo,
             viewedMoveInfoPosition,
+            fightSummary,
         } = this.state;
 
         let globalHandlers = {
@@ -733,6 +751,11 @@ export default class App extends React.Component {
                     position={viewedMoveInfoPosition ?? undefined}
                 />
                 <SplashLayer ref={this.splashLayerRef} />
+                <FightSummaryModal
+                    opened={!!fightSummary}
+                    summary={fightSummary}
+                    onClose={() => window.location.reload()}
+                />
             </div>
         );
     }

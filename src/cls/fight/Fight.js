@@ -34,12 +34,17 @@ export default class Fight {
 
     #moveExecutor;
 
+    #armies;
+
+    #armySlotsToPawns;
+
     constructor(gameContext, arenaData, armies) {
         this.arena = new Arena();
         this.#gameContext = gameContext;
         this.#eventBus = new EventBus();
         this.#gamecycle = new Gamecycle(this, this.#eventBus);
         this.#moveExecutor = new MoveExecutor(this, this.#eventBus);
+        this.#armies = armies;
 
         this.#bindGlobalListeners();
         this.#initArena(arenaData);
@@ -105,15 +110,19 @@ export default class Fight {
             return positions.shift();
         };
 
+        this.#armySlotsToPawns = new Map();
+
         for (let army of armies) {
             for (const squad of army.squads) {
                 let team = army.team;
                 let position = getNextPosition(team);
 
-                this.createPawn(position, squad.unitName, {
+                let pawn = this.createPawn(position, squad.unitName, {
                     team,
                     ...squad.options
                 });
+
+                this.#armySlotsToPawns.set(squad, pawn);
             }
         }
     }
@@ -461,6 +470,8 @@ export default class Fight {
         for (const ability of pawn.abilities) {
             this.#eventBus.dispatch(PawnAbilityAddedEvent, { ability });
         }
+
+        return pawn;
     }
 
     removePawn(pawn) {
@@ -484,12 +495,34 @@ export default class Fight {
 
     //region Прочее
 
-    randomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
+    calculateSummary() {
+        let armies = this.#armies.map(army => this.calculateSummaryForArmy(army));
+
+        return {
+            winner: this.#gamecycle.winner,
+            armies,
+        };
     }
 
-    randomFloat(min, max) {
-        return Math.random() * (max - min) + min;
+    calculateSummaryForArmy(army) {
+        let squads = army.squads.map(squad => {
+            let pawn = this.#armySlotsToPawns.get(squad);
+            let unitName = pawn.unitName;
+            let deaths = Math.max(0, squad.options.stackSize - pawn.stackSize);
+
+            return {
+                unitName,
+                deaths,
+            }
+        });
+
+        return {
+            squads,
+        };
+    }
+
+    randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     hasEnemiesNearby(forPawn) {
