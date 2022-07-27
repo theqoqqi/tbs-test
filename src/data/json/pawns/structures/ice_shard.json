@@ -6,7 +6,8 @@
     "initiative": 0,
     "defence": 10,
     "health": 1000,
-    "movementType": "immobile"
+    "movementType": "immobile",
+    "hitbackFrequency": "never"
   },
   "options": {
     "features": [],
