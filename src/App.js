@@ -369,7 +369,7 @@ export default class App extends React.Component {
 
         let neighborCell = this.getSuitableNeighborCell(pawn, cell, mousePosition);
 
-        let path = this.arena.isCellFree(cell.position)
+        let path = this.arena.isCellPassable(cell.position)
             ? this.arena.findPath(pawn, cell.position)
             : this.arena.findPath(pawn, neighborCell.position);
         let pathTargetPosition = cell.position;
@@ -430,9 +430,9 @@ export default class App extends React.Component {
     canStrafeTo(pawn, cell) {
         let pawnCell = this.arena.getCell(pawn.position);
         let move = this.moves.find(move => move.targetCell === cell);
-        let isCellFree = this.arena.isCellFree(cell.position);
+        let isCellPassable = this.arena.isCellPassable(cell.position);
 
-        return pawnCell === cell || (isCellFree && move && move.actionPoints < move.pawn.currentSpeed);
+        return pawnCell === cell || (isCellPassable && move && move.actionPoints < move.pawn.currentSpeed);
     }
 
 

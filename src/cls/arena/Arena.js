@@ -62,7 +62,7 @@ export default class Arena {
         return this.grid.getAllCells();
     }
 
-    isCellFree(position) {
+    isCellPassable(position) {
         return !this.hasPawnAt(position);
     }
 

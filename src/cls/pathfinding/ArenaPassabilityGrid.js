@@ -20,14 +20,14 @@ export default class ArenaPassabilityGrid {
     isThroughPassable(position, byPawn) {
         let cell = this.arena.getCell(position);
 
-        return (byPawn.movementType === MovementType.FLYING || this.arena.isCellFree(position))
+        return (byPawn.movementType === MovementType.FLYING || this.arena.isCellPassable(position))
             && ArenaPassabilityGrid.#checkPassability(cell.passability, byPawn.movementType);
     }
 
     isPassable(position) {
         let cell = this.arena.getCell(position);
 
-        return this.arena.isCellFree(position)
+        return this.arena.isCellPassable(position)
             && ArenaPassabilityGrid.#checkPassability(cell.passability, MovementType.WALKING);
     }
 
