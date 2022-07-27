@@ -66,19 +66,17 @@ export default class MoveExecutor {
     }
 
     static shouldHitback(attacker, victim, ability) {
-        return victim.canHitback && !attacker.hitbackProtection && !ability.noHitbacks;
+        return victim.stackSize > 0 && victim.canHitback && !attacker.hitbackProtection && !ability.noHitbacks;
     }
 
     tryHitback(attacker, victim, attackerAbility) {
-        if (victim.stackSize === 0) {
-            return Promise.resolve();
-        }
+        return this.#enqueueAction(resolve => {
+            if (MoveExecutor.shouldHitback(attacker, victim, attackerAbility)) {
+                this.#hitback(attacker, victim);
+            }
 
-        if (!MoveExecutor.shouldHitback(attacker, victim, attackerAbility)) {
-            return Promise.resolve();
-        }
-
-        return this.#hitback(attacker, victim);
+            resolve();
+        });
     }
 
     #hitback(attacker, victim) {
