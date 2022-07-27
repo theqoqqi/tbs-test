@@ -22,6 +22,7 @@ import PawnRemovedEvent from '../events/types/PawnRemovedEvent.js';
 import PawnFeatureRemovedEvent from '../events/types/PawnFeatureRemovedEvent.js';
 import PawnAbilityRemovedEvent from '../events/types/PawnAbilityRemovedEvent.js';
 import MovementType from '../enums/MovementType.js';
+import lodash from 'lodash';
 
 export default class Fight {
 
@@ -68,20 +69,25 @@ export default class Fight {
 
     #initArena(arenaData) {
         for (const cellData of arenaData.cells) {
-            if (cellData['obstacles'] === 'IMPASSABLE') {
-                continue;
-            }
-
             let cell = this.addCell(...cellData['position']);
 
             if (cellData.passability) {
-                cell.passability = PassabilityType.enumValueOf(cellData.passability);
+                let passability = cellData.passability;
+
+                if (Array.isArray(passability)) {
+                    passability = lodash.sample(passability);
+                }
+
+                cell.passability = PassabilityType.enumValueOf(passability);
             }
         }
 
         this.squadPositions = arenaData.squadPositions.map(positions => {
             return positions.map(Vector.fromArray);
         });
+
+        this.structurePositions = arenaData.structurePositions.map(Vector.fromArray);
+        this.structures = arenaData.structures;
     }
 
     #initArmies(armies) {
@@ -113,15 +119,17 @@ export default class Fight {
     }
 
     #initNeutrals() {
-        this.createPawn(Vector.from(1, -2), 'iceShard', {
-            team: Team.NEUTRAL,
-            stackSize: 1,
-        });
+        let structurePositions = lodash.shuffle(this.structurePositions);
 
-        this.createPawn(Vector.from(-1, 2), 'apShard', {
-            team: Team.NEUTRAL,
-            stackSize: 1,
-        });
+        for (let i = 0; i < this.structures; i++) {
+            let structureName = 'iceShard';
+            let position = structurePositions.pop();
+
+            this.createPawn(position, structureName, {
+                team: Team.NEUTRAL,
+                stackSize: 1,
+            });
+        }
     }
 
     static #getEvents(effect) {
