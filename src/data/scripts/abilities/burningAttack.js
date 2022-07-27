@@ -1,4 +1,5 @@
 import PawnDamageReceivedEvent from '../../../cls/events/types/PawnDamageReceivedEvent.js';
+import AbilitySlot from '../../../cls/enums/AbilitySlot.js';
 
 export default {
     /** @this Effect */
@@ -8,7 +9,7 @@ export default {
                 let fight = this.fight;
                 let pawn = this.owner;
 
-                if (event.attacker !== pawn) {
+                if (event.attacker !== pawn || event.ability.slot !== AbilitySlot.REGULAR) {
                     return;
                 }
 
