@@ -86,7 +86,7 @@ export default class MoveExecutor {
 
             victim.consumeHitback();
 
-            this.attack(victim, attacker, hitbackAbility, false);
+            this.attack(victim, attacker, hitbackAbility, 1, false);
 
             resolve();
         });
@@ -125,9 +125,11 @@ export default class MoveExecutor {
         })
     }
 
-    attack(attacker, victim, ability, consumeActionPoints = true) {
+    attack(attacker, victim, ability, indexInHitChain = 0, consumeActionPoints = true) {
         return this.#enqueueAction(resolve => {
             let hitInfo = this.#fight.getRandomHitInfo(attacker, victim, ability);
+
+            hitInfo.indexInHitChain = indexInHitChain;
 
             this.#applyDamage({
                 attacker,
