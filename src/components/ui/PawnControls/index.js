@@ -1,6 +1,7 @@
 import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
+import {default as AbilitySlotEnum} from '../../../cls/enums/AbilitySlot.js';
 import AbilitySlot from '../AbilitySlot';
 import classNames from 'classnames';
 import ActionPointsBar from '../ActionPointsBar';
@@ -19,25 +20,22 @@ export default class PawnControls extends React.Component {
         onDefenceButtonClick: PropTypes.func,
     };
 
-    getThreeAbilities() {
-        let abilities = this.getAbilities();
-
-        while (abilities.length < 3) {
-            abilities.push(<AbilitySlot key={abilities.length} empty />);
-        }
-
-        return abilities;
-    }
-
     getAbilities() {
         if (!this.props.pawnInfo) {
             return [];
         }
 
-        return this.props.pawnInfo.abilities.map((ability, index) => {
+        let slots = [AbilitySlotEnum.ABILITY_1, AbilitySlotEnum.ABILITY_2, AbilitySlotEnum.ABILITY_3];
+
+        return slots.map((slot, index) => {
+            let ability = this.props.pawnInfo.abilities.find(ability => ability.slot === slot);
+
+            if (!ability) {
+                return <AbilitySlot key={index} empty />;
+            }
+
             let onClick = () => {
-                // noinspection JSCheckFunctionSignatures
-                return this.props.onAbilityClick?.(ability.slot);
+                return this.props.onAbilityClick?.(slot);
             };
 
             return (
@@ -56,7 +54,8 @@ export default class PawnControls extends React.Component {
             onWaitButtonClick,
             onDefenceButtonClick
         } = this.props;
-        let $abilities = this.getThreeAbilities();
+
+        let $abilities = this.getAbilities();
 
         return (
             <div className='pawn-controls'>

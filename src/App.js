@@ -232,7 +232,7 @@ export default class App extends React.Component {
 
         let ability = this.fight.getAbilityInSlot(pawn, abilitySlot);
 
-        if (!this.fight.isAbilityReady(pawn, ability)) {
+        if (!ability || !this.fight.isAbilityReady(pawn, ability)) {
             return;
         }
 
