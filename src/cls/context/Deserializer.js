@@ -10,6 +10,7 @@ import * as abilityScripts from '../../data/scripts/abilities';
 import lodash from 'lodash';
 import AbilitySlot from '../enums/AbilitySlot.js';
 import EffectType from '../enums/EffectType.js';
+import AbilityProps from '../pawns/props/AbilityProps.js';
 
 let enumMapper = enumType => {
     return value => {
@@ -17,8 +18,12 @@ let enumMapper = enumType => {
     };
 };
 
-let constructorMapper = constructor => {
+let constructorMapper = (constructor, deserializer) => {
     return value => {
+        if (deserializer) {
+            value = deserializer(value);
+        }
+
         return new constructor(value);
     };
 };
@@ -71,13 +76,13 @@ export default class Deserializer {
         },
         options: {
             features: arrayMapper(registryMapper(() => this.#context.featureRegistry)),
-            abilities: arrayMapper(value => this.deserialize(value, {
+            abilities: arrayMapper(constructorMapper(AbilityProps, value => this.deserialize(value, {
                 slot: enumMapper(AbilitySlot),
                 damageRanges: constructorMapper(Ranges),
                 getEvents: scriptMapper(abilityScripts),
                 targetCollector: scriptMapper(abilityScripts),
                 apply: scriptMapper(abilityScripts),
-            })),
+            }))),
         }
     };
 
