@@ -5,7 +5,17 @@
     "invulnerable": true
   },
   "options": {
-    "features": [],
-    "abilities": []
+    "features": [
+      "activateOnStep"
+    ],
+    "abilities": [
+      {
+        "slot": "regular",
+        "apply": "apShard.apply",
+        "scriptParams": {
+          "actionPoints": 1
+        }
+      }
+    ]
   }
 }
