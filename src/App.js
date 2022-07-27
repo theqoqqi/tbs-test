@@ -182,7 +182,9 @@ export default class App extends React.Component {
 
         let pawn = this.arena.getPawn(pawnComponent.props.axialPosition);
 
-        this.openPawnInfoModalFor(pawn);
+        if (pawn.isSquad) {
+            this.openPawnInfoModalFor(pawn);
+        }
     }
 
     handlePawnMouseMove = (pawnComponent, event) => {
