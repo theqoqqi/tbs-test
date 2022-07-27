@@ -1,0 +1,67 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 5,
+    "leadership": 2000,
+    "morale": 0,
+    "attack": 50,
+    "defence": 40,
+    "defenceBonus": 8,
+    "resistances": [
+      ["physical", 0.25],
+      ["magic", 0.5],
+      ["fire", 0.8]
+    ],
+    "actionPoints": 8,
+    "initiative": 7,
+    "criticalHitChance": 0.2,
+    "health": 800,
+    "movementType": "flying",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false
+  },
+  "options": {
+    "features": [
+      "dragon"
+    ],
+    "abilities": [
+      {
+        "slot": "regular",
+        "targetCollector": "defaultMelee.targetCollector",
+        "apply": "defaultMelee.apply",
+        "getEvents": "burningAttack.getEvents",
+        "damageRanges": [
+          ["fire", 100, 120]
+        ],
+        "scriptParams": {
+          "burnDuration": 2
+        }
+      },
+      {
+        "internalName": "run",
+        "slot": "ability_1",
+        "charges": 1,
+        "apply": "defaultRun.apply",
+        "scriptParams": {
+          "actionPoints": 2
+        }
+      },
+      {
+        "internalName": "powerShot",
+        "slot": "ability_3",
+        "targetCollector": "defaultRanged.targetCollector",
+        "apply": "defaultRanged.apply",
+        "damageRanges": [
+          ["fire", 80, 200]
+        ],
+        "reload": 2,
+        "minDistance": 2,
+        "maxDistance": 5,
+        "distancePenalty": 0.5,
+        "mutedIfNearEnemy": true,
+        "noHitbacks": true
+      }
+    ]
+  }
+}

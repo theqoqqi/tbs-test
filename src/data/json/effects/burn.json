@@ -1,0 +1,6 @@
+{
+  "props": {
+    "effectType": "debuff",
+    "getEvents": "burn.getEvents"
+  }
+}

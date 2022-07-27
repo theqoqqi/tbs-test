@@ -1,0 +1,6 @@
+{
+  "props": {
+    "isHidden": true,
+    "modifyPawnProperty": "morale.modifyPawnProperty"
+  }
+}

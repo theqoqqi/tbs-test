@@ -1,0 +1,44 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 1,
+    "leadership": 8,
+    "morale": 0,
+    "attack": 3,
+    "defence": 1,
+    "defenceBonus": 1,
+    "resistances": [
+      ["magic", 0.25]
+    ],
+    "actionPoints": 2,
+    "initiative": 3,
+    "criticalHitChance": 0.15,
+    "health": 5,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false
+  },
+  "options": {
+    "features": ["dragonSlayer"],
+    "abilities": [
+      {
+        "slot": "regular",
+        "targetCollector": "defaultMelee.targetCollector",
+        "apply": "defaultMelee.apply",
+        "damageRanges": [
+          ["physical", 1, 2]
+        ]
+      },
+      {
+        "internalName": "run",
+        "slot": "ability_1",
+        "charges": 1,
+        "apply": "defaultRun.apply",
+        "scriptParams": {
+          "actionPoints": 2
+        }
+      }
+    ]
+  }
+}

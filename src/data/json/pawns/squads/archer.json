@@ -1,0 +1,60 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "human",
+    "level": 2,
+    "leadership": 50,
+    "morale": 0,
+    "attack": 15,
+    "defence": 8,
+    "defenceBonus": 2,
+    "resistances": [],
+    "actionPoints": 2,
+    "initiative": 5,
+    "criticalHitChance": 0.12,
+    "health": 30,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false
+  },
+  "options": {
+    "features": [],
+    "abilities": [
+      {
+        "slot": "regular",
+        "targetCollector": "defaultRanged.targetCollector",
+        "apply": "defaultRanged.apply",
+        "damageRanges": [
+          ["physical", 4, 5]
+        ],
+        "minDistance": 2,
+        "maxDistance": 5,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true,
+        "noHitbacks": true
+      },
+      {
+        "slot": "regular",
+        "targetCollector": "defaultMelee.targetCollector",
+        "apply": "defaultMelee.apply",
+        "damageRanges": [
+          ["physical", 2, 3]
+        ]
+      },
+      {
+        "internalName": "powerShot",
+        "slot": "ability_1",
+        "targetCollector": "defaultRanged.targetCollector",
+        "apply": "defaultRanged.apply",
+        "damageRanges": [
+          ["physical", 6, 8]
+        ],
+        "reload": 2,
+        "minDistance": 2,
+        "maxDistance": 5,
+        "disabledIfNearEnemy": true,
+        "noHitbacks": true
+      }
+    ]
+  }
+}

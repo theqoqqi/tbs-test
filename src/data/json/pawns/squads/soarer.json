@@ -1,0 +1,46 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "undead",
+    "level": 1,
+    "leadership": 12,
+    "morale": 0,
+    "attack": 3,
+    "defence": 5,
+    "defenceBonus": 2,
+    "resistances": [
+      ["physical", 0.5]
+    ],
+    "actionPoints": 3,
+    "initiative": 2,
+    "criticalHitChance": 0.08,
+    "health": 10,
+    "movementType": "soaring",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false
+  },
+  "options": {
+    "features": [],
+    "abilities": [
+      {
+        "slot": "regular",
+        "targetCollector": "defaultMelee.targetCollector",
+        "apply": "defaultMelee.apply",
+        "damageRanges": [
+          ["physical", 1, 2],
+          ["magic", 1, 1]
+        ]
+      },
+      {
+        "internalName": "magicAttack",
+        "slot": "ability_1",
+        "targetCollector": "defaultMelee.targetCollector",
+        "apply": "defaultMelee.apply",
+        "reload": 2,
+        "damageRanges": [
+          ["magic", 3, 4]
+        ]
+      }
+    ]
+  }
+}

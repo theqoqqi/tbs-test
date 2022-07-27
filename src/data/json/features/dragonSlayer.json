@@ -1,0 +1,8 @@
+{
+  "props": {
+    "outcomingDamageModifier": "dragonSlayer.outcomingDamageModifier",
+    "scriptParams": {
+      "multiplier": 1.5
+    }
+  }
+}

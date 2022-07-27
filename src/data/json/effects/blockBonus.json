@@ -1,0 +1,6 @@
+{
+  "props": {
+    "effectType": "buff",
+    "modifyPawnProperty": "blockBonus.modifyPawnProperty"
+  }
+}
