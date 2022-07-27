@@ -1,9 +1,9 @@
 
-export {default as walker} from './squads/walker.json';
-export {default as soarer} from './squads/soarer.json';
-export {default as archer} from './squads/archer.json';
-export {default as peasant} from './squads/peasant.json';
-export {default as dragon} from './squads/dragon.json';
+export {default as test_walker} from './squads/test_walker.json';
+export {default as test_soarer} from './squads/test_soarer.json';
+export {default as test_archer} from './squads/test_archer.json';
+export {default as test_peasant} from './squads/test_peasant.json';
+export {default as test_dragon} from './squads/test_dragon.json';
 
 export {default as iceShard} from './structures/iceShard.json';
 
