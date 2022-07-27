@@ -113,12 +113,12 @@ export default class Fight {
     }
 
     #initNeutrals() {
-        this.createPawn(Vector.from(1, -2), 'ice_shard', {
+        this.createPawn(Vector.from(1, -2), 'iceShard', {
             team: Team.NEUTRAL,
             stackSize: 1,
         });
 
-        this.createPawn(Vector.from(-1, 2), 'ap_shard', {
+        this.createPawn(Vector.from(-1, 2), 'apShard', {
             team: Team.NEUTRAL,
             stackSize: 1,
         });
