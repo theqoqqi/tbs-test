@@ -57,7 +57,6 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        // requestAnimationFrame(this.handleAnimationFrame);
         setInterval(this.handleAnimationFrame, 100);
 
         this.fight.start();
@@ -65,16 +64,9 @@ export default class App extends React.Component {
         this.fight.on(ActionQueueStartEvent, this.handleActionQueueStart);
         this.fight.on(ActionQueueStopEvent, this.handleActionQueueStop);
         this.fight.on(GamecycleTurnStartEvent, this.handleGamecycleTurnStart);
+
         this.setSelectedPawn(this.fight.currentPawn);
     }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return true;
-    }
-
-
-
-    // Коллбеки
 
     handleAnimationFrame = () => {
         this.setState({
@@ -86,12 +78,16 @@ export default class App extends React.Component {
             viewedPawnInfo: this.viewedPawn
                 ? this.collectViewedPawnInfo(this.viewedPawn)
                 : null,
-        })
+        });
+    }
 
-        // requestAnimationFrame(this.handleAnimationFrame);
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return true;
     }
 
 
+
+    //region Коллбеки событий
 
     handlePawnDamageReceived = ({attacker, victim, hitInfo}) => {
         let cell = this.arena.getCell(victim.position);
@@ -114,8 +110,6 @@ export default class App extends React.Component {
         }
     }
 
-
-
     handleActionQueueStart = () => {
         this.clearSelectedPawn();
     }
@@ -128,7 +122,11 @@ export default class App extends React.Component {
         this.setSelectedPawn(this.fight.currentPawn);
     }
 
+    //endregion
 
+
+
+    //region Коллбеки интерфейса
 
     handleCellClick = (cellComponent) => {
         let cell = this.arena.getCell(cellComponent.props.axialPosition);
@@ -242,9 +240,11 @@ export default class App extends React.Component {
         this.fight.makeDefenceMove(this.selectedPawn);
     }
 
+    //endregion
 
 
-    // Подсказки и модальные окна
+
+    //region Подсказки и модальные окна
 
     updateMoveInfoTooltip(event, cell, move) {
         if (!move) {
@@ -295,9 +295,11 @@ export default class App extends React.Component {
         })
     }
 
+    //endregion
 
 
-    // Изменение состояния и полей
+
+    //region Изменение состояния и полей
 
     setSelectedPawn(pawn) {
         this.selectedPawn = pawn;
@@ -343,9 +345,11 @@ export default class App extends React.Component {
         });
     }
 
+    //endregion
 
 
-    // Обновление/поиск пути
+
+    //region Обновление/поиск пути
 
     tryUpdatePath(event, cell, move) {
         if (!move || move.isRanged) {
@@ -438,9 +442,11 @@ export default class App extends React.Component {
         return pawnCell === cell || (isCellPassable && move && move.actionPoints < move.pawn.currentActionPoints);
     }
 
+    //endregion
 
 
-    // Сплэши
+
+    //region Сплэши
 
     createDamageSplash(cell, offset, damage) {
         this.createSplashAtCell(cell, offset, damage, 'damage');
@@ -470,9 +476,11 @@ export default class App extends React.Component {
         this.splashLayerRef.current.createSplash(position, text, type);
     }
 
+    //endregion
 
 
-    // Прочее
+
+    //region Прочее
 
     axialToPlainPosition(axialPosition) {
         return HexagonUtils.axialToPlainPosition(axialPosition, App.CELL_SIZE, App.CELL_SPACING);
@@ -626,6 +634,8 @@ export default class App extends React.Component {
     get arena() {
         return this.fight.arena;
     }
+
+    //endregion
 
 
 
