@@ -17,6 +17,30 @@ import ActionQueueStartEvent from './cls/events/types/ActionQueueStartEvent.js';
 import ActionQueueStopEvent from './cls/events/types/ActionQueueStopEvent.js';
 import GamecycleTurnStartEvent from './cls/events/types/GamecycleTurnStartEvent.js';
 import {arenaData, armies} from './fightInit.js';
+import {GlobalHotKeys} from 'react-hotkeys';
+
+const globalKeyMap = {
+    WAIT: {
+        name: 'Wait move',
+        sequences: ['w'],
+    },
+    DEFENCE: {
+        name: 'Wait move',
+        sequences: ['d', 'space'],
+    },
+    ABILITY_1: {
+        name: 'Ability 1',
+        sequences: ['1'],
+    },
+    ABILITY_2: {
+        name: 'Ability 2',
+        sequences: ['2'],
+    },
+    ABILITY_3: {
+        name: 'Ability 3',
+        sequences: ['3'],
+    },
+};
 
 export default class App extends React.Component {
 
@@ -652,8 +676,21 @@ export default class App extends React.Component {
             viewedMoveInfoPosition,
         } = this.state;
 
+        let globalHandlers = {
+            WAIT: this.handleWaitButtonClick,
+            DEFENCE: this.handleDefenceButtonClick,
+            ABILITY_1: () => this.handleAbilityClick(AbilitySlot.ABILITY_1),
+            ABILITY_2: () => this.handleAbilityClick(AbilitySlot.ABILITY_2),
+            ABILITY_3: () => this.handleAbilityClick(AbilitySlot.ABILITY_3),
+        };
+
         return (
             <div className='App'>
+                <GlobalHotKeys
+                    keyMap={globalKeyMap}
+                    handlers={globalHandlers}
+                    global
+                />
                 <div className='arena-container'>
                     <Arena
                         ref={this.arenaRef}
