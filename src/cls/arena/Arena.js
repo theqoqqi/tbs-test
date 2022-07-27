@@ -48,6 +48,8 @@ export default class Arena {
         };
     }
 
+
+
     addCell(position) {
         return this.grid.addCell(position);
     }
@@ -64,16 +66,7 @@ export default class Arena {
         return !this.hasPawnAt(position);
     }
 
-    getNeighborPositions(originPosition) {
-        return this.grid.getNeighborPositions(originPosition);
-    }
 
-    getNeighborCell(originCell, angle) {
-        let neighborDirection = HexagonUtils.angleToDirection(angle);
-        let neighborPosition = originCell.position.add(neighborDirection);
-
-        return this.getCell(neighborPosition);
-    }
 
     addPawn(pawn) {
         this.pawns.set(pawn.id, pawn);
@@ -95,5 +88,18 @@ export default class Arena {
 
     getAllPawns() {
         return Array.from(this.pawns.values());
+    }
+
+
+
+    getNeighborPositions(originPosition) {
+        return this.grid.getNeighborPositions(originPosition);
+    }
+
+    getNeighborCell(originCell, angle) {
+        let neighborDirection = HexagonUtils.angleToDirection(angle);
+        let neighborPosition = originCell.position.add(neighborDirection);
+
+        return this.getCell(neighborPosition);
     }
 }
