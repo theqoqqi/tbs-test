@@ -1,6 +1,7 @@
 import ActionQueue from '../pawns/ActionQueue.js';
 import PawnDamageDealtEvent from '../events/types/PawnDamageDealtEvent.js';
 import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js';
+import PawnMovedEvent from '../events/types/PawnMovedEvent.js';
 
 export default class MoveExecutor {
 
@@ -109,6 +110,8 @@ export default class MoveExecutor {
         return this.#enqueueAction(resolve => {
             pawn.position = position;
             pawn.consumeActionPoints(1);
+
+            this.#eventBus.dispatch(PawnMovedEvent, { pawn });
 
             setTimeout(resolve, 200);
         });
