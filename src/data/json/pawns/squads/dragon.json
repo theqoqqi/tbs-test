@@ -23,7 +23,8 @@
   },
   "options": {
     "features": [
-      "dragon"
+      "dragon",
+      "alwaysHitbacks"
     ],
     "abilities": [
       {
