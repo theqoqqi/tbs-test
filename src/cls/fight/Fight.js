@@ -165,6 +165,14 @@ export default class Fight {
         this.#eventBus.off(eventType, callback);
     }
 
+    addGlobalListener(listener) {
+        this.#eventBus.addGlobalListener(listener);
+    }
+
+    removeGlobalListener(listener) {
+        this.#eventBus.removeGlobalListener(listener);
+    }
+
     //endregion
 
 
