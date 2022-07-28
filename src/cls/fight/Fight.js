@@ -256,7 +256,7 @@ export default class Fight {
         let maxDamage = damageRanges.combinedMax;
         let minKills = victim.getKillCount(minDamage);
         let maxKills = victim.getKillCount(maxDamage);
-        let willHitback = MoveExecutor.shouldHitback(attacker, victim, ability);
+        let willHitback = this.moveExecutor.shouldHitback(attacker, victim, ability);
         let targetName = victim.unitName;
 
         return new PotentialHitInfo({
@@ -438,6 +438,10 @@ export default class Fight {
 
     isAbilityMuted(pawn, ability) {
         return ability.mutedIfNearEnemy && this.hasEnemiesNearby(pawn);
+    }
+
+    hasAbilityInSlot(pawn, abilitySlot) {
+        return !!pawn.abilities.find(a => a.slot === abilitySlot)
     }
 
     //endregion

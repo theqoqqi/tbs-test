@@ -2,6 +2,7 @@ import ActionQueue from '../pawns/ActionQueue.js';
 import PawnDamageDealtEvent from '../events/types/PawnDamageDealtEvent.js';
 import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js';
 import PawnMovedEvent from '../events/types/PawnMovedEvent.js';
+import AbilitySlot from '../enums/AbilitySlot.js';
 
 export default class MoveExecutor {
 
@@ -68,13 +69,17 @@ export default class MoveExecutor {
             .then(() => this.tryHitback(attacker, victim, ability));
     }
 
-    static shouldHitback(attacker, victim, ability) {
-        return victim.stackSize > 0 && victim.canHitback && !attacker.hitbackProtection && !ability.noHitbacks;
+    shouldHitback(attacker, victim, ability) {
+        return victim.stackSize > 0
+            && victim.canHitback
+            && this.#fight.hasAbilityInSlot(victim, AbilitySlot.REGULAR)
+            && !attacker.hitbackProtection
+            && !ability.noHitbacks;
     }
 
     tryHitback(attacker, victim, attackerAbility) {
         return this.#enqueueAction(resolve => {
-            if (MoveExecutor.shouldHitback(attacker, victim, attackerAbility)) {
+            if (this.shouldHitback(attacker, victim, attackerAbility)) {
                 this.#hitback(attacker, victim);
             }
 
