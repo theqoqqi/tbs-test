@@ -232,6 +232,44 @@ export default class Fight {
         });
     }
 
+    tryGetMoveForMeleeAction(forPawn, targetPawn, movementMoves) {
+        let cell = this.arena.getCell(targetPawn.position);
+        let actionPoints = this.getActionPointsForMeleeAction(forPawn, targetPawn, movementMoves);
+
+        if (actionPoints === -1) {
+            return null;
+        }
+
+        return new ArenaMove({
+            pawn: forPawn,
+            targetCell: cell,
+            actionPoints,
+            isRanged: false,
+        });
+    }
+
+    getActionPointsForMeleeAction(forPawn, targetPawn, movementMoves) {
+        let neighborPositions = this.arena.getNeighborPositions(targetPawn.position);
+        let isNearby = neighborPositions.some(position => position.equals(forPawn.position));
+        let actionPoints = 1;
+
+        if (!isNearby) {
+            let movementMove = Fight.getAnyMovementMove(forPawn, movementMoves, neighborPositions);
+
+            if (!movementMove) {
+                return -1;
+            }
+
+            actionPoints += movementMove.actionPoints;
+        }
+
+        if (forPawn.currentActionPoints < actionPoints) {
+            return -1;
+        }
+
+        return actionPoints;
+    }
+
     static #getAbilityMoves(ability, movementMoves) {
         if (!ability.targetCollector) {
             return [];
@@ -241,6 +279,24 @@ export default class Fight {
             movementMoves,
         });
     }
+
+    static getAnyMovementMove(forPawn, movementMoves, toPositions) {
+        if (toPositions.length === 0) {
+            return null;
+        }
+
+        let sorted = toPositions
+            .map(position => {
+                return position.equals(forPawn.position)
+                    || movementMoves.find(move => position.equals(move.targetCell.position));
+            })
+            .sort((a, b) => {
+                return a.actionPoints - b.actionPoints;
+            })
+            .filter(move => move !== undefined);
+
+        return sorted[0];
+    };
 
     getMoveInfo(attackerPawn, targetPawn, ability) {
         return new MoveInfo({
