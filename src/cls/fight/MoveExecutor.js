@@ -3,6 +3,7 @@ import PawnDamageDealtEvent from '../events/types/PawnDamageDealtEvent.js';
 import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js';
 import PawnMovedEvent from '../events/types/PawnMovedEvent.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
+import PawnUsedEvent from '../events/types/PawnUsedEvent.js';
 
 export default class MoveExecutor {
 
@@ -35,6 +36,16 @@ export default class MoveExecutor {
     }
 
     applyAbility(pawn, ability, move = null, path = []) {
+        if (move?.targetCell) {
+            let targetPawn = this.#fight.arena.getPawn(move.targetCell.position);
+
+            if (targetPawn?.isUsable) {
+                return move && path
+                    ? this.makeUseMove(move, path)
+                    : Promise.resolve();
+            }
+        }
+
         if (!ability?.apply) {
             return move && path
                 ? this.makeMovementMove(move, path)
@@ -50,6 +61,23 @@ export default class MoveExecutor {
 
             ability.consumeCharges(1);
             ability.startReloading();
+
+            resolve();
+        });
+    }
+
+    makeUseMove(move, path) {
+        let targetPawn = this.#fight.arena.getPawn(move.targetCell.position);
+
+        return this.makeMovementMove(move, path)
+            .then(() => this.use(move.pawn, targetPawn));
+    }
+
+    use(usedBy, usedPawn) {
+        return this.#enqueueAction(resolve => {
+            this.#eventBus.dispatch(PawnUsedEvent, { usedBy, usedPawn });
+
+            usedBy.consumeAllActionPoints();
 
             resolve();
         });

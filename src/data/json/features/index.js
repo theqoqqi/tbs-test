@@ -1,5 +1,6 @@
 
 export {default as activateOnStep} from './system/activateOnStep.json';
+export {default as activateOnUse} from './system/activateOnUse.json';
 export {default as morale} from './system/morale.json';
 
 export {default as alwaysHitbacks} from './alwaysHitbacks.json';

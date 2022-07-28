@@ -139,6 +139,11 @@ export default class Fight {
                 stackSize: 1,
             });
         }
+
+        this.createPawn(Vector.from(-3, 0), 'chest', {
+            team: Team.NEUTRAL,
+            stackSize: 1,
+        });
     }
 
     static #getEvents(effect) {
@@ -197,18 +202,23 @@ export default class Fight {
 
     getAvailableMoves(forPawn, ability) {
         let moves = [];
+        let movementMoves = [];
 
         if (!ability || ability.slot === AbilitySlot.REGULAR) {
-            let movementMoves = this.#getMovementMoves(forPawn);
+            movementMoves = this.#getMovementMoves(forPawn);
 
             moves = moves.concat(movementMoves);
         }
 
         if (ability) {
-            let abilityMoves = Fight.#getAbilityMoves(ability, moves);
+            let abilityMoves = Fight.#getAbilityMoves(ability, movementMoves);
 
             moves = moves.concat(abilityMoves);
         }
+
+        let useMoves = this.#getUseMoves(forPawn, movementMoves);
+
+        moves = moves.concat(useMoves);
 
         return moves;
     }
@@ -230,6 +240,23 @@ export default class Fight {
                 isRanged: false,
             });
         });
+    }
+
+    #getUseMoves(forPawn, movementMoves) {
+        if (forPawn.movementType === MovementType.IMMOBILE) {
+            return [];
+        }
+
+        return this.arena.getAllPawns()
+            .filter(pawn => pawn.isUsable)
+            .map(targetPawn => {
+                if (targetPawn.isItem) {
+                    return null;
+                }
+
+                return this.tryGetMoveForMeleeAction(forPawn, targetPawn, movementMoves);
+            })
+            .filter(move => move !== null);
     }
 
     tryGetMoveForMeleeAction(forPawn, targetPawn, movementMoves) {
@@ -299,6 +326,12 @@ export default class Fight {
     };
 
     getMoveInfo(attackerPawn, targetPawn, ability) {
+        if (targetPawn.isUsable) {
+            return new MoveInfo({
+                actionInfos: [], // TODO: Действие "Открыть сундук"?
+            });
+        }
+
         return new MoveInfo({
             actionInfos: [
                 this.getEstimatedDamage(attackerPawn, targetPawn, ability),

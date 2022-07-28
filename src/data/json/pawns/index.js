@@ -121,5 +121,6 @@ export {default as bonedragon} from './squads/undead/bonedragon.json';
 //endregion
 
 export {default as iceShard} from './structures/iceShard.json';
+export {default as chest} from './structures/chest.json';
 
 export {default as apShard} from './items/apShard.json';

@@ -1,0 +1,22 @@
+{
+  "props": {
+    "pawnType": "structure",
+    "movementType": "immobile",
+    "actionPoints": 0,
+    "invulnerable": true
+  },
+  "options": {
+    "features": [
+      "activateOnUse"
+    ],
+    "abilities": [
+      {
+        "base": "chest",
+        "slot": "regular",
+        "scriptParams": {
+          "actionPoints": 3
+        }
+      }
+    ]
+  }
+}

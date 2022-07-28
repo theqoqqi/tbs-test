@@ -169,6 +169,10 @@ export default class Pawn {
         return this.props.get(propertyName);
     }
 
+    get isUsable() {
+        return this.hasFeature('activateOnUse');
+    }
+
     get isSquad() {
         return this.pawnType === PawnType.SQUAD;
     }
