@@ -546,9 +546,6 @@ export default class App extends React.Component {
                 selectable: selectableCellIds.includes(cell.id),
                 selected: selectedPawn && selectedPawn.position.equals(cell.position),
                 passability: cell.passability,
-                distance: selectedPawn && cell.passability === PassabilityType.WALKING_PASSABLE
-                    ? this.arena.findPath(selectedPawn, cell.position).length - 1 // TODO: каждый тик, каждый cell - дохуя
-                    : null,
                 content: passabilityContentMap[cell.passability] ?? null,
             };
         });
