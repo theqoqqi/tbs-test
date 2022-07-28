@@ -1,5 +1,5 @@
-import PawnUsedEvent from '../../../cls/events/types/PawnUsedEvent.js';
-import AbilitySlot from '../../../cls/enums/AbilitySlot.js';
+import PawnUsedEvent from '../../../../cls/events/types/PawnUsedEvent.js';
+import AbilitySlot from '../../../../cls/enums/AbilitySlot.js';
 
 export default {
     /** @this Feature */

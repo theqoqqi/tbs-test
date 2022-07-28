@@ -1,4 +1,4 @@
-import PawnProps from '../../../cls/pawns/props/PawnProps.js';
+import PawnProps from '../../../../cls/pawns/props/PawnProps.js';
 
 let moraleBonuses = new Map([
     createLevel(-3, 0.5, 0.5, 0),
