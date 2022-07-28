@@ -113,19 +113,27 @@ export default class Deserializer {
         let data = {};
 
         for (const [key, value] of Object.entries(pawnJson)) {
-            let mapping = mappings[key];
-
-            if (typeof mapping === 'function') {
-                data[key] = mapping(value);
-
-            } else if (typeof mapping === 'object') {
-                data[key] = this.deserialize(value, mapping);
-
-            } else {
-                data[key] = value;
+            try {
+                data[key] = this.parseValue(mappings, key, value);
+            } catch (e) {
+                console.error('Failed to deserialize:', key, value, e);
             }
         }
 
         return data;
+    }
+
+    parseValue(mappings, key, value) {
+        let mapping = mappings[key];
+
+        if (typeof mapping === 'function') {
+            return mapping(value);
+
+        } else if (typeof mapping === 'object') {
+            return this.deserialize(value, mapping);
+
+        } else {
+            return value;
+        }
     }
 }
