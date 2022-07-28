@@ -16,7 +16,7 @@ function createLevel(level, attack, defence, criticalHitChance) {
 
 export default {
     /** @this Feature */
-    modifyPawnProperty({pawn, propertyName, value}) {
+    modifyPawnProperty({propertyName, value}) {
 
         if (propertyName === PawnProps.morale) {
             return value;

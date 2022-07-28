@@ -19,13 +19,19 @@
   },
   "options": {
     "features": [
-      "humanoid"
-    ],
-    "featuresFromHints": [
+      "humanoid",
       "comradeship",
       "favorite_enemy",
       "plant_killer"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "slot": "regular",
+        "base": "defaultMelee",
+        "damageRanges": [
+          ["physical", 1, 2]
+        ]
+      }
+    ]
   }
 }
