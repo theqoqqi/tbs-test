@@ -363,7 +363,7 @@ export default class Fight {
 
     getRandomHitInfo(attacker, victim, ability) {
         let damageRanges = this.getEstimatedDamageRanges(attacker, victim, ability);
-        let isCriticalHit = Math.random() < attacker.criticalHitChance;
+        let isCriticalHit = ability.slot === AbilitySlot.REGULAR && Math.random() < attacker.criticalHitChance;
         let criticalHitMultiplier = attacker.criticalHitMultiplier;
 
         return this.getRandomHitInfoForDamageRanges(victim, damageRanges, isCriticalHit, criticalHitMultiplier);
