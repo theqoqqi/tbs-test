@@ -28,13 +28,14 @@ export default class ArenaCell extends React.Component {
 
     static defaultProps = {
         content: '',
+        distance: 0,
     };
 
     render() {
         // Генератор хексов
         // https://weareoutman.github.io/rounded-polygon/
 
-        let distanceSpan = (
+        let distanceSpan = this.props.distance > 0 && (
             <span
                 className='distance'
                 style={{
