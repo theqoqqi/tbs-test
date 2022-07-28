@@ -13,9 +13,7 @@
       {
         "base": "chest",
         "slot": "regular",
-        "scriptParams": {
-          "actionPoints": 3
-        }
+        "scriptParams": {}
       }
     ]
   }
