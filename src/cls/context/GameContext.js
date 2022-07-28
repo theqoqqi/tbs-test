@@ -51,14 +51,18 @@ export default class GameContext {
 
 
 
-    registerFeatureFromJson(internalName, effectJson) {
-        let deserializedFeature = this.deserializer.deserializeFeature(effectJson);
+    registerFeatureFromJson(internalName, featureJson) {
+        featureJson.base = internalName;
+
+        let deserializedFeature = this.deserializer.deserializeFeature(featureJson);
         let props = deserializedFeature.props ?? {};
 
         this.registerFeature(internalName, props);
     }
 
     registerEffectFromJson(internalName, effectJson) {
+        effectJson.base = internalName;
+
         let deserializedEffect = this.deserializer.deserializeEffect(effectJson);
         let props = deserializedEffect.props ?? {};
 
@@ -66,6 +70,8 @@ export default class GameContext {
     }
 
     registerPawnFromJson(unitName, pawnJson) {
+        pawnJson.base = unitName;
+
         let deserializedPawn = this.deserializer.deserializePawn(pawnJson);
         let props = deserializedPawn.props ?? {};
         let options = deserializedPawn.options ?? {};
