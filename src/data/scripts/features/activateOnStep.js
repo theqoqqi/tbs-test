@@ -13,8 +13,9 @@ export default {
                 if (pawn.position.equals(owner.position)) {
                     let ability = fight.getAbilityInSlot(owner, AbilitySlot.REGULAR);
 
-                    fight.applyAbility(pawn, ability);
-                    fight.removePawn(owner);
+                    if (ability) {
+                        fight.applyAbility(pawn, ability);
+                    }
                 }
             }],
         ];

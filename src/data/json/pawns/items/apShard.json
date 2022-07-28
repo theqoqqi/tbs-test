@@ -10,8 +10,8 @@
     ],
     "abilities": [
       {
+        "base": "apShard",
         "slot": "regular",
-        "apply": "apShard.apply",
         "scriptParams": {
           "actionPoints": 1
         }
