@@ -84,7 +84,7 @@ export default class GameContext {
 
     registerRace(name) {
         let iconImage = `raceicon_${name}.png`;
-        let race = new Race(iconImage);
+        let race = new Race(name, iconImage);
 
         this.raceRegistry.register(name, race);
     }

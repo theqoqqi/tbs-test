@@ -1,9 +1,16 @@
 export default class Race {
 
+    #name;
+
     #iconImage;
 
-    constructor(icon) {
+    constructor(name, icon) {
+        this.#name = name;
         this.#iconImage = icon;
+    }
+
+    get name() {
+        return this.#name;
     }
 
     get iconImage() {
