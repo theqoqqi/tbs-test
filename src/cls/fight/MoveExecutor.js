@@ -35,7 +35,9 @@ export default class MoveExecutor {
 
     applyAbility(pawn, ability, move = null, path = []) {
         if (!ability?.apply) {
-            return Promise.resolve();
+            return move && path
+                ? this.makeMovementMove(move, path)
+                : Promise.resolve();
         }
 
         return this.#enqueueAction(resolve => {
