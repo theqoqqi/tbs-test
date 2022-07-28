@@ -8,3 +8,4 @@ export {default as dragonSlayer} from './dragonSlayer';
 export {default as comradeship} from './common/comradeship';
 export {default as favorite_enemy} from './common/favorite_enemy';
 export {default as plant_killer} from './common/plant_killer';
+export {default as robbery} from './common/robbery';

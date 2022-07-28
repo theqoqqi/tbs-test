@@ -19,12 +19,33 @@
   },
   "options": {
     "features": [
-      "humanoid"
-    ],
-    "featuresFromHints": [
+      "humanoid",
       "robbery",
       "favorite_enemy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "slot": "regular",
+        "base": "defaultMelee",
+        "damageRanges": [
+          ["physical", 2, 4]
+        ]
+      },
+      {
+        "slot": "ability_1",
+        "internalName": "longAttack",
+        "base": "longAttack",
+        "reload": 2,
+        "damageRanges": [
+          ["physical", 3, 4]
+        ]
+      },
+      {
+        "slot": "ability_2",
+        "internalName": "greediness",
+        "base": "greediness",
+        "charges": 1
+      }
+    ]
   }
 }
