@@ -356,8 +356,8 @@ export default class App extends React.Component {
         this.updateAvailableMoves();
     }
 
-    setPath(path, targetPosition) {
-        this.pathDirection = this.getDirectionToTarget(path, targetPosition);
+    setPath(path, targetPosition, pathDirection) {
+        this.pathDirection = pathDirection;
 
         this.setState({
             path: path,
@@ -402,11 +402,11 @@ export default class App extends React.Component {
         let direction = HexagonUtils.angleToDirection(angle);
 
         if (this.pathDirection !== direction) {
-            this.updatePath(cell, mousePosition);
+            this.updatePath(cell, mousePosition, direction);
         }
     }
 
-    updatePath(cell, mousePosition) {
+    updatePath(cell, mousePosition, direction) {
         let pawn = this.selectedPawn;
 
         if (!pawn) {
@@ -421,7 +421,7 @@ export default class App extends React.Component {
             : this.arena.findPath(pawn, neighborCell.position);
         let pathTargetPosition = cell.position;
 
-        this.setPath(path, pathTargetPosition);
+        this.setPath(path, pathTargetPosition, direction);
     }
 
     getDirectionToTarget(path, targetDirection) {
@@ -438,7 +438,7 @@ export default class App extends React.Component {
 
         let lastPathPosition = path[path.length - 1];
 
-        if (lastPathPosition !== targetPosition) {
+        if (!lastPathPosition.equals(targetPosition)) {
             return lastPathPosition;
         }
 
