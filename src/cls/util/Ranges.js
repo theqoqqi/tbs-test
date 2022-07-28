@@ -29,6 +29,16 @@ export default class Ranges {
         return this.#combineSum('max');
     }
 
+    mapValues(callback) {
+        return this.map((damageType, min, max) => {
+            return {
+                type: damageType,
+                min: callback(min),
+                max: callback(max),
+            };
+        });
+    }
+
     map(callback) {
         let mappedRanges = [];
 
