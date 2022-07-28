@@ -414,6 +414,15 @@ export default class Fight {
         return promise;
     }
 
+    makeTeleportMove(move, ability) {
+        let promise = this.#moveExecutor.makeTeleportMove(move, ability);
+
+        this.#moveExecutor.waitForActions()
+            .then(() => this.#nextTurnIfNoActionPoints(move.pawn));
+
+        return promise;
+    }
+
     makeWaitMove(pawn) {
         let promise = this.#gamecycle.postponeMove(pawn);
 

@@ -87,6 +87,10 @@ export default class MoveExecutor {
         return this.moveByPath(move.pawn, path);
     }
 
+    makeTeleportMove(move, ability) {
+        return this.teleport(move.pawn, move.targetCell, ability);
+    }
+
     makeAttackMove(move, path, ability) {
         let attacker = move.pawn;
         let cell = move.targetCell;
@@ -141,15 +145,22 @@ export default class MoveExecutor {
         return promise;
     }
 
-    #stepTo(pawn, position) {
+    #stepTo(pawn, position, consumeActionPoints = true) {
         return this.#enqueueAction(resolve => {
             pawn.position = position;
-            pawn.consumeActionPoints(1);
+
+            if (consumeActionPoints) {
+                pawn.consumeActionPoints(1);
+            }
 
             this.#eventBus.dispatch(PawnMovedEvent, { pawn });
 
             setTimeout(resolve, 200);
         });
+    }
+
+    teleport(pawn, cell, ability) {
+        return this.#stepTo(pawn, cell.position, ability.slot === AbilitySlot.REGULAR);
     }
 
     makeDamageMove({attacker, victim, ability, hitInfo}) {
