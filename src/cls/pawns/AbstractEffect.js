@@ -38,6 +38,10 @@ export default class AbstractEffect {
         return this.getProperty('modifyPawnProperty');
     }
 
+    get modifyOtherPawnProperty() {
+        return this.getProperty('modifyOtherPawnProperty');
+    }
+
     get incomingDamageModifier() {
         return this.getProperty('incomingDamageModifier');
     }

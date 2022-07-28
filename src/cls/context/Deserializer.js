@@ -69,6 +69,7 @@ export default class Deserializer {
         props: {
             getEvents: scriptMapper(featureScripts),
             modifyPawnProperty: scriptMapper(featureScripts),
+            modifyOtherPawnProperty: scriptMapper(featureScripts),
             outcomingDamageModifier: scriptMapper(featureScripts),
             incomingDamageModifier: scriptMapper(featureScripts),
         },
@@ -79,6 +80,7 @@ export default class Deserializer {
             effectType: enumMapper(EffectType),
             getEvents: scriptMapper(effectScripts),
             modifyPawnProperty: scriptMapper(effectScripts),
+            modifyOtherPawnProperty: scriptMapper(effectScripts),
         },
     };
 
