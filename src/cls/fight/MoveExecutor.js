@@ -62,6 +62,10 @@ export default class MoveExecutor {
             ability.consumeCharges(1);
             ability.startReloading();
 
+            if (ability.endsTurn && move?.pawn) {
+                move.pawn.consumeAllActionPoints();
+            }
+
             resolve();
         });
     }
