@@ -128,6 +128,9 @@ export default class Deserializer {
     }
 
     deserialize(pawnJson, mappings) {
+        // Необходимо создавать копию, чтобы не вносить изменения в импортированный json.
+        // Это необходимо только в режиме разработчика, т.к. реакт обновляет приложение
+        // без перезагрузки страницы, а данные уже оказываются изменены.
         pawnJson = lodash.cloneDeep(pawnJson);
 
         let data = {};
