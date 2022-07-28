@@ -44,6 +44,7 @@
         "slot": "ability_2",
         "internalName": "greediness",
         "base": "greediness",
+        "endsTurn": false,
         "charges": 1
       }
     ]
