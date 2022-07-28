@@ -131,7 +131,7 @@ export default class Fight {
         let structurePositions = lodash.shuffle(this.structurePositions);
 
         for (let i = 0; i < this.structures; i++) {
-            let structureName = 'iceShard';
+            let structureName = lodash.sample(['iceShard', 'chest']);
             let position = structurePositions.pop();
 
             this.createPawn(position, structureName, {
@@ -139,11 +139,6 @@ export default class Fight {
                 stackSize: 1,
             });
         }
-
-        this.createPawn(Vector.from(-3, 0), 'chest', {
-            team: Team.NEUTRAL,
-            stackSize: 1,
-        });
     }
 
     static #getEvents(effect) {
