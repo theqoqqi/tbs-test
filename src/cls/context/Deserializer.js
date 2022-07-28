@@ -45,9 +45,13 @@ let arrayMapper = (ofMapper, filter) => {
 };
 
 let scriptMapper = root => {
-    return value => {
+    let mapper = value => {
         return lodash.get(root, value);
     };
+
+    mapper.mapperType = 'scriptMapper';
+
+    return mapper;
 };
 
 let firstItemMapper = ofMapper => {
@@ -91,21 +95,13 @@ export default class Deserializer {
                 registryMapper(() => this.#context.featureRegistry),
                 feature => !!feature,
             ),
-            abilities: arrayMapper(constructorMapper(AbilityProps, value => {
-                if (value.base) {
-                    value.getEvents ??= `${value.base}.getEvents`;
-                    value.targetCollector ??= `${value.base}.targetCollector`;
-                    value.apply ??= `${value.base}.apply`;
-                }
-
-                return this.deserialize(value, {
-                    slot: enumMapper(AbilitySlot),
-                    damageRanges: constructorMapper(Ranges, firstItemMapper(enumMapper(DamageType))),
-                    getEvents: scriptMapper(abilityScripts),
-                    targetCollector: scriptMapper(abilityScripts),
-                    apply: scriptMapper(abilityScripts),
-                });
-            })),
+            abilities: arrayMapper(constructorMapper(AbilityProps, value => this.deserialize(value, {
+                slot: enumMapper(AbilitySlot),
+                damageRanges: constructorMapper(Ranges, firstItemMapper(enumMapper(DamageType))),
+                getEvents: scriptMapper(abilityScripts),
+                targetCollector: scriptMapper(abilityScripts),
+                apply: scriptMapper(abilityScripts),
+            }))),
         }
     };
 
@@ -127,17 +123,29 @@ export default class Deserializer {
         return this.deserialize(pawnJson, this.#pawnMappings);
     }
 
-    deserialize(pawnJson, mappings) {
+    deserialize(json, mappings, pa) {
         // Необходимо создавать копию, чтобы не вносить изменения в импортированный json.
         // Это необходимо только в режиме разработчика, т.к. реакт обновляет приложение
         // без перезагрузки страницы, а данные уже оказываются изменены.
-        pawnJson = lodash.cloneDeep(pawnJson);
+        json = lodash.cloneDeep(json);
+
+        if (json.base) {
+            for (const [key, mapping] of Object.entries(mappings)) {
+                if (mapping.mapperType === 'scriptMapper') {
+                    json[key] ??= `${json.base}.${key}`;
+                }
+            }
+        }
 
         let data = {};
 
-        for (const [key, value] of Object.entries(pawnJson)) {
+        for (const [key, value] of Object.entries(json)) {
             try {
-                data[key] = this.parseValue(mappings, key, value);
+                let parsedValue = this.parseValue(mappings, key, value);
+
+                if (parsedValue !== undefined) {
+                    data[key] = parsedValue;
+                }
             } catch (e) {
                 console.error('Failed to deserialize:', key, value, e);
             }
