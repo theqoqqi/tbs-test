@@ -168,8 +168,6 @@ export default class App extends React.Component {
         let cell = this.arena.getCell(cellComponent.props.axialPosition);
         let pawn = this.selectedPawn;
 
-        console.log(cell.toString());
-
         if (pawn && cellComponent.props.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
