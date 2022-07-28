@@ -1,6 +1,5 @@
 {
   "props": {
-    "modifyPawnProperty": "comradeship.modifyPawnProperty",
     "scriptParams": {
       "maxBonus": 10,
       "unitsPerBonus": 30
