@@ -1,0 +1,37 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "human",
+    "level": 4,
+    "leadership": 160,
+    "morale": 1,
+    "attack": 27,
+    "defence": 27,
+    "defenceBonus": 8,
+    "actionPoints": 2,
+    "initiative": 5,
+    "criticalHitChance": 0.12,
+    "health": 160,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["physical", 0.3],
+      ["fire", 0.3]
+    ]
+  },
+  "options": {
+    "features": [
+      "armor",
+      "humanoid"
+    ],
+    "featuresFromHints": [
+      "steel_armor",
+      "learning",
+      "valorous",
+      "dragon_slayer",
+      "favorite_enemy"
+    ],
+    "abilities": []
+  }
+}

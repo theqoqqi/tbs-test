@@ -1,0 +1,31 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "orc",
+    "level": 2,
+    "leadership": 45,
+    "morale": 0,
+    "attack": 14,
+    "defence": 14,
+    "defenceBonus": 3,
+    "actionPoints": 3,
+    "initiative": 4,
+    "criticalHitChance": 0.2,
+    "health": 40,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": []
+  },
+  "options": {
+    "features": [
+      "humanoid"
+    ],
+    "featuresFromHints": [
+      "giant_killer",
+      "goblin_rageus",
+      "goblin2_trophy"
+    ],
+    "abilities": []
+  }
+}

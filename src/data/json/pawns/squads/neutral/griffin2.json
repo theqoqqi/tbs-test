@@ -1,0 +1,35 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 4,
+    "leadership": 300,
+    "morale": 0,
+    "attack": 35,
+    "defence": 30,
+    "defenceBonus": 7,
+    "actionPoints": 6,
+    "initiative": 6,
+    "criticalHitChance": 0.15,
+    "health": 220,
+    "movementType": "flying",
+    "hitbackFrequency": "always",
+    "hitbackProtection": false,
+    "resistances": [
+      ["magic", 0.5]
+    ]
+  },
+  "options": {
+    "features": [
+      "beast"
+    ],
+    "featuresFromHints": [
+      "flies",
+      "tireless",
+      "magic_protection",
+      "dragon_hate",
+      "ideal"
+    ],
+    "abilities": []
+  }
+}

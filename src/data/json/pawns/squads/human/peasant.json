@@ -18,16 +18,14 @@
     "resistances": []
   },
   "options": {
-    "features": [],
-    "abilities": [
-      {
-        "slot": "regular",
-        "targetCollector": "defaultMelee.targetCollector",
-        "apply": "defaultMelee.apply",
-        "damageRanges": [
-          ["physical", 1, 2]
-        ]
-      }
-    ]
+    "features": [
+      "humanoid"
+    ],
+    "featuresFromHints": [
+      "comradeship",
+      "favorite_enemy",
+      "plant_killer"
+    ],
+    "abilities": []
   }
 }

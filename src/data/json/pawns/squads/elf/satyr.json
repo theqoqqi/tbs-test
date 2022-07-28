@@ -1,0 +1,35 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "elf",
+    "level": 2,
+    "leadership": 60,
+    "morale": 0,
+    "attack": 16,
+    "defence": 15,
+    "defenceBonus": 8,
+    "actionPoints": 4,
+    "initiative": 5,
+    "criticalHitChance": 0.15,
+    "health": 23,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["magic", 0.1]
+    ]
+  },
+  "options": {
+    "features": [
+      "humanoid",
+      "shot"
+    ],
+    "featuresFromHints": [
+      "magic_ball",
+      "no_melee",
+      "darkness_fear",
+      "forest_spirit"
+    ],
+    "abilities": []
+  }
+}

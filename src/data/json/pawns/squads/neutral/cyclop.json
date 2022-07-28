@@ -1,0 +1,38 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 5,
+    "leadership": 1400,
+    "morale": 0,
+    "attack": 50,
+    "defence": 67,
+    "defenceBonus": 10,
+    "actionPoints": 3,
+    "initiative": 1,
+    "criticalHitChance": 0.1,
+    "health": 650,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["physical", 0.3],
+      ["poison", 0.6],
+      ["fire", 0.3]
+    ]
+  },
+  "options": {
+    "features": [
+      "shot",
+      "golem",
+      "poison_immunitet"
+    ],
+    "featuresFromHints": [
+      "shot",
+      "sniper",
+      "stone",
+      "no_melee"
+    ],
+    "abilities": []
+  }
+}

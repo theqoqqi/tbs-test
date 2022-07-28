@@ -1,0 +1,35 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "orc",
+    "level": 3,
+    "leadership": 130,
+    "morale": 0,
+    "attack": 20,
+    "defence": 15,
+    "defenceBonus": 4,
+    "actionPoints": 2,
+    "initiative": 5,
+    "criticalHitChance": 0.1,
+    "health": 60,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": []
+  },
+  "options": {
+    "features": [
+      "shot",
+      "humanoid",
+      "mage"
+    ],
+    "featuresFromHints": [
+      "goblin_commander",
+      "no_melee",
+      "astral_axe",
+      "goblin_hire",
+      "goblin_shaman_trophy"
+    ],
+    "abilities": []
+  }
+}

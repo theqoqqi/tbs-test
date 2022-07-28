@@ -1,0 +1,41 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 5,
+    "leadership": 2500,
+    "morale": 0,
+    "attack": 70,
+    "defence": 70,
+    "defenceBonus": 8,
+    "actionPoints": 8,
+    "initiative": 6,
+    "criticalHitChance": 0.17,
+    "health": 1000,
+    "movementType": "flying",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["physical", 0.2],
+      ["magic", 0.8],
+      ["fire", 0.8]
+    ]
+  },
+  "options": {
+    "features": [
+      "dragon",
+      "mind_immunitet",
+      "magic_immunitet",
+      "fire_immunitet"
+    ],
+    "featuresFromHints": [
+      "flies",
+      "dragon_breath",
+      "fire_immunity",
+      "magic_immunity",
+      "mind_immunity",
+      "dragon_power"
+    ],
+    "abilities": []
+  }
+}

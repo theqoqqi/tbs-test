@@ -1,0 +1,39 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "human",
+    "level": 4,
+    "leadership": 220,
+    "morale": 0,
+    "attack": 30,
+    "defence": 36,
+    "defenceBonus": 8,
+    "actionPoints": 2,
+    "initiative": 3,
+    "criticalHitChance": 0.1,
+    "health": 200,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["physical", 0.3],
+      ["magic", 0.3],
+      ["fire", 0.1]
+    ]
+  },
+  "options": {
+    "features": [
+      "armor",
+      "humanoid",
+      "holy"
+    ],
+    "featuresFromHints": [
+      "steel_armor",
+      "learning",
+      "holy_aura",
+      "holy_warrior",
+      "favorite_enemy"
+    ],
+    "abilities": []
+  }
+}

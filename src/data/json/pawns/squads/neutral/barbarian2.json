@@ -1,0 +1,34 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 2,
+    "leadership": 35,
+    "morale": 0,
+    "attack": 20,
+    "defence": 4,
+    "defenceBonus": 1,
+    "actionPoints": 3,
+    "initiative": 6,
+    "criticalHitChance": 0.28,
+    "health": 30,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": []
+  },
+  "options": {
+    "features": [
+      "freeze_immunitet",
+      "humanoid",
+      "mind_immunitet",
+      "revengeful"
+    ],
+    "featuresFromHints": [
+      "berserk",
+      "northerner",
+      "revengeful"
+    ],
+    "abilities": []
+  }
+}

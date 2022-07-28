@@ -1,0 +1,33 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "lizard",
+    "level": 5,
+    "leadership": 2000,
+    "morale": 0,
+    "attack": 65,
+    "defence": 55,
+    "defenceBonus": 6,
+    "actionPoints": 4,
+    "initiative": 6,
+    "criticalHitChance": 0.13,
+    "health": 1000,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["physical", 0.15]
+    ]
+  },
+  "options": {
+    "features": [],
+    "featuresFromHints": [
+      "tiran",
+      "scale_skin",
+      "giant_lizard",
+      "fear",
+      "predator"
+    ],
+    "abilities": []
+  }
+}

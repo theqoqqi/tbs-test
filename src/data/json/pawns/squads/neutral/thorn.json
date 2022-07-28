@@ -1,0 +1,37 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 1,
+    "leadership": 8,
+    "morale": 0,
+    "attack": 4,
+    "defence": 1,
+    "defenceBonus": 1,
+    "actionPoints": 3,
+    "initiative": 2,
+    "criticalHitChance": 0.05,
+    "health": 6,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["poison", 0.5]
+    ]
+  },
+  "options": {
+    "features": [
+      "shot",
+      "eyeless",
+      "plant",
+      "mind_immunitet"
+    ],
+    "featuresFromHints": [
+      "shot",
+      "plant",
+      "eyeless",
+      "no_melee"
+    ],
+    "abilities": []
+  }
+}

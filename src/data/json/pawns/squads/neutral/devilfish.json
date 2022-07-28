@@ -1,0 +1,36 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 1,
+    "leadership": 12,
+    "morale": 0,
+    "attack": 6,
+    "defence": 4,
+    "defenceBonus": 1,
+    "actionPoints": 3,
+    "initiative": 7,
+    "criticalHitChance": 0.3,
+    "health": 10,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["fire", 0.2]
+    ]
+  },
+  "options": {
+    "features": [
+      "nonecro",
+      "night_vision"
+    ],
+    "featuresFromHints": [
+      "sea",
+      "fire_resistance",
+      "night_sight",
+      "fear",
+      "devilkrit"
+    ],
+    "abilities": []
+  }
+}

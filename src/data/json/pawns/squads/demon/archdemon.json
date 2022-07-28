@@ -1,0 +1,38 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "demon",
+    "level": 5,
+    "leadership": 1600,
+    "morale": 0,
+    "attack": 66,
+    "defence": 66,
+    "defenceBonus": 6,
+    "actionPoints": 9,
+    "initiative": 8,
+    "criticalHitChance": 0.15,
+    "health": 766,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["physical", 0.2],
+      ["magic", 0.1],
+      ["fire", 0.8]
+    ]
+  },
+  "options": {
+    "features": [
+      "fire_immunitet",
+      "demon"
+    ],
+    "featuresFromHints": [
+      "demon",
+      "teleportation",
+      "fire_immunity",
+      "clear",
+      "half"
+    ],
+    "abilities": []
+  }
+}

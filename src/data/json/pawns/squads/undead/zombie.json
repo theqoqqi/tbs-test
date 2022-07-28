@@ -1,0 +1,31 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "undead",
+    "level": 2,
+    "leadership": 30,
+    "morale": 0,
+    "attack": 9,
+    "defence": 13,
+    "defenceBonus": 3,
+    "actionPoints": 2,
+    "initiative": 2,
+    "criticalHitChance": 0.1,
+    "health": 36,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["poison", 0.5]
+    ]
+  },
+  "options": {
+    "features": [
+      "undead"
+    ],
+    "featuresFromHints": [
+      "undead"
+    ],
+    "abilities": []
+  }
+}

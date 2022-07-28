@@ -1,0 +1,36 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 4,
+    "leadership": 150,
+    "morale": 0,
+    "attack": 36,
+    "defence": 20,
+    "defenceBonus": 8,
+    "actionPoints": 3,
+    "initiative": 6,
+    "criticalHitChance": 0.25,
+    "health": 100,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": true,
+    "resistances": [
+      ["poison", 0.25]
+    ]
+  },
+  "options": {
+    "features": [
+      "humanoid",
+      "autodebuff"
+    ],
+    "featuresFromHints": [
+      "no_retaliation",
+      "poisonous",
+      "poison_resistance",
+      "dark_soul",
+      "assassins_greed"
+    ],
+    "abilities": []
+  }
+}

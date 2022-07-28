@@ -1,0 +1,36 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "demon",
+    "level": 4,
+    "leadership": 300,
+    "morale": 0,
+    "attack": 30,
+    "defence": 30,
+    "defenceBonus": 6,
+    "actionPoints": 3,
+    "initiative": 4,
+    "criticalHitChance": 0.14,
+    "health": 240,
+    "movementType": "walking",
+    "hitbackFrequency": "always",
+    "hitbackProtection": false,
+    "resistances": [
+      ["physical", 0.1],
+      ["fire", 0.5]
+    ]
+  },
+  "options": {
+    "features": [
+      "demon",
+      "humanoid"
+    ],
+    "featuresFromHints": [
+      "demon",
+      "tireless",
+      "domination",
+      "giveap"
+    ],
+    "abilities": []
+  }
+}

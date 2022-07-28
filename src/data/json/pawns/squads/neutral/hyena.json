@@ -1,0 +1,31 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "neutral",
+    "level": 2,
+    "leadership": 20,
+    "morale": 0,
+    "attack": 12,
+    "defence": 14,
+    "defenceBonus": 2,
+    "actionPoints": 3,
+    "initiative": 6,
+    "criticalHitChance": 0.1,
+    "health": 18,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": []
+  },
+  "options": {
+    "features": [
+      "beast",
+      "night_vision"
+    ],
+    "featuresFromHints": [
+      "night_sight",
+      "carrion"
+    ],
+    "abilities": []
+  }
+}

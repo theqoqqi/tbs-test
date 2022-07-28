@@ -1,0 +1,37 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "orc",
+    "level": 5,
+    "leadership": 1200,
+    "morale": 0,
+    "attack": 40,
+    "defence": 35,
+    "defenceBonus": 7,
+    "actionPoints": 2,
+    "initiative": 4,
+    "criticalHitChance": 0.15,
+    "health": 850,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["physical", 0.2],
+      ["poison", 0.1],
+      ["fire", 0.1]
+    ]
+  },
+  "options": {
+    "features": [
+      "humanoid"
+    ],
+    "featuresFromHints": [
+      "crushing_blow",
+      "orks_and_goblins_commander",
+      "thick_skin",
+      "orc_hire",
+      "ogre_chieftain_trophy"
+    ],
+    "abilities": []
+  }
+}

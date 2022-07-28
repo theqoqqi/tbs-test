@@ -1,0 +1,35 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "lizard",
+    "level": 3,
+    "leadership": 120,
+    "morale": 0,
+    "attack": 20,
+    "defence": 24,
+    "defenceBonus": 4,
+    "actionPoints": 2,
+    "initiative": 4,
+    "criticalHitChance": 0.1,
+    "health": 80,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["poison", 0.2],
+      ["magic", 0.1]
+    ]
+  },
+  "options": {
+    "features": [
+      "mage"
+    ],
+    "featuresFromHints": [
+      "blood_shot",
+      "scale_skin",
+      "band",
+      "blood_lust"
+    ],
+    "abilities": []
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "human",
+    "level": 5,
+    "leadership": 2000,
+    "morale": 0,
+    "attack": 35,
+    "defence": 44,
+    "defenceBonus": 4,
+    "actionPoints": 3,
+    "initiative": 5,
+    "criticalHitChance": 0.12,
+    "health": 450,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["magic", 0.5]
+    ]
+  },
+  "options": {
+    "features": [
+      "mage",
+      "mind_immunitet",
+      "humanoid"
+    ],
+    "featuresFromHints": [
+      "mind_immunity",
+      "favorite_enemy",
+      "magic_protection",
+      "mage_leader",
+      "runic_mage",
+      "rune_armor"
+    ],
+    "abilities": []
+  }
+}

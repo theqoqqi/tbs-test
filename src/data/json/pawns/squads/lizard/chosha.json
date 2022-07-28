@@ -1,0 +1,32 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "lizard",
+    "level": 4,
+    "leadership": 220,
+    "morale": 0,
+    "attack": 28,
+    "defence": 32,
+    "defenceBonus": 8,
+    "actionPoints": 1,
+    "initiative": 4,
+    "criticalHitChance": 0.15,
+    "health": 190,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["poison", 0.1]
+    ]
+  },
+  "options": {
+    "features": [
+      "mind_immunitet"
+    ],
+    "featuresFromHints": [
+      "no_move",
+      "mind_immunity"
+    ],
+    "abilities": []
+  }
+}

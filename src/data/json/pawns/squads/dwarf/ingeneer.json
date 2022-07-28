@@ -1,0 +1,35 @@
+{
+  "props": {
+    "pawnType": "squad",
+    "race": "dwarf",
+    "level": 4,
+    "leadership": 380,
+    "morale": 0,
+    "attack": 25,
+    "defence": 32,
+    "defenceBonus": 4,
+    "actionPoints": 2,
+    "initiative": 5,
+    "criticalHitChance": 0.08,
+    "health": 180,
+    "movementType": "walking",
+    "hitbackFrequency": "once_per_round",
+    "hitbackProtection": false,
+    "resistances": [
+      ["fire", 0.15]
+    ]
+  },
+  "options": {
+    "features": [
+      "shot",
+      "humanoid"
+    ],
+    "featuresFromHints": [
+      "flamer",
+      "no_melee",
+      "robo_tech",
+      "chemister"
+    ],
+    "abilities": []
+  }
+}
