@@ -23,6 +23,8 @@ export default class Pawn {
 
     #isWaiting = false;
 
+    #cachedProps = new Map();
+
     constructor(fight, unitName, props, options) {
         this.id = nextUniqueId++;
         this.fight = fight;
@@ -37,6 +39,7 @@ export default class Pawn {
         this.#initFeatures(options.features ?? []);
         this.#initEffects();
         this.#initAbilities(options.abilities ?? []);
+        this.#bindListeners();
 
         this.refillHealth();
         this.refillActionPoints();
@@ -56,6 +59,12 @@ export default class Pawn {
     #initAbilities(abilities) {
         this.#abilities = abilities.map(abilityProps => {
             return new Ability(this, abilityProps);
+        });
+    }
+
+    #bindListeners() {
+        this.fight.addGlobalListener(() => {
+            this.#clearCache();
         });
     }
 
@@ -153,34 +162,15 @@ export default class Pawn {
     }
 
     getProperty(propertyName) {
-        // TODO: Кешировать рассчитанное значение и обновлять его только при необходимости (при определенных событиях?)
-        return this.#calculatePropertyValue(propertyName);
-    }
-
-    #calculatePropertyValue(propertyName) {
-        let value = this.getBaseProperty(propertyName);
-
-        this.applyCallbacks('modifyPawnProperty', callback => {
-            value = callback({
-                propertyName,
-                value,
-            });
-        });
-
-        let otherPawns = this.fight.arena.getAllPawns()
-            .filter(pawn => pawn !== this);
-
-        for (const otherPawn of otherPawns) {
-            otherPawn.applyCallbacks('modifyOtherPawnProperty', callback => {
-                value = callback({
-                    pawn: this,
-                    propertyName,
-                    value,
-                });
-            });
+        if (this.#cachedProps.has(propertyName)) {
+            return this.#cachedProps.get(propertyName);
         }
 
-        return this.props.postProcess(propertyName, value);
+        let value = this.#calculatePropertyValue(propertyName);
+
+        this.#cachedProps.set(propertyName, value);
+
+        return value;
     }
 
     getBaseProperty(propertyName) {
@@ -219,6 +209,36 @@ export default class Pawn {
 
     #callForEachEffect(propertyName, callback) {
         Pawn.#callForEachWithBind(this.effects, propertyName, callback);
+    }
+
+    #calculatePropertyValue(propertyName) {
+        let value = this.getBaseProperty(propertyName);
+
+        this.applyCallbacks('modifyPawnProperty', callback => {
+            value = callback({
+                propertyName,
+                value,
+            });
+        });
+
+        let otherPawns = this.fight.arena.getAllPawns()
+            .filter(pawn => pawn !== this);
+
+        for (const otherPawn of otherPawns) {
+            otherPawn.applyCallbacks('modifyOtherPawnProperty', callback => {
+                value = callback({
+                    pawn: this,
+                    propertyName,
+                    value,
+                });
+            });
+        }
+
+        return this.props.postProcess(propertyName, value);
+    }
+
+    #clearCache() {
+        this.#cachedProps.clear();
     }
 
     static #callForEachWithBind(elements, propertyName, callback) {
