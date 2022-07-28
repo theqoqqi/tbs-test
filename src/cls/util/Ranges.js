@@ -3,7 +3,7 @@ export default class Ranges {
 
     #ranges = new Map();
 
-    constructor(ranges) {
+    constructor(ranges = []) {
         for (const args of ranges) {
             let [type, min, max] = args;
 
