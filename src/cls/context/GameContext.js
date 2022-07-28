@@ -8,6 +8,7 @@ import * as featureJsons from '../../data/json/features';
 import * as effectJsons from '../../data/json/effects';
 import * as pawnJsons from '../../data/json/pawns';
 import Deserializer from './Deserializer.js';
+import lodash from 'lodash';
 
 export default class GameContext {
 
@@ -52,7 +53,7 @@ export default class GameContext {
 
 
     registerFeatureFromJson(internalName, featureJson) {
-        featureJson.base = internalName;
+        lodash.set(featureJson, 'props.base', internalName);
 
         let deserializedFeature = this.deserializer.deserializeFeature(featureJson);
         let props = deserializedFeature.props ?? {};
@@ -61,7 +62,7 @@ export default class GameContext {
     }
 
     registerEffectFromJson(internalName, effectJson) {
-        effectJson.base = internalName;
+        lodash.set(effectJson, 'props.base', internalName);
 
         let deserializedEffect = this.deserializer.deserializeEffect(effectJson);
         let props = deserializedEffect.props ?? {};
@@ -70,7 +71,7 @@ export default class GameContext {
     }
 
     registerPawnFromJson(unitName, pawnJson) {
-        pawnJson.base = unitName;
+        lodash.set(pawnJson, 'props.base', unitName);
 
         let deserializedPawn = this.deserializer.deserializePawn(pawnJson);
         let props = deserializedPawn.props ?? {};
