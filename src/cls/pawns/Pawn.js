@@ -153,6 +153,11 @@ export default class Pawn {
     }
 
     getProperty(propertyName) {
+        // TODO: Кешировать рассчитанное значение и обновлять его только при необходимости (при определенных событиях?)
+        return this.#calculatePropertyValue(propertyName);
+    }
+
+    #calculatePropertyValue(propertyName) {
         let value = this.getBaseProperty(propertyName);
 
         this.applyCallbacks('modifyPawnProperty', callback => {
@@ -161,6 +166,19 @@ export default class Pawn {
                 value,
             });
         });
+
+        let otherPawns = this.fight.arena.getAllPawns()
+            .filter(pawn => pawn !== this);
+
+        for (const otherPawn of otherPawns) {
+            otherPawn.applyCallbacks('modifyOtherPawnProperty', callback => {
+                value = callback({
+                    pawn: this,
+                    propertyName,
+                    value,
+                });
+            });
+        }
 
         return this.props.postProcess(propertyName, value);
     }
