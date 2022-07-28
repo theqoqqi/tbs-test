@@ -11,6 +11,7 @@ import lodash from 'lodash';
 import AbilitySlot from '../enums/AbilitySlot.js';
 import EffectType from '../enums/EffectType.js';
 import AbilityProps from '../pawns/props/AbilityProps.js';
+import DamageType from '../enums/DamageType.js';
 
 let enumMapper = enumType => {
     return value => {
@@ -49,6 +50,15 @@ let scriptMapper = root => {
     };
 };
 
+let firstItemMapper = ofMapper => {
+    return value => {
+        return value.map(item => {
+            item[0] = ofMapper(item[0]);
+            return item;
+        });
+    };
+};
+
 export default class Deserializer {
 
     #featureMappings = {
@@ -72,7 +82,7 @@ export default class Deserializer {
         props: {
             [PawnProps.pawnType]: enumMapper(PawnType),
             [PawnProps.race]: registryMapper(() => this.#context.raceRegistry),
-            [PawnProps.resistances]: constructorMapper(Resistances),
+            [PawnProps.resistances]: constructorMapper(Resistances, firstItemMapper(enumMapper(DamageType))),
             [PawnProps.movementType]: enumMapper(MovementType),
             [PawnProps.hitbackFrequency]: enumMapper(HitbackFrequency),
         },
@@ -81,13 +91,21 @@ export default class Deserializer {
                 registryMapper(() => this.#context.featureRegistry),
                 feature => !!feature,
             ),
-            abilities: arrayMapper(constructorMapper(AbilityProps, value => this.deserialize(value, {
-                slot: enumMapper(AbilitySlot),
-                damageRanges: constructorMapper(Ranges),
-                getEvents: scriptMapper(abilityScripts),
-                targetCollector: scriptMapper(abilityScripts),
-                apply: scriptMapper(abilityScripts),
-            }))),
+            abilities: arrayMapper(constructorMapper(AbilityProps, value => {
+                if (value.base) {
+                    value.getEvents ??= `${value.base}.getEvents`;
+                    value.targetCollector ??= `${value.base}.targetCollector`;
+                    value.apply ??= `${value.base}.apply`;
+                }
+
+                return this.deserialize(value, {
+                    slot: enumMapper(AbilitySlot),
+                    damageRanges: constructorMapper(Ranges, firstItemMapper(enumMapper(DamageType))),
+                    getEvents: scriptMapper(abilityScripts),
+                    targetCollector: scriptMapper(abilityScripts),
+                    apply: scriptMapper(abilityScripts),
+                });
+            })),
         }
     };
 
