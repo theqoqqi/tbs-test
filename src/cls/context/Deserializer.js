@@ -36,9 +36,10 @@ let registryMapper = registrySupplier => {
     };
 };
 
-let arrayMapper = ofMapper => {
+let arrayMapper = (ofMapper, filter) => {
+    filter ??= () => true;
     return value => {
-        return value.map(ofMapper);
+        return value.map(ofMapper).filter(filter);
     };
 };
 
@@ -76,7 +77,10 @@ export default class Deserializer {
             [PawnProps.hitbackFrequency]: enumMapper(HitbackFrequency),
         },
         options: {
-            features: arrayMapper(registryMapper(() => this.#context.featureRegistry)),
+            features: arrayMapper(
+                registryMapper(() => this.#context.featureRegistry),
+                feature => !!feature,
+            ),
             abilities: arrayMapper(constructorMapper(AbilityProps, value => this.deserialize(value, {
                 slot: enumMapper(AbilitySlot),
                 damageRanges: constructorMapper(Ranges),
