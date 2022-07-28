@@ -640,8 +640,16 @@ export default class Fight {
         });
     }
 
+    isAllies(pawnA, pawnB) {
+        return this.isAlliedTeams(pawnA.team, pawnB.team);
+    }
+
     isOpponents(pawnA, pawnB) {
         return this.isOpponentTeams(pawnA.team, pawnB.team);
+    }
+
+    isAlliedTeams(teamA, teamB) {
+        return teamA === teamB;
     }
 
     isOpponentTeams(teamA, teamB) {
