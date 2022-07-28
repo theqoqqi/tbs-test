@@ -128,6 +128,8 @@ export default class Deserializer {
     }
 
     deserialize(pawnJson, mappings) {
+        pawnJson = lodash.cloneDeep(pawnJson);
+
         let data = {};
 
         for (const [key, value] of Object.entries(pawnJson)) {
