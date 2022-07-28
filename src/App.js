@@ -20,6 +20,7 @@ import {arenaData, armies} from './fightInit.js';
 import {GlobalHotKeys} from 'react-hotkeys';
 import FightSummaryModal from './components/ui/FightSummaryModal';
 import GamecycleGameOverEvent from './cls/events/types/GamecycleGameOverEvent.js';
+import Ranges from './cls/util/Ranges.js';
 
 const globalKeyMap = {
     WAIT: {
@@ -620,6 +621,8 @@ export default class App extends React.Component {
                 };
             });
 
+        let damageRanges = regularAbility?.damageRanges ?? new Ranges();
+
         return {
             attack: pawn.attack,
             defence: pawn.defence,
@@ -630,7 +633,7 @@ export default class App extends React.Component {
             currentHealth: pawn.currentHealth,
             maxHealth: pawn.maxHealth,
             resistances: pawn.resistances,
-            damageRanges: regularAbility.damageRanges,
+            damageRanges: damageRanges,
             movementType: pawn.movementType,
 
             baseAttack: pawn.baseAttack,
