@@ -257,7 +257,7 @@ export default class Pawn {
     }
 
     toString() {
-        return `Pawn #${this.id} (${this.position.x}, ${this.position.y})`;
+        return `Pawn #${this.id} (${this.position.x}, ${this.position.y}) - ${this.unitName}`;
     }
 
     //endregion
