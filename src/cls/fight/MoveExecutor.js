@@ -59,11 +59,13 @@ export default class MoveExecutor {
                 path,
             });
 
-            ability.consumeCharges(1);
-            ability.startReloading();
+            if (ability.slot !== AbilitySlot.REGULAR) {
+                ability.consumeCharges(1);
+                ability.startReloading();
 
-            if (ability.endsTurn && move?.pawn) {
-                move.pawn.consumeAllActionPoints();
+                if (ability.endsTurn && move?.pawn) {
+                    move.pawn.consumeAllActionPoints();
+                }
             }
 
             resolve();

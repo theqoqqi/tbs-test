@@ -8,6 +8,7 @@ export default {
 
         if (victim && !victim.isItem) {
             moveExecutor.makeAttackMove(move, path, this);
+            move.pawn.consumeAllActionPoints();
         } else {
             moveExecutor.makeMovementMove(move, path);
         }
