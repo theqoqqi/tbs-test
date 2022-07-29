@@ -1,5 +1,3 @@
-import ArenaMove from '../../../../cls/arena/ArenaMove.js';
-import HexagonUtils from '../../../../cls/util/HexagonUtils.js';
 
 export default {
     /** @this Ability */
