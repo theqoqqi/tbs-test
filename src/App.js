@@ -416,6 +416,11 @@ export default class App extends React.Component {
 
         let neighborCell = this.getSuitableNeighborCell(pawn, cell, mousePosition);
 
+        if (!neighborCell) {
+            this.clearPath();
+            return;
+        }
+
         let path = this.arena.isCellPassable(cell.position)
             ? this.arena.findPath(pawn, cell.position)
             : this.arena.findPath(pawn, neighborCell.position);

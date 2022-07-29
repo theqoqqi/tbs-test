@@ -63,10 +63,10 @@ export default class Arena {
         return this.grid.getAllCells();
     }
 
-    isCellPassable(position) {
+    isCellPassable(position, forPawn = null) {
         let pawn = this.getSquadOrStructure(position);
 
-        return !pawn;
+        return !pawn || pawn === forPawn;
     }
 
 

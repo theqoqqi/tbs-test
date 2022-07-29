@@ -335,6 +335,12 @@ export default class Fight {
             });
         }
 
+        if (!ability.damageRanges) {
+            return new MoveInfo({
+                actionInfos: [], // TODO: Что вообще делает способность?
+            });
+        }
+
         return new MoveInfo({
             actionInfos: [
                 this.getEstimatedDamage(attackerPawn, targetPawn, ability),
