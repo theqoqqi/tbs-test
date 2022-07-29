@@ -65,7 +65,7 @@ export default class MoveExecutor {
                 ability.consumeCharges(1);
                 ability.startReloading();
 
-                if (move.actionPoints) {
+                if (move?.actionPoints) {
                     move.pawn.consumeActionPoints(move.actionPoints);
                 }
 
