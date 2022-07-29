@@ -19,7 +19,7 @@ export default class AbilityProps {
 
         this.disabledIfNearEnemy = props.disabledIfNearEnemy ?? false;
         this.mutedIfNearEnemy = props.mutedIfNearEnemy ?? false;
-        this.usesMovement = props.usesMovement ?? true;
+        this.usesMovement = props.usesMovement ?? false;
         this.endsTurn = props.endsTurn ?? true;
         this.noHitbacks = props.noHitbacks ?? false;
     }
