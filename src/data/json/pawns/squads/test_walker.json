@@ -24,17 +24,16 @@
     "abilities": [
       {
         "slot": "regular",
-        "targetCollector": "defaultMelee.targetCollector",
-        "apply": "defaultMelee.apply",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 1, 2]
         ]
       },
       {
         "internalName": "run",
+        "base": "defaultRun",
         "slot": "ability_1",
         "charges": 1,
-        "apply": "defaultRun.apply",
         "scriptParams": {
           "actionPoints": 2
         }

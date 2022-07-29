@@ -22,8 +22,7 @@
     "abilities": [
       {
         "slot": "regular",
-        "targetCollector": "defaultRanged.targetCollector",
-        "apply": "defaultRanged.apply",
+        "base": "defaultRanged",
         "damageRanges": [
           ["physical", 4, 5]
         ],
@@ -35,8 +34,7 @@
       },
       {
         "slot": "regular",
-        "targetCollector": "defaultMelee.targetCollector",
-        "apply": "defaultMelee.apply",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 2, 3]
         ]
@@ -44,8 +42,7 @@
       {
         "internalName": "powerShot",
         "slot": "ability_1",
-        "targetCollector": "defaultRanged.targetCollector",
-        "apply": "defaultRanged.apply",
+        "base": "defaultRanged",
         "damageRanges": [
           ["physical", 6, 8]
         ],

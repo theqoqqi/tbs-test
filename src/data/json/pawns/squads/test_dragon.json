@@ -29,9 +29,7 @@
     "abilities": [
       {
         "slot": "regular",
-        "targetCollector": "defaultMelee.targetCollector",
-        "apply": "defaultMelee.apply",
-        "getEvents": "burningAttack.getEvents",
+        "base": "defaultMelee",
         "damageRanges": [
           ["fire", 100, 120]
         ],

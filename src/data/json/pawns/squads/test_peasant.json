@@ -22,8 +22,7 @@
     "abilities": [
       {
         "slot": "regular",
-        "targetCollector": "defaultMelee.targetCollector",
-        "apply": "defaultMelee.apply",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 1, 2]
         ]
