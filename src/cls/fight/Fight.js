@@ -613,7 +613,6 @@ export default class Fight {
 
         this.#eventBus.dispatch(PawnRemovedEvent, { pawn });
 
-        console.log('REMOVE:', pawn)
         for (const feature of pawn.features) {
             this.#eventBus.dispatch(PawnFeatureRemovedEvent, { feature });
         }
