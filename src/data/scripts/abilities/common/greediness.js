@@ -27,7 +27,7 @@ export default {
                         return new ArenaMove({
                             pawn: forPawn,
                             targetCell: cell,
-                            actionPoints: 0,
+                            actionPoints: 1,
                             isRanged: true,
                         });
                     })
@@ -37,6 +37,5 @@ export default {
     /** @this Ability */
     apply({pawn, move, path}) {
         this.fight.makeTeleportMove(move, this);
-        this.owner.consumeActionPoints(1);
     },
 }
