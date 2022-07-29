@@ -61,6 +61,14 @@ export default class Ability {
         return this.#getProperty('slot');
     }
 
+    get reload() {
+        return this.#getProperty('reload');
+    }
+
+    get charges() {
+        return this.#getProperty('charges');
+    }
+
     get scriptParams() {
         return this.#getProperty('scriptParams');
     }
@@ -101,24 +109,20 @@ export default class Ability {
         return this.#getProperty('disabledIfNearEnemy');
     }
 
-    get endsTurn() {
-        return this.#getProperty('endsTurn');
-    }
-
     get mutedIfNearEnemy() {
         return this.#getProperty('mutedIfNearEnemy');
     }
 
+    get usesMovement() {
+        return this.#getProperty('usesMovement');
+    }
+
+    get endsTurn() {
+        return this.#getProperty('endsTurn');
+    }
+
     get noHitbacks() {
         return this.#getProperty('noHitbacks');
-    }
-
-    get reload() {
-        return this.#getProperty('reload');
-    }
-
-    get charges() {
-        return this.#getProperty('charges');
     }
 
 

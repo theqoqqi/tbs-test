@@ -205,28 +205,38 @@ export default class Fight {
     //region Информация о ходах
 
     getAvailableMoves(forPawn, abilitySlot) {
-        let moves = [];
+        let movesMap = new Map();
         let movementMoves = [];
-        let abilities = this.getAllAbilitiesInSlot(forPawn, abilitySlot)
-            .filter(ability => this.isAbilityReady(forPawn, ability));
+        let abilities = this.#getAbilitiesForAvailableMoves(forPawn, abilitySlot);
+        let ability = abilities.length === 1 ? abilities[0] : null;
+        let addMoves = moves => {
+            moves.forEach(move => movesMap.set(move.targetCell.position, move));
+        };
 
-        if (!abilities || abilitySlot === AbilitySlot.REGULAR) {
+        if (!abilities || abilitySlot === AbilitySlot.REGULAR || ability.usesMovement) {
             movementMoves = this.#getMovementMoves(forPawn);
 
-            moves = moves.concat(movementMoves);
+            addMoves(movementMoves);
         }
 
         for (const ability of abilities) {
-            let abilityMoves = Fight.#getAbilityMoves(ability, movementMoves);
-
-            moves = moves.concat(abilityMoves);
+            addMoves(Fight.#getAbilityMoves(ability, movementMoves));
         }
 
-        let useMoves = this.#getUseMoves(forPawn, movementMoves);
+        addMoves(this.#getUseMoves(forPawn, movementMoves));
 
-        moves = moves.concat(useMoves);
+        return Array.from(movesMap.values());
+    }
 
-        return moves;
+    #getAbilitiesForAvailableMoves(forPawn, abilitySlot) {
+        if (abilitySlot === AbilitySlot.REGULAR) {
+            return this.getAllAbilitiesInSlot(forPawn, abilitySlot)
+                .filter(ability => this.isAbilityReady(forPawn, ability));
+        } else {
+            return [
+                this.getAbilityInSlot(forPawn, abilitySlot),
+            ];
+        }
     }
 
     #getMovementMoves(forPawn) {
@@ -334,7 +344,7 @@ export default class Fight {
     };
 
     getMoveInfo(attackerPawn, targetPawn, ability, move, path) {
-        if (ability.getMoveInfo) {
+        if (ability?.getMoveInfo) {
             return ability.getMoveInfo(attackerPawn, targetPawn, move, path);
         }
 

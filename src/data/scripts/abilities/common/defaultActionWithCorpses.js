@@ -8,6 +8,7 @@ export default {
         return arena.getAllPawns()
             .filter(pawn => pawn.isCorpse)
             .filter(pawn => arena.isCellPassable(pawn.position, this.owner))
+            .filter(pawn => !!movementMoves.find(move => move.targetCell.position.equals(pawn.position)))
             .map(pawn => new ArenaMove({
                 pawn: this.owner,
                 ability: this,
