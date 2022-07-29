@@ -5,6 +5,7 @@ import PawnMovedEvent from '../events/types/PawnMovedEvent.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
 import PawnUsedEvent from '../events/types/PawnUsedEvent.js';
 import Constants from '../Constants.js';
+import HexagonUtils from '../util/HexagonUtils.js';
 
 export default class MoveExecutor {
 
@@ -111,9 +112,10 @@ export default class MoveExecutor {
     shouldHitback(attacker, victim, ability) {
         return victim.stackSize > 0
             && victim.canHitback
-            && this.#fight.hasAbilityInSlot(victim, AbilitySlot.REGULAR)
             && !attacker.hitbackProtection
-            && !ability.noHitbacks;
+            && !ability.noHitbacks
+            && this.#fight.hasAbilityInSlot(victim, AbilitySlot.REGULAR)
+            && HexagonUtils.isNeighbors(attacker.position, victim.position);
     }
 
     tryHitback(attacker, victim, attackerAbility) {

@@ -28,6 +28,10 @@ export default class HexagonUtils {
         });
     }
 
+    static isNeighbors(positionA, positionB) {
+        return this.axialDistance(positionA, positionB) === 1;
+    }
+
     static plainDistance(from, to) {
         let d = Vector.subtract(from, to);
 
