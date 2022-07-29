@@ -23,6 +23,7 @@ import PawnFeatureRemovedEvent from '../events/types/PawnFeatureRemovedEvent.js'
 import PawnAbilityRemovedEvent from '../events/types/PawnAbilityRemovedEvent.js';
 import MovementType from '../enums/MovementType.js';
 import lodash from 'lodash';
+import Constants from '../Constants.js';
 
 export default class Fight {
 
@@ -576,7 +577,7 @@ export default class Fight {
     }
 
     createCorpse(position, unitName) {
-        let pawn = this.#newPawn(position, 'corpse', {
+        let pawn = this.#newPawn(position, Constants.CORPSE_UNIT_NAME, {
             team: Team.NEUTRAL,
             stackSize: 1,
         });

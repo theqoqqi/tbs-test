@@ -4,6 +4,7 @@ import Vector from '../util/Vector.js';
 import Feature from './Feature.js';
 import PawnProps from './props/PawnProps.js';
 import PawnType from '../enums/PawnType.js';
+import Constants from '../Constants.js';
 
 let nextUniqueId = 0;
 
@@ -178,11 +179,11 @@ export default class Pawn {
     }
 
     get isUsable() {
-        return this.hasFeature('activateOnUse');
+        return this.hasFeature(Constants.ACTIVATE_ON_USE_FEATURE_NAME);
     }
 
     get isCorpse() {
-        return this.unitName === 'corpse';
+        return this.unitName === Constants.CORPSE_UNIT_NAME;
     }
 
     get isSquad() {

@@ -9,6 +9,7 @@ import * as effectJsons from '../../data/json/effects';
 import * as pawnJsons from '../../data/json/pawns';
 import Deserializer from './Deserializer.js';
 import lodash from 'lodash';
+import Constants from '../Constants.js';
 
 export default class GameContext {
 
@@ -118,7 +119,7 @@ export default class GameContext {
             options.features = [];
         }
 
-        options.features.unshift(this.featureRegistry.get('morale'));
+        options.features.unshift(this.featureRegistry.get(Constants.MORALE_FEATURE_NAME));
 
         return options;
     }

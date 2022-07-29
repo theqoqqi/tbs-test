@@ -4,6 +4,7 @@ import PawnDamageReceivedEvent from '../events/types/PawnDamageReceivedEvent.js'
 import PawnMovedEvent from '../events/types/PawnMovedEvent.js';
 import AbilitySlot from '../enums/AbilitySlot.js';
 import PawnUsedEvent from '../events/types/PawnUsedEvent.js';
+import Constants from '../Constants.js';
 
 export default class MoveExecutor {
 
@@ -27,7 +28,7 @@ export default class MoveExecutor {
         return this.#enqueueAction(resolve => {
             pawn.consumeAllActionPoints();
 
-            this.#fight.addPawnEffect(pawn, 'blockBonus', {
+            this.#fight.addPawnEffect(pawn, Constants.BLOCK_BONUS_EFFECT_NAME, {
                 duration: 1,
             });
 
