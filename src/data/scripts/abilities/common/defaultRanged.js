@@ -14,7 +14,7 @@ export default {
 
         return allPawns
             .map(targetPawn => {
-                if (targetPawn.isItem) {
+                if (targetPawn.isItem || targetPawn.invulnerable) {
                     return null;
                 }
 
