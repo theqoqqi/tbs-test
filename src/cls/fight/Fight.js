@@ -338,8 +338,26 @@ export default class Fight {
             return ability.getMoveInfo(attackerPawn, targetPawn, move, path);
         }
 
+        return this.getDefaultMoveInfo(attackerPawn, targetPawn, ability, move, path);
+    }
+
+    getDefaultMoveInfo(attackerPawn, targetPawn, ability, move, path) {
+        if (targetPawn.isUsable) {
+            return new MoveInfo({
+                actionInfos: [], // TODO: Действие "Открыть сундук"?
+            });
+        }
+
+        if (!ability.damageRanges) {
+            return new MoveInfo({
+                actionInfos: [], // TODO: Что вообще делает способность?
+            });
+        }
+
         return new MoveInfo({
-            actionInfos: [],
+            actionInfos: [
+                this.getEstimatedDamage(attackerPawn, targetPawn, ability),
+            ],
         });
     }
 
