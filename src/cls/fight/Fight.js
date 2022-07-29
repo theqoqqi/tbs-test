@@ -131,7 +131,7 @@ export default class Fight {
         let structurePositions = lodash.shuffle(this.structurePositions);
 
         for (let i = 0; i < this.structures; i++) {
-            let structureName = lodash.sample(['iceShard', 'chest']);
+            let structureName = lodash.sample(['iceShard', 'chest']); // TODO: избавиться от хардкода
             let position = structurePositions.pop();
 
             this.createPawn(position, structureName, {
