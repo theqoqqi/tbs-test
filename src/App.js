@@ -199,12 +199,14 @@ export default class App extends React.Component {
             return;
         }
 
-        let pawn = this.arena.getSquadOrStructure(pawnComponent.props.axialPosition);
+        let pawn = this.arena.getAnyPawn(pawnComponent.props.axialPosition);
 
-        if (this.selectedPawn === pawn) {
-            this.clearSelectedPawn();
-        } else {
-            this.setSelectedPawn(pawn);
+        if (pawn?.performsMoves) {
+            if (this.selectedPawn === pawn) {
+                this.clearSelectedPawn();
+            } else {
+                this.setSelectedPawn(pawn);
+            }
         }
 
         console.log(pawn.toString());
