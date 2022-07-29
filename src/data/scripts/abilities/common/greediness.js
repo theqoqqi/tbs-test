@@ -37,5 +37,6 @@ export default {
     /** @this Ability */
     apply({pawn, move, path}) {
         this.fight.makeTeleportMove(move, this);
+        this.owner.consumeActionPoints(1);
     },
 }
