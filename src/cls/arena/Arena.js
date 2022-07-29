@@ -126,7 +126,7 @@ export default class Arena {
     }
 
     getCorpse(position) {
-        return this.#findPawn(position, pawn => pawn.unitName === 'corpse');
+        return this.#findPawn(position, pawn => pawn.isCorpse);
     }
 
     hasCorpseAt(position) {

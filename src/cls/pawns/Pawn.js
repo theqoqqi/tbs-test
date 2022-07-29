@@ -181,6 +181,10 @@ export default class Pawn {
         return this.hasFeature('activateOnUse');
     }
 
+    get isCorpse() {
+        return this.unitName === 'corpse';
+    }
+
     get isSquad() {
         return this.pawnType === PawnType.SQUAD;
     }
