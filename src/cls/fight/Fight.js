@@ -556,6 +556,37 @@ export default class Fight {
     }
 
     createPawn(position, unitName, options) {
+        let pawn = this.#newPawn(position, unitName, options);
+
+        this.arena.addPawn(pawn);
+        this.#addPawn(pawn);
+
+        return pawn;
+    }
+
+    removePawn(pawn) {
+        this.arena.removePawn(pawn);
+        this.#removePawn(pawn);
+    }
+
+    createCorpse(position, unitName) {
+        let pawn = this.#newPawn(position, 'corpse', {
+            team: Team.NEUTRAL,
+            stackSize: 1,
+        });
+
+        this.arena.setCorpse(position, pawn, unitName);
+        this.#addPawn(pawn);
+
+        return pawn;
+    }
+
+    removeCorpse(pawn) {
+        this.arena.removeCorpse(pawn);
+        this.#removePawn(pawn);
+    }
+
+    #newPawn(position, unitName, options) {
         let props = this.#gameContext.getPawnProps(unitName);
         let defaultOptions = this.#gameContext.getPawnOptions(unitName);
         let allOptions = Object.assign({}, defaultOptions, options);
@@ -563,7 +594,10 @@ export default class Fight {
 
         pawn.position = position;
 
-        this.arena.addPawn(pawn);
+        return pawn;
+    }
+
+    #addPawn(pawn) {
         this.#gamecycle.addPawn(pawn, false);
 
         this.#eventBus.dispatch(PawnAddedEvent, { pawn });
@@ -575,16 +609,14 @@ export default class Fight {
         for (const ability of pawn.abilities) {
             this.#eventBus.dispatch(PawnAbilityAddedEvent, { ability });
         }
-
-        return pawn;
     }
 
-    removePawn(pawn) {
-        this.arena.removePawn(pawn);
+    #removePawn(pawn) {
         this.#gamecycle.removePawn(pawn);
 
         this.#eventBus.dispatch(PawnRemovedEvent, { pawn });
 
+        console.log('REMOVE:', pawn)
         for (const feature of pawn.features) {
             this.#eventBus.dispatch(PawnFeatureRemovedEvent, { feature });
         }

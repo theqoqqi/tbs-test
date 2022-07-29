@@ -1,0 +1,11 @@
+{
+  "props": {
+    "pawnType": "item",
+    "movementType": "immobile",
+    "invulnerable": true
+  },
+  "options": {
+    "features": [],
+    "abilities": []
+  }
+}

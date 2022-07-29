@@ -8,6 +8,7 @@ export default class Arena {
     constructor() {
         this.grid = new ArenaGrid();
         this.pawns = new Map();
+        this.corpseUnitNames = new Map();
         this.passabilityGrid = new ArenaPassabilityGrid(this);
     }
 
@@ -80,7 +81,7 @@ export default class Arena {
 
     getPawn(position) {
         return this.getAllPawns().find(pawn => {
-            return pawn.position.equals(position);
+            return !pawn.isItem && pawn.position.equals(position);
         });
     }
 
@@ -90,6 +91,38 @@ export default class Arena {
 
     getAllPawns() {
         return Array.from(this.pawns.values());
+    }
+
+
+
+    setCorpse(position, corpsePawn, unitName) {
+        let existingCorpse = this.getCorpse(position);
+
+        if (existingCorpse) {
+            this.removeCorpse(existingCorpse);
+        }
+
+        this.addPawn(corpsePawn);
+        this.corpseUnitNames.set(corpsePawn.id, unitName);
+    }
+
+    removeCorpse(corpsePawn) {
+        this.removePawn(corpsePawn);
+        this.corpseUnitNames.delete(corpsePawn.id);
+    }
+
+    getCorpse(position) {
+        return this.getAllPawns().find(pawn => {
+            return pawn.unitName === 'corpse' && pawn.position.equals(position);
+        });
+    }
+
+    hasCorpseAt(position) {
+        return !!this.getCorpse(position);
+    }
+
+    getCorpseUnitName(corpsePawn) {
+        return this.corpseUnitNames.get(corpsePawn.id);
     }
 
 

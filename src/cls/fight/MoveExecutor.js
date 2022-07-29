@@ -192,6 +192,7 @@ export default class MoveExecutor {
 
             if (victim.stackSize === 0) {
                 this.#fight.removePawn(victim);
+                this.#fight.createCorpse(victim.position, victim.unitName);
             }
 
             if (consumeActionPoints) {

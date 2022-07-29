@@ -1,4 +1,11 @@
 
+export {default as corpse} from './system/corpse.json';
+
+export {default as iceShard} from './structures/iceShard.json';
+export {default as chest} from './structures/chest.json';
+
+export {default as apShard} from './items/apShard.json';
+
 export {default as test_walker} from './squads/test_walker.json';
 export {default as test_soarer} from './squads/test_soarer.json';
 export {default as test_archer} from './squads/test_archer.json';
@@ -119,8 +126,3 @@ export {default as necromant} from './squads/undead/necromant.json';
 export {default as bonedragon} from './squads/undead/bonedragon.json';
 
 //endregion
-
-export {default as iceShard} from './structures/iceShard.json';
-export {default as chest} from './structures/chest.json';
-
-export {default as apShard} from './items/apShard.json';
