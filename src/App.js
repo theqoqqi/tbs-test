@@ -199,7 +199,7 @@ export default class App extends React.Component {
             return;
         }
 
-        let pawn = this.arena.getPawn(pawnComponent.props.axialPosition);
+        let pawn = this.arena.getSquadOrStructure(pawnComponent.props.axialPosition);
 
         if (this.selectedPawn === pawn) {
             this.clearSelectedPawn();
@@ -213,9 +213,9 @@ export default class App extends React.Component {
     handlePawnRightClick = (pawnComponent, event) => {
         event.preventDefault();
 
-        let pawn = this.arena.getPawn(pawnComponent.props.axialPosition);
+        let pawn = this.arena.getSquad(pawnComponent.props.axialPosition);
 
-        if (pawn.isSquad) {
+        if (pawn) {
             this.openPawnInfoModalFor(pawn);
         }
     }
@@ -286,7 +286,7 @@ export default class App extends React.Component {
             return;
         }
 
-        let targetPawn = this.arena.getPawn(move.targetCell.position);
+        let targetPawn = this.arena.getAnyPawn(move.targetCell.position);
 
         if (!targetPawn || targetPawn.isItem) {
             this.hideMoveInfoTooltip();

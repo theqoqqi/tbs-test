@@ -37,7 +37,7 @@ export default class MoveExecutor {
 
     applyAbility(pawn, ability, move = null, path = []) {
         if (move?.targetCell) {
-            let targetPawn = this.#fight.arena.getPawn(move.targetCell.position);
+            let targetPawn = this.#fight.arena.getSquadOrStructure(move.targetCell.position);
 
             if (targetPawn?.isUsable) {
                 return move && path
@@ -73,7 +73,7 @@ export default class MoveExecutor {
     }
 
     makeUseMove(move, path) {
-        let targetPawn = this.#fight.arena.getPawn(move.targetCell.position);
+        let targetPawn = this.#fight.arena.getSquadOrStructure(move.targetCell.position);
 
         return this.makeMovementMove(move, path)
             .then(() => this.use(move.pawn, targetPawn));
@@ -100,7 +100,7 @@ export default class MoveExecutor {
     makeAttackMove(move, path, ability) {
         let attacker = move.pawn;
         let cell = move.targetCell;
-        let victim = this.#fight.arena.getPawn(cell.position);
+        let victim = this.#fight.arena.getAnyPawn(cell.position);
 
         return this.moveByPath(attacker, path)
             .then(() => this.attack(attacker, victim, ability))
@@ -192,7 +192,10 @@ export default class MoveExecutor {
 
             if (victim.stackSize === 0) {
                 this.#fight.removePawn(victim);
-                this.#fight.createCorpse(victim.position, victim.unitName);
+
+                if (victim.isSquad) {
+                    this.#fight.createCorpse(victim.position, victim.unitName);
+                }
             }
 
             if (consumeActionPoints) {

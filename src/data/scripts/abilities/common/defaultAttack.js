@@ -4,9 +4,9 @@ export default {
     apply({pawn, move, path}) {
         let arena = this.fight.arena;
         let moveExecutor = this.fight.moveExecutor;
-        let victim = arena.getPawn(move.targetCell.position);
+        let victim = arena.getSquadOrStructure(move.targetCell.position);
 
-        if (victim && !victim.isItem) {
+        if (victim) {
             moveExecutor.makeAttackMove(move, path, this);
             move.pawn.consumeAllActionPoints();
         } else {

@@ -64,9 +64,9 @@ export default class Arena {
     }
 
     isCellPassable(position) {
-        let pawn = this.getPawn(position);
+        let pawn = this.getSquadOrStructure(position);
 
-        return !pawn || pawn.isItem;
+        return !pawn;
     }
 
 
@@ -79,14 +79,28 @@ export default class Arena {
         this.pawns.delete(pawn.id);
     }
 
-    getPawn(position) {
-        return this.getAllPawns().find(pawn => {
-            return !pawn.isItem && pawn.position.equals(position);
-        });
+    getAnyPawn(position) {
+        return this.#findPawn(position);
+    }
+
+    getSquadOrStructure(position) {
+        return this.#findPawn(position, pawn => pawn.isSquad || pawn.isStructure);
+    }
+
+    getSquad(position) {
+        return this.#findPawn(position, pawn => pawn.isSquad);
+    }
+
+    getStructure(position) {
+        return this.#findPawn(position, pawn => pawn.isStructure);
+    }
+
+    getItem(position) {
+        return this.#findPawn(position, pawn => pawn.isItem);
     }
 
     hasPawnAt(position) {
-        return !!this.getPawn(position);
+        return !!this.getAnyPawn(position);
     }
 
     getAllPawns() {
@@ -112,9 +126,7 @@ export default class Arena {
     }
 
     getCorpse(position) {
-        return this.getAllPawns().find(pawn => {
-            return pawn.unitName === 'corpse' && pawn.position.equals(position);
-        });
+        return this.#findPawn(position, pawn => pawn.unitName === 'corpse');
     }
 
     hasCorpseAt(position) {
@@ -136,5 +148,12 @@ export default class Arena {
         let neighborPosition = originCell.position.add(neighborDirection);
 
         return this.getCell(neighborPosition);
+    }
+
+    #findPawn(position, filter) {
+        filter ??= () => true;
+        return this.getAllPawns().find(pawn => {
+            return pawn.position.equals(position) && filter(pawn);
+        });
     }
 }

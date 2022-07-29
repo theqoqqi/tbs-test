@@ -14,7 +14,7 @@ export default {
 
         return targetPositions
             .map(position => {
-                let targetPawn = arena.getPawn(position);
+                let targetPawn = arena.getSquadOrStructure(position);
 
                 if (!targetPawn || !fight.isOpponents(forPawn, targetPawn)) {
                     return null;
@@ -34,7 +34,7 @@ export default {
     /** @this Ability */
     apply({pawn, move, path}) {
         let hitInfo = this.fight.getRandomHitInfo(this.owner, pawn, this);
-        let victim = this.fight.arena.getPawn(move.targetCell.position);
+        let victim = this.fight.arena.getSquadOrStructure(move.targetCell.position);
 
         this.fight.makeDamageMove({
             attacker: this.owner,

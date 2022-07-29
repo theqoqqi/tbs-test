@@ -666,7 +666,7 @@ export default class Fight {
         let neighborPositions = this.arena.getNeighborPositions(forPawn.position);
 
         return neighborPositions.some(position => {
-            let otherPawn = this.arena.getPawn(position);
+            let otherPawn = this.arena.getSquadOrStructure(position);
 
             return otherPawn && this.isOpponents(forPawn, otherPawn);
         });
