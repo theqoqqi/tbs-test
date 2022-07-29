@@ -1,3 +1,3 @@
 
-export {default as burn} from './burn.json';
-export {default as blockBonus} from './blockBonus.json';
+export {default as burn} from './common/burn.json';
+export {default as blockBonus} from './system/blockBonus.json';
