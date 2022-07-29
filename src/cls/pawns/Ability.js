@@ -69,6 +69,10 @@ export default class Ability {
         return this.#getProperty('getEvents');
     }
 
+    get getMoveInfo() {
+        return this.#getProperty('getMoveInfo');
+    }
+
     get targetCollector() {
         return this.#getProperty('targetCollector');
     }

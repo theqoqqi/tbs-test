@@ -8,6 +8,7 @@ export default class AbilityProps {
         this.scriptParams = props.scriptParams ?? {};
 
         this.getEvents = props.getEvents ?? null;
+        this.getMoveInfo = props.getMoveInfo ?? null;
         this.targetCollector = props.targetCollector ?? null;
         this.apply = props.apply ?? null;
 

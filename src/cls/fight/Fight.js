@@ -329,23 +329,13 @@ export default class Fight {
         return sorted[0];
     };
 
-    getMoveInfo(attackerPawn, targetPawn, ability) {
-        if (targetPawn.isUsable) {
-            return new MoveInfo({
-                actionInfos: [], // TODO: Действие "Открыть сундук"?
-            });
-        }
-
-        if (!ability.damageRanges) {
-            return new MoveInfo({
-                actionInfos: [], // TODO: Что вообще делает способность?
-            });
+    getMoveInfo(attackerPawn, targetPawn, ability, move, path) {
+        if (ability.getMoveInfo) {
+            return ability.getMoveInfo(attackerPawn, targetPawn, move, path);
         }
 
         return new MoveInfo({
-            actionInfos: [
-                this.getEstimatedDamage(attackerPawn, targetPawn, ability),
-            ],
+            actionInfos: [],
         });
     }
 

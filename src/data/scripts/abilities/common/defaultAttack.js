@@ -1,3 +1,4 @@
+import MoveInfo from '../../../../cls/util/info/MoveInfo.js';
 
 export default {
     /** @this Ability */
@@ -12,5 +13,24 @@ export default {
         } else {
             moveExecutor.makeMovementMove(move, path);
         }
+    },
+    getMoveInfo(attackerPawn, targetPawn, move, path) {
+        if (targetPawn.isUsable) {
+            return new MoveInfo({
+                actionInfos: [], // TODO: Действие "Открыть сундук"?
+            });
+        }
+
+        if (!this.damageRanges) {
+            return new MoveInfo({
+                actionInfos: [], // TODO: Что вообще делает способность?
+            });
+        }
+
+        return new MoveInfo({
+            actionInfos: [
+                this.fight.getEstimatedDamage(attackerPawn, targetPawn, this),
+            ],
+        });
     },
 }

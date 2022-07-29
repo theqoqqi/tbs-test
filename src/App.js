@@ -295,7 +295,7 @@ export default class App extends React.Component {
             return;
         }
 
-        let moveInfo = this.fight.getMoveInfo(move.pawn, targetPawn, this.selectedAbility);
+        let moveInfo = this.fight.getMoveInfo(move.pawn, targetPawn, this.selectedAbility, move, this.state.path);
 
         if (moveInfo) {
             this.showMoveInfoTooltip(moveInfo, cell);

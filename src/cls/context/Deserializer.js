@@ -101,6 +101,7 @@ export default class Deserializer {
                 slot: enumMapper(AbilitySlot),
                 damageRanges: constructorMapper(Ranges, firstItemMapper(enumMapper(DamageType))),
                 getEvents: scriptMapper(abilityScripts),
+                getMoveInfo: scriptMapper(abilityScripts),
                 targetCollector: scriptMapper(abilityScripts),
                 apply: scriptMapper(abilityScripts),
             }))),
