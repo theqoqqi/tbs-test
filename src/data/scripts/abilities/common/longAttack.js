@@ -8,19 +8,22 @@ export default {
         let arena = fight.arena;
         let forPawn = this.owner;
 
-        let targetPositions = HexagonUtils.NEIGHBOR_DIRECTIONS.map(position => {
-            return position.multiply(2).add(forPawn.position);
-        });
+        return HexagonUtils.NEIGHBOR_DIRECTIONS
+            .map(direction => {
+                let middlePosition = direction.add(forPawn.position);
+                let targetPosition = direction.multiply(2).add(forPawn.position);
 
-        return targetPositions
-            .map(position => {
-                let targetPawn = arena.getSquadOrStructure(position);
+                if (!arena.isCellPassable(middlePosition)) {
+                    return null;
+                }
+
+                let targetPawn = arena.getSquadOrStructure(targetPosition);
 
                 if (!targetPawn || !fight.isOpponents(forPawn, targetPawn)) {
                     return null;
                 }
 
-                let cell = arena.getCell(position);
+                let cell = arena.getCell(targetPosition);
 
                 return new ArenaMove({
                     pawn: forPawn,
