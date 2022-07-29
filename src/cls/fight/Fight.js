@@ -223,7 +223,9 @@ export default class Fight {
             addMoves(Fight.#getAbilityMoves(ability, movementMoves));
         }
 
-        addMoves(this.#getUseMoves(forPawn, movementMoves));
+        if (abilitySlot === AbilitySlot.REGULAR) {
+            addMoves(this.#getUseMoves(forPawn, movementMoves));
+        }
 
         return Array.from(movesMap.values());
     }
