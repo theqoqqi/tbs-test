@@ -62,7 +62,7 @@ export default class App extends React.Component {
         this.fight = new Fight(gameContext, arenaData, armies);
         this.viewedPawn = null;
         this.selectedPawn = null;
-        this.selectedAbility = null;
+        this.selectedAbilitySlot = null;
         this.moves = [];
         this.pathDirection = null;
 
@@ -171,7 +171,7 @@ export default class App extends React.Component {
         if (pawn && cellComponent.props.selectable) {
             let move = this.moves.find(move => move.targetCell === cell);
 
-            this.fight.makeMove(move, this.state.path, this.selectedAbility);
+            this.fight.makeMove(move, this.state.path);
 
             this.clearSelectedPawn();
         }
@@ -248,13 +248,13 @@ export default class App extends React.Component {
             return;
         }
 
-        if (this.selectedAbility === ability) {
-            this.setSelectedAbility(this.fight.getRegularAbility(pawn));
+        if (this.selectedAbilitySlot === abilitySlot) {
+            this.setSelectedAbilitySlot(AbilitySlot.REGULAR);
             return;
         }
 
         if (ability.targetCollector) {
-            this.setSelectedAbility(ability);
+            this.setSelectedAbilitySlot(abilitySlot);
         } else {
             this.fight.applyAbility(pawn, ability);
         }
@@ -295,7 +295,7 @@ export default class App extends React.Component {
             return;
         }
 
-        let moveInfo = this.fight.getMoveInfo(move.pawn, targetPawn, this.selectedAbility, move, this.state.path);
+        let moveInfo = this.fight.getMoveInfo(move.pawn, targetPawn, move.ability, move, this.state.path);
 
         if (moveInfo) {
             this.showMoveInfoTooltip(moveInfo, cell);
@@ -347,14 +347,14 @@ export default class App extends React.Component {
         this.selectedPawn = pawn;
 
         if (pawn) {
-            this.setSelectedAbility(this.fight.getRegularAbility(pawn));
+            this.setSelectedAbilitySlot(AbilitySlot.REGULAR);
         } else {
-            this.clearSelectedAbility();
+            this.clearSelectedAbilitySlot();
         }
     }
 
-    setSelectedAbility(ability) {
-        this.selectedAbility = ability;
+    setSelectedAbilitySlot(abilitySlot) {
+        this.selectedAbilitySlot = abilitySlot;
         this.updateAvailableMoves();
     }
 
@@ -369,12 +369,12 @@ export default class App extends React.Component {
 
     clearSelectedPawn() {
         this.selectedPawn = null;
-        this.clearSelectedAbility();
+        this.clearSelectedAbilitySlot();
         this.clearPath();
     }
 
-    clearSelectedAbility() {
-        this.selectedAbility = null;
+    clearSelectedAbilitySlot() {
+        this.selectedAbilitySlot = null;
         this.moves = [];
     }
 
@@ -534,7 +534,7 @@ export default class App extends React.Component {
     }
 
     updateAvailableMoves() {
-        this.moves = this.fight.getAvailableMoves(this.selectedPawn, this.selectedAbility);
+        this.moves = this.fight.getAvailableMoves(this.selectedPawn, this.selectedAbilitySlot);
     }
 
     getCellProps() {
@@ -665,7 +665,7 @@ export default class App extends React.Component {
                     charges: ability.currentCharges,
                     muted: this.fight.isAbilityMuted(pawn, ability),
                     ready: this.fight.isAbilityReady(pawn, ability),
-                    selected: this.selectedAbility === ability,
+                    selected: this.selectedAbilitySlot === ability.slot,
                 };
             });
 

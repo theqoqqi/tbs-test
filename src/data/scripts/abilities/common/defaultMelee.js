@@ -20,7 +20,7 @@ export default {
                     return null;
                 }
 
-                return fight.tryGetMoveForMeleeAction(forPawn, targetPawn, movementMoves);
+                return fight.tryGetMoveForMeleeAction(forPawn, targetPawn, this, movementMoves);
             })
             .filter(move => move !== null);
     },

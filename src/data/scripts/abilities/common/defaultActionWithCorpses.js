@@ -10,6 +10,7 @@ export default {
             .filter(pawn => arena.isCellPassable(pawn.position, this.owner))
             .map(pawn => new ArenaMove({
                 pawn: this.owner,
+                ability: this,
                 targetCell: arena.getCell(pawn.position),
                 actionPoints: 0,
                 isRanged: false,

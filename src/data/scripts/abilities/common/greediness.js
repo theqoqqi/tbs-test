@@ -26,6 +26,7 @@ export default {
 
                         return new ArenaMove({
                             pawn: forPawn,
+                            ability: this,
                             targetCell: cell,
                             actionPoints: 1,
                             isRanged: true,

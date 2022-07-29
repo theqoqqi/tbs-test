@@ -204,17 +204,19 @@ export default class Fight {
 
     //region Информация о ходах
 
-    getAvailableMoves(forPawn, ability) {
+    getAvailableMoves(forPawn, abilitySlot) {
         let moves = [];
         let movementMoves = [];
+        let abilities = this.getAllAbilitiesInSlot(forPawn, abilitySlot)
+            .filter(ability => this.isAbilityReady(forPawn, ability));
 
-        if (!ability || ability.slot === AbilitySlot.REGULAR) {
+        if (!abilities || abilitySlot === AbilitySlot.REGULAR) {
             movementMoves = this.#getMovementMoves(forPawn);
 
             moves = moves.concat(movementMoves);
         }
 
-        if (ability) {
+        for (const ability of abilities) {
             let abilityMoves = Fight.#getAbilityMoves(ability, movementMoves);
 
             moves = moves.concat(abilityMoves);
@@ -239,6 +241,7 @@ export default class Fight {
 
             return new ArenaMove({
                 pawn: forPawn,
+                ability: null,
                 targetCell: cell,
                 actionPoints: distance,
                 isRanged: false,
@@ -258,12 +261,12 @@ export default class Fight {
                     return null;
                 }
 
-                return this.tryGetMoveForMeleeAction(forPawn, targetPawn, movementMoves);
+                return this.tryGetMoveForMeleeAction(forPawn, targetPawn, null, movementMoves);
             })
             .filter(move => move !== null);
     }
 
-    tryGetMoveForMeleeAction(forPawn, targetPawn, movementMoves) {
+    tryGetMoveForMeleeAction(forPawn, targetPawn, ability, movementMoves) {
         let cell = this.arena.getCell(targetPawn.position);
         let actionPoints = this.getActionPointsForMeleeAction(forPawn, targetPawn, movementMoves);
 
@@ -273,6 +276,7 @@ export default class Fight {
 
         return new ArenaMove({
             pawn: forPawn,
+            ability,
             targetCell: cell,
             actionPoints,
             isRanged: false,
@@ -402,8 +406,8 @@ export default class Fight {
 
     //region Применение ходов
 
-    makeMove(move, path, ability) {
-        let promise = this.#moveExecutor.makeMove(move, path, ability);
+    makeMove(move, path) {
+        let promise = this.#moveExecutor.makeMove(move, path);
 
         this.#moveExecutor.waitForActions()
             .then(() => this.#nextTurnIfNoActionPoints(move.pawn));
@@ -515,23 +519,23 @@ export default class Fight {
     }
 
     getAbilityInSlot(forPawn, abilitySlot) {
-        return forPawn.abilities
-            .filter(a => a.slot === abilitySlot)
-            .find(ability => {
-                if (ability.disabledIfNearEnemy) {
-                    if (this.hasEnemiesNearby(forPawn)) {
-                        return false;
-                    }
-                }
+        return this.getAllAbilitiesInSlot(forPawn, abilitySlot)
+            .find(ability => !this.isAbilityDisabled(forPawn, ability));
+    }
 
-                return true;
-            });
+    getAllAbilitiesInSlot(forPawn, abilitySlot) {
+        return forPawn.abilities
+            .filter(a => a.slot === abilitySlot);
     }
 
     isAbilityReady(pawn, ability) {
         return !ability.isReloading
             && (!ability.usesCharges || ability.hasCharges)
             && !this.isAbilityMuted(pawn, ability);
+    }
+
+    isAbilityDisabled(pawn, ability) {
+        return ability.disabledIfNearEnemy && this.hasEnemiesNearby(pawn);
     }
 
     isAbilityMuted(pawn, ability) {
@@ -664,7 +668,7 @@ export default class Fight {
         return neighborPositions.some(position => {
             let otherPawn = this.arena.getSquadOrStructure(position);
 
-            return otherPawn && this.isOpponents(forPawn, otherPawn);
+            return otherPawn && otherPawn.team.isContender && this.isOpponents(forPawn, otherPawn);
         });
     }
 

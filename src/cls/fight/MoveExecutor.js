@@ -21,8 +21,8 @@ export default class MoveExecutor {
         this.#queuedActions = new ActionQueue(this.#eventBus);
     }
 
-    makeMove(move, path, ability) {
-        return this.applyAbility(move.pawn, ability, move, path);
+    makeMove(move, path) {
+        return this.applyAbility(move.pawn, move.ability, move, path);
     }
 
     makeDefenceMove(pawn) {
