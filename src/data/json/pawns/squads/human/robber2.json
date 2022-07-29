@@ -19,12 +19,43 @@
   },
   "options": {
     "features": [
-      "humanoid"
-    ],
-    "featuresFromHints": [
+      "humanoid",
       "robbery",
       "favorite_enemy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "slot": "regular",
+        "base": "defaultMelee",
+        "damageRanges": [
+          ["physical", 3, 6]
+        ]
+      },
+      {
+        "slot": "ability_1",
+        "internalName": "longAttack",
+        "base": "longAttack",
+        "reload": 2,
+        "damageRanges": [
+          ["physical", 3, 6]
+        ]
+      },
+      {
+        "slot": "ability_2",
+        "internalName": "looter",
+        "base": "looter",
+        "targetCollector": "defaultActionWithCorpses.targetCollector",
+        "charges": 2
+      },
+      {
+        "slot": "ability_3",
+        "internalName": "defaultRun",
+        "base": "defaultRun",
+        "charges": 1,
+        "scriptParams": {
+          "actionPoints": 2
+        }
+      }
+    ]
   }
 }
