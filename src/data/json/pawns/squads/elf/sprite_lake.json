@@ -21,12 +21,58 @@
   },
   "options": {
     "features": [],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "soars",
       "no_retaliation",
       "magic_resistance",
       "weakness"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "weakness": "30"
+        },
+        "damageRanges": [
+          ["magic", 1, 2]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "hunters_mark",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "duration": "2"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "magic": "1,2"
+        },
+        "custom_params": {
+          "weakness": "30"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_hunters_mark_head",
+        "hint": "special_hunters_mark_hint",
+        "script_attack": "special_hunters_mark",
+        "script_calccells": "",
+        "picture_small": "BA1_hunters_mark_small.png",
+        "picture": "BA1_hunters_mark_",
+        "custom_params": {
+          "duration": "2"
+        }
+      }
+    ]
   }
 }

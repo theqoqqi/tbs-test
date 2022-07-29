@@ -22,10 +22,51 @@
       "beast",
       "night_vision"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "night_sight",
       "furiousness"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "rabid": "10",
+          "duration": "1"
+        },
+        "damageRanges": [
+          ["physical", 3, 6]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "cry",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "3,6"
+        },
+        "custom_params": {
+          "rabid": "10",
+          "duration": "1"
+        }
+      },
+      {
+        "class": "spell",
+        "spell": "special_wolf_cry",
+        "moves": "1",
+        "picture": "BA1_Wolf_Cry_",
+        "picture_small": "BA1_Wolf_Cry_small.png",
+        "hinthead": "special_wolf_cry_head",
+        "hint": "special_wolf_cry_hint"
+      }
+    ]
   }
 }

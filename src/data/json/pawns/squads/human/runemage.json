@@ -25,7 +25,7 @@
       "mind_immunitet",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "mind_immunity",
       "favorite_enemy",
       "magic_protection",
@@ -33,6 +33,194 @@
       "runic_mage",
       "rune_armor"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "scriptParams": {
+          "special": "1",
+          "spell_chance": "30"
+        },
+        "damageRanges": [
+          ["magic", 40, 55]
+        ],
+        "minDistance": 2,
+        "maxDistance": 7,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "special": "0",
+          "spell_chance": "0"
+        },
+        "damageRanges": [
+          ["physical", 30, 30]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "destroy",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 3,
+        "scriptParams": {
+          "dod": "no",
+          "typedmg": "astral",
+          "nomiss": "1",
+          "nothorns": "1",
+          "dam": "35-55",
+          "special": "0",
+          "destroy": "1",
+          "respawn": "0",
+          "illusion": "0",
+          "spell_chance": "0",
+          "atk_hint": "railgun"
+        },
+        "maxDistance": 100,
+        "endsTurn": true
+      },
+      {
+        "internalName": "respawn",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "heal": "100",
+          "special": "0",
+          "destroy": "0",
+          "respawn": "1",
+          "illusion": "0",
+          "spell_chance": "0"
+        }
+      },
+      {
+        "internalName": "illusion",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 4,
+        "scriptParams": {
+          "k": "25",
+          "special": "0",
+          "destroy": "0",
+          "respawn": "0",
+          "illusion": "1",
+          "spell_chance": "0",
+          "level": "3"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "30"
+        },
+        "custom_params": {
+          "special": "0",
+          "spell_chance": "0"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "throw",
+        "base_attack": "1",
+        "ad_factor": "1",
+        "distance": "7",
+        "mindist": "2",
+        "showdmg": "1",
+        "penalty": "0.5",
+        "animation": "attack/throw/thtarget",
+        "throw": "priest3_ball",
+        "framekey": "x",
+        "damage": {
+          "magic": "40,55"
+        },
+        "custom_params": {
+          "special": "1",
+          "spell_chance": "30"
+        }
+      },
+      {
+        "class": "scripted",
+        "ad_factor": "1",
+        "showdmg": "1",
+        "script_attack": "runemage_destroy_attack",
+        "script_calccells": "runemage_destroy_selcells",
+        "script_filter": "runemage_destroy_filter",
+        "script_highlight": "runemage_destroy_highlight",
+        "picture": "BA1_runemage_destroy_",
+        "picture_small": "BA1_runemage_destroy_small.png",
+        "hinthead": "runemage_destroy_head",
+        "hint": "runemage_destroy_hint",
+        "reload": "3",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "endmove": "1",
+        "distance": "100",
+        "attack_cursor": "archer_arrow",
+        "custom_params": {
+          "dod": "no",
+          "typedmg": "astral",
+          "nomiss": "1",
+          "nothorns": "1",
+          "dam": "35-55",
+          "special": "0",
+          "destroy": "1",
+          "respawn": "0",
+          "illusion": "0",
+          "spell_chance": "0",
+          "atk_hint": "railgun"
+        }
+      },
+      {
+        "class": "scripted",
+        "script_attack": "runemage_respawn",
+        "script_calccells": "calccells_all_need_resurrect_ally_simple",
+        "picture": "ba1_runemage_respawn_",
+        "picture_small": "ba1_runemage_respawn_small.png",
+        "hinthead": "runemage_respawn_head",
+        "hint": "runemage_respawn_hint",
+        "hint_gen_script": "runemage_respawn_hint",
+        "moves": "1",
+        "nfeatures": "undead,mech,golem,boss,pawn",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "heal": "100",
+          "special": "0",
+          "destroy": "0",
+          "respawn": "1",
+          "illusion": "0",
+          "spell_chance": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "script_attack": "runemage_illusion_attack",
+        "script_calccells": "calccells_all_empty_around",
+        "picture": "ba1_runemage_illusion_",
+        "picture_small": "ba1_runemage_illusion_small.png",
+        "hinthead": "runemage_illusion_head",
+        "hint": "runemage_illusion_hint",
+        "nfeatures": "boss,pawn",
+        "reload": "4",
+        "no_hint": "1",
+        "log_label": "null",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "k": "25",
+          "special": "0",
+          "destroy": "0",
+          "respawn": "0",
+          "illusion": "1",
+          "spell_chance": "0",
+          "level": "3"
+        }
+      }
+    ]
   }
 }

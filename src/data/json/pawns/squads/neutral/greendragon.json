@@ -26,13 +26,124 @@
       "dragon",
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flies",
       "hates_giants",
       "magic_resistance",
       "fire_protection",
       "mind_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 160, 220]
+        ]
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 80, 110]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "capture",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 3,
+        "scriptParams": {
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["physical", 130, 130]
+        ]
+      },
+      {
+        "internalName": "gain_mana",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 4,
+        "scriptParams": {
+          "mana_k": "100",
+          "nomiss": "1",
+          "nothorns": "1"
+        },
+        "damageRanges": [
+          ["magic", 50, 70]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "ad_factor": "1",
+        "usefly": "4",
+        "conditions": {
+          "~unit": "giant"
+        },
+        "damage": {
+          "physical": "80,110"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "moveattack",
+        "usefly": "4",
+        "ad_factor": "1",
+        "anim_attack": "power",
+        "options": "disablerush",
+        "conditions": {
+          "unit": "giant"
+        },
+        "damage": {
+          "physical": "160,220"
+        }
+      },
+      {
+        "class": "scripted",
+        "ad_factor": "1",
+        "warning": "sw_long",
+        "attack_cursor": "attack",
+        "script_attack": "special_capture_target",
+        "script_calccells": "calccells_capture",
+        "picture": "BA1_Capture_",
+        "picture_small": "BA1_Capture_small.png",
+        "reload": "3",
+        "nfeatures": "boss,pawn",
+        "hinthead": "special_dragon_capture_head",
+        "hint": "special_dragon_capture_hint",
+        "damage": {
+          "physical": "130,130"
+        },
+        "custom_params": {
+          "nomiss": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "",
+        "warning": "warning_gain_mana",
+        "script_attack": "special_gain_mana",
+        "script_calccells": "calccells_gain_mana",
+        "anim_attack": "cast",
+        "picture": "BA1_Mana_Source_",
+        "picture_small": "BA1_Mana_Source_small.png",
+        "reload": "4",
+        "hinthead": "special_mana_source_head",
+        "hint": "special_mana_source_hint",
+        "damage": {
+          "magic": "50,70"
+        },
+        "custom_params": {
+          "mana_k": "100",
+          "nomiss": "1",
+          "nothorns": "1"
+        }
+      }
+    ]
   }
 }

@@ -27,13 +27,99 @@
       "humanoid",
       "holy"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "steel_armor",
       "learning",
       "holy_aura",
       "holy_warrior",
       "favorite_enemy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "holy": "150"
+        },
+        "damageRanges": [
+          ["physical", 16, 20]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "prayer",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "heal": "24",
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["magic", 14, 16]
+        ]
+      },
+      {
+        "internalName": "second_wind",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "level": "4",
+          "k": "300"
+        },
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "16,20"
+        },
+        "custom_params": {
+          "holy": "150"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_prayer_head",
+        "hint": "special_prayer_hint",
+        "script_calccells": "",
+        "script_attack": "special_prayer",
+        "moves": "1",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "picture": "ba1_prayer_",
+        "picture_small": "ba1_prayer_small.png",
+        "damage": {
+          "magic": "14,16"
+        },
+        "custom_params": {
+          "heal": "24",
+          "nomiss": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_second_wind_head",
+        "hint": "special_second_wind_hint",
+        "picture": "BA1_second_wind_",
+        "endmove": "0",
+        "picture_small": "BA1_second_wind_small.png",
+        "reload": "3",
+        "script_attack": "special_second_wind",
+        "script_calccells": "calccells_ally_lead_again",
+        "attack_cursor": "magicstick",
+        "no_hint": "1",
+        "nfeatures": "magic_immunitet,boss,pawn,undead",
+        "custom_params": {
+          "level": "4",
+          "k": "300"
+        }
+      }
+    ]
   }
 }

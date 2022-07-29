@@ -21,11 +21,135 @@
     "features": [
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "giant_killer",
       "goblin_rageus",
       "goblin2_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "giant_killer": "130",
+          "fastattack": "1",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 3, 7]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "run",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "fastattack",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "rage_spent": "20",
+          "giant_killer": "130",
+          "fastattack": "1",
+          "trf_lvl_need": "2"
+        },
+        "damageRanges": [
+          ["physical", 3, 10]
+        ]
+      },
+      {
+        "internalName": "looter",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 2,
+        "scriptParams": {
+          "rage_spent": "10",
+          "trf_lvl_need": "3"
+        },
+        "damageRanges": [
+          ["physical", 1, 3]
+        ],
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "3,7"
+        },
+        "custom_params": {
+          "giant_killer": "130",
+          "fastattack": "1",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_head",
+        "hint": "special_run_hint",
+        "endmove": "0",
+        "script_attack": "special_run",
+        "script_calccells": "",
+        "picture_small": "BA1_Run_small.png",
+        "picture": "BA1_Run_",
+        "custom_params": {
+          "ap": "2"
+        }
+      },
+      {
+        "class": "moveattack",
+        "hinthead": "goblin2_fast_attack_head",
+        "hint": "goblin2_fast_attack_hint",
+        "reload": "3",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "options": "return",
+        "picture": "ba1_fastattack_",
+        "picture_small": "ba1_fastattack_small.png",
+        "damage": {
+          "physical": "3,10"
+        },
+        "custom_params": {
+          "rage_spent": "20",
+          "giant_killer": "130",
+          "fastattack": "1",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "anim_attack": "special",
+        "warning": "warning_loot",
+        "hinthead": "goblin2_looter_head",
+        "hint": "goblin2_looter_hint",
+        "moves": "2",
+        "endmove": "0",
+        "picture_small": "BA1_goblin_greed_small.png",
+        "picture": "BA1_goblin_greed_",
+        "script_attack": "goblin_looter",
+        "script_calccells": "calccells_corpse",
+        "attack_cursor": "attack",
+        "damage": {
+          "physical": "1,3"
+        },
+        "custom_params": {
+          "rage_spent": "10",
+          "trf_lvl_need": "3"
+        }
+      }
+    ]
   }
 }

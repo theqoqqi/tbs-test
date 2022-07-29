@@ -22,13 +22,71 @@
       "beast",
       "night_vision"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "night_sight",
       "furiousness",
       "regeneration",
       "tolerance",
       "licantropy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "rabid": "20",
+          "duration": "1"
+        },
+        "damageRanges": [
+          ["physical", 5, 8]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "cry",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1
+      },
+      {
+        "internalName": "transform",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 3,
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "5,8"
+        },
+        "custom_params": {
+          "rabid": "20",
+          "duration": "1"
+        }
+      },
+      {
+        "spell": "special_wolf_cry",
+        "class": "spell",
+        "moves": "1",
+        "picture": "BA1_Wolf_Cry_",
+        "picture_small": "BA1_Wolf_Cry_small.png",
+        "hinthead": "special_wolf_cry_head",
+        "hint": "special_wolf_cry_hint"
+      },
+      {
+        "class": "scripted",
+        "picture": "BA1_HumanTransform_",
+        "picture_small": "BA1_HumanTransform_small.png",
+        "script_attack": "special_transform",
+        "hinthead": "special_human_transform_head",
+        "hint": "special_human_transform_hint",
+        "endmove": "0",
+        "reload": "3"
+      }
+    ]
   }
 }

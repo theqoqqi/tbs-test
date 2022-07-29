@@ -22,12 +22,87 @@
   },
   "options": {
     "features": [],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "spear",
       "scale_skin",
       "band",
       "blood_lust"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "reload": "1"
+        },
+        "damageRanges": [
+          ["physical", 5, 7]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "run",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "bloody_madness",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "damageRanges": [
+          ["physical", 6, 8]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "options": "long2",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "5,7"
+        },
+        "custom_params": {
+          "reload": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_head",
+        "hint": "special_run_hint",
+        "endmove": "0",
+        "script_attack": "special_run",
+        "script_calccells": "",
+        "picture_small": "BA1_Run_small.png",
+        "picture": "BA1_Run_",
+        "custom_params": {
+          "ap": "2"
+        }
+      },
+      {
+        "disabled": "0",
+        "class": "moveattack",
+        "hinthead": "special_bloody_madness_head",
+        "hint": "special_bloody_madness_hint",
+        "moves": "1",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "picture": "ba1_bloody_madness_",
+        "picture_small": "ba1_bloody_madness_small.png",
+        "options": "disablerush,used_if_damaged,6in1,friend_damage",
+        "anim_attack": "special",
+        "damage": {
+          "physical": "6,8"
+        }
+      }
+    ]
   }
 }

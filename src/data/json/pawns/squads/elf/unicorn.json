@@ -23,11 +23,56 @@
     "features": [
       "beast"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "magic_resistance",
       "light_horn",
       "defender_beauty"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 10, 17],
+          ["magic", 3, 6]
+        ]
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 10, 17]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "base_attack": "1",
+        "ad_factor": "1",
+        "conditions": {
+          "~race": "demon,undead"
+        },
+        "damage": {
+          "physical": "10,17"
+        }
+      },
+      {
+        "group": "1,2",
+        "base_attack": "1",
+        "class": "moveattack",
+        "ad_factor": "1",
+        "options": "disablerush",
+        "anim_attack": "power",
+        "conditions": {
+          "race": "demon,undead"
+        },
+        "damage": {
+          "physical": "10,17",
+          "magic": "3,6"
+        }
+      }
+    ]
   }
 }

@@ -24,12 +24,35 @@
     "features": [
       "undead"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "undead",
       "soars",
       "phantom",
       "soul_drain"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "k": "30"
+        },
+        "damageRanges": [
+          ["physical", 4, 8]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "4,8"
+        },
+        "custom_params": {
+          "k": "30"
+        }
+      }
+    ]
   }
 }

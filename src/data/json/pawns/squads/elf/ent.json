@@ -25,10 +25,86 @@
       "plant",
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "plant",
       "tieroot"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 25, 30]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "run",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "throw1",
+        "base": "defaultRanged",
+        "slot": "ability_3",
+        "reload": 2,
+        "damageRanges": [
+          ["poison", 12, 15],
+          ["physical", 12, 15]
+        ],
+        "minDistance": 1,
+        "maxDistance": 4,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "25,30"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_head",
+        "hint": "special_run_hint",
+        "endmove": "0",
+        "script_attack": "special_run",
+        "script_calccells": "",
+        "picture_small": "BA1_Run_small.png",
+        "picture": "BA1_Run_",
+        "custom_params": {
+          "ap": "2"
+        }
+      },
+      {
+        "reload": "2",
+        "dontusenearenemy": "1",
+        "class": "throw",
+        "picture": "BA1_Wasp_",
+        "picture_small": "BA1_Wasp_small.png",
+        "hinthead": "special_swarm_head",
+        "hint": "special_swarm_hint",
+        "ad_factor": "1",
+        "distance": "4",
+        "mindist": "1",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "ent_wasps",
+        "framekey": "x",
+        "damage": {
+          "poison": "12,15",
+          "physical": "12,15"
+        }
+      }
+    ]
   }
 }

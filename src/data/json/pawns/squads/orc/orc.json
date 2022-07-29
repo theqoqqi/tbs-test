@@ -23,10 +23,129 @@
     "features": [
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "orc_furious",
       "orc_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 7, 10]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "run",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "goblin_commander",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 3,
+        "scriptParams": {
+          "level": "3",
+          "k": "300",
+          "rage_spent": "5",
+          "trf_lvl_need": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "charged_strike",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 4,
+        "scriptParams": {
+          "rushanim": "rush",
+          "nomiss": "1",
+          "rage_spent": "10",
+          "dam": "10-14",
+          "trf_lvl_need": "3"
+        },
+        "damageRanges": [
+          ["physical", 10, 14]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "7,10"
+        },
+        "custom_params": {
+          "rage_spent": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_head",
+        "hint": "special_run_hint",
+        "endmove": "0",
+        "script_attack": "special_run",
+        "script_calccells": "",
+        "picture_small": "BA1_Run_small.png",
+        "picture": "BA1_Run_",
+        "custom_params": {
+          "ap": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "second_breath_head",
+        "hint": "second_breath_hint",
+        "picture": "BA1_goblin_commander_",
+        "endmove": "0",
+        "picture_small": "BA1_goblin_commander_small.png",
+        "reload": "3",
+        "script_attack": "second_breath",
+        "script_calccells": "second_breath_calccells",
+        "attack_cursor": "magicstick",
+        "no_hint": "1",
+        "nfeatures": "magic_immunitet,boss,pawn,undead",
+        "custom_params": {
+          "level": "3",
+          "k": "300",
+          "rage_spent": "5",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "4",
+        "attack_cursor": "attack",
+        "hinthead": "charged_strike_head",
+        "hint": "charged_strike_hint",
+        "script_attack": "charged_strike_attack",
+        "script_calccells": "charged_strike_calccells",
+        "script_highlight": "charged_strike_highlight",
+        "picture_small": "BA1_charged_strike_small.png",
+        "picture": "BA1_charged_strike_",
+        "damage": {
+          "physical": "10,14"
+        },
+        "custom_params": {
+          "rushanim": "rush",
+          "nomiss": "1",
+          "rage_spent": "10",
+          "dam": "10-14",
+          "trf_lvl_need": "3"
+        }
+      }
+    ]
   }
 }

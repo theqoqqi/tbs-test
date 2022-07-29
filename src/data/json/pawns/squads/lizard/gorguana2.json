@@ -24,12 +24,154 @@
     "features": [
       "mage"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "blood_shot",
       "scale_skin",
       "band",
       "blood_lust"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "scriptParams": {
+          "curse": "0"
+        },
+        "damageRanges": [
+          ["magic", 6, 10]
+        ],
+        "minDistance": 1,
+        "maxDistance": 6,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "reload": "1"
+        },
+        "damageRanges": [
+          ["physical", 5, 8]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "blood_mark",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 4,
+        "scriptParams": {
+          "duration": "2"
+        }
+      },
+      {
+        "internalName": "blood_magic",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["magic", 9, 9]
+        ]
+      },
+      {
+        "internalName": "whisper",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 3,
+        "damageRanges": [
+          ["physical", 5, 8]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "5,8"
+        },
+        "custom_params": {
+          "reload": "1"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "device": "gorguana_ball",
+        "class": "throw",
+        "distance": "6",
+        "mindist": "1",
+        "base_attack": "1",
+        "penalty": "0.5",
+        "animation": "attack/throw/thtarget",
+        "throw": "gorguana_ball",
+        "framekey": "x",
+        "damage": {
+          "magic": "6,10"
+        },
+        "custom_params": {
+          "curse": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture_small": "BA1_blood_mark_small.png",
+        "picture": "BA1_blood_mark_",
+        "no_hint": "1",
+        "hinthead": "special_blood_mark_head",
+        "hint": "special_blood_mark_hint",
+        "ad_factor": "0",
+        "nfeatures": "magic_immunitet,boss,pawn",
+        "reload": "4",
+        "script_attack": "special_blood_mark_attack",
+        "script_calccells": "calccells_all_enemy",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "duration": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "disabled": "0",
+        "picture_small": "BA1_blood_magic_small.png",
+        "picture": "BA1_blood_magic_",
+        "hinthead": "special_blood_magic_head",
+        "hint": "special_blood_magic_hint",
+        "ad_factor": "0",
+        "nfeatures": "magic_immunitet",
+        "moves": "1",
+        "script_attack": "special_blood_magic_attack",
+        "script_calccells": "calccells_all_enemy_actors_takes_damage",
+        "attack_cursor": "magicstick",
+        "damage": {
+          "magic": "9,9"
+        },
+        "custom_params": {
+          "nomiss": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture_small": "BA1_whisper_small.png",
+        "picture": "BA1_whisper_",
+        "no_hint": "1",
+        "hinthead": "special_whisper_head",
+        "hint": "special_whisper_hint",
+        "ad_factor": "1",
+        "reload": "3",
+        "script_attack": "special_whisper_attack",
+        "script_calccells": "calccells_whisper",
+        "attack_cursor": "magicstick",
+        "damage": {
+          "physical": "5,8"
+        }
+      }
+    ]
   }
 }

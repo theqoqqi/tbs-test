@@ -21,13 +21,49 @@
   },
   "options": {
     "features": [],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "soars",
       "no_retaliation",
       "magic_resistance",
       "fire_weakness",
       "discharge"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["magic", 1, 3]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "dispell",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "magic": "1,3"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "script_attack": "special_dispell",
+        "script_calccells": "calccells_all_one_dispell",
+        "hinthead": "special_dispell_head",
+        "hint": "special_dispell_hint",
+        "moves": "1",
+        "picture": "BA1_Dispell_",
+        "picture_small": "BA1_Dispell_small.png",
+        "no_hint": "1"
+      }
+    ]
   }
 }

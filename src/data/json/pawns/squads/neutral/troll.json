@@ -24,11 +24,70 @@
     "features": [
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "troll",
       "stone_statue",
       "gloating"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "calm": "0"
+        },
+        "damageRanges": [
+          ["physical", 60, 80]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "calming",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 4,
+        "scriptParams": {
+          "calm": "100",
+          "duration": "1",
+          "power": "1"
+        },
+        "damageRanges": [
+          ["physical", 70, 90]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "60,80"
+        },
+        "custom_params": {
+          "calm": "0"
+        }
+      },
+      {
+        "class": "moveattack",
+        "hinthead": "special_calming_head",
+        "hint": "special_calming_hint",
+        "reload": "4",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "nfeatures": "boss,pawn",
+        "options": "disablerush,used_if_damaged",
+        "anim_attack": "attack",
+        "picture": "BA1_calming_",
+        "picture_small": "BA1_calming_small.png",
+        "damage": {
+          "physical": "70,90"
+        },
+        "custom_params": {
+          "calm": "100",
+          "duration": "1",
+          "power": "1"
+        }
+      }
+    ]
   }
 }

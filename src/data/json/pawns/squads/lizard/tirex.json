@@ -21,13 +21,106 @@
   },
   "options": {
     "features": [],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "tiran",
       "scale_skin",
       "giant_lizard",
       "fear",
       "predator"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "fear": "50",
+          "level": "4",
+          "duration": "2"
+        },
+        "damageRanges": [
+          ["physical", 80, 120]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "tirex_cry",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 3,
+        "scriptParams": {
+          "k": "100",
+          "duration": "1",
+          "nomiss": "1",
+          "nothorns": "1"
+        },
+        "damageRanges": [
+          ["physical", 10, 40]
+        ]
+      },
+      {
+        "internalName": "eat_corpse",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "count": "2-4"
+        },
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "80,120"
+        },
+        "custom_params": {
+          "fear": "50",
+          "level": "4",
+          "duration": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "ad_factor": "1",
+        "attack_cursor": "attack",
+        "script_attack": "special_tirex_cry",
+        "script_calccells": "",
+        "anim_attack": "mana",
+        "picture": "BA1_tirex_cry_",
+        "picture_small": "BA1_tirex_cry_small.png",
+        "reload": "3",
+        "hinthead": "special_tirex_cry_head",
+        "hint": "special_tirex_cry_hint",
+        "damage": {
+          "physical": "10,40"
+        },
+        "custom_params": {
+          "k": "100",
+          "duration": "1",
+          "nomiss": "1",
+          "nothorns": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "nfeatures": "pawn,plant,mech,boss,undead",
+        "picture": "BA1_eat_corpse_",
+        "warning": "sw_eat_corpse",
+        "picture_small": "BA1_eat_corpse_small.png",
+        "hinthead": "special_eat_corpse_head",
+        "hint": "special_eat_corpse_hint",
+        "reload": "3",
+        "endmove": "0",
+        "script_attack": "special_eat_corpse",
+        "script_calccells": "calccells_corpse_around",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "count": "2-4"
+        }
+      }
+    ]
   }
 }

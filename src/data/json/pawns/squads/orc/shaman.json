@@ -21,12 +21,138 @@
     "features": [
       "mage"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "shaman_fighting_spirit",
       "orc_gift",
       "carefull",
       "shaman_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 15, 18]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "badabum",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "damage": "20-25",
+          "typedmg": "magic",
+          "nomiss": "1",
+          "nothorns": "1",
+          "power": "80",
+          "rage_spent": "8",
+          "trf_lvl_need": "8"
+        },
+        "damageRanges": [
+          ["magic", 20, 25]
+        ]
+      },
+      {
+        "internalName": "protective_totem",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 4,
+        "scriptParams": {
+          "atomname": "totem_life",
+          "health": "7",
+          "rage_spent": "3",
+          "trf_lvl_need": "1"
+        }
+      },
+      {
+        "internalName": "ice_totem",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 4,
+        "scriptParams": {
+          "atomname": "totem_death",
+          "health": "10",
+          "rage_spent": "3",
+          "trf_lvl_need": "2"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "15,18"
+        },
+        "custom_params": {
+          "rage_spent": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture_small": "BA1_Axes_small.png",
+        "picture": "BA1_Axes_",
+        "hinthead": "special_sham_dance_head",
+        "hint": "special_sham_dance_hint_new",
+        "ad_factor": "0",
+        "reload": "3",
+        "script_attack": "special_shaman_spirit_dance_attack_new",
+        "script_calccells": "special_shaman_spirit_dance_attack_new_calccells",
+        "attack_cursor": "magicstick",
+        "damage": {
+          "magic": "20,25"
+        },
+        "custom_params": {
+          "damage": "20-25",
+          "typedmg": "magic",
+          "nomiss": "1",
+          "nothorns": "1",
+          "power": "80",
+          "rage_spent": "8",
+          "trf_lvl_need": "8"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture_small": "BA1_Totem_Life_small.png",
+        "picture": "BA1_Totem_Life_",
+        "hinthead": "special_life_totem_head",
+        "hint": "special_life_totem_hint_new",
+        "ad_factor": "0",
+        "reload": "4",
+        "script_attack": "special_shaman_totem_new",
+        "script_calccells": "calccells_all_empty",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "atomname": "totem_life",
+          "health": "7",
+          "rage_spent": "3",
+          "trf_lvl_need": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture_small": "BA1_Totem_Death_small.png",
+        "picture": "BA1_Totem_Death_",
+        "hinthead": "special_dead_totem_head",
+        "hint": "special_dead_totem_hint_new",
+        "ad_factor": "0",
+        "reload": "4",
+        "script_attack": "special_shaman_totem_new",
+        "script_calccells": "calccells_all_empty",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "atomname": "totem_death",
+          "health": "10",
+          "rage_spent": "3",
+          "trf_lvl_need": "2"
+        }
+      }
+    ]
   }
 }

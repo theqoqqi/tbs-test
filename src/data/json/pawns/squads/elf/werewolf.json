@@ -22,13 +22,48 @@
       "humanoid",
       "night_vision"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "blade",
       "night_sight",
       "regeneration",
       "tolerance",
       "blade"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 7, 9]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "transform",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "7,9"
+        }
+      },
+      {
+        "class": "scripted",
+        "script_attack": "special_transform",
+        "hinthead": "special_wolf_transform_head",
+        "hint": "special_wolf_transform_hint",
+        "picture": "BA1_WolfTransform_",
+        "picture_small": "BA1_WolfTransform_small.png",
+        "endmove": "0",
+        "reload": "3"
+      }
+    ]
   }
 }

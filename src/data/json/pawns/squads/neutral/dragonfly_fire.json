@@ -24,10 +24,46 @@
       "beast",
       "nonecro"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "soars",
       "fire_resistance"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["fire", 2, 3]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "haste",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "fire": "2,3"
+        }
+      },
+      {
+        "class": "scripted",
+        "script_attack": "special_haste_attack",
+        "script_calccells": "",
+        "reload": "2",
+        "endmove": "0",
+        "picture": "BA1_Haste_",
+        "picture_small": "BA1_Haste_small.png",
+        "hinthead": "special_speeder_head",
+        "hint": "special_speeder_hint"
+      }
+    ]
   }
 }

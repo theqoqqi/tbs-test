@@ -25,7 +25,7 @@
       "mage",
       "night_vision"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "soars",
       "shot",
       "paralyse",
@@ -33,6 +33,76 @@
       "underground",
       "mind_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "sleep": "50",
+          "dod": "no",
+          "duration": "1",
+          "special": "1"
+        },
+        "damageRanges": [
+          ["magic", 7, 12]
+        ],
+        "minDistance": 1,
+        "maxDistance": 6,
+        "distancePenalty": 0.5
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "sleep": "0",
+          "dod": "no",
+          "duration": "1",
+          "special": "0"
+        },
+        "damageRanges": [
+          ["magic", 7, 12]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "showdmg": "1",
+        "nonextifenemy": "1",
+        "base_attack": "1",
+        "ad_factor": "1",
+        "damage": {
+          "magic": "7,12"
+        },
+        "custom_params": {
+          "sleep": "0",
+          "dod": "no",
+          "duration": "1",
+          "special": "0"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "scripted",
+        "ad_factor": "1",
+        "showdmg": "1",
+        "mindist": "1",
+        "base_attack": "1",
+        "script_attack": "beholder_ray_attack",
+        "script_calccells": "calccells_all_enemy_actors_takes_damage",
+        "distance": "6",
+        "penalty": ".5",
+        "damage": {
+          "magic": "7,12"
+        },
+        "custom_params": {
+          "sleep": "50",
+          "dod": "no",
+          "duration": "1",
+          "special": "1"
+        }
+      }
+    ]
   }
 }

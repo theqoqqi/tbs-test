@@ -24,11 +24,47 @@
     "features": [
       "beast"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flies",
       "tireless",
       "magic_resistance"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 5, 10]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "split",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "usefly": "4",
+        "damage": {
+          "physical": "5,10"
+        }
+      },
+      {
+        "class": "scripted",
+        "script_attack": "special_griffin_split",
+        "script_calccells": "calccells_griffin_split",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_Ungroup_",
+        "picture_small": "BA1_Ungroup_small.png",
+        "hinthead": "special_split_head",
+        "hint": "special_split_hint",
+        "endmove": "0"
+      }
+    ]
   }
 }

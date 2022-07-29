@@ -24,13 +24,101 @@
       "humanoid",
       "autodebuff"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "no_retaliation",
       "poisonous",
       "poison_resistance",
       "dark_soul",
       "assassins_greed"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "poison": "30"
+        },
+        "damageRanges": [
+          ["physical", 11, 13]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "hit_back",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "spoison": "100",
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["physical", 17, 17]
+        ]
+      },
+      {
+        "internalName": "assassination",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 1,
+        "scriptParams": {
+          "spoison": "0"
+        },
+        "damageRanges": [
+          ["physical", 13, 13]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "11,13"
+        },
+        "custom_params": {
+          "poison": "30"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "picture": "BA1_hit_back_",
+        "picture_small": "BA1_hit_back_small.png",
+        "hinthead": "special_hit_back_head",
+        "hint": "special_hit_back_hint",
+        "ad_factor": "1",
+        "nfeatures": "boss",
+        "script_attack": "special_hit_back_new",
+        "script_calccells": "calccells_hit_back",
+        "attack_cursor": "magicstick",
+        "damage": {
+          "physical": "17,17"
+        },
+        "custom_params": {
+          "spoison": "100",
+          "nomiss": "1"
+        }
+      },
+      {
+        "class": "moveattack",
+        "hinthead": "special_assassin_head",
+        "hint": "special_assassin_hint",
+        "nfeatures": "pawn",
+        "moves": "1",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "options": "disablerush,used_if_damaged",
+        "anim_attack": "special",
+        "picture": "ba1_assassination_",
+        "picture_small": "ba1_assassination_small.png",
+        "damage": {
+          "physical": "13,13"
+        },
+        "custom_params": {
+          "spoison": "0"
+        }
+      }
+    ]
   }
 }

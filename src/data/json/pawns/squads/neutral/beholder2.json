@@ -25,7 +25,7 @@
       "mage",
       "night_vision"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "soars",
       "shot",
       "paralyse",
@@ -33,6 +33,110 @@
       "underground",
       "mind_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "sleep": "50",
+          "dod": "no",
+          "duration": "1",
+          "special": "1"
+        },
+        "damageRanges": [
+          ["magic", 9, 15]
+        ],
+        "minDistance": 1,
+        "maxDistance": 7,
+        "distancePenalty": 0.5
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "sleep": "0",
+          "dod": "no",
+          "duration": "1",
+          "special": "0"
+        },
+        "damageRanges": [
+          ["magic", 9, 15]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "dominator",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "sleep": "0",
+          "k": "100-100",
+          "level": "4"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "showdmg": "1",
+        "nonextifenemy": "1",
+        "base_attack": "1",
+        "ad_factor": "1",
+        "damage": {
+          "magic": "9,15"
+        },
+        "custom_params": {
+          "sleep": "0",
+          "dod": "no",
+          "duration": "1",
+          "special": "0"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "scripted",
+        "ad_factor": "1",
+        "showdmg": "1",
+        "mindist": "1",
+        "base_attack": "1",
+        "script_attack": "beholder_ray_attack",
+        "script_calccells": "calccells_all_enemy_actors_takes_damage",
+        "distance": "7",
+        "penalty": ".5",
+        "damage": {
+          "magic": "9,15"
+        },
+        "custom_params": {
+          "sleep": "50",
+          "dod": "no",
+          "duration": "1",
+          "special": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "nfeatures": "boss,pawn",
+        "no_hint": "1",
+        "picture": "BA1_Mind_Control_",
+        "picture_small": "BA1_Mind_Control_small.png",
+        "ai_ignore": "0",
+        "attack_cursor": "magicstick",
+        "ad_factor": "0",
+        "showdmg": "0",
+        "moves": "1",
+        "hinthead": "special_dominator_head",
+        "hint": "special_dominator_hint",
+        "base_attack": "0",
+        "script_attack": "special_dominator",
+        "script_calccells": "calccells_dominator",
+        "custom_params": {
+          "sleep": "0",
+          "k": "100-100",
+          "level": "4"
+        }
+      }
+    ]
   }
 }

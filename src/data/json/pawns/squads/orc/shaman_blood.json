@@ -21,12 +21,127 @@
     "features": [
       "mage"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "carefull",
       "orc_gift",
       "bs_no_undead",
       "shaman_blood_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 15, 22]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "bs_spirit_rage",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 4,
+        "scriptParams": {
+          "dam": "7-15",
+          "typedmg": "astral",
+          "nomiss": "1",
+          "nothorns": "1",
+          "rage_spent": "5",
+          "trf_lvl_need": "1",
+          "atk_hint": "zlogn6in1"
+        }
+      },
+      {
+        "internalName": "bs_sacrifice",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 3,
+        "scriptParams": {
+          "rage": "5-10",
+          "rage_spent": "10",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "internalName": "bs_horde_power",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "charges": 2,
+        "scriptParams": {
+          "rage_spent": "15",
+          "typedmg": "magic",
+          "dam": "1-1",
+          "duration": "1",
+          "trf_lvl_need": "3"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "15,22"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture_small": "ba1_bs_spirit_rage_small.png",
+        "picture": "ba1_bs_spirit_rage_",
+        "hinthead": "bs_spirit_rage_head",
+        "hint": "bs_spirit_rage_hint",
+        "ad_factor": "1",
+        "reload": "4",
+        "script_attack": "bs_spirit_rage_attack",
+        "script_calccells": "bs_spirit_rage_calccells",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "attack_cursor": "magicstick",
+        "always_hint": "1",
+        "custom_params": {
+          "dam": "7-15",
+          "typedmg": "astral",
+          "nomiss": "1",
+          "nothorns": "1",
+          "rage_spent": "5",
+          "trf_lvl_need": "1",
+          "atk_hint": "zlogn6in1"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture_small": "BA1_sacrifice_small.png",
+        "picture": "BA1_sacrifice_",
+        "hinthead": "bs_sacrifice_head",
+        "hint": "bs_sacrifice_hint",
+        "ad_factor": "0",
+        "ai_ignore": "1",
+        "reload": "3",
+        "script_attack": "bs_sacrifice_attack",
+        "custom_params": {
+          "rage": "5-10",
+          "rage_spent": "10",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture_small": "BA1_bs_horde_power_small.png",
+        "picture": "BA1_bs_horde_power_",
+        "hinthead": "bs_horde_power_head",
+        "hint": "bs_horde_power_hint",
+        "ad_factor": "0",
+        "moves": "2",
+        "script_attack": "bs_horde_power_attack",
+        "script_calccells": "bs_horde_power_calccells",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "rage_spent": "15",
+          "typedmg": "magic",
+          "dam": "1-1",
+          "duration": "1",
+          "trf_lvl_need": "3"
+        }
+      }
+    ]
   }
 }

@@ -24,12 +24,30 @@
     "features": [
       "autodebuff"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flies",
       "tireless",
       "phantom",
       "antimage"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 4, 7]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "usefly": "4",
+        "damage": {
+          "physical": "4,7"
+        }
+      }
+    ]
   }
 }

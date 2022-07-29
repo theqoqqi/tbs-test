@@ -24,11 +24,117 @@
       "shot",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "shot",
       "siege_weapon",
       "no_melee"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 12, 20]
+        ],
+        "minDistance": 2,
+        "maxDistance": 7,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 6, 10]
+        ],
+        "minDistance": 2,
+        "maxDistance": 7,
+        "distancePenalty": 0.8,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 6, 10]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "megathrow",
+        "base": "defaultRanged",
+        "slot": "ability_1",
+        "reload": 2,
+        "damageRanges": [
+          ["physical", 18, 30]
+        ],
+        "minDistance": 2,
+        "maxDistance": 7,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "6,10"
+        }
+      },
+      {
+        "nfeatures": "barrier",
+        "group": "1,2",
+        "class": "throw",
+        "distance": "7",
+        "base_attack": "1",
+        "mindist": "2",
+        "showdmg": "1",
+        "penalty": "0.8",
+        "animation": "attack/throw/thtarget",
+        "throw": "cannonball",
+        "framekey": "x",
+        "damage": {
+          "physical": "6,10"
+        }
+      },
+      {
+        "features": "barrier",
+        "group": "1,3",
+        "class": "throw",
+        "distance": "7",
+        "base_attack": "1",
+        "mindist": "2",
+        "showdmg": "1",
+        "penalty": "0.5",
+        "animation": "attack/throw/thtarget",
+        "throw": "cannonball",
+        "framekey": "x",
+        "damage": {
+          "physical": "12,20"
+        }
+      },
+      {
+        "dontusenearenemy": "1",
+        "class": "throw",
+        "distance": "7",
+        "reload": "2",
+        "base_attack": "0",
+        "mindist": "2",
+        "penalty": "0.5",
+        "animation": "power/megatag/thtarget",
+        "picture": "BA1_CannoneerFire_",
+        "picture_small": "BA1_CannoneerFire_small.png",
+        "throw": "cannonround",
+        "hinthead": "special_rembo_head",
+        "hint": "special_rembo_hint",
+        "framekey": "x",
+        "damage": {
+          "physical": "18,30"
+        }
+      }
+    ]
   }
 }

@@ -26,11 +26,68 @@
       "nonecro",
       "poison_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "no_retaliation",
       "poisonous",
       "poison_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "poison": "30"
+        },
+        "damageRanges": [
+          ["physical", 6, 10]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "longattack",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "scriptParams": {
+          "spoison": "100",
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["physical", 8, 11]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "6,10"
+        },
+        "custom_params": {
+          "poison": "30"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "2",
+        "picture": "BA1_Special_Rush_",
+        "picture_small": "BA1_Special_Rush_small.png",
+        "warning": "sw_long",
+        "hinthead": "special_snake_long_head",
+        "hint": "special_snake3_long_hint",
+        "ad_factor": "1",
+        "script_attack": "special_long_hit",
+        "script_calccells": "calccells_enemy_longhit",
+        "attack_cursor": "attack",
+        "damage": {
+          "physical": "8,11"
+        },
+        "custom_params": {
+          "spoison": "100",
+          "nomiss": "1"
+        }
+      }
+    ]
   }
 }

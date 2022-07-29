@@ -28,12 +28,124 @@
       "nonecro",
       "golem"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "shock",
       "mech",
       "armor",
       "eyeless"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "shock": "30",
+          "initiative_drop": "1"
+        },
+        "damageRanges": [
+          ["physical", 12, 12]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "harpoon",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 2,
+        "scriptParams": {
+          "shock": "0",
+          "initiative_drop": "1",
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["physical", 10, 14]
+        ]
+      },
+      {
+        "internalName": "projector",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "shock": "0",
+          "initiative_drop": "1",
+          "nomiss": "1",
+          "distance": "3",
+          "power": "30",
+          "duration": "2",
+          "dam": "5-20",
+          "typedmg": "physical",
+          "atk_hint": "railgun3flash"
+        },
+        "damageRanges": [
+          ["physical", 5, 20]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "ad_factor": "1",
+        "usefly": "50",
+        "damage": {
+          "physical": "12,12"
+        },
+        "custom_params": {
+          "shock": "30",
+          "initiative_drop": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "anchor",
+        "picture": "ba1_harpoon_",
+        "picture_small": "ba1_harpoon_small.png",
+        "hinthead": "special_harpoon_head",
+        "hint": "special_harpoon_hint",
+        "reload": "2",
+        "nfeatures": "pawn,boss",
+        "script_calccells": "calccells_all_need_harpoon_around",
+        "script_highlight": "harpoon_highlight",
+        "script_attack": "special_harpoon",
+        "damage": {
+          "physical": "10,14"
+        },
+        "custom_params": {
+          "shock": "0",
+          "initiative_drop": "1",
+          "nomiss": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "picture": "ba1_projector_",
+        "picture_small": "ba1_projector_small.png",
+        "hinthead": "special_droid_flash_head",
+        "hint": "special_droid_flash_hint",
+        "reload": "3",
+        "nfeatures": "pawn,boss,eyeless",
+        "script_attack": "droid_flash_attack",
+        "script_calccells": "droid_flash_selcells",
+        "script_filter": "droid_flash_filter",
+        "script_highlight": "droid_flash_highlight",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "damage": {
+          "physical": "5,20"
+        },
+        "custom_params": {
+          "shock": "0",
+          "initiative_drop": "1",
+          "nomiss": "1",
+          "distance": "3",
+          "power": "30",
+          "duration": "2",
+          "dam": "5-20",
+          "typedmg": "physical",
+          "atk_hint": "railgun3flash"
+        }
+      }
+    ]
   }
 }

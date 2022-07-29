@@ -25,10 +25,53 @@
       "plant",
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "plant",
       "eyeless"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 1, 3]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "cast_thorn",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "count": "2-4"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "1,3"
+        }
+      },
+      {
+        "class": "scripted",
+        "warning": "sw_corpse",
+        "picture": "BA1_CastThorn_",
+        "picture_small": "BA1_CastThorn_small.png",
+        "hinthead": "special_thorn_head",
+        "hint": "special_thorn_hint",
+        "moves": "1",
+        "script_attack": "special_cast_thorn",
+        "script_calccells": "calccells_corpse_around",
+        "attack_cursor": "magicstick",
+        "anim_attack": "special",
+        "custom_params": {
+          "count": "2-4"
+        }
+      }
+    ]
   }
 }

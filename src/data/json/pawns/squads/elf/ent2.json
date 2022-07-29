@@ -25,10 +25,109 @@
       "plant",
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "plant",
       "tieroot"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 100, 140]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "throw1",
+        "base": "defaultRanged",
+        "slot": "ability_2",
+        "charges": 1,
+        "damageRanges": [
+          ["poison", 50, 90],
+          ["physical", 50, 90]
+        ],
+        "minDistance": 1,
+        "maxDistance": 4,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "reload",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 2,
+        "scriptParams": {
+          "count": "1"
+        }
+      },
+      {
+        "internalName": "run",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2"
+        },
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "100,140"
+        }
+      },
+      {
+        "moves": "1",
+        "dontusenearenemy": "1",
+        "class": "throw",
+        "picture": "BA1_Wasp_",
+        "picture_small": "BA1_Wasp_small.png",
+        "hinthead": "special_swarm_head",
+        "hint": "special_swarm_hint",
+        "ad_factor": "1",
+        "distance": "4",
+        "mindist": "1",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "ent_wasps",
+        "framekey": "x",
+        "damage": {
+          "poison": "50,90",
+          "physical": "50,90"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "2",
+        "script_attack": "special_reload_new",
+        "script_calccells": "",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_Wasp_Call_",
+        "picture_small": "BA1_Wasp_Call_small.png",
+        "hinthead": "special_reload_head",
+        "hint": "special_reload_hint",
+        "custom_params": {
+          "count": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_head",
+        "hint": "special_run_hint",
+        "endmove": "0",
+        "script_attack": "special_run",
+        "script_calccells": "",
+        "picture_small": "BA1_Run_small.png",
+        "picture": "BA1_Run_",
+        "custom_params": {
+          "ap": "2"
+        }
+      }
+    ]
   }
 }

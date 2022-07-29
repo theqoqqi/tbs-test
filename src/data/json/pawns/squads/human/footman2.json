@@ -25,12 +25,54 @@
       "humanoid",
       "care"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "armor",
       "alertness",
       "commander",
       "favorite_enemy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 6, 8]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "moveattack2",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "damageRanges": [
+          ["physical", 9, 12]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "6,8"
+        }
+      },
+      {
+        "class": "moveattack",
+        "hinthead": "special_footman_head",
+        "hint": "special_footman_hint",
+        "reload": "2",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "options": "disablerush,used_if_damaged",
+        "anim_attack": "power",
+        "picture": "ba1_doublestrike_",
+        "picture_small": "ba1_doublestrike_small.png",
+        "damage": {
+          "physical": "9,12"
+        }
+      }
+    ]
   }
 }

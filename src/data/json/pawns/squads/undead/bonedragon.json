@@ -26,12 +26,117 @@
       "undead",
       "dragon"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "undead",
       "bone",
       "flies",
       "poison_br"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "poison": "50"
+        },
+        "damageRanges": [
+          ["poison", 50, 80]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "poison_cloud",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "spoison": "90",
+          "nothorns": "1",
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["poison", 60, 80]
+        ]
+      },
+      {
+        "internalName": "eat",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 1,
+        "scriptParams": {
+          "k": "50"
+        }
+      },
+      {
+        "internalName": "blue",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "charges": 1,
+        "scriptParams": {}
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "usefly": "4",
+        "damage": {
+          "poison": "50,80"
+        },
+        "custom_params": {
+          "poison": "50"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture": "BA1_PoisonCloud_",
+        "picture_small": "BA1_PoisonCloud_small.png",
+        "script_attack": "special_poison_cloud",
+        "reload": "3",
+        "ad_factor": "1",
+        "deadonly": "0",
+        "hinthead": "special_poison_cloud_head",
+        "hint": "special_poison_cloud_hint",
+        "damage": {
+          "poison": "60,80"
+        },
+        "custom_params": {
+          "spoison": "90",
+          "nothorns": "1",
+          "nomiss": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture": "BA1_bonedragon_eat_",
+        "features": "humanoid",
+        "picture_small": "BA1_bonedragon_eat_small.png",
+        "script_attack": "special_bone_eat",
+        "script_calccells": "calccells_bone_eat",
+        "moves": "1",
+        "attack_cursor": "magicstick",
+        "ad_factor": "1",
+        "hinthead": "special_bonedragon_eat_corpse_head",
+        "hint": "special_bonedragon_eat_corpse_hint",
+        "custom_params": {
+          "k": "50"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture": "BA1_bonedragon_blue_",
+        "attack_cursor": "magicstick",
+        "features": "humanoid",
+        "picture_small": "BA1_bonedragon_blue_small.png",
+        "script_attack": "special_bone_blue",
+        "script_calccells": "calccells_all_empty_around",
+        "moves": "1",
+        "disabled": "1",
+        "ad_factor": "1",
+        "hinthead": "special_spawn_skeleton_head",
+        "hint": "special_spawn_skeleton_hint",
+        "custom_params": {}
+      }
+    ]
   }
 }

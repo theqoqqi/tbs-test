@@ -25,7 +25,7 @@
       "mind_immunitet",
       "undead"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "gold_searcher",
       "gold_need",
       "sea",
@@ -34,6 +34,59 @@
       "undead",
       "phantom"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["magic", 5, 8]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "chance",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "chance": "50",
+          "hpgold": "50",
+          "damgold": "10"
+        },
+        "damageRanges": [
+          ["astral", 5, 8]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "magic": "5,8"
+        }
+      },
+      {
+        "class": "moveattack",
+        "hinthead": "special_chance_head",
+        "hint": "special_chance_hint",
+        "reload": "3",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "ai_ignore": "1",
+        "anim_attack": "attack",
+        "picture": "ba1_chance_",
+        "picture_small": "ba1_chance_small.png",
+        "options": "3in1,disablerush,used_if_damaged",
+        "damage": {
+          "astral": "5,8"
+        },
+        "custom_params": {
+          "chance": "50",
+          "hpgold": "50",
+          "damgold": "10"
+        }
+      }
+    ]
   }
 }

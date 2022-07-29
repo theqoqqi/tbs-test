@@ -24,11 +24,84 @@
       "demon",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "demon",
       "return",
       "no_retaliation"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 3, 6]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "fire_shot",
+        "base": "defaultRanged",
+        "slot": "ability_2",
+        "charges": 2,
+        "scriptParams": {
+          "burn": "0",
+          "damage_throw": "3-6",
+          "typedmg_throw": "fire",
+          "7in1": "30",
+          "p_k": "100",
+          "p_dist": "50",
+          "atk_hint": "7in1"
+        },
+        "damageRanges": [
+          ["fire", 3, 6]
+        ],
+        "minDistance": 2,
+        "maxDistance": 50,
+        "distancePenalty": 1,
+        "disabledIfNearEnemy": true
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "options": "return",
+        "damage": {
+          "physical": "3,6"
+        }
+      },
+      {
+        "class": "throw",
+        "device": "imp_blast",
+        "hinthead": "special_fire_shot_head",
+        "hint": "special_fire_shot_hint",
+        "picture": "ba1_fireball_",
+        "picture_small": "ba1_fireball_small.png",
+        "distance": "50",
+        "moves": "2",
+        "dontusenearenemy": "1",
+        "up": "0",
+        "mindist": "2",
+        "penalty": "1",
+        "7in1": "0.3",
+        "friendly_fire": "1",
+        "animation": "cast/throw/thtarget",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "throw": "imp_ball",
+        "framekey": "x",
+        "damage": {
+          "fire": "3,6"
+        },
+        "custom_params": {
+          "burn": "0",
+          "damage_throw": "3-6",
+          "typedmg_throw": "fire",
+          "7in1": "30",
+          "p_k": "100",
+          "p_dist": "50",
+          "atk_hint": "7in1"
+        }
+      }
+    ]
   }
 }

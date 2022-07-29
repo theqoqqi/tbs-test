@@ -27,13 +27,84 @@
       "fire_immunitet",
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flies",
       "dragon_breath",
       "magic_resistance",
       "fire_immunity",
       "mind_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "burn": "50"
+        },
+        "damageRanges": [
+          ["fire", 100, 120]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "rail",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 3,
+        "scriptParams": {
+          "typedmg": "fire",
+          "damage": "100-140",
+          "sburn": "50",
+          "nomiss": "1",
+          "nothorns": "1",
+          "atk_hint": "rail"
+        },
+        "damageRanges": [
+          ["fire", 100, 140]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "options": "long2,friend_damage",
+        "ad_factor": "1",
+        "usefly": "4",
+        "damage": {
+          "fire": "100,120"
+        },
+        "custom_params": {
+          "burn": "50"
+        }
+      },
+      {
+        "class": "scripted",
+        "ad_factor": "1",
+        "attack_cursor": "attack",
+        "script_attack": "special_dragon_rail",
+        "script_calccells": "special_reddragon_rail_calccells",
+        "script_highlight": "special_reddragon_rail_highlight",
+        "anim_attack": "mana",
+        "picture": "BA1_Fire_Flow_",
+        "picture_small": "BA1_Fire_Flow_small.png",
+        "reload": "3",
+        "always_hint": "1",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "hinthead": "special_dragon_rail_head",
+        "hint": "special_dragon_rail_hint",
+        "damage": {
+          "fire": "100,140"
+        },
+        "custom_params": {
+          "typedmg": "fire",
+          "damage": "100-140",
+          "sburn": "50",
+          "nomiss": "1",
+          "nothorns": "1",
+          "atk_hint": "rail"
+        }
+      }
+    ]
   }
 }

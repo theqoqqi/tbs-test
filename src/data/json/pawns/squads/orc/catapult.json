@@ -22,12 +22,252 @@
       "shot",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "shot",
       "siege_weapon",
       "fire_weakness",
       "catapult_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "scriptParams": {
+          "burn": "0",
+          "bomb": "0",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 12, 22]
+        ],
+        "minDistance": 2,
+        "maxDistance": 6,
+        "distancePenalty": 0.8,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "burn": "0",
+          "bomb": "0",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 6, 11]
+        ],
+        "minDistance": 2,
+        "maxDistance": 5,
+        "distancePenalty": 0.8
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "burn": "0",
+          "bomb": "0",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 7, 7]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "detonation",
+        "base": "defaultRanged",
+        "slot": "ability_1",
+        "reload": 3,
+        "scriptParams": {
+          "bomb": "1",
+          "burn": "0",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["fire", 10, 15]
+        ],
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "firethrow",
+        "base": "defaultRanged",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "burn": "50",
+          "bomb": "0",
+          "rage_spent": "10",
+          "trf_lvl_need": "1",
+          "damage_throw": "8-13",
+          "typedmg_throw": "fire",
+          "7in1": "50",
+          "p_k": "50",
+          "p_dist": "50",
+          "atk_hint": "7in1"
+        },
+        "damageRanges": [
+          ["fire", 8, 13]
+        ],
+        "minDistance": 2,
+        "maxDistance": 50,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "explosive",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 4,
+        "scriptParams": {
+          "health": "25",
+          "distance": "4",
+          "rage_spent": "15",
+          "trf_lvl_need": "2"
+        },
+        "disabledIfNearEnemy": true
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "7,7"
+        },
+        "custom_params": {
+          "burn": "0",
+          "bomb": "0",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "nfeatures": "barrier",
+        "group": "1,2",
+        "device": "catapult",
+        "showdmg": "1",
+        "distance": "5",
+        "mindist": "2",
+        "base_attack": "1",
+        "ad_factor": "1",
+        "penalty": "0.8",
+        "animation": "cast/throw/thtarget",
+        "throw": "catapultball",
+        "framekey": "x",
+        "damage": {
+          "physical": "6,11"
+        },
+        "custom_params": {
+          "burn": "0",
+          "bomb": "0",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "features": "barrier",
+        "class": "throw",
+        "group": "1,3",
+        "device": "catapult",
+        "showdmg": "1",
+        "distance": "6",
+        "mindist": "2",
+        "base_attack": "1",
+        "ad_factor": "1",
+        "penalty": "0.8",
+        "animation": "cast/throw/thtarget",
+        "throw": "catapultball",
+        "framekey": "x",
+        "damage": {
+          "physical": "12,22"
+        },
+        "custom_params": {
+          "burn": "0",
+          "bomb": "0",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "dontusenearenemy": "1",
+        "device": "firecatapult",
+        "class": "throw",
+        "picture": "BA1_detonation_",
+        "picture_small": "BA1_detonation_small.png",
+        "reload": "3",
+        "nohint": "1",
+        "showdmg": "0",
+        "animation": "firecast/throw/thtarget",
+        "throw": "catapultfireball",
+        "hinthead": "detonation_head",
+        "hint": "detonation_hint",
+        "framekey": "x",
+        "damage": {
+          "fire": "10,15"
+        },
+        "conditions": {
+          "unit": "altar_bomb,altar_barrel,catapult_bomb,catapult_barrel"
+        },
+        "custom_params": {
+          "bomb": "1",
+          "burn": "0",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "dontusenearenemy": "1",
+        "device": "firecatapult",
+        "class": "throw",
+        "picture": "BA1_CatapultFire_",
+        "picture_small": "BA1_CatapultFire_small.png",
+        "distance": "50",
+        "ad_factor": "1",
+        "base_attack": "0",
+        "mindist": "2",
+        "reload": "3",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "catapultfireball",
+        "hinthead": "special_fire_catapult_head",
+        "hint": "special_fire_catapult_hint_new",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "framekey": "x",
+        "7in1": "0.5",
+        "friendly_fire": "1",
+        "damage": {
+          "fire": "8,13"
+        },
+        "custom_params": {
+          "burn": "50",
+          "bomb": "0",
+          "rage_spent": "10",
+          "trf_lvl_need": "1",
+          "damage_throw": "8-13",
+          "typedmg_throw": "fire",
+          "7in1": "50",
+          "p_k": "50",
+          "p_dist": "50",
+          "atk_hint": "7in1"
+        }
+      },
+      {
+        "dontusenearenemy": "1",
+        "class": "scripted",
+        "picture": "BA1_explosive_",
+        "picture_small": "BA1_explosive_small.png",
+        "reload": "4",
+        "script_attack": "catapult_explosive_attack",
+        "attack_cursor": "magicstick",
+        "script_calccells": "catapult_explosive_calccells",
+        "hinthead": "explosive_head",
+        "hint": "explosive_hint",
+        "framekey": "x",
+        "custom_params": {
+          "health": "25",
+          "distance": "4",
+          "rage_spent": "15",
+          "trf_lvl_need": "2"
+        }
+      }
+    ]
   }
 }

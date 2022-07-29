@@ -23,9 +23,85 @@
     "features": [
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "hates_green"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 80, 100]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "quake",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "scriptParams": {
+          "damage": "60-80",
+          "typedmg": "physical",
+          "k": "10",
+          "nomiss": "1",
+          "nothorns": "1"
+        }
+      },
+      {
+        "internalName": "run",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2"
+        },
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "80,100"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "2",
+        "hinthead": "special_quake_head",
+        "hint": "special_quake_hint",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "showdmg": "0",
+        "script_attack": "special_giant_quake",
+        "script_calccells": "",
+        "attack_cursor": "",
+        "picture_small": "BA1_Quake_small.png",
+        "picture": "BA1_Quake_",
+        "custom_params": {
+          "damage": "60-80",
+          "typedmg": "physical",
+          "k": "10",
+          "nomiss": "1",
+          "nothorns": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_head",
+        "hint": "special_run_hint",
+        "endmove": "0",
+        "script_attack": "special_run",
+        "script_calccells": "",
+        "picture_small": "BA1_Run_small.png",
+        "picture": "BA1_Run_",
+        "custom_params": {
+          "ap": "2"
+        }
+      }
+    ]
   }
 }

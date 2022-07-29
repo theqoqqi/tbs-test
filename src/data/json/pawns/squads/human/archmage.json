@@ -25,12 +25,137 @@
       "mind_immunitet",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "mage",
       "magic_protection",
       "mind_immunity",
       "favorite_enemy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "shock": "25"
+        },
+        "damageRanges": [
+          ["magic", 5, 8]
+        ],
+        "maxDistance": 60,
+        "distancePenalty": 1
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "shock": "0"
+        },
+        "damageRanges": [
+          ["physical", 6, 6]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "magic_shield",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 2
+      },
+      {
+        "internalName": "battle_mage",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "duration": "2",
+          "power": "100",
+          "penalty": "50",
+          "type": "bonus",
+          "shock": "50",
+          "krit": "15"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "telekines",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 1
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "6"
+        },
+        "custom_params": {
+          "shock": "0"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "scripted",
+        "ad_factor": "1",
+        "showdmg": "1",
+        "penalty": "1",
+        "distance": "60",
+        "base_attack": "1",
+        "script_attack": "archmage_lightning_attack",
+        "script_calccells": "calccells_all_enemy_actors_takes_damage",
+        "attack_cursor": "archer_arrow",
+        "damage": {
+          "magic": "5,8"
+        },
+        "custom_params": {
+          "shock": "25"
+        }
+      },
+      {
+        "class": "spell",
+        "spell": "special_magic_shield",
+        "nfeatures": "magic_immunitet,boss,pawn",
+        "reload": "2",
+        "picture": "BA1_MagicShield_",
+        "picture_small": "BA1_MagicShield_small.png",
+        "hinthead": "special_magic_shield_head",
+        "hint": "special_magic_shield_hint"
+      },
+      {
+        "class": "scripted",
+        "script_calccells": "",
+        "script_attack": "special_battle_mage_attack",
+        "endmove": "0",
+        "picture": "BA1_Battle_Mage_",
+        "picture_small": "BA1_Battle_Mage_small.png",
+        "reload": "3",
+        "hinthead": "special_battle_mage_head",
+        "hint": "special_battle_mage_hint",
+        "custom_params": {
+          "duration": "2",
+          "power": "100",
+          "penalty": "50",
+          "type": "bonus",
+          "shock": "50",
+          "krit": "15"
+        }
+      },
+      {
+        "class": "scripted",
+        "script_attack": "special_telekines",
+        "script_calccells": "calccells_telekines",
+        "moves": "1",
+        "no_hint": "1",
+        "picture": "BA1_Telekines_",
+        "picture_small": "BA1_Telekines_small.png",
+        "hinthead": "special_telekines_head",
+        "hint": "special_telekines_hint",
+        "attack_cursor": "magicstick",
+        "nfeatures": "magic_immunitet,boss,pawn"
+      }
+    ]
   }
 }

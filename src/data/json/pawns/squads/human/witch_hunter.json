@@ -23,10 +23,132 @@
     "features": [
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "mage_killer",
       "mind_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "mage": "150"
+        },
+        "damageRanges": [
+          ["physical", 5, 8]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "witch_shield",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "nomiss": "1",
+          "duration": "3",
+          "k": ".7",
+          "damage": "2-4",
+          "dmgtype": "physical"
+        },
+        "damageRanges": [
+          ["physical", 2, 4]
+        ]
+      },
+      {
+        "internalName": "magic_buff",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 3,
+        "scriptParams": {
+          "rage": "2-5",
+          "duration": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "stupid",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 4,
+        "scriptParams": {
+          "duration": "3",
+          "level": "5"
+        },
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "5,8"
+        },
+        "custom_params": {
+          "mage": "150"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "warning": "",
+        "picture": "ba1_witch_shield_",
+        "picture_small": "ba1_witch_shield_small.png",
+        "hinthead": "special_magic_block_head",
+        "hint": "special_magic_block_hint",
+        "moves": "1",
+        "no_hint": "1",
+        "script_calccells": "calccells_witch_hunter_ms",
+        "script_attack": "witch_hunter_ms_attack",
+        "damage": {
+          "physical": "2,4"
+        },
+        "custom_params": {
+          "nomiss": "1",
+          "duration": "3",
+          "k": ".7",
+          "damage": "2-4",
+          "dmgtype": "physical"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "warning": "",
+        "picture": "ba1_magic_buff_",
+        "picture_small": "ba1_magic_buff_small.png",
+        "hinthead": "special_magic_help_head",
+        "hint": "special_magic_help_hint",
+        "reload": "3",
+        "endmove": "0",
+        "nohint": "1",
+        "script_calccells": "",
+        "script_attack": "witch_hunter_buff",
+        "custom_params": {
+          "rage": "2-5",
+          "duration": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "warning": "wh_no_mage",
+        "no_hint": "1",
+        "script_calccells": "calccells_all_enemy",
+        "script_attack": "wh_stupid_attack",
+        "hinthead": "special_stupid_head",
+        "hint": "special_stupid_hint",
+        "reload": "4",
+        "endmove": "0",
+        "nfeatures": "boss,pawn",
+        "picture": "BA1_MagicBondage_",
+        "picture_small": "BA1_MagicBondage_small.png",
+        "custom_params": {
+          "duration": "3",
+          "level": "5"
+        }
+      }
+    ]
   }
 }

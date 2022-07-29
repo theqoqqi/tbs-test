@@ -23,12 +23,129 @@
     "features": [
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "hunter",
       "beast_killer",
       "hunter_alone",
       "hunter_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "beast_slayer": "150",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 10, 15]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "call_pet",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "count": "70-90",
+          "duration": "-100",
+          "rage_spent": "5",
+          "summonable_1": "dragonfly_lake,dragonfly_fire,hyena,snake_green",
+          "summonable_2": "snake,graywolf,bear",
+          "summonable_3": "bear2,snake_royal,griffin",
+          "trf_lvl_need": "1"
+        }
+      },
+      {
+        "internalName": "net",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 3,
+        "scriptParams": {
+          "rage_spent": "10",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "internalName": "veterinar",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 4,
+        "scriptParams": {
+          "heal": "44",
+          "rage_spent": "20",
+          "level": "4",
+          "trf_lvl_need": "3"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "10,15"
+        },
+        "custom_params": {
+          "beast_slayer": "150",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture": "ba1_call_pet_",
+        "picture_small": "ba1_call_pet_small.png",
+        "hinthead": "call_pet_head",
+        "hint": "call_pet_hint",
+        "warning": "sw_place",
+        "moves": "1",
+        "script_attack": "call_pet",
+        "script_calccells": "calccells_all_empty_around",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "count": "70-90",
+          "duration": "-100",
+          "rage_spent": "5",
+          "summonable_1": "dragonfly_lake,dragonfly_fire,hyena,snake_green",
+          "summonable_2": "snake,graywolf,bear",
+          "summonable_3": "bear2,snake_royal,griffin",
+          "trf_lvl_need": "1"
+        }
+      },
+      {
+        "class": "spell",
+        "spell": "hunter_net",
+        "reload": "3",
+        "warning": "sw_near",
+        "picture": "BA1_hunter_net_",
+        "picture_small": "BA1_hunter_net_small.png",
+        "hinthead": "hunter_net_head",
+        "hint": "hunter_net_hint",
+        "custom_params": {
+          "rage_spent": "10",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "hunter_veterinar_head",
+        "hint": "hunter_veterinar_hint",
+        "hint_gen_script": "repair_hint",
+        "reload": "4",
+        "features": "beast",
+        "script_attack": "hunter_veterinar_attack",
+        "script_calccells": "hunter_veterinar_calccells",
+        "picture": "BA1_hunter_veterinar_",
+        "picture_small": "BA1_hunter_veterinar_small.png",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "heal": "44",
+          "rage_spent": "20",
+          "level": "4",
+          "trf_lvl_need": "3"
+        }
+      }
+    ]
   }
 }

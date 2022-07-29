@@ -23,10 +23,55 @@
       "humanoid",
       "revengeful"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "northerner",
       "revengeful"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 4, 6]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "berserk",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "duration": "3",
+          "power": "100",
+          "penalty": "50"
+        },
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "4,6"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture": "BA1_Berserk_",
+        "picture_small": "BA1_Berserk_small.png",
+        "moves": "1",
+        "hinthead": "special_barb_head",
+        "hint": "special_barb_hint",
+        "script_attack": "special_berserk_attack",
+        "endmove": "0",
+        "custom_params": {
+          "duration": "3",
+          "power": "100",
+          "penalty": "50"
+        }
+      }
+    ]
   }
 }

@@ -25,13 +25,138 @@
     "features": [
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "crushing_blow",
       "orks_and_goblins_commander",
       "thick_skin",
       "orc_hire",
       "ogre_chieftain_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "reload": "1",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 50, 70]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "ogre_provoke",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "rage_spent": "5",
+          "trf_lvl_need": "1",
+          "level": "4"
+        }
+      },
+      {
+        "internalName": "chieftain_feed_time",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 3,
+        "scriptParams": {
+          "rage_spent": "10",
+          "power": "100",
+          "feed_health": "200-400",
+          "trf_lvl_need": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "whirlwind",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 4,
+        "scriptParams": {
+          "dmgtype": "physical",
+          "dam": "35-45",
+          "rage_spent": "20",
+          "nomiss": "1",
+          "nothorns": "1",
+          "trf_lvl_need": "3"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "options": "long2",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "50,70"
+        },
+        "custom_params": {
+          "reload": "1",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "chieftain_provoke_head",
+        "hint": "chieftain_provoke_hint",
+        "moves": "1",
+        "no_hint": "1",
+        "ad_factor": "0",
+        "nfeatures": "boss,pawn,mind_immunitet,undead",
+        "script_attack": "special_provoke",
+        "script_calccells": "calccells_gibe",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_ogre_provoke_",
+        "picture_small": "BA1_ogre_provoke_small.png",
+        "custom_params": {
+          "rage_spent": "5",
+          "trf_lvl_need": "1",
+          "level": "4"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "3",
+        "no_hint": "1",
+        "endmove": "0",
+        "attack_cursor": "magicstick",
+        "warning": "chieftain_feed_warn",
+        "hinthead": "chieftain_feed_time_head",
+        "hint": "chieftain_feed_time_hint",
+        "script_attack": "chieftain_feed_time_attack",
+        "script_calccells": "chieftain_feed_time_calccells",
+        "picture_small": "BA1_chieftain_feed_time_small.png",
+        "picture": "BA1_chieftain_feed_time_",
+        "custom_params": {
+          "rage_spent": "10",
+          "power": "100",
+          "feed_health": "200-400",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "4",
+        "no_hint": "1",
+        "nfeatures": "",
+        "attack_cursor": "",
+        "hinthead": "chieftain_whirlwind_head",
+        "hint": "chieftain_whirlwind_hint",
+        "script_attack": "chieftain_whirlwind_attack",
+        "picture_small": "BA1_whirlwind_small.png",
+        "picture": "BA1_whirlwind_",
+        "custom_params": {
+          "dmgtype": "physical",
+          "dam": "35-45",
+          "rage_spent": "20",
+          "nomiss": "1",
+          "nothorns": "1",
+          "trf_lvl_need": "3"
+        }
+      }
+    ]
   }
 }

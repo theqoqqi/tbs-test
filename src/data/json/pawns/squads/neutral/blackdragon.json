@@ -28,7 +28,7 @@
       "magic_immunitet",
       "fire_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flies",
       "dragon_breath",
       "fire_immunity",
@@ -36,6 +36,78 @@
       "mind_immunity",
       "dragon_power"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "burn": "50"
+        },
+        "damageRanges": [
+          ["fire", 110, 130]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "firepower",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "nomiss": "1",
+          "nothorns": "1",
+          "sburn": "80",
+          "typedmg": "fire",
+          "damage": "110-140",
+          "burntime": "3",
+          "atk_hint": "firepower"
+        },
+        "damageRanges": [
+          ["fire", 110, 140]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "usefly": "4",
+        "options": "long2,friend_damage",
+        "damage": {
+          "fire": "110,130"
+        },
+        "custom_params": {
+          "burn": "50"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_firepower_head",
+        "hint": "special_firepower_hint",
+        "picture": "BA1_Fire_Power_",
+        "picture_small": "BA1_Fire_Power_small.png",
+        "warning": "sw_firepower",
+        "ad_factor": "1",
+        "reload": "3",
+        "always_hint": "1",
+        "script_attack": "special_blackdragon_firepower_new",
+        "script_calccells": "calccells_blackdragon_firepower_new",
+        "script_highlight": "special_blackdragon_firepower_highlight_new",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "attack_cursor": "magicstick",
+        "damage": {
+          "fire": "110,140"
+        },
+        "custom_params": {
+          "nomiss": "1",
+          "nothorns": "1",
+          "sburn": "80",
+          "typedmg": "fire",
+          "damage": "110-140",
+          "burntime": "3",
+          "atk_hint": "firepower"
+        }
+      }
+    ]
   }
 }

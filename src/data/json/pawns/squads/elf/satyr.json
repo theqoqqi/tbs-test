@@ -24,12 +24,145 @@
       "humanoid",
       "shot"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "magic_ball",
       "no_melee",
       "darkness_fear",
       "forest_spirit"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 1, 4]
+        ],
+        "minDistance": 2,
+        "maxDistance": 4,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 2, 4]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "sleep",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 4,
+        "scriptParams": {
+          "level": "4",
+          "k": "200-200",
+          "duration": "2"
+        }
+      },
+      {
+        "internalName": "dream_strike",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "scriptParams": {
+          "dam": "5-12",
+          "dmgtype": "magic"
+        },
+        "damageRanges": [
+          ["magic", 5, 12]
+        ]
+      },
+      {
+        "internalName": "satyr_heal",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 2,
+        "scriptParams": {
+          "heal": "12"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "damage": {
+          "physical": "2,4"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "base_attack": "1",
+        "class": "throw",
+        "dontusenearenemy": "1",
+        "distance": "4",
+        "mindist": "2",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "thornseed_throw",
+        "framekey": "x",
+        "damage": {
+          "physical": "1,4"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "satyr_tire_sleep_head",
+        "hint": "satyr_tire_sleep_hint",
+        "showdmg": "0",
+        "reload": "4",
+        "no_hint": "1",
+        "script_attack": "satyr_tire_sleep",
+        "nfeatures": "boss,undead,mind_immunitet,plant,pawn,golem,mech",
+        "script_calccells": "satyr_tire_calccells",
+        "picture": "BA1_satyr_sleep_",
+        "picture_small": "BA1_satyr_sleep_small.png",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "level": "4",
+          "k": "200-200",
+          "duration": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "satyr_dream_strike_head",
+        "hint": "satyr_dream_strike_hint",
+        "reload": "2",
+        "script_attack": "satyr_dream_strike_attack",
+        "script_calccells": "satyr_dream_strike_calccells",
+        "picture": "BA1_dream_strike_",
+        "picture_small": "BA1_dream_strike_small.png",
+        "attack_cursor": "magicstick",
+        "damage": {
+          "magic": "5,12"
+        },
+        "custom_params": {
+          "dam": "5-12",
+          "dmgtype": "magic"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "satyr_heal_head",
+        "hint": "satyr_heal_hint",
+        "hint_gen_script": "repair_hint",
+        "moves": "2",
+        "features": "plant",
+        "script_attack": "satyr_heal",
+        "script_calccells": "calccells_all_plant_need_cure_around",
+        "picture": "BA1_satyr_song_",
+        "picture_small": "BA1_satyr_song_small.png",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "heal": "12"
+        }
+      }
+    ]
   }
 }

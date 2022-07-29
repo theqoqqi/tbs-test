@@ -26,12 +26,83 @@
       "eyeless",
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "shot",
       "plant",
       "eyeless",
       "no_melee"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 20, 30]
+        ],
+        "minDistance": 1,
+        "maxDistance": 6,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 20, 40]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "cast_thorn",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 3,
+        "scriptParams": {
+          "count": "150-300"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "damage": {
+          "physical": "20,40"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture": "BA1_CastThorn_",
+        "picture_small": "BA1_CastThorn_small.png",
+        "warning": "sw_place",
+        "hinthead": "special_thorn2_head",
+        "hint": "special_thorn2_hint",
+        "reload": "3",
+        "script_attack": "special_cast_thorn",
+        "script_calccells": "calccells_all_empty_around",
+        "attack_cursor": "magicstick",
+        "anim_attack": "special",
+        "custom_params": {
+          "count": "150-300"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "base_attack": "1",
+        "class": "throw",
+        "distance": "6",
+        "mindist": "1",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "thornseed_throw",
+        "framekey": "x",
+        "damage": {
+          "physical": "20,30"
+        }
+      }
+    ]
   }
 }

@@ -21,12 +21,82 @@
     "features": [
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "three_horn",
       "scale_skin",
       "thorn",
       "mind_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 15, 18]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "take",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "dmg_k": "20",
+          "rushanim": "rush2",
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["physical", 15, 18]
+        ]
+      },
+      {
+        "internalName": "transform",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 3,
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "options": "3in1",
+        "damage": {
+          "physical": "15,18"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "3",
+        "attack_cursor": "attack",
+        "hinthead": "special_brontortake_head",
+        "hint": "special_brontortake_hint",
+        "script_attack": "special_take",
+        "script_calccells": "take_calccells",
+        "script_highlight": "take_highlight",
+        "picture_small": "BA1_brontortake_small.png",
+        "picture": "BA1_brontortake_",
+        "damage": {
+          "physical": "15,18"
+        },
+        "custom_params": {
+          "dmg_k": "20",
+          "rushanim": "rush2",
+          "nomiss": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "script_attack": "special_transform",
+        "hinthead": "special_digbrontor_transform_head",
+        "hint": "special_digbrontor_transform_hint",
+        "picture": "BA1_brontor_transform_",
+        "picture_small": "BA1_brontor_transform_small.png",
+        "endmove": "0",
+        "reload": "3"
+      }
+    ]
   }
 }

@@ -24,13 +24,361 @@
       "shot",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "poison_resistance",
       "acid_sprays_hint",
       "no_melee",
       "chemister",
       "energobuster"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "burn": "0",
+          "poison": "15",
+          "holy": "0"
+        },
+        "damageRanges": [
+          ["poison", 10, 25]
+        ],
+        "maxDistance": 3
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "burn": "0",
+          "poison": "10",
+          "holy": "0",
+          "atk_hint": "railgun3"
+        },
+        "damageRanges": [
+          ["poison", 10, 25]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "throw1",
+        "base": "defaultRanged",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "burn": "0",
+          "poison": "100",
+          "holy": "0",
+          "craft": "poison",
+          "damage_throw": "5-15",
+          "typedmg_throw": "poison",
+          "7in1": "30",
+          "p_k": "80",
+          "p_dist": "7",
+          "atk_hint": "7in1"
+        },
+        "damageRanges": [
+          ["poison", 5, 15]
+        ],
+        "minDistance": 1,
+        "maxDistance": 7,
+        "distancePenalty": 0.8,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "poison_craft",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "craft": "poison",
+          "chance": "100",
+          "double": "10"
+        }
+      },
+      {
+        "internalName": "throw2",
+        "base": "defaultRanged",
+        "slot": "ability_3",
+        "charges": 1,
+        "scriptParams": {
+          "burn": "100",
+          "poison": "0",
+          "holy": "0",
+          "craft": "fire"
+        },
+        "damageRanges": [
+          ["fire", 10, 20]
+        ],
+        "minDistance": 1,
+        "maxDistance": 7,
+        "distancePenalty": 0.8,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "fire_craft",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 3,
+        "scriptParams": {
+          "craft": "fire",
+          "chance": "100",
+          "double": "10"
+        }
+      },
+      {
+        "internalName": "throw3",
+        "base": "defaultRanged",
+        "slot": "ability_5",
+        "charges": 1,
+        "scriptParams": {
+          "burn": "0",
+          "poison": "0",
+          "holy": "100",
+          "craft": "holy"
+        },
+        "damageRanges": [
+          ["magic", 15, 25]
+        ],
+        "minDistance": 1,
+        "maxDistance": 7,
+        "distancePenalty": 0.8,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "holy_craft",
+        "base": "defaultMelee",
+        "slot": "ability_6",
+        "reload": 3,
+        "scriptParams": {
+          "craft": "holy",
+          "chance": "100",
+          "double": "10"
+        }
+      },
+      {
+        "internalName": "buster",
+        "base": "defaultMelee",
+        "slot": "ability_7",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2",
+          "craft": "buster"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "buster_craft",
+        "base": "defaultMelee",
+        "slot": "ability_8",
+        "reload": 3,
+        "scriptParams": {
+          "craft": "buster",
+          "chance": "100",
+          "double": "10"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "damage": {
+          "poison": "10,25"
+        },
+        "custom_params": {
+          "burn": "0",
+          "poison": "10",
+          "holy": "0",
+          "atk_hint": "railgun3"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "scripted",
+        "base_attack": "1",
+        "ad_factor": "1",
+        "showdmg": "1",
+        "distance": "3",
+        "script_attack": "alchemist_acidcannon_attack",
+        "script_calccells": "alchemist_acidcannon_selcells",
+        "script_filter": "alchemist_acidcannon_filter",
+        "script_highlight": "alchemist_acidcannon_highlight",
+        "attack_cursor": "magicstick",
+        "damage": {
+          "poison": "10,25"
+        },
+        "custom_params": {
+          "burn": "0",
+          "poison": "15",
+          "holy": "0"
+        }
+      },
+      {
+        "class": "throw",
+        "hint": "special_alch_poison_hint",
+        "hinthead": "special_alch_poison_head",
+        "picture": "BA1_Poison_Water_",
+        "picture_small": "BA1_Poison_Water_small.png",
+        "moves": "1",
+        "distance": "7",
+        "device": "poisoncloud",
+        "up": "1",
+        "mindist": "1",
+        "penalty": "0.8",
+        "animation": "cast/throw/thtarget",
+        "throw": "alchemist_bulb",
+        "framekey": "x",
+        "7in1": "0.3",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "friendly_fire": "1",
+        "damage": {
+          "poison": "5,15"
+        },
+        "custom_params": {
+          "burn": "0",
+          "poison": "100",
+          "holy": "0",
+          "craft": "poison",
+          "damage_throw": "5-15",
+          "typedmg_throw": "poison",
+          "7in1": "30",
+          "p_k": "80",
+          "p_dist": "7",
+          "atk_hint": "7in1"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_poison_craft_",
+        "picture_small": "BA1_poison_craft_small.png",
+        "hinthead": "talent_chemistery_poison_head",
+        "hint": "talent_chemistery_hint",
+        "reload": "3",
+        "disabled": "1",
+        "script_attack": "chemistery_crafting",
+        "custom_params": {
+          "craft": "poison",
+          "chance": "100",
+          "double": "10"
+        }
+      },
+      {
+        "class": "throw",
+        "hinthead": "special_alch_fire_head",
+        "hint": "special_alch_fire_hint",
+        "picture": "ba1_fieryflask_",
+        "picture_small": "ba1_fieryflask_small.png",
+        "distance": "7",
+        "moves": "1",
+        "up": "1",
+        "mindist": "1",
+        "penalty": "0.8",
+        "animation": "firecast/throw/thtarget",
+        "throw": "alchemist_firebulb",
+        "framekey": "x",
+        "damage": {
+          "fire": "10,20"
+        },
+        "custom_params": {
+          "burn": "100",
+          "poison": "0",
+          "holy": "0",
+          "craft": "fire"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "picture": "ba1_fire_craft_",
+        "picture_small": "ba1_fire_craft_small.png",
+        "hinthead": "talent_chemistery_fire_head",
+        "hint": "talent_chemistery_hint",
+        "reload": "3",
+        "disabled": "1",
+        "script_attack": "chemistery_crafting",
+        "custom_params": {
+          "craft": "fire",
+          "chance": "100",
+          "double": "10"
+        }
+      },
+      {
+        "class": "throw",
+        "picture": "BA1_Holy_Water_",
+        "picture_small": "BA1_Holy_Water_small.png",
+        "hinthead": "special_alch_holy_head",
+        "hint": "special_alch_holy_new_hint",
+        "moves": "1",
+        "warning": "sw_holywater",
+        "distance": "7",
+        "up": "1",
+        "mindist": "1",
+        "penalty": "0.8",
+        "animation": "watercast/throw/thtarget",
+        "throw": "alchemist_waterbulb",
+        "framekey": "x",
+        "nfeatures": "boss,pawn",
+        "features": "undead,demon",
+        "damage": {
+          "magic": "15,25"
+        },
+        "custom_params": {
+          "burn": "0",
+          "poison": "0",
+          "holy": "100",
+          "craft": "holy"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_holy_craft_",
+        "picture_small": "BA1_holy_craft_small.png",
+        "hinthead": "talent_chemistery_holy_head",
+        "hint": "talent_chemistery_hint",
+        "reload": "3",
+        "disabled": "1",
+        "script_attack": "chemistery_crafting",
+        "custom_params": {
+          "craft": "holy",
+          "chance": "100",
+          "double": "10"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "talent_energobuster_head",
+        "hint": "talent_energobuster_hint",
+        "endmove": "0",
+        "disabled": "1",
+        "script_attack": "special_energobuster",
+        "script_calccells": "",
+        "picture_small": "BA1_buster_small.png",
+        "picture": "BA1_buster_",
+        "custom_params": {
+          "ap": "2",
+          "craft": "buster"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_buster_craft_",
+        "picture_small": "BA1_buster_craft_small.png",
+        "hinthead": "talent_chemistery_buster_head",
+        "hint": "talent_chemistery_hint",
+        "reload": "3",
+        "disabled": "1",
+        "script_attack": "chemistery_crafting",
+        "custom_params": {
+          "craft": "buster",
+          "chance": "100",
+          "double": "10"
+        }
+      }
+    ]
   }
 }

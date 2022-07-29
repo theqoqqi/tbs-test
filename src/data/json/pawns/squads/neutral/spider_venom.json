@@ -23,10 +23,33 @@
     "features": [
       "poison_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "poisonous",
       "poison_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "poison": "50"
+        },
+        "damageRanges": [
+          ["poison", 2, 3]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "poison": "2,3"
+        },
+        "custom_params": {
+          "poison": "50"
+        }
+      }
+    ]
   }
 }

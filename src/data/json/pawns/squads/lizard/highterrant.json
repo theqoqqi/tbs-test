@@ -21,11 +21,49 @@
   },
   "options": {
     "features": [],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flies",
       "fly_krit",
       "magic_resistance"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 7, 13]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "lay_egg",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "usefly": "4",
+        "options": "kritfly",
+        "damage": {
+          "physical": "7,13"
+        }
+      },
+      {
+        "class": "scripted",
+        "warning": "warning_egg",
+        "hinthead": "special_lay_egg_head",
+        "hint": "special_lay_egg_hint",
+        "moves": "1",
+        "picture_small": "BA1_lay_egg_small.png",
+        "picture": "BA1_lay_egg_",
+        "script_attack": "special_lay_egg",
+        "script_calccells": "calccells_lay_egg",
+        "attack_cursor": "magicstick"
+      }
+    ]
   }
 }

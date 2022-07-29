@@ -24,10 +24,108 @@
       "demon",
       "beauty"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "demon",
       "beauty"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 10, 18]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "longattack",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "damageRanges": [
+          ["physical", 10, 18]
+        ]
+      },
+      {
+        "internalName": "charm",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 3,
+        "scriptParams": {
+          "duration": "2",
+          "k": "80-80"
+        },
+        "damageRanges": [
+          ["physical", 10, 18]
+        ]
+      },
+      {
+        "internalName": "change",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 4
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "10,18"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "2",
+        "hinthead": "special_demoness_long_head",
+        "hint": "special_demoness_long_hint",
+        "picture": "BA1_Demoness_Longattack_",
+        "picture_small": "BA1_Demoness_Longattack_small.png",
+        "ad_factor": "1",
+        "warning": "sw_long",
+        "script_attack": "special_long_hit",
+        "script_calccells": "calccells_enemy_longhit",
+        "attack_cursor": "attack",
+        "damage": {
+          "physical": "10,18"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_demoness_charm_head",
+        "hint": "special_demoness_charm_hint",
+        "picture": "BA1_Seduction_",
+        "picture_small": "BA1_Seduction_small.png",
+        "ad_factor": "1",
+        "warning": "sw_charm",
+        "reload": "3",
+        "script_attack": "special_demoness_charm",
+        "script_calccells": "calccells_all_enemy_around2",
+        "attack_cursor": "magicstick",
+        "features": "humanoid",
+        "nfeatures": "undead,magic_immunitet,boss,pawn",
+        "damage": {
+          "physical": "10,18"
+        },
+        "custom_params": {
+          "duration": "2",
+          "k": "80-80"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "4",
+        "no_hint": "1",
+        "log_label": "null",
+        "nfeatures": "magic_immunitet,boss,pawn",
+        "script_attack": "special_change_place_new",
+        "script_calccells": "calccells_change_place",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_Change_",
+        "picture_small": "BA1_Change_small.png",
+        "hinthead": "special_change_head",
+        "hint": "special_change_hint"
+      }
+    ]
   }
 }

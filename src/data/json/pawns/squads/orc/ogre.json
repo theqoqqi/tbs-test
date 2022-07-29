@@ -25,11 +25,131 @@
     "features": [
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "or�s_commander",
       "ogre_heavy_club",
       "ogre_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "bash": "1",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 50, 60]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "absorption",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "endsTurn": false
+      },
+      {
+        "internalName": "ogre_rage",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "reload": 4,
+        "scriptParams": {
+          "duration": "2",
+          "ap": "1",
+          "power": "100",
+          "rage_spent": "10",
+          "trf_lvl_need": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "ogre_strike",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 4,
+        "scriptParams": {
+          "dmgtype": "physical",
+          "dam": "70-90",
+          "rage_spent": "10",
+          "duration": "1",
+          "nomiss": "1",
+          "nothorns": "1",
+          "distance": "4",
+          "bash": "0",
+          "trf_lvl_need": "3"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "50,60"
+        },
+        "custom_params": {
+          "bash": "1",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "no_hint": "1",
+        "endmove": "0",
+        "nfeatures": "magic_immunitet,pawn,boss",
+        "attack_cursor": "magicstick",
+        "hinthead": "special_absorption_head",
+        "hint": "special_absorption_hint",
+        "script_attack": "special_absorption",
+        "script_calccells": "calccells_absorption",
+        "picture_small": "BA1_absorption_small.png",
+        "picture": "BA1_absorption_"
+      },
+      {
+        "class": "scripted",
+        "script_attack": "special_ogre_rage_attack_new",
+        "script_calccells": "",
+        "endmove": "0",
+        "reload": "4",
+        "picture": "BA1_OgreRage_",
+        "picture_small": "BA1_OgreRage_small.png",
+        "hinthead": "special_ogre_rage_head",
+        "hint": "special_ogre_rage_new_hint",
+        "custom_params": {
+          "duration": "2",
+          "ap": "1",
+          "power": "100",
+          "rage_spent": "10",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "4",
+        "ad_factor": "1",
+        "nfeatures": "pawn,boss",
+        "attack_cursor": "attack",
+        "hinthead": "special_ogre_strike_head",
+        "hint": "special_ogre_strike_hint",
+        "script_attack": "ogre_strike_attack",
+        "script_calccells": "calccells_ogre_strike_attack",
+        "picture_small": "BA1_ogre_throw_small.png",
+        "picture": "BA1_ogre_throw_",
+        "custom_params": {
+          "dmgtype": "physical",
+          "dam": "70-90",
+          "rage_spent": "10",
+          "duration": "1",
+          "nomiss": "1",
+          "nothorns": "1",
+          "distance": "4",
+          "bash": "0",
+          "trf_lvl_need": "3"
+        }
+      }
+    ]
   }
 }

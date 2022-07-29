@@ -25,13 +25,75 @@
       "armor",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "steel_armor",
       "learning",
       "valorous",
       "dragon_slayer",
       "favorite_enemy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 21, 27]
+        ]
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 16, 18]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "krugom",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 3,
+        "damageRanges": [
+          ["physical", 15, 20]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "ad_factor": "1",
+        "nfeatures": "dragon",
+        "damage": {
+          "physical": "16,18"
+        }
+      },
+      {
+        "class": "moveattack",
+        "hinthead": "special_knight_head",
+        "hint": "special_knight_hint",
+        "reload": "3",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "picture": "ba1_circlestrike_",
+        "picture_small": "ba1_circlestrike_small.png",
+        "options": "disablerush,used_if_damaged,6in1",
+        "anim_attack": "power",
+        "damage": {
+          "physical": "15,20"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "moveattack",
+        "ad_factor": "1",
+        "options": "disablerush",
+        "features": "dragon",
+        "anim_attack": "special",
+        "damage": {
+          "physical": "21,27"
+        }
+      }
+    ]
   }
 }

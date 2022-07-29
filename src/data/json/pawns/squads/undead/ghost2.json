@@ -24,12 +24,82 @@
     "features": [
       "undead"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "undead",
       "soars",
       "phantom",
       "soul_drain"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "k": "50"
+        },
+        "damageRanges": [
+          ["physical", 6, 9]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "gcry",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 5,
+        "scriptParams": {
+          "power": "2",
+          "level": "3",
+          "k": "0",
+          "typedmg": "physical",
+          "dist": "2",
+          "nomiss": "1",
+          "nothorns": "1",
+          "damage": "6-9"
+        },
+        "damageRanges": [
+          ["physical", 6, 9]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "6,9"
+        },
+        "custom_params": {
+          "k": "50"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_ghost_cry_head",
+        "hint": "special_ghost_cry_hint",
+        "reload": "5",
+        "ad_factor": "1",
+        "script_attack": "special_ghost_cry",
+        "script_calccells": "",
+        "attack_cursor": "",
+        "anim_attack": "special",
+        "picture": "BA1_Scream_",
+        "picture_small": "BA1_Scream_small.png",
+        "nfeatures": "boss,pawn",
+        "damage": {
+          "physical": "6,9"
+        },
+        "custom_params": {
+          "power": "2",
+          "level": "3",
+          "k": "0",
+          "typedmg": "physical",
+          "dist": "2",
+          "nomiss": "1",
+          "nothorns": "1",
+          "damage": "6-9"
+        }
+      }
+    ]
   }
 }

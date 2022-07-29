@@ -25,12 +25,124 @@
       "humanoid",
       "mage"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "holy_attack",
       "holy_aura",
       "no_melee",
       "favorite_enemy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "scriptParams": {
+          "holy": "150"
+        },
+        "damageRanges": [
+          ["magic", 2, 4]
+        ],
+        "minDistance": 2,
+        "maxDistance": 6,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "holy": "150"
+        },
+        "damageRanges": [
+          ["magic", 2, 4]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "cure",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 2,
+        "scriptParams": {
+          "heal": "10"
+        }
+      },
+      {
+        "internalName": "bless",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "scriptParams": {
+          "rage": "0",
+          "duration": "2"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "magic": "2,4"
+        },
+        "custom_params": {
+          "holy": "150"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "throw",
+        "base_attack": "1",
+        "ad_factor": "1",
+        "showdmg": "1",
+        "distance": "6",
+        "mindist": "2",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "priest_ball",
+        "framekey": "x",
+        "damage": {
+          "magic": "2,4"
+        },
+        "custom_params": {
+          "holy": "150"
+        }
+      },
+      {
+        "class": "scripted",
+        "script_calccells": "calccells_all_need_cure_all",
+        "script_attack": "special_heal",
+        "attack_cursor": "magicstick",
+        "nfeatures": "demon,magic_immunitet,pawn,boss,plant,golem,undead",
+        "warning": "warning_cure",
+        "picture": "ba1_heal_",
+        "picture_small": "ba1_heal_small.png",
+        "log_label": "cure_",
+        "hinthead": "special_prist_heal_head",
+        "hint": "special_prist_heal_hint",
+        "moves": "2",
+        "custom_params": {
+          "heal": "10"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "no_hint": "1",
+        "script_attack": "special_bless_attack",
+        "script_calccells": "calccells_bless",
+        "picture": "BA1_Bless_",
+        "nfeatures": "magic_immunitet,pawn,boss,demon",
+        "picture_small": "BA1_Bless_small.png",
+        "reload": "2",
+        "hinthead": "special_priest_bless_head",
+        "hint": "special_pries_bless_hint",
+        "custom_params": {
+          "rage": "0",
+          "duration": "2"
+        }
+      }
+    ]
   }
 }

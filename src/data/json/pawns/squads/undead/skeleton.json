@@ -24,10 +24,101 @@
       "bone",
       "undead"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "undead",
       "bone"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 2, 3]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "run",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "spawn_skelet",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 1,
+        "scriptParams": {
+          "count": "3"
+        },
+        "endsTurn": true
+      },
+      {
+        "internalName": "skeleton_gate",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 3,
+        "scriptParams": {
+          "count": "2"
+        },
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "2,3"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_head",
+        "hint": "special_run_hint",
+        "endmove": "0",
+        "script_attack": "special_run",
+        "script_calccells": "",
+        "picture_small": "BA1_Run_small.png",
+        "picture": "BA1_Run_",
+        "custom_params": {
+          "ap": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_spawn_skelet_head",
+        "hint": "special_spawn_skelet_hint",
+        "endmove": "1",
+        "script_attack": "special_spawn_skelet",
+        "script_calccells": "",
+        "picture_small": "BA1_spawn_skelet_small.png",
+        "picture": "BA1_spawn_skelet_",
+        "custom_params": {
+          "count": "3"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "reload": "3",
+        "hinthead": "special_skeleton_gate_head",
+        "hint": "special_skeleton_gate_hint",
+        "endmove": "0",
+        "script_attack": "special_movegate_skelet",
+        "script_calccells": "calccells_skeleton_gate",
+        "picture_small": "BA1_skeleton_gate_small.png",
+        "picture": "BA1_skeleton_gate_",
+        "custom_params": {
+          "count": "2"
+        }
+      }
+    ]
   }
 }

@@ -22,9 +22,77 @@
       "humanoid",
       "night_vision"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "night_sight"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 3, 4]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "run",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "strike",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "1",
+          "duration": "2",
+          "bonus": "100"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "3,4"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_head",
+        "hint": "special_run_hint",
+        "endmove": "0",
+        "script_attack": "special_run",
+        "script_calccells": "",
+        "picture_small": "BA1_Run_small.png",
+        "picture": "BA1_Run_",
+        "custom_params": {
+          "ap": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_strike_head",
+        "hint": "special_strike_hint",
+        "script_attack": "special_strike",
+        "script_calccells": "",
+        "picture_small": "BA1_strike_small.png",
+        "picture": "BA1_strike_",
+        "custom_params": {
+          "ap": "1",
+          "duration": "2",
+          "bonus": "100"
+        }
+      }
+    ]
   }
 }

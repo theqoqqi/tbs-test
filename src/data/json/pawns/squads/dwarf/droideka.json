@@ -28,7 +28,7 @@
       "nonecro",
       "golem"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flies",
       "shot",
       "no_melee",
@@ -36,6 +36,76 @@
       "armor",
       "eyeless"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 6, 8]
+        ],
+        "minDistance": 2,
+        "maxDistance": 5,
+        "distancePenalty": 0.5
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 10, 10]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "repair",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 4,
+        "scriptParams": {
+          "heal": "44"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "ad_factor": "1",
+        "usefly": "4",
+        "nonextifenemy": "1",
+        "damage": {
+          "physical": "10,10"
+        }
+      },
+      {
+        "class": "scripted",
+        "hint_gen_script": "repair_hint_new",
+        "attack_cursor": "magicstick",
+        "picture": "ba1_repair_",
+        "picture_small": "ba1_repair_small.png",
+        "hinthead": "special_repair_head",
+        "hint": "special_repair_hint",
+        "features": "mech",
+        "reload": "4",
+        "script_calccells": "calccells_all_need_repair_around",
+        "script_attack": "special_repair_new",
+        "custom_params": {
+          "heal": "44"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "base_attack": "1",
+        "distance": "5",
+        "mindist": "2",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "droideka_arrow",
+        "framekey": "x",
+        "damage": {
+          "physical": "6,8"
+        }
+      }
+    ]
   }
 }

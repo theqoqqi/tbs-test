@@ -26,7 +26,7 @@
       "mage",
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flame_scull",
       "demonologist",
       "gate_keeper_new",
@@ -34,6 +34,159 @@
       "fire_resistance",
       "mind_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "damageRanges": [
+          ["magic", 18, 21]
+        ],
+        "minDistance": 1,
+        "maxDistance": 4,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "damageRanges": [
+          ["fire", 12, 14]
+        ],
+        "minDistance": 1,
+        "maxDistance": 4,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "curse": "0"
+        },
+        "damageRanges": [
+          ["physical", 9, 10]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "vamp",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "damage": "14-18",
+          "typedmg": "magic",
+          "power": "40",
+          "curse": "0",
+          "nomiss": "1",
+          "nothorns": "1"
+        },
+        "damageRanges": [
+          ["magic", 14, 18]
+        ]
+      },
+      {
+        "internalName": "call_demon",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 4,
+        "scriptParams": {
+          "k": "25-50",
+          "ally": "1",
+          "demon": "cerberus,demon,demon2"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "9,10"
+        },
+        "custom_params": {
+          "curse": "0"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "device": "skull_ball",
+        "base_attack": "1",
+        "class": "throw",
+        "distance": "4",
+        "mindist": "1",
+        "nfeatures": "demon",
+        "friendly_fire": "0",
+        "penalty": "0.5",
+        "animation": "throw_attack/throw/thtarget",
+        "throw": "skull_ball",
+        "framekey": "x",
+        "damage": {
+          "fire": "12,14"
+        }
+      },
+      {
+        "group": "1,3",
+        "showdmg": "1",
+        "device": "skull_ball",
+        "base_attack": "1",
+        "class": "throw",
+        "distance": "4",
+        "mindist": "1",
+        "features": "demon",
+        "friendly_fire": "0",
+        "penalty": "0.5",
+        "animation": "throw_attack/throw/thtarget",
+        "throw": "skull_ball",
+        "framekey": "x",
+        "damage": {
+          "magic": "18,21"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "warning": "",
+        "nfeatures": "magic_immunitet,mech",
+        "picture": "ba1_vamp_",
+        "picture_small": "ba1_vamp_small.png",
+        "hinthead": "special_vamp_head",
+        "hint": "special_vamp_hint",
+        "hint_gen_script": "demonologist_vamp_attack_hint_gen",
+        "moves": "1",
+        "script_calccells": "calccells_special_vamp_simple",
+        "script_attack": "special_vamp",
+        "damage": {
+          "magic": "14,18"
+        },
+        "custom_params": {
+          "damage": "14-18",
+          "typedmg": "magic",
+          "power": "40",
+          "curse": "0",
+          "nomiss": "1",
+          "nothorns": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "script_attack": "special_summon_demon",
+        "script_calccells": "calcsells_special_call_demon",
+        "reload": "4",
+        "picture": "BA1_call_demon_",
+        "picture_small": "BA1_call_demon_small.png",
+        "hinthead": "special_call_demon_head",
+        "hint": "special_call_demon_hint",
+        "custom_params": {
+          "k": "25-50",
+          "ally": "1",
+          "demon": "cerberus,demon,demon2"
+        }
+      }
+    ]
   }
 }

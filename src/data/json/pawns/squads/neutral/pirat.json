@@ -22,11 +22,28 @@
       "humanoid",
       "agility"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "gold_digger",
       "sea",
       "agility"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 3, 5]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "3,5"
+        }
+      }
+    ]
   }
 }

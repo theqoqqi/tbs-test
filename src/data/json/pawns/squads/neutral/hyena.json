@@ -22,10 +22,47 @@
       "beast",
       "night_vision"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "night_sight",
       "carrion"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 3, 4]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "preparation",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "tocorpse_ap": "2",
+        "damage": {
+          "physical": "3,4"
+        }
+      },
+      {
+        "class": "scripted",
+        "script_attack": "special_preparation_attack",
+        "script_calccells": "",
+        "reload": "2",
+        "endmove": "0",
+        "picture": "BA1_Preparation_",
+        "picture_small": "BA1_Preparation_small.png",
+        "hinthead": "special_preparation_head",
+        "hint": "special_preparation_hint"
+      }
+    ]
   }
 }

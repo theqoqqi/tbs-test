@@ -24,12 +24,37 @@
       "beast",
       "nonecro"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "soars",
       "magic_resistance",
       "weakness",
       "palsy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "weakness": "30",
+          "drain": "50"
+        },
+        "damageRanges": [
+          ["poison", 1, 3]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "poison": "1,3"
+        },
+        "custom_params": {
+          "weakness": "30",
+          "drain": "50"
+        }
+      }
+    ]
   }
 }

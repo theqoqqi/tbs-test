@@ -22,7 +22,7 @@
       "shot",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "giant_killer",
       "shot",
       "no_melee",
@@ -31,6 +31,108 @@
       "goblin_poison_axes",
       "goblin_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "gk": "130",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 2, 4]
+        ],
+        "minDistance": 1,
+        "maxDistance": 4,
+        "distancePenalty": 0.5
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "gk": "130",
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 2, 4]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "goblin_fury",
+        "base": "defaultRanged",
+        "slot": "ability_1",
+        "reload": 2,
+        "scriptParams": {
+          "gk": "130",
+          "rage_spent": "15",
+          "fury": "1",
+          "trf_lvl_need": "3"
+        },
+        "damageRanges": [
+          ["physical", 3, 6]
+        ],
+        "minDistance": 1,
+        "maxDistance": 100,
+        "disabledIfNearEnemy": true
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "2,4"
+        },
+        "custom_params": {
+          "gk": "130",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "base_attack": "1",
+        "distance": "4",
+        "mindist": "1",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "goblinaxe",
+        "framekey": "x",
+        "damage": {
+          "physical": "2,4"
+        },
+        "custom_params": {
+          "gk": "130",
+          "rage_spent": "0"
+        }
+      },
+      {
+        "class": "throw",
+        "dontusenearenemy": "1",
+        "showdmg": "1",
+        "hinthead": "goblin_fury_head",
+        "hint": "goblin_fury_hint",
+        "picture": "ba1_goblin_fury_",
+        "picture_small": "ba1_goblin_fury_small.png",
+        "distance": "100",
+        "mindist": "1",
+        "reload": "2",
+        "animation": "cast/throw/thtarget",
+        "throw": "goblinaxe",
+        "framekey": "x",
+        "damage": {
+          "physical": "3,6"
+        },
+        "custom_params": {
+          "gk": "130",
+          "rage_spent": "15",
+          "fury": "1",
+          "trf_lvl_need": "3"
+        }
+      }
+    ]
   }
 }

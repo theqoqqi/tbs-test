@@ -26,11 +26,215 @@
       "bone",
       "archer"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "undead",
       "shot",
       "bone"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "poison": "0",
+          "tranc": "0",
+          "arrows": "1",
+          "dragon": "0"
+        },
+        "damageRanges": [
+          ["physical", 2, 3]
+        ],
+        "minDistance": 2,
+        "maxDistance": 5,
+        "distancePenalty": 0.5
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "poison": "0",
+          "tranc": "0",
+          "dragon": "0"
+        },
+        "damageRanges": [
+          ["physical", 1, 2]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "poison",
+        "base": "defaultRanged",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "poison": "100",
+          "tranc": "0",
+          "arrows": "1",
+          "dragon": "0"
+        },
+        "damageRanges": [
+          ["poison", 2, 3]
+        ],
+        "minDistance": 2,
+        "maxDistance": 5,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "tranc",
+        "base": "defaultRanged",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "poison": "0",
+          "tranc": "100",
+          "arrows": "1",
+          "dragon": "0"
+        },
+        "damageRanges": [
+          ["magic", 3, 4]
+        ],
+        "minDistance": 2,
+        "maxDistance": 5,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "dragon",
+        "base": "defaultRanged",
+        "slot": "ability_3",
+        "charges": 1,
+        "scriptParams": {
+          "poison": "0",
+          "dragon": "1",
+          "arrows": "1",
+          "tranc": "0"
+        },
+        "damageRanges": [
+          ["astral", 2, 3]
+        ],
+        "minDistance": 2,
+        "maxDistance": 100,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "device": "bone",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "1,2"
+        },
+        "custom_params": {
+          "poison": "0",
+          "tranc": "0",
+          "dragon": "0"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "base_attack": "1",
+        "distance": "5",
+        "ad_factor": "1",
+        "mindist": "2",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "archer_arrow",
+        "framekey": "x",
+        "damage": {
+          "physical": "2,3"
+        },
+        "custom_params": {
+          "poison": "0",
+          "tranc": "0",
+          "arrows": "1",
+          "dragon": "0"
+        }
+      },
+      {
+        "dontusenearenemy": "1",
+        "class": "throw",
+        "picture": "BA1_PoisonArrow_",
+        "picture_small": "BA1_PoisonArrow_small.png",
+        "hinthead": "special_poison_arrow_head",
+        "hint": "special_poison_arrow_hint",
+        "moves": "1",
+        "showdmg": "0",
+        "ad_factor": "1",
+        "distance": "5",
+        "mindist": "2",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "arrow_poison",
+        "framekey": "x",
+        "damage": {
+          "poison": "2,3"
+        },
+        "custom_params": {
+          "poison": "100",
+          "tranc": "0",
+          "arrows": "1",
+          "dragon": "0"
+        }
+      },
+      {
+        "dontusenearenemy": "1",
+        "class": "throw",
+        "picture": "BA1_TrancArrow_",
+        "picture_small": "BA1_TrancArrow_small.png",
+        "hinthead": "special_tranc_arrow_head",
+        "hint": "special_tranc_arrow_hint",
+        "showdmg": "0",
+        "moves": "1",
+        "ad_factor": "1",
+        "distance": "5",
+        "mindist": "2",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "arrow_unmagic",
+        "framekey": "x",
+        "damage": {
+          "magic": "3,4"
+        },
+        "custom_params": {
+          "poison": "0",
+          "tranc": "100",
+          "arrows": "1",
+          "dragon": "0"
+        }
+      },
+      {
+        "dontusenearenemy": "1",
+        "class": "throw",
+        "picture": "BA1_Dragon_Arrow_",
+        "picture_small": "BA1_DragonArrow_small.png",
+        "hinthead": "special_dragon_arrow_head",
+        "hint": "special_dragon_arrow_hint",
+        "showdmg": "0",
+        "moves": "1",
+        "ad_factor": "1",
+        "distance": "100",
+        "mindist": "2",
+        "disabled": "1",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "arrow_dragon",
+        "framekey": "x",
+        "damage": {
+          "astral": "2,3"
+        },
+        "custom_params": {
+          "poison": "0",
+          "dragon": "1",
+          "arrows": "1",
+          "tranc": "0"
+        }
+      }
+    ]
   }
 }

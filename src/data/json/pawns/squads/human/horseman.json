@@ -25,12 +25,30 @@
       "armor",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "armor",
       "cavalry",
       "fire_resistance",
       "favorite_enemy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 14, 18]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "rush_dmg_inc": "10",
+        "damage": {
+          "physical": "14,18"
+        }
+      }
+    ]
   }
 }

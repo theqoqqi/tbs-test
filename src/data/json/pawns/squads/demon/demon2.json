@@ -25,13 +25,114 @@
       "demon",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "demon",
       "tireless",
       "domination",
       "giveap",
       "panik"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 32, 34]
+        ]
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 24, 26]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "run",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "execution",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "scriptParams": {
+          "exec": "50",
+          "level": "4",
+          "duration": "1"
+        },
+        "damageRanges": [
+          ["physical", 36, 39]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "group": "1,1",
+        "conditions": {
+          "~level": "<4"
+        },
+        "damage": {
+          "physical": "24,26"
+        }
+      },
+      {
+        "base_attack": "1",
+        "ad_factor": "1",
+        "group": "1,2",
+        "class": "moveattack",
+        "anim_attack": "special2",
+        "conditions": {
+          "level": "<4"
+        },
+        "damage": {
+          "physical": "32,34"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_head",
+        "hint": "special_run_hint",
+        "endmove": "0",
+        "script_attack": "special_run",
+        "script_calccells": "",
+        "picture_small": "BA1_Run_small.png",
+        "picture": "BA1_Run_",
+        "custom_params": {
+          "ap": "2"
+        }
+      },
+      {
+        "class": "moveattack",
+        "hinthead": "special_execution_head",
+        "hint": "special_execution_hint",
+        "reload": "2",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "nfeatures": "pawn",
+        "picture": "ba1_execution_",
+        "picture_small": "ba1_execution_small.png",
+        "options": "disablerush,used_if_damaged",
+        "anim_attack": "special",
+        "damage": {
+          "physical": "36,39"
+        },
+        "custom_params": {
+          "exec": "50",
+          "level": "4",
+          "duration": "1"
+        }
+      }
+    ]
   }
 }

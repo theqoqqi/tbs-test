@@ -23,13 +23,101 @@
     "features": [
       "beast"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flies",
       "tireless",
       "magic_protection",
       "dragon_hate",
       "ideal"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 40, 60]
+        ]
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 20, 30]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "encouragement",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "power": "50",
+          "duration": "2"
+        }
+      },
+      {
+        "internalName": "sky_guard",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "k": "50"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nfeatures": "dragon",
+        "ad_factor": "1",
+        "usefly": "4",
+        "damage": {
+          "physical": "20,30"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "moveattack",
+        "ad_factor": "1",
+        "usefly": "4",
+        "features": "dragon",
+        "anim_attack": "attack",
+        "damage": {
+          "physical": "40,60"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_encouragement_head",
+        "hint": "special_encouragement_hint",
+        "script_attack": "special_encouragement",
+        "script_calccells": "calccells_special_encouragement",
+        "picture_small": "BA1_encouragement_small.png",
+        "picture": "BA1_encouragement_",
+        "custom_params": {
+          "power": "50",
+          "duration": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_sky_guard_head",
+        "hint": "special_sky_guard_hint",
+        "moves": "1",
+        "warning": "sw_place",
+        "script_attack": "special_sky_guard",
+        "script_calccells": "",
+        "picture": "BA1_sky_guard_",
+        "picture_small": "BA1_sky_guard_small.png",
+        "attack_cursor": "magicstick",
+        "anim_attack": "cast",
+        "custom_params": {
+          "k": "50"
+        }
+      }
+    ]
   }
 }

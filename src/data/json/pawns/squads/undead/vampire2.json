@@ -23,12 +23,47 @@
     "features": [
       "undead"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "undead",
       "regeneration",
       "no_retaliation",
       "dead_evasion"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 10, 18]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "transform",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "10,18"
+        }
+      },
+      {
+        "class": "scripted",
+        "reload": "2",
+        "script_attack": "special_transform",
+        "hinthead": "special_vampire_transform_head",
+        "hint": "special_vampire_transform_hint",
+        "picture": "BA1_Transform_Bat2_",
+        "picture_small": "BA1_Transform_Bat2_small.png",
+        "endmove": "0"
+      }
+    ]
   }
 }

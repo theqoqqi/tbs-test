@@ -23,11 +23,155 @@
       "humanoid",
       "archer"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "shot",
       "sniper",
       "no_melee"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "arrows": "1",
+          "dragon": "0"
+        },
+        "damageRanges": [
+          ["physical", 4, 5]
+        ],
+        "minDistance": 2,
+        "maxDistance": 100,
+        "distancePenalty": 1
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "dragon": "0"
+        },
+        "damageRanges": [
+          ["physical", 4, 5]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "double_shot",
+        "base": "defaultRanged",
+        "slot": "ability_1",
+        "reload": 3,
+        "scriptParams": {
+          "arrows": "1",
+          "dragon": "0"
+        },
+        "damageRanges": [
+          ["physical", 8, 10]
+        ],
+        "minDistance": 2,
+        "maxDistance": 100,
+        "distancePenalty": 1,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "dragon",
+        "base": "defaultRanged",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "dragon": "1",
+          "arrows": "1"
+        },
+        "damageRanges": [
+          ["astral", 4, 5]
+        ],
+        "minDistance": 2,
+        "maxDistance": 100,
+        "distancePenalty": 1,
+        "disabledIfNearEnemy": true
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "device": "bone",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "4,5"
+        },
+        "custom_params": {
+          "dragon": "0"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "distance": "100",
+        "mindist": "2",
+        "ad_factor": "1",
+        "penalty": "1",
+        "base_attack": "1",
+        "animation": "cast/throw/thtarget",
+        "throw": "archer_arrow",
+        "framekey": "x",
+        "damage": {
+          "physical": "4,5"
+        },
+        "custom_params": {
+          "arrows": "1",
+          "dragon": "0"
+        }
+      },
+      {
+        "dontusenearenemy": "1",
+        "class": "throw",
+        "picture": "BA1_DoubleShot_",
+        "picture_small": "BA1_DoubleShot_small.png",
+        "hinthead": "special_double_arrow_head",
+        "hint": "special_double_arrow_hint",
+        "reload": "3",
+        "showdmg": "0",
+        "distance": "100",
+        "ad_factor": "1",
+        "mindist": "2",
+        "penalty": "1",
+        "base_attack": "0",
+        "animation": "cast/throw/thtarget",
+        "throw": "double_arrow",
+        "framekey": "x",
+        "damage": {
+          "physical": "8,10"
+        },
+        "custom_params": {
+          "arrows": "1",
+          "dragon": "0"
+        }
+      },
+      {
+        "dontusenearenemy": "1",
+        "class": "throw",
+        "picture": "BA1_Dragon_Arrow_",
+        "picture_small": "BA1_DragonArrow_small.png",
+        "hinthead": "special_dragon_arrow_head",
+        "hint": "special_dragon_arrow_hint",
+        "showdmg": "0",
+        "moves": "1",
+        "ad_factor": "1",
+        "distance": "100",
+        "disabled": "1",
+        "mindist": "2",
+        "penalty": "1",
+        "animation": "cast/throw/thtarget",
+        "throw": "arrow_dragon",
+        "framekey": "x",
+        "damage": {
+          "astral": "4,5"
+        },
+        "custom_params": {
+          "dragon": "1",
+          "arrows": "1"
+        }
+      }
+    ]
   }
 }

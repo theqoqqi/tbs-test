@@ -23,13 +23,163 @@
       "humanoid",
       "mage"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "goblin_commander",
       "no_melee",
       "astral_axe",
       "goblin_hire",
       "goblin_shaman_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["astral", 6, 10]
+        ],
+        "minDistance": 1,
+        "maxDistance": 4,
+        "distancePenalty": 0.5
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 6, 10]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "life",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 1,
+        "scriptParams": {
+          "nomiss": "1",
+          "duration": "3",
+          "k": "50",
+          "rage_spent": "5",
+          "trf_lvl_need": "1"
+        }
+      },
+      {
+        "internalName": "badabum",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 3,
+        "scriptParams": {
+          "damage": "12-18",
+          "typedmg": "astral",
+          "nomiss": "1",
+          "nothorns": "1",
+          "rage_spent": "10",
+          "trf_lvl_need": "2"
+        },
+        "damageRanges": [
+          ["astral", 12, 18]
+        ],
+        "endsTurn": false
+      },
+      {
+        "internalName": "training",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 3,
+        "scriptParams": {
+          "nomiss": "1",
+          "rage_spent": "15",
+          "trf_lvl_need": "3"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "6,10"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "base_attack": "1",
+        "distance": "4",
+        "mindist": "1",
+        "penalty": "0.5",
+        "animation": "cast/throw/thtarget",
+        "throw": "goblinaxe_astral",
+        "framekey": "x",
+        "damage": {
+          "astral": "6,10"
+        }
+      },
+      {
+        "class": "scripted",
+        "disabled": "0",
+        "attack_cursor": "magicstick",
+        "warning": "",
+        "picture": "ba1_life_",
+        "picture_small": "ba1_life_small.png",
+        "hinthead": "gs_life_head",
+        "hint": "gs_life_hint",
+        "moves": "1",
+        "no_hint": "1",
+        "script_calccells": "calccells_goblin_life",
+        "script_attack": "special_goblin_life",
+        "custom_params": {
+          "nomiss": "1",
+          "duration": "3",
+          "k": "50",
+          "rage_spent": "5",
+          "trf_lvl_need": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture_small": "BA1_goblin_spirits_small.png",
+        "picture": "BA1_goblin_spirits_",
+        "hinthead": "gs_spirits_head",
+        "hint": "gs_spirits_hint",
+        "ad_factor": "0",
+        "moves": "3",
+        "endmove": "0",
+        "script_attack": "special_goblin_spirits",
+        "script_calccells": "calccells_all_enemy_actors_takes_damage",
+        "attack_cursor": "magicstick",
+        "damage": {
+          "astral": "12,18"
+        },
+        "custom_params": {
+          "damage": "12-18",
+          "typedmg": "astral",
+          "nomiss": "1",
+          "nothorns": "1",
+          "rage_spent": "10",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "class": "scripted",
+        "disabled": "0",
+        "attack_cursor": "magicstick",
+        "warning": "",
+        "picture": "ba1_goblin_training_",
+        "picture_small": "ba1_goblin_training_small.png",
+        "hinthead": "gs_trainig_head",
+        "hint": "gs_trainig_hint",
+        "moves": "3",
+        "script_calccells": "calccells_goblin_training",
+        "script_attack": "special_goblin_training",
+        "no_hint": "1",
+        "custom_params": {
+          "nomiss": "1",
+          "rage_spent": "15",
+          "trf_lvl_need": "3"
+        }
+      }
+    ]
   }
 }

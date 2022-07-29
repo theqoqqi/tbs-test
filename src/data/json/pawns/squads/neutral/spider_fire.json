@@ -24,12 +24,46 @@
     "features": [
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "poison_defense",
       "fire_resistance",
       "mind_immunity",
       "flaming"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["fire", 4, 5]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "web",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 2
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "fire": "4,5"
+        }
+      },
+      {
+        "class": "spell",
+        "spell": "special_spider_web",
+        "moves": "2",
+        "warning": "sw_near",
+        "picture": "BA1_Web_",
+        "picture_small": "BA1_Web_small.png",
+        "hinthead": "special_spider_web_head",
+        "hint": "special_spider_web_hint"
+      }
+    ]
   }
 }

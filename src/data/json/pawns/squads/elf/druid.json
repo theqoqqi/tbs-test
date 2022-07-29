@@ -24,11 +24,129 @@
       "humanoid",
       "mage"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "druid_shot",
       "magic_resistance",
       "harmony"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "scriptParams": {
+          "curse": "0"
+        },
+        "damageRanges": [
+          ["magic", 4, 8]
+        ],
+        "minDistance": 1,
+        "maxDistance": 6,
+        "distancePenalty": 0.5,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "curse": "0"
+        },
+        "damageRanges": [
+          ["physical", 2, 4]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "cast_bear",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "reload": 3,
+        "scriptParams": {
+          "count": "20-25",
+          "caster": "5"
+        }
+      },
+      {
+        "internalName": "beast_training",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "level": "3",
+          "duration": "2",
+          "k": "80-80"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "2,4"
+        },
+        "custom_params": {
+          "curse": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_cast_bear_head",
+        "hint": "special_cast_bear_hint",
+        "reload": "3",
+        "warning": "sw_place",
+        "script_attack": "special_cast_bear",
+        "script_calccells": "calccells_all_empty_around",
+        "picture": "BA1_CastBear_",
+        "picture_small": "BA1_CastBear_small.png",
+        "attack_cursor": "magicstick",
+        "anim_attack": "cast",
+        "custom_params": {
+          "count": "20-25",
+          "caster": "5"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "device": "natureforce",
+        "class": "throw",
+        "distance": "6",
+        "mindist": "1",
+        "base_attack": "1",
+        "penalty": "0.5",
+        "animation": "attack/throw/thtarget",
+        "throw": "druid_bullet",
+        "framekey": "x",
+        "7in1": "0.5",
+        "damage": {
+          "magic": "4,8"
+        },
+        "custom_params": {
+          "curse": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "warning": "sw_training",
+        "hinthead": "special_beast_training_head",
+        "hint": "special_beast_training_hint",
+        "picture": "BA1_CastBear_",
+        "picture_small": "BA1_CastBear_small.png",
+        "moves": "1",
+        "script_attack": "special_beast_training",
+        "script_calccells": "calccells_enemy_lead",
+        "attack_cursor": "magicstick",
+        "no_hint": "1",
+        "features": "beast",
+        "nfeatures": "mind_immunitet,boss,pawn",
+        "custom_params": {
+          "level": "3",
+          "duration": "2",
+          "k": "80-80"
+        }
+      }
+    ]
   }
 }

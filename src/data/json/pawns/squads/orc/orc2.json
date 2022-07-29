@@ -23,12 +23,129 @@
     "features": [
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "double_attack",
       "orc_veteran_master",
       "orc_veteran_cuning",
       "orc_veteran_trophy"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "rage_spent": "0"
+        },
+        "damageRanges": [
+          ["physical", 13, 16]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "rage_potion",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "2",
+          "rage_spent": "10",
+          "duration": "2",
+          "rage": "5",
+          "trf_lvl_need": "1"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "trophy_share",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 2,
+        "scriptParams": {
+          "ap": "2",
+          "trf_lvl_need": "2"
+        },
+        "endsTurn": false
+      },
+      {
+        "internalName": "triple_attack",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 4,
+        "scriptParams": {
+          "rage_spent": "20",
+          "fury_strike": "1",
+          "trf_lvl_need": "3"
+        },
+        "damageRanges": [
+          ["physical", 13, 16]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "options": "superhitback",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "13,16"
+        },
+        "custom_params": {
+          "rage_spent": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "veteran_rage_potion_head",
+        "hint": "veteran_rage_potion_hint",
+        "endmove": "0",
+        "script_attack": "veteran_rage_potion",
+        "script_calccells": "",
+        "picture_small": "BA1_rage_potion_small.png",
+        "picture": "BA1_rage_potion_",
+        "custom_params": {
+          "ap": "2",
+          "rage_spent": "10",
+          "duration": "2",
+          "rage": "5",
+          "trf_lvl_need": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "2",
+        "hinthead": "veteran_trophy_share_head",
+        "hint": "veteran_trophy_share_hint",
+        "endmove": "0",
+        "script_attack": "veteran_trophy_share",
+        "script_calccells": "",
+        "picture_small": "BA1_trophy_share_small.png",
+        "picture": "BA1_trophy_share_",
+        "custom_params": {
+          "ap": "2",
+          "trf_lvl_need": "2"
+        }
+      },
+      {
+        "class": "moveattack",
+        "hinthead": "veteran_triple_attack_head",
+        "hint": "veteran_triple_attack_hint",
+        "reload": "4",
+        "base_attack": "0",
+        "ad_factor": "1",
+        "picture": "BA1_orc2_fury_strike_",
+        "picture_small": "BA1_orc2_fury_strike_small.png",
+        "options": "disablerush,used_if_damaged,3in1",
+        "anim_attack": "attack",
+        "damage": {
+          "physical": "13,16"
+        },
+        "custom_params": {
+          "rage_spent": "20",
+          "fury_strike": "1",
+          "trf_lvl_need": "3"
+        }
+      }
+    ]
   }
 }

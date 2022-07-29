@@ -26,13 +26,31 @@
       "fire_immunitet",
       "demon"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "demon",
       "teleportation",
       "fire_immunity",
       "clear",
       "half"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 88, 99]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "options": "nomove",
+        "damage": {
+          "physical": "88,99"
+        }
+      }
+    ]
   }
 }

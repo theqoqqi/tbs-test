@@ -24,10 +24,54 @@
       "humanoid",
       "night_vision"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "night_sight",
       "foreman"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 13, 14]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "run_miner",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "ap": "3",
+          "duration": "2"
+        },
+        "endsTurn": false
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "13,14"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "hinthead": "special_run_miner_head",
+        "hint": "special_run_miner_hint",
+        "endmove": "0",
+        "script_attack": "special_run_miner",
+        "script_calccells": "calccells_special_run_miner",
+        "picture_small": "BA1_run_miner_small.png",
+        "picture": "BA1_run_miner_",
+        "custom_params": {
+          "ap": "3",
+          "duration": "2"
+        }
+      }
+    ]
   }
 }

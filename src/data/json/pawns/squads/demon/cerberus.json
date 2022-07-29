@@ -23,10 +23,61 @@
     "features": [
       "demon"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "demon",
       "three_head"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 9, 11]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "take",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 1,
+        "scriptParams": {
+          "rushanim": "rush",
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["physical", 12, 12]
+        ]
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "options": "3in1",
+        "damage": {
+          "physical": "9,11"
+        }
+      },
+      {
+        "class": "scripted",
+        "moves": "1",
+        "attack_cursor": "attack",
+        "hinthead": "special_take_head",
+        "hint": "special_take_hint",
+        "script_attack": "special_take",
+        "script_calccells": "take_calccells",
+        "script_highlight": "take_highlight",
+        "picture_small": "BA1_take_small.png",
+        "picture": "BA1_take_",
+        "damage": {
+          "physical": "12,12"
+        },
+        "custom_params": {
+          "rushanim": "rush",
+          "nomiss": "1"
+        }
+      }
+    ]
   }
 }

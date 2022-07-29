@@ -24,12 +24,200 @@
       "shot",
       "humanoid"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "flamer",
       "no_melee",
       "robo_tech",
       "chemister"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "burn": "15",
+          "blind": "0",
+          "flamer": "1"
+        },
+        "damageRanges": [
+          ["fire", 13, 26]
+        ],
+        "maxDistance": 3
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "burn": "15",
+          "blind": "0",
+          "close": "1",
+          "atk_hint": "railgun3",
+          "flamer": "1"
+        },
+        "damageRanges": [
+          ["fire", 13, 26]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "summon_droid",
+        "base": "defaultMelee",
+        "slot": "ability_1",
+        "charges": 2,
+        "scriptParams": {
+          "count": "100-120"
+        }
+      },
+      {
+        "internalName": "repair",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "charges": 2,
+        "scriptParams": {
+          "heal": "88"
+        }
+      },
+      {
+        "internalName": "flashbang",
+        "base": "defaultRanged",
+        "slot": "ability_3",
+        "charges": 1,
+        "scriptParams": {
+          "blind": "100",
+          "burn": "25",
+          "craft": "flash",
+          "level": "3",
+          "flamer": "0"
+        },
+        "damageRanges": [
+          ["fire", 5, 20]
+        ],
+        "minDistance": 1,
+        "maxDistance": 7,
+        "distancePenalty": 0.8,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "internalName": "flashbang_craft",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 3,
+        "scriptParams": {
+          "craft": "flash",
+          "chance": "100",
+          "double": "10"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "hint_gen_script": "mass_attack_hint_gen",
+        "damage": {
+          "fire": "13,26"
+        },
+        "custom_params": {
+          "burn": "15",
+          "blind": "0",
+          "close": "1",
+          "atk_hint": "railgun3",
+          "flamer": "1"
+        }
+      },
+      {
+        "group": "1,2",
+        "class": "scripted",
+        "base_attack": "1",
+        "ad_factor": "1",
+        "showdmg": "1",
+        "distance": "3",
+        "script_attack": "ingeneer_flamer_attack",
+        "script_calccells": "alchemist_acidcannon_selcells",
+        "script_filter": "alchemist_acidcannon_filter",
+        "script_highlight": "alchemist_acidcannon_highlight",
+        "attack_cursor": "arrow",
+        "damage": {
+          "fire": "13,26"
+        },
+        "custom_params": {
+          "burn": "15",
+          "blind": "0",
+          "flamer": "1"
+        }
+      },
+      {
+        "class": "scripted",
+        "picture": "ba1_summon_droid_",
+        "picture_small": "ba1_summon_droid_small.png",
+        "hinthead": "summon_droid_head",
+        "hint": "summon_droid_hint",
+        "warning": "sw_place",
+        "moves": "2",
+        "script_attack": "summon_droid_attack",
+        "script_calccells": "calccells_all_empty_around",
+        "attack_cursor": "magicstick",
+        "custom_params": {
+          "count": "100-120"
+        }
+      },
+      {
+        "class": "scripted",
+        "hint_gen_script": "repair_hint_new",
+        "attack_cursor": "magicstick",
+        "picture": "ba1_repair_droid_",
+        "picture_small": "ba1_repair_droid_small.png",
+        "hinthead": "special_repair_head",
+        "hint": "special_repair_hint",
+        "features": "mech",
+        "moves": "2",
+        "script_calccells": "calccells_all_need_repair_around",
+        "script_attack": "ingeneer_repair",
+        "custom_params": {
+          "heal": "88"
+        }
+      },
+      {
+        "class": "throw",
+        "picture": "BA1_flashbang_",
+        "picture_small": "BA1_flashbang_small.png",
+        "hinthead": "blind_grenade_head",
+        "hint": "blind_grenade_hint",
+        "moves": "1",
+        "distance": "7",
+        "up": "1",
+        "mindist": "1",
+        "penalty": "0.8",
+        "animation": "watercast/throw/thtarget",
+        "throw": "alchemist_waterbulb",
+        "framekey": "x",
+        "damage": {
+          "fire": "5,20"
+        },
+        "custom_params": {
+          "blind": "100",
+          "burn": "25",
+          "craft": "flash",
+          "level": "3",
+          "flamer": "0"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_flashbang_craft_",
+        "picture_small": "BA1_flashbang_craft_small.png",
+        "hinthead": "talent_chemistery_flash_head",
+        "hint": "talent_chemistery_hint",
+        "reload": "3",
+        "disabled": "1",
+        "script_attack": "chemistery_crafting",
+        "custom_params": {
+          "craft": "flash",
+          "chance": "100",
+          "double": "10"
+        }
+      }
+    ]
   }
 }

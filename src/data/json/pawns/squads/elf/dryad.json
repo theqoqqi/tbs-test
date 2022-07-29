@@ -21,7 +21,7 @@
     "features": [
       "beauty"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "soars",
       "no_retaliation",
       "beauty",
@@ -29,6 +29,99 @@
       "wood_fairy",
       "discharge"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "charm": "20",
+          "k": "100-100"
+        },
+        "damageRanges": [
+          ["magic", 1, 3]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "cast_thorn",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 3,
+        "scriptParams": {
+          "count": "8-10"
+        }
+      },
+      {
+        "internalName": "elf_song",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 1
+      },
+      {
+        "internalName": "cast_sleep",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 4,
+        "scriptParams": {
+          "nfeatures": "mind_immunitet,undead,boss,pawn",
+          "level": "3",
+          "duration": "1"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "magic": "1,3"
+        },
+        "custom_params": {
+          "charm": "20",
+          "k": "100-100"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_dryad_thorn_head",
+        "hint": "special_dryad_thorn_hint",
+        "reload": "3",
+        "warning": "sw_place",
+        "script_attack": "special_cast_thorn",
+        "script_calccells": "calccells_all_empty_around",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_CastThorn_",
+        "picture_small": "BA1_CastThorn_small.png",
+        "custom_params": {
+          "count": "8-10"
+        }
+      },
+      {
+        "class": "spell",
+        "hinthead": "special_elf_song_head",
+        "hint": "special_elf_song_hint",
+        "moves": "1",
+        "spell": "special_elf_song",
+        "nfeatures": "mind_immunitet,pawn",
+        "picture": "BA1_ElfSong_",
+        "picture_small": "BA1_ElfSong_small.png"
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_lullaby_head",
+        "hint": "special_lullaby_hint",
+        "reload": "4",
+        "script_attack": "special_cast_sleep",
+        "script_calccells": "",
+        "attack_cursor": "",
+        "picture": "BA1_Lullaby_",
+        "picture_small": "BA1_Lullaby_small.png",
+        "custom_params": {
+          "nfeatures": "mind_immunitet,undead,boss,pawn",
+          "level": "3",
+          "duration": "1"
+        }
+      }
+    ]
   }
 }

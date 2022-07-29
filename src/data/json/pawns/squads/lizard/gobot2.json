@@ -25,13 +25,74 @@
       "nonecro",
       "eyeless"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "eworm",
       "poisonous",
       "no_melee",
       "eyeless",
       "mind_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultRanged",
+        "slot": "regular",
+        "scriptParams": {
+          "poison": "30"
+        },
+        "damageRanges": [
+          ["physical", 2, 3]
+        ],
+        "minDistance": 1,
+        "maxDistance": 100,
+        "disabledIfNearEnemy": true
+      },
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "scriptParams": {
+          "poison": "30",
+          "nomiss": "1"
+        },
+        "damageRanges": [
+          ["physical", 2, 3]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [],
+    "__rawAtomAbilities": [
+      {
+        "group": "1,1",
+        "options": "nomove",
+        "nonextifenemy": "1",
+        "ad_factor": "1",
+        "damage": {
+          "physical": "2,3"
+        },
+        "custom_params": {
+          "poison": "30",
+          "nomiss": "1"
+        }
+      },
+      {
+        "group": "1,2",
+        "showdmg": "1",
+        "device": "gobot2_throw",
+        "base_attack": "1",
+        "class": "throw",
+        "distance": "100",
+        "mindist": "1",
+        "friendly_fire": "0",
+        "penalty": "0",
+        "animation": "special/throw/thtarget",
+        "throw": "",
+        "framekey": "x",
+        "damage": {
+          "physical": "2,3"
+        },
+        "custom_params": {
+          "poison": "30"
+        }
+      }
+    ]
   }
 }

@@ -23,10 +23,109 @@
     "features": [
       "mind_immunitet"
     ],
-    "featuresFromHints": [
+    "__featuresFromHints": [
       "no_move",
       "mind_immunity"
     ],
-    "abilities": []
+    "abilities": [
+      {
+        "base": "defaultMelee",
+        "slot": "regular",
+        "damageRanges": [
+          ["physical", 27, 33]
+        ]
+      }
+    ],
+    "__nonRegularAbilities": [
+      {
+        "internalName": "cast_gobot",
+        "base": "defaultMelee",
+        "slot": "ability_2",
+        "reload": 2,
+        "scriptParams": {
+          "count": "80-80"
+        }
+      },
+      {
+        "internalName": "eat_all",
+        "base": "defaultMelee",
+        "slot": "ability_3",
+        "charges": 1,
+        "scriptParams": {
+          "nomiss": "1",
+          "k": "100"
+        },
+        "damageRanges": [
+          ["physical", 50, 50]
+        ]
+      },
+      {
+        "internalName": "initiation",
+        "base": "defaultMelee",
+        "slot": "ability_4",
+        "reload": 2,
+        "scriptParams": {
+          "k": "100"
+        }
+      }
+    ],
+    "__rawAtomAbilities": [
+      {
+        "ad_factor": "1",
+        "damage": {
+          "physical": "27,33"
+        }
+      },
+      {
+        "class": "scripted",
+        "hinthead": "special_cast_gobot_head",
+        "hint": "special_cast_gobot_hint",
+        "reload": "2",
+        "warning": "sw_place",
+        "script_attack": "special_chosha_gobot",
+        "script_calccells": "calccells_all_empty_around",
+        "attack_cursor": "magicstick",
+        "picture": "BA1_cast_gobot_",
+        "picture_small": "BA1_cast_gobot_small.png",
+        "custom_params": {
+          "count": "80-80"
+        }
+      },
+      {
+        "class": "scripted",
+        "disabled": "0",
+        "attack_cursor": "magicstick",
+        "warning": "warning_eat_gobot",
+        "picture": "ba1_eat_all_",
+        "picture_small": "ba1_eat_all_small.png",
+        "hinthead": "special_eat_gobot_head",
+        "hint": "special_eat_gobot_hint",
+        "moves": "1",
+        "script_calccells": "calccells_all_around",
+        "script_attack": "special_eat_all",
+        "damage": {
+          "physical": "50,50"
+        },
+        "custom_params": {
+          "nomiss": "1",
+          "k": "100"
+        }
+      },
+      {
+        "class": "scripted",
+        "attack_cursor": "magicstick",
+        "warning": "warning_not_gobot",
+        "picture": "ba1_initiation_",
+        "picture_small": "ba1_initiation_small.png",
+        "hinthead": "special_initiation_head",
+        "hint": "special_initiation_hint",
+        "reload": "2",
+        "script_calccells": "calcsells_gobot_initiation",
+        "script_attack": "special_initiation",
+        "custom_params": {
+          "k": "100"
+        }
+      }
+    ]
   }
 }
