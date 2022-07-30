@@ -37,8 +37,8 @@ export default {
     },
     /** @this Ability */
     apply({pawn, move, path}) {
-        let hitInfo = this.fight.getRandomHitInfo(this.owner, pawn, this);
         let victim = this.fight.arena.getSquadOrStructure(move.targetCell.position);
+        let hitInfo = this.fight.getRandomHitInfo(this.owner, victim, this);
 
         this.fight.makeDamageMove({
             attacker: this.owner,
