@@ -21,6 +21,7 @@ export default class PawnProps {
     static attack = 'attack';
     static defence = 'defence';
     static defenceBonus = 'defenceBonus';
+    static evasionChance = 'evasionChance';
     static invulnerable = 'invulnerable';
     static hitbackFrequency = 'hitbackFrequency';
     static hitbackProtection = 'hitbackProtection';
@@ -108,6 +109,13 @@ export default class PawnProps {
             postProcessors: [
                 PawnProps.minProcessor(1),
                 Math.round,
+            ],
+        }],
+        [PawnProps.evasionChance, {
+            defaultValue: 0,
+            postProcessors: [
+                PawnProps.minProcessor(0),
+                PawnProps.maxProcessor(1),
             ],
         }],
         [PawnProps.invulnerable, {

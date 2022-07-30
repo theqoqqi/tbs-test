@@ -374,6 +374,10 @@ export default class Pawn {
         return this.getProperty(PawnProps.defenceBonus);
     }
 
+    get evasionChance() {
+        return this.getProperty(PawnProps.evasionChance);
+    }
+
     get invulnerable() {
         return this.getProperty(PawnProps.invulnerable);
     }
@@ -450,6 +454,10 @@ export default class Pawn {
 
     get baseDefenseBonus() {
         return this.getBaseProperty(PawnProps.defenceBonus);
+    }
+
+    get baseEvasionChance() {
+        return this.getBaseProperty(PawnProps.evasionChance);
     }
 
     get baseInvulnerable() {

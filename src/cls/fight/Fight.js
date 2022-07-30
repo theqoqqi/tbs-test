@@ -24,6 +24,8 @@ import PawnAbilityRemovedEvent from '../events/types/PawnAbilityRemovedEvent.js'
 import MovementType from '../enums/MovementType.js';
 import lodash from 'lodash';
 import Constants from '../Constants.js';
+import PreparedHitInfo from '../util/info/PreparedHitInfo.js';
+import HitOptions from '../util/info/HitOptions.js';
 
 export default class Fight {
 
@@ -396,34 +398,66 @@ export default class Fight {
         let damageRanges = this.getEstimatedDamageRanges(attacker, victim, ability);
         let isCriticalHit = ability.slot === AbilitySlot.REGULAR && Math.random() < attacker.criticalHitChance;
         let criticalHitMultiplier = attacker.criticalHitMultiplier;
+        let isEvaded = Math.random() < victim.evasionChance;
 
-        return this.getRandomHitInfoForDamageRanges(victim, damageRanges, isCriticalHit, criticalHitMultiplier);
+        let hitOptions = new HitOptions({
+            isCriticalHit,
+            criticalHitMultiplier,
+            isEvaded,
+        });
+
+        let preparedHitInfo = new PreparedHitInfo({
+            damageRanges,
+            hitOptions,
+        });
+
+        return this.getRandomHitInfoFor(victim, preparedHitInfo);
     }
 
-    getRandomHitInfoForDamageRanges(victim, damageRanges, isCriticalHit = false, criticalHitMultiplier = 1) {
-        let damage = this.getDamage(damageRanges, isCriticalHit, criticalHitMultiplier);
+    getRandomHitInfoFor(victim, preparedHitInfo) {
+        let damageRanges = preparedHitInfo.damageRanges;
+        let hitOptions = preparedHitInfo.hitOptions;
 
-        return this.createHitInfo(victim, damage, isCriticalHit);
+        return this.getRandomHitInfoForDamageRanges(victim, damageRanges, hitOptions);
     }
 
-    createHitInfo(victim, damage, isCriticalHit) {
+    getRandomHitInfoForDamageRanges(victim, damageRanges, hitOptions = new HitOptions()) {
+        let damage = this.getDamage(damageRanges, hitOptions);
+
+        return this.createHitInfo(victim, damage, hitOptions);
+    }
+
+    createHitInfo(victim, damage, hitOptions) {
         damage = Math.round(damage); // TODO: Должно ли это происходить здесь?
 
         let kills = victim.getKillCount(damage);
+        let isCriticalHit = hitOptions.isCriticalHit;
+        let isEvaded = hitOptions.isEvaded;
 
         return new ExactHitInfo({
             kills,
             damage,
             isCriticalHit,
+            isEvaded,
         });
     }
 
-    getDamage(damageRanges, isCriticalHit = false, criticalHitMultiplier = 1) {
+    getDamage(damageRanges, hitOptions) {
+        let {
+            isCriticalHit,
+            criticalHitMultiplier,
+            isEvaded,
+        } = hitOptions;
+
+        if (isEvaded) {
+            return 0;
+        }
+
         if (isCriticalHit) {
             return Math.floor(damageRanges.combinedMax * criticalHitMultiplier);
-        } else {
-            return this.randomInt(damageRanges.combinedMin, damageRanges.combinedMax);
         }
+
+        return this.randomInt(damageRanges.combinedMin, damageRanges.combinedMax);
     }
 
     getEstimatedDamageRanges(attacker, victim, ability) {
