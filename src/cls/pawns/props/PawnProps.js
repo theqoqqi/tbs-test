@@ -82,6 +82,7 @@ export default class PawnProps {
             defaultValue: 0,
             postProcessors: [
                 PawnProps.minProcessor(0),
+                PawnProps.maxProcessor(1),
             ],
         }],
         [PawnProps.criticalHitMultiplier, {
