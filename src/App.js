@@ -657,6 +657,7 @@ export default class App extends React.Component {
             .map(ability => {
                 return {
                     slot: ability.slot,
+                    image: `img/abilities/${ability.internalName}.png`,
                     title: ability.internalName,
                     description: ability.internalName,
                     currentReload: ability.currentReload,

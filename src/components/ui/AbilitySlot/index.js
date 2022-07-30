@@ -31,6 +31,7 @@ export default class AbilitySlot extends React.Component {
         }
 
         let {
+            image,
             title,
             description,
             currentReload,
@@ -64,6 +65,9 @@ export default class AbilitySlot extends React.Component {
                         'muted': muted,
                         'ready': ready,
                         'selected': selected,
+                    }}
+                    style={{
+                        backgroundImage: `url('${image}')`,
                     }}
                     onClick={onClick}
                 >

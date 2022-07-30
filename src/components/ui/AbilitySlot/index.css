@@ -8,6 +8,7 @@
     height: 48px;
 
     background-color: #ffeedd;
+    background-position: center;
     border: var(--border-width) solid var(--border-color);
     border-radius: 8px;
 
