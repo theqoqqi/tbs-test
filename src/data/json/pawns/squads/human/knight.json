@@ -34,15 +34,15 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 21, 27]
         ]
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 16, 18]
         ]
@@ -50,9 +50,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "krugom",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "krugom",
+        "imageName": "circlestrike",
+        "hintTitle": "special_knight_head",
+        "hintDescription": "special_knight_hint",
         "reload": 3,
         "damageRanges": [
           ["physical", 15, 20]

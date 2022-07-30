@@ -36,8 +36,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["magic", 5, 8]
         ]
@@ -45,9 +45,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "chance",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "chance",
+        "imageName": "chance",
+        "hintTitle": "special_chance_head",
+        "hintDescription": "special_chance_hint",
         "reload": 3,
         "scriptParams": {
           "chance": "50",

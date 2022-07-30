@@ -30,8 +30,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["fire", 2, 3]
         ]
@@ -39,9 +39,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "haste",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "haste",
+        "imageName": "Haste",
+        "hintTitle": "special_speeder_head",
+        "hintDescription": "special_speeder_hint",
         "reload": 2,
         "endsTurn": false
       }

@@ -34,8 +34,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "damageRanges": [
           ["physical", 20, 30]
         ],
@@ -45,8 +45,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 20, 40]
         ]
@@ -54,9 +54,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "cast_thorn",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "cast_thorn",
+        "imageName": "CastThorn",
+        "hintTitle": "special_thorn2_head",
+        "hintDescription": "special_thorn2_hint",
         "reload": 3,
         "scriptParams": {
           "count": "150-300"

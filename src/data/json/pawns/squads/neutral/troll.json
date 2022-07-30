@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "calm": "0"
         },
@@ -43,9 +43,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "calming",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "calming",
+        "imageName": "calming",
+        "hintTitle": "special_calming_head",
+        "hintDescription": "special_calming_hint",
         "reload": 4,
         "scriptParams": {
           "calm": "100",

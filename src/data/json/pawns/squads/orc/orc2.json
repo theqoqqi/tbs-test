@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "rage_spent": "0"
         },
@@ -43,9 +43,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "rage_potion",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "rage_potion",
+        "imageName": "rage_potion",
+        "hintTitle": "veteran_rage_potion_head",
+        "hintDescription": "veteran_rage_potion_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2",
@@ -57,9 +60,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "trophy_share",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "trophy_share",
+        "imageName": "trophy_share",
+        "hintTitle": "veteran_trophy_share_head",
+        "hintDescription": "veteran_trophy_share_hint",
         "charges": 2,
         "scriptParams": {
           "ap": "2",
@@ -68,9 +74,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "triple_attack",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "triple_attack",
+        "imageName": "orc2_fury_strike",
+        "hintTitle": "veteran_triple_attack_head",
+        "hintDescription": "veteran_triple_attack_hint",
         "reload": 4,
         "scriptParams": {
           "rage_spent": "20",

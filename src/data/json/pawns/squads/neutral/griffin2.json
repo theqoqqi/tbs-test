@@ -32,15 +32,15 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 40, 60]
         ]
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 20, 30]
         ]
@@ -48,9 +48,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "encouragement",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "encouragement",
+        "imageName": "encouragement",
+        "hintTitle": "special_encouragement_head",
+        "hintDescription": "special_encouragement_hint",
         "charges": 1,
         "scriptParams": {
           "power": "50",
@@ -58,9 +61,12 @@
         }
       },
       {
-        "internalName": "sky_guard",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "sky_guard",
+        "imageName": "sky_guard",
+        "hintTitle": "special_sky_guard_head",
+        "hintDescription": "special_sky_guard_hint",
         "charges": 1,
         "scriptParams": {
           "k": "50"

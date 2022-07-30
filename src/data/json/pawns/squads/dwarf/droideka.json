@@ -38,8 +38,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 6, 8]
         ],
@@ -48,8 +48,8 @@
         "distancePenalty": 0.5
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 10, 10]
         ]
@@ -57,9 +57,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "repair",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "repair",
+        "imageName": "repair",
+        "hintTitle": "special_repair_head",
+        "hintDescription": "special_repair_hint",
         "reload": 4,
         "scriptParams": {
           "heal": "44"

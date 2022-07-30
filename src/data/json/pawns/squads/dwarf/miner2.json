@@ -30,8 +30,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 13, 14]
         ]
@@ -39,9 +39,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "run_miner",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "run_miner",
+        "imageName": "run_miner",
+        "hintTitle": "special_run_miner_head",
+        "hintDescription": "special_run_miner_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "3",

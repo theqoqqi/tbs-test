@@ -33,8 +33,11 @@
       },
       {
         "slot": "ability_1",
-        "internalName": "longAttack",
         "base": "longAttack",
+        "internalName": "longattack",
+        "imageName": "flail2",
+        "hintTitle": "special_robber_long_head",
+        "hintDescription": "special_robber_long_hint",
         "reload": 2,
         "damageRanges": [
           ["physical", 3, 6]
@@ -42,16 +45,22 @@
       },
       {
         "slot": "ability_2",
-        "internalName": "looter",
         "base": "looter",
+        "internalName": "looter",
+        "imageName": "Marauder",
+        "hintTitle": "special_looter_head",
+        "hintDescription": "special_looter_hint",
         "targetCollector": "defaultActionWithCorpses.targetCollector",
         "usesMovement": true,
         "charges": 2
       },
       {
         "slot": "ability_3",
-        "internalName": "defaultRun",
         "base": "defaultRun",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "actionPoints": 2

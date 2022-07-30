@@ -28,8 +28,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 80, 100]
         ]
@@ -37,9 +37,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "quake",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "quake",
+        "imageName": "Quake",
+        "hintTitle": "special_quake_head",
+        "hintDescription": "special_quake_hint",
         "reload": 2,
         "scriptParams": {
           "damage": "60-80",
@@ -50,9 +53,12 @@
         }
       },
       {
-        "internalName": "run",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"

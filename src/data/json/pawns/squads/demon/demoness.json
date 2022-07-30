@@ -30,8 +30,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 10, 18]
         ]
@@ -39,18 +39,24 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "longattack",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "longattack",
+        "imageName": "Demoness_Longattack",
+        "hintTitle": "special_demoness_long_head",
+        "hintDescription": "special_demoness_long_hint",
         "reload": 2,
         "damageRanges": [
           ["physical", 10, 18]
         ]
       },
       {
-        "internalName": "charm",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "charm",
+        "imageName": "Seduction",
+        "hintTitle": "special_demoness_charm_head",
+        "hintDescription": "special_demoness_charm_hint",
         "reload": 3,
         "scriptParams": {
           "duration": "2",
@@ -61,9 +67,12 @@
         ]
       },
       {
-        "internalName": "change",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "change",
+        "imageName": "Change",
+        "hintTitle": "special_change_head",
+        "hintDescription": "special_change_hint",
         "reload": 4
       }
     ],

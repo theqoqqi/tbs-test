@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "rage_spent": "0"
         },
@@ -41,9 +41,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "run",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"
@@ -51,9 +54,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "goblin_commander",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "goblin_commander",
+        "imageName": "goblin_commander",
+        "hintTitle": "second_breath_head",
+        "hintDescription": "second_breath_hint",
         "reload": 3,
         "scriptParams": {
           "level": "3",
@@ -64,9 +70,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "charged_strike",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "charged_strike",
+        "imageName": "charged_strike",
+        "hintTitle": "charged_strike_head",
+        "hintDescription": "charged_strike_hint",
         "reload": 4,
         "scriptParams": {
           "rushanim": "rush",
@@ -108,9 +117,15 @@
         "class": "scripted",
         "hinthead": "second_breath_head",
         "hint": "second_breath_hint",
-        "picture": "BA1_goblin_commander_",
+        "picture": [
+          "BA1_goblin_commander_",
+          "BA1_goblin_commander_"
+        ],
         "endmove": "0",
-        "picture_small": "BA1_goblin_commander_small.png",
+        "picture_small": [
+          "BA1_goblin_commander_small.png",
+          "BA1_goblin_commander_small.png"
+        ],
         "reload": "3",
         "script_attack": "second_breath",
         "script_calccells": "second_breath_calccells",

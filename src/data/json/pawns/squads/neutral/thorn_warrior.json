@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 1, 3]
         ]
@@ -40,9 +40,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "cast_thorn",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "cast_thorn",
+        "imageName": "CastThorn",
+        "hintTitle": "special_thorn_head",
+        "hintDescription": "special_thorn_hint",
         "charges": 1,
         "scriptParams": {
           "count": "2-4"

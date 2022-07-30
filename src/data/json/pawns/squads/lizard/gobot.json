@@ -33,8 +33,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "damageRanges": [
           ["physical", 1, 2]
         ],
@@ -43,8 +43,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "nomiss": "1"
         },
@@ -55,9 +55,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "eat_earth",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "eat_earth",
+        "imageName": "eat_earth",
+        "hintTitle": "special_eat_earth_head",
+        "hintDescription": "special_eat_earth_hint",
         "charges": 1,
         "scriptParams": {
           "heal": "1"

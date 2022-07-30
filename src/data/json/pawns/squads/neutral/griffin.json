@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 5, 10]
         ]
@@ -40,9 +40,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "split",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "split",
+        "imageName": "Ungroup",
+        "hintTitle": "special_split_head",
+        "hintDescription": "special_split_hint",
         "endsTurn": false
       }
     ],

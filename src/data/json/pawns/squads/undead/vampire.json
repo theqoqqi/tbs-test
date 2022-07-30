@@ -30,8 +30,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 6, 12]
         ]
@@ -39,9 +39,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "transform",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "transform",
+        "imageName": "Transform_Bat1",
+        "hintTitle": "special_vampire_transform_head",
+        "hintDescription": "special_vampire_transform_hint",
         "reload": 2,
         "endsTurn": false
       }

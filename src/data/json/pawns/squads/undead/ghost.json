@@ -32,8 +32,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "k": "30"
         },

@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "damageRanges": [
           ["physical", 12, 20]
         ],
@@ -42,8 +42,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "damageRanges": [
           ["physical", 6, 10]
         ],
@@ -53,8 +53,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 6, 10]
         ]
@@ -62,9 +62,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "megathrow",
-        "base": "defaultRanged",
         "slot": "ability_1",
+        "base": "defaultRanged",
+        "internalName": "megathrow",
+        "imageName": "CannoneerFire",
+        "hintTitle": "special_rembo_head",
+        "hintDescription": "special_rembo_hint",
         "reload": 2,
         "damageRanges": [
           ["physical", 18, 30]

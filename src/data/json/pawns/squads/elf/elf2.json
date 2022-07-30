@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "scriptParams": {
           "arrows": "1",
           "dragon": "0"
@@ -46,8 +46,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "scriptParams": {
           "arrows": "1",
           "dragon": "0"
@@ -61,8 +61,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "dragon": "0"
         },
@@ -73,9 +73,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "dragon",
-        "base": "defaultRanged",
         "slot": "ability_1",
+        "base": "defaultRanged",
+        "internalName": "dragon",
+        "imageName": "Dragon_Arrow",
+        "hintTitle": "special_dragon_arrow_head",
+        "hintDescription": "special_dragon_arrow_hint",
         "charges": 1,
         "scriptParams": {
           "dragon": "1",

@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 27, 33]
         ]
@@ -38,18 +38,24 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "cast_gobot",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "cast_gobot",
+        "imageName": "cast_gobot",
+        "hintTitle": "special_cast_gobot_head",
+        "hintDescription": "special_cast_gobot_hint",
         "reload": 2,
         "scriptParams": {
           "count": "80-80"
         }
       },
       {
-        "internalName": "eat_all",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "eat_all",
+        "imageName": "eat_all",
+        "hintTitle": "special_eat_gobot_head",
+        "hintDescription": "special_eat_gobot_hint",
         "charges": 1,
         "scriptParams": {
           "nomiss": "1",
@@ -60,9 +66,12 @@
         ]
       },
       {
-        "internalName": "initiation",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "initiation",
+        "imageName": "initiation",
+        "hintTitle": "special_initiation_head",
+        "hintDescription": "special_initiation_hint",
         "reload": 2,
         "scriptParams": {
           "k": "100"

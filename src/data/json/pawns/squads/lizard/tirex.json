@@ -30,8 +30,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "fear": "50",
           "level": "4",
@@ -44,9 +44,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "tirex_cry",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "tirex_cry",
+        "imageName": "tirex_cry",
+        "hintTitle": "special_tirex_cry_head",
+        "hintDescription": "special_tirex_cry_hint",
         "reload": 3,
         "scriptParams": {
           "k": "100",
@@ -59,9 +62,12 @@
         ]
       },
       {
-        "internalName": "eat_corpse",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "eat_corpse",
+        "imageName": "eat_corpse",
+        "hintTitle": "special_eat_corpse_head",
+        "hintDescription": "special_eat_corpse_hint",
         "reload": 3,
         "scriptParams": {
           "count": "2-4"

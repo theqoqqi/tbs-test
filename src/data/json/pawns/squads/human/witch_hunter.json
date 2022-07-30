@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "mage": "150"
         },
@@ -41,9 +41,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "witch_shield",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "witch_shield",
+        "imageName": "witch_shield",
+        "hintTitle": "special_magic_block_head",
+        "hintDescription": "special_magic_block_hint",
         "charges": 1,
         "scriptParams": {
           "nomiss": "1",
@@ -57,9 +60,12 @@
         ]
       },
       {
-        "internalName": "magic_buff",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "magic_buff",
+        "imageName": "magic_buff",
+        "hintTitle": "special_magic_help_head",
+        "hintDescription": "special_magic_help_hint",
         "reload": 3,
         "scriptParams": {
           "rage": "2-5",
@@ -68,9 +74,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "stupid",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "stupid",
+        "imageName": "MagicBondage",
+        "hintTitle": "special_stupid_head",
+        "hintDescription": "special_stupid_hint",
         "reload": 4,
         "scriptParams": {
           "duration": "3",

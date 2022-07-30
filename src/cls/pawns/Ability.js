@@ -73,6 +73,18 @@ export default class Ability {
         return this.#getProperty('scriptParams');
     }
 
+    get imageName() {
+        return this.#getProperty('imageName');
+    }
+
+    get hintTitle() {
+        return this.#getProperty('hintTitle');
+    }
+
+    get hintDescription() {
+        return this.#getProperty('hintDescription');
+    }
+
     get getEvents() {
         return this.#getProperty('getEvents');
     }

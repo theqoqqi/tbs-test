@@ -28,8 +28,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 3, 4]
         ]
@@ -37,9 +37,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "preparation",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "preparation",
+        "imageName": "Preparation",
+        "hintTitle": "special_preparation_head",
+        "hintDescription": "special_preparation_hint",
         "reload": 2,
         "endsTurn": false
       }

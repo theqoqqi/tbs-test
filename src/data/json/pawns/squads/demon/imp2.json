@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 4, 7]
         ]
@@ -40,9 +40,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "fire_shot",
+        "slot": "ability_1",
         "base": "defaultRanged",
-        "slot": "ability_2",
+        "internalName": "fire_shot",
+        "imageName": "fireball",
+        "hintTitle": "special_fire_shot_head",
+        "hintDescription": "special_fire_shot_hint",
         "charges": 2,
         "scriptParams": {
           "burn": "0",
@@ -62,9 +65,12 @@
         "disabledIfNearEnemy": true
       },
       {
-        "internalName": "gibe",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "gibe",
+        "imageName": "Taunt",
+        "hintTitle": "special_gibe_head",
+        "hintDescription": "special_gibe_hint",
         "reload": 5,
         "scriptParams": {}
       }

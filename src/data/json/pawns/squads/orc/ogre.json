@@ -32,8 +32,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "bash": "1",
           "rage_spent": "0"
@@ -45,16 +45,22 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "absorption",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "absorption",
+        "imageName": "absorption",
+        "hintTitle": "special_absorption_head",
+        "hintDescription": "special_absorption_hint",
         "charges": 1,
         "endsTurn": false
       },
       {
-        "internalName": "ogre_rage",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "ogre_rage",
+        "imageName": "OgreRage",
+        "hintTitle": "special_ogre_rage_head",
+        "hintDescription": "special_ogre_rage_new_hint",
         "reload": 4,
         "scriptParams": {
           "duration": "2",
@@ -66,9 +72,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "ogre_strike",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "ogre_strike",
+        "imageName": "ogre_throw",
+        "hintTitle": "special_ogre_strike_head",
+        "hintDescription": "special_ogre_strike_hint",
         "reload": 4,
         "scriptParams": {
           "dmgtype": "physical",

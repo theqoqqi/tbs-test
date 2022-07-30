@@ -33,8 +33,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "poison": "30"
         },
@@ -45,9 +45,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "hit_back",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "hit_back",
+        "imageName": "hit_back",
+        "hintTitle": "special_hit_back_head",
+        "hintDescription": "special_hit_back_hint",
         "charges": 1,
         "scriptParams": {
           "spoison": "100",
@@ -58,9 +61,12 @@
         ]
       },
       {
-        "internalName": "assassination",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "assassination",
+        "imageName": "assassination",
+        "hintTitle": "special_assassin_head",
+        "hintDescription": "special_assassin_hint",
         "charges": 1,
         "scriptParams": {
           "spoison": "0"

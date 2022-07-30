@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "stun": "0"
         },
@@ -41,9 +41,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "longattack",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "longattack",
+        "imageName": "Special_Rush",
+        "hintTitle": "special_snake_long_head",
+        "hintDescription": "special_snake1_long_hint",
         "reload": 2,
         "scriptParams": {
           "sstun": "100",

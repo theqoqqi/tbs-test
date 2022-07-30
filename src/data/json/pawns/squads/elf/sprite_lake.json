@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "weakness": "30"
         },
@@ -41,9 +41,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "hunters_mark",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "hunters_mark",
+        "imageName": "hunters_mark",
+        "hintTitle": "special_hunters_mark_head",
+        "hintDescription": "special_hunters_mark_hint",
         "charges": 1,
         "scriptParams": {
           "duration": "2"

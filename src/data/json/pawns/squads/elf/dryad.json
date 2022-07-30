@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "charm": "20",
           "k": "100-100"
@@ -44,24 +44,33 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "cast_thorn",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "cast_thorn",
+        "imageName": "CastThorn",
+        "hintTitle": "special_dryad_thorn_head",
+        "hintDescription": "special_dryad_thorn_hint",
         "reload": 3,
         "scriptParams": {
           "count": "8-10"
         }
       },
       {
-        "internalName": "elf_song",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "elf_song",
+        "imageName": "ElfSong",
+        "hintTitle": "special_elf_song_head",
+        "hintDescription": "special_elf_song_hint",
         "charges": 1
       },
       {
-        "internalName": "cast_sleep",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "cast_sleep",
+        "imageName": "Lullaby",
+        "hintTitle": "special_lullaby_head",
+        "hintDescription": "special_lullaby_hint",
         "reload": 4,
         "scriptParams": {
           "nfeatures": "mind_immunitet,undead,boss,pawn",

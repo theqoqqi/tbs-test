@@ -35,8 +35,9 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
+        "imageName": "waterflask",
         "scriptParams": {
           "stun": "0",
           "push": "0"
@@ -50,8 +51,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "stun": "0"
         },
@@ -62,9 +63,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "stun",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "stun",
+        "imageName": "Clap",
+        "hintTitle": "special_cyclop_stun_head",
+        "hintDescription": "special_cyclop_stun_hint",
         "charges": 1,
         "scriptParams": {
           "stun": "100",
@@ -75,9 +79,12 @@
         ]
       },
       {
-        "internalName": "push",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "push",
+        "imageName": "Push",
+        "hintTitle": "special_cyclop_push_head",
+        "hintDescription": "special_cyclop_push_hint",
         "reload": 3,
         "scriptParams": {
           "stun": "0",

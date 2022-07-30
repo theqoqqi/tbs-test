@@ -33,15 +33,15 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 28, 35]
         ]
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 21, 27]
         ]
@@ -49,9 +49,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "run",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"
@@ -59,9 +62,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "blood",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "blood",
+        "imageName": "Blood_Pentagram",
+        "hintTitle": "special_blood_pentagramm_head",
+        "hintDescription": "special_blood_pentagramm_hint",
         "charges": 1,
         "scriptParams": {
           "atomname": "blood_rune",
@@ -71,9 +77,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "cast_demon",
-        "base": "defaultMelee",
         "slot": "ability_3",
+        "base": "defaultMelee",
+        "internalName": "cast_demon",
+        "imageName": "Servant_Call",
+        "hintTitle": "special_cast_demon_head",
+        "hintDescription": "special_cast_demon_hint",
         "charges": 1,
         "scriptParams": {
           "k": "30-30",

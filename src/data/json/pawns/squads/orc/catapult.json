@@ -30,8 +30,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "scriptParams": {
           "burn": "0",
           "bomb": "0",
@@ -46,8 +46,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "burn": "0",
           "bomb": "0",
@@ -61,8 +61,8 @@
         "distancePenalty": 0.8
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "burn": "0",
           "bomb": "0",
@@ -75,9 +75,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "detonation",
-        "base": "defaultRanged",
         "slot": "ability_1",
+        "base": "defaultRanged",
+        "internalName": "detonation",
+        "imageName": "detonation",
+        "hintTitle": "detonation_head",
+        "hintDescription": "detonation_hint",
         "reload": 3,
         "scriptParams": {
           "bomb": "1",
@@ -90,9 +93,12 @@
         "disabledIfNearEnemy": true
       },
       {
-        "internalName": "firethrow",
-        "base": "defaultRanged",
         "slot": "ability_2",
+        "base": "defaultRanged",
+        "internalName": "firethrow",
+        "imageName": "CatapultFire",
+        "hintTitle": "special_fire_catapult_head",
+        "hintDescription": "special_fire_catapult_hint_new",
         "reload": 3,
         "scriptParams": {
           "burn": "50",
@@ -115,9 +121,12 @@
         "disabledIfNearEnemy": true
       },
       {
-        "internalName": "explosive",
-        "base": "defaultMelee",
         "slot": "ability_3",
+        "base": "defaultMelee",
+        "internalName": "explosive",
+        "imageName": "explosive",
+        "hintTitle": "explosive_head",
+        "hintDescription": "explosive_hint",
         "reload": 4,
         "scriptParams": {
           "health": "25",

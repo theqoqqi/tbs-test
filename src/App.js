@@ -616,8 +616,8 @@ export default class App extends React.Component {
             .filter(ability => slots.includes(ability.slot))
             .map(ability => {
                 return {
-                    title: ability.internalName,
-                    description: ability.internalName,
+                    title: ability.hintTitle,
+                    description: ability.hintDescription,
                     currentReload: ability.currentReload,
                     currentCharges: ability.currentCharges,
                 };
@@ -657,9 +657,9 @@ export default class App extends React.Component {
             .map(ability => {
                 return {
                     slot: ability.slot,
-                    image: `img/abilities/${ability.internalName}.png`,
-                    title: ability.internalName,
-                    description: ability.internalName,
+                    image: `img/abilities/${ability.imageName}.png`,
+                    title: ability.hintTitle,
+                    description: ability.hintDescription,
                     currentReload: ability.currentReload,
                     maxReload: ability.reload,
                     usesCharges: ability.usesCharges,

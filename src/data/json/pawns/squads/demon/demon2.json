@@ -34,15 +34,15 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 32, 34]
         ]
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 24, 26]
         ]
@@ -50,9 +50,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "run",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"
@@ -60,9 +63,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "execution",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "execution",
+        "imageName": "execution",
+        "hintTitle": "special_execution_head",
+        "hintDescription": "special_execution_hint",
         "reload": 2,
         "scriptParams": {
           "exec": "50",

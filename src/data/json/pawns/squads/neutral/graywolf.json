@@ -28,8 +28,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "rabid": "10",
           "duration": "1"
@@ -41,9 +41,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "cry",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "cry",
+        "imageName": "Wolf_Cry",
+        "hintTitle": "special_wolf_cry_head",
+        "hintDescription": "special_wolf_cry_hint",
         "charges": 1
       }
     ],

@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 5, 6]
         ]
@@ -38,9 +38,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "run",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"
@@ -48,9 +51,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "renunciation",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "renunciation",
+        "imageName": "renunciation",
+        "hintTitle": "special_renunciation_head",
+        "hintDescription": "special_renunciation_hint",
         "charges": 1
       }
     ],

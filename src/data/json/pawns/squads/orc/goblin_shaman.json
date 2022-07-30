@@ -32,8 +32,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["astral", 6, 10]
         ],
@@ -42,8 +42,8 @@
         "distancePenalty": 0.5
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 6, 10]
         ]
@@ -51,9 +51,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "life",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "life",
+        "imageName": "life",
+        "hintTitle": "gs_life_head",
+        "hintDescription": "gs_life_hint",
         "charges": 1,
         "scriptParams": {
           "nomiss": "1",
@@ -64,9 +67,12 @@
         }
       },
       {
-        "internalName": "badabum",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "badabum",
+        "imageName": "goblin_spirits",
+        "hintTitle": "gs_spirits_head",
+        "hintDescription": "gs_spirits_hint",
         "charges": 3,
         "scriptParams": {
           "damage": "12-18",
@@ -82,9 +88,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "training",
-        "base": "defaultMelee",
         "slot": "ability_3",
+        "base": "defaultMelee",
+        "internalName": "training",
+        "imageName": "goblin_training",
+        "hintTitle": "gs_trainig_head",
+        "hintDescription": "gs_trainig_hint",
         "charges": 3,
         "scriptParams": {
           "nomiss": "1",

@@ -36,8 +36,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "damageRanges": [
           ["magic", 18, 21]
         ],
@@ -47,8 +47,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "damageRanges": [
           ["fire", 12, 14]
         ],
@@ -58,8 +58,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "curse": "0"
         },
@@ -70,9 +70,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "vamp",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "vamp",
+        "imageName": "vamp",
+        "hintTitle": "special_vamp_head",
+        "hintDescription": "special_vamp_hint",
         "charges": 1,
         "scriptParams": {
           "damage": "14-18",
@@ -87,9 +90,12 @@
         ]
       },
       {
-        "internalName": "call_demon",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "call_demon",
+        "imageName": "call_demon",
+        "hintTitle": "special_call_demon_head",
+        "hintDescription": "special_call_demon_hint",
         "reload": 4,
         "scriptParams": {
           "k": "25-50",

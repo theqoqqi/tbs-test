@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "beast_slayer": "150",
           "rage_spent": "0"
@@ -44,9 +44,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "call_pet",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "call_pet",
+        "imageName": "call_pet",
+        "hintTitle": "call_pet_head",
+        "hintDescription": "call_pet_hint",
         "charges": 1,
         "scriptParams": {
           "count": "70-90",
@@ -59,9 +62,12 @@
         }
       },
       {
-        "internalName": "net",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "net",
+        "imageName": "hunter_net",
+        "hintTitle": "hunter_net_head",
+        "hintDescription": "hunter_net_hint",
         "reload": 3,
         "scriptParams": {
           "rage_spent": "10",
@@ -69,9 +75,12 @@
         }
       },
       {
-        "internalName": "veterinar",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "veterinar",
+        "imageName": "hunter_veterinar",
+        "hintTitle": "hunter_veterinar_head",
+        "hintDescription": "hunter_veterinar_hint",
         "reload": 4,
         "scriptParams": {
           "heal": "44",

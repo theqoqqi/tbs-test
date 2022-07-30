@@ -30,8 +30,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "reload": "1"
         },
@@ -42,9 +42,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "run",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"
@@ -52,9 +55,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "bloody_madness",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "bloody_madness",
+        "imageName": "bloody_madness",
+        "hintTitle": "special_bloody_madness_head",
+        "hintDescription": "special_bloody_madness_hint",
         "charges": 1,
         "damageRanges": [
           ["physical", 6, 8]

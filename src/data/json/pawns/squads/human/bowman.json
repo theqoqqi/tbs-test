@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "scriptParams": {
           "burn": "0",
           "freeze": "0",
@@ -46,8 +46,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "burn": "0",
           "freeze": "0"
@@ -59,9 +59,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "throw2",
-        "base": "defaultRanged",
         "slot": "ability_1",
+        "base": "defaultRanged",
+        "internalName": "throw2",
+        "imageName": "fieryarrow",
+        "hintTitle": "special_fire_arrow_head",
+        "hintDescription": "special_fire_arrow_hint",
         "charges": 1,
         "scriptParams": {
           "burn": "100",
@@ -78,9 +81,12 @@
         "disabledIfNearEnemy": true
       },
       {
-        "internalName": "throw3",
-        "base": "defaultRanged",
         "slot": "ability_2",
+        "base": "defaultRanged",
+        "internalName": "throw3",
+        "imageName": "IceArrow",
+        "hintTitle": "special_ice_arrow_head",
+        "hintDescription": "special_ice_arrow_hint",
         "charges": 1,
         "scriptParams": {
           "burn": "0",
@@ -97,9 +103,12 @@
         "disabledIfNearEnemy": true
       },
       {
-        "internalName": "dragon",
-        "base": "defaultRanged",
         "slot": "ability_3",
+        "base": "defaultRanged",
+        "internalName": "dragon",
+        "imageName": "Dragon_Arrow",
+        "hintTitle": "special_dragon_arrow_head",
+        "hintDescription": "special_dragon_arrow_hint",
         "charges": 1,
         "scriptParams": {
           "burn": "0",

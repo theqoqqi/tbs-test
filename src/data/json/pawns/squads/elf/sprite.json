@@ -30,8 +30,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["magic", 1, 3]
         ]
@@ -39,9 +39,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "dispell",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "dispell",
+        "imageName": "Dispell",
+        "hintTitle": "special_dispell_head",
+        "hintDescription": "special_dispell_hint",
         "charges": 1
       }
     ],

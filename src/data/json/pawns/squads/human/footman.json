@@ -34,9 +34,12 @@
         ]
       },
       {
-        "internalName": "powerHit",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "moveattack2",
+        "imageName": "doublestrike",
+        "hintTitle": "special_footman_head",
+        "hintDescription": "special_footman_hint",
         "reload": 3,
         "usesMovement": true,
         "damageRanges": [

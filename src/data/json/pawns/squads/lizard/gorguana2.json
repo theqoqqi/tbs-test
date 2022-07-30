@@ -32,8 +32,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "scriptParams": {
           "curse": "0"
         },
@@ -46,8 +46,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "reload": "1"
         },
@@ -58,18 +58,24 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "blood_mark",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "blood_mark",
+        "imageName": "blood_mark",
+        "hintTitle": "special_blood_mark_head",
+        "hintDescription": "special_blood_mark_hint",
         "reload": 4,
         "scriptParams": {
           "duration": "2"
         }
       },
       {
-        "internalName": "blood_magic",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "blood_magic",
+        "imageName": "blood_magic",
+        "hintTitle": "special_blood_magic_head",
+        "hintDescription": "special_blood_magic_hint",
         "charges": 1,
         "scriptParams": {
           "nomiss": "1"
@@ -79,9 +85,12 @@
         ]
       },
       {
-        "internalName": "whisper",
-        "base": "defaultMelee",
         "slot": "ability_3",
+        "base": "defaultMelee",
+        "internalName": "whisper",
+        "imageName": "whisper",
+        "hintTitle": "special_whisper_head",
+        "hintDescription": "special_whisper_hint",
         "reload": 3,
         "damageRanges": [
           ["physical", 5, 8]

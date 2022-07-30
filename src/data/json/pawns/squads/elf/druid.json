@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "scriptParams": {
           "curse": "0"
         },
@@ -45,8 +45,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "curse": "0"
         },
@@ -57,9 +57,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "cast_bear",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "cast_bear",
+        "imageName": "CastBear",
+        "hintTitle": "special_cast_bear_head",
+        "hintDescription": "special_cast_bear_hint",
         "reload": 3,
         "scriptParams": {
           "count": "20-25",
@@ -67,9 +70,12 @@
         }
       },
       {
-        "internalName": "beast_training",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "beast_training",
+        "imageName": "Beast_Training",
+        "hintTitle": "special_beast_training_head",
+        "hintDescription": "special_beast_training_hint",
         "charges": 1,
         "scriptParams": {
           "level": "3",
@@ -132,8 +138,14 @@
         "warning": "sw_training",
         "hinthead": "special_beast_training_head",
         "hint": "special_beast_training_hint",
-        "picture": "BA1_CastBear_",
-        "picture_small": "BA1_CastBear_small.png",
+        "picture": [
+          "BA1_Beast_Training_",
+          "BA1_CastBear_"
+        ],
+        "picture_small": [
+          "BA1_Beast_Training_small.png",
+          "BA1_CastBear_small.png"
+        ],
         "moves": "1",
         "script_attack": "special_beast_training",
         "script_calccells": "calccells_enemy_lead",

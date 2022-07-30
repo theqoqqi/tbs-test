@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 5, 7]
         ]
@@ -38,18 +38,24 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "triple_attack",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "triple_attack",
+        "imageName": "Triple_Attack",
+        "hintTitle": "special_triple_head",
+        "hintDescription": "special_triple_hint",
         "reload": 2,
         "damageRanges": [
           ["physical", 5, 7]
         ]
       },
       {
-        "internalName": "run",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"

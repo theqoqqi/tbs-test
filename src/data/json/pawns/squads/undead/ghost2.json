@@ -32,8 +32,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "k": "50"
         },
@@ -44,9 +44,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "gcry",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "gcry",
+        "imageName": "Scream",
+        "hintTitle": "special_ghost_cry_head",
+        "hintDescription": "special_ghost_cry_hint",
         "reload": 5,
         "scriptParams": {
           "power": "2",

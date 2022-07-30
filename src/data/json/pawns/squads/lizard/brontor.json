@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 15, 18]
         ]
@@ -38,9 +38,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "take",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "take",
+        "imageName": "brontortake",
+        "hintTitle": "special_brontortake_head",
+        "hintDescription": "special_brontortake_hint",
         "reload": 3,
         "scriptParams": {
           "dmg_k": "20",
@@ -52,9 +55,12 @@
         ]
       },
       {
-        "internalName": "transform",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "transform",
+        "imageName": "brontor_transform",
+        "hintTitle": "special_digbrontor_transform_head",
+        "hintDescription": "special_digbrontor_transform_hint",
         "reload": 3,
         "endsTurn": false
       }

@@ -38,8 +38,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "burn": "50"
         },
@@ -50,9 +50,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "firepower",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "firepower",
+        "imageName": "Fire_Power",
+        "hintTitle": "special_firepower_head",
+        "hintDescription": "special_firepower_hint",
         "reload": 3,
         "scriptParams": {
           "nomiss": "1",

@@ -35,15 +35,15 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 160, 220]
         ]
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 80, 110]
         ]
@@ -51,9 +51,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "capture",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "capture",
+        "imageName": "Capture",
+        "hintTitle": "special_dragon_capture_head",
+        "hintDescription": "special_dragon_capture_hint",
         "reload": 3,
         "scriptParams": {
           "nomiss": "1"
@@ -63,9 +66,12 @@
         ]
       },
       {
-        "internalName": "gain_mana",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "gain_mana",
+        "imageName": "Mana_Source",
+        "hintTitle": "special_mana_source_head",
+        "hintDescription": "special_mana_source_hint",
         "reload": 4,
         "scriptParams": {
           "mana_k": "100",

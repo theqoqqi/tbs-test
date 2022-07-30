@@ -34,8 +34,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "reload": "1",
           "rage_spent": "0"
@@ -47,9 +47,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "ogre_provoke",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "ogre_provoke",
+        "imageName": "ogre_provoke",
+        "hintTitle": "chieftain_provoke_head",
+        "hintDescription": "chieftain_provoke_hint",
         "charges": 1,
         "scriptParams": {
           "rage_spent": "5",
@@ -58,9 +61,12 @@
         }
       },
       {
-        "internalName": "chieftain_feed_time",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "chieftain_feed_time",
+        "imageName": "chieftain_feed_time",
+        "hintTitle": "chieftain_feed_time_head",
+        "hintDescription": "chieftain_feed_time_hint",
         "charges": 3,
         "scriptParams": {
           "rage_spent": "10",
@@ -71,9 +77,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "whirlwind",
-        "base": "defaultMelee",
         "slot": "ability_3",
+        "base": "defaultMelee",
+        "internalName": "whirlwind",
+        "imageName": "whirlwind",
+        "hintTitle": "chieftain_whirlwind_head",
+        "hintDescription": "chieftain_whirlwind_hint",
         "reload": 4,
         "scriptParams": {
           "dmgtype": "physical",

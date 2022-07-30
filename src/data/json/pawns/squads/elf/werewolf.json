@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 7, 9]
         ]
@@ -40,9 +40,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "transform",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "transform",
+        "imageName": "WolfTransform",
+        "hintTitle": "special_wolf_transform_head",
+        "hintDescription": "special_wolf_transform_hint",
         "reload": 3,
         "endsTurn": false
       }

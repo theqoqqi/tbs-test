@@ -32,8 +32,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "damageRanges": [
           ["physical", 1, 4]
         ],
@@ -43,8 +43,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 2, 4]
         ]
@@ -52,9 +52,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "sleep",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "sleep",
+        "imageName": "satyr_sleep",
+        "hintTitle": "satyr_tire_sleep_head",
+        "hintDescription": "satyr_tire_sleep_hint",
         "reload": 4,
         "scriptParams": {
           "level": "4",
@@ -63,9 +66,12 @@
         }
       },
       {
-        "internalName": "dream_strike",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "dream_strike",
+        "imageName": "dream_strike",
+        "hintTitle": "satyr_dream_strike_head",
+        "hintDescription": "satyr_dream_strike_hint",
         "reload": 2,
         "scriptParams": {
           "dam": "5-12",
@@ -76,9 +82,12 @@
         ]
       },
       {
-        "internalName": "satyr_heal",
-        "base": "defaultMelee",
         "slot": "ability_3",
+        "base": "defaultMelee",
+        "internalName": "satyr_heal",
+        "imageName": "satyr_song",
+        "hintTitle": "satyr_heal_head",
+        "hintDescription": "satyr_heal_hint",
         "charges": 2,
         "scriptParams": {
           "heal": "12"

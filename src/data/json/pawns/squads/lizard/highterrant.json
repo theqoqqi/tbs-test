@@ -28,8 +28,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 7, 13]
         ]
@@ -37,9 +37,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "lay_egg",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "lay_egg",
+        "imageName": "lay_egg",
+        "hintTitle": "special_lay_egg_head",
+        "hintDescription": "special_lay_egg_hint",
         "charges": 1
       }
     ],

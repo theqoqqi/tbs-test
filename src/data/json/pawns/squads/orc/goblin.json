@@ -33,8 +33,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "gk": "130",
           "rage_spent": "0"
@@ -47,8 +47,8 @@
         "distancePenalty": 0.5
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "gk": "130",
           "rage_spent": "0"
@@ -60,9 +60,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "goblin_fury",
-        "base": "defaultRanged",
         "slot": "ability_1",
+        "base": "defaultRanged",
+        "internalName": "goblin_fury",
+        "imageName": "goblin_fury",
+        "hintTitle": "goblin_fury_head",
+        "hintDescription": "goblin_fury_hint",
         "reload": 2,
         "scriptParams": {
           "gk": "130",

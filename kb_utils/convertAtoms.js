@@ -93,7 +93,7 @@ let parseMap = {
         // 'peasant',
         // 'robber',
         // 'robber2',
-        'footman',
+        // 'footman',
         'bowman',
         'priest',
         'witch_hunter',

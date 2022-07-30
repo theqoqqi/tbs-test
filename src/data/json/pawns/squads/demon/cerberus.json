@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 9, 11]
         ]
@@ -38,9 +38,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "take",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "take",
+        "imageName": "take",
+        "hintTitle": "special_take_head",
+        "hintDescription": "special_take_hint",
         "charges": 1,
         "scriptParams": {
           "rushanim": "rush",

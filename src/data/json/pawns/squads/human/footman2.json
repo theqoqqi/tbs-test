@@ -33,8 +33,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 6, 8]
         ]
@@ -42,9 +42,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "moveattack2",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "moveattack2",
+        "imageName": "doublestrike",
+        "hintTitle": "special_footman_head",
+        "hintDescription": "special_footman_hint",
         "reload": 2,
         "damageRanges": [
           ["physical", 9, 12]

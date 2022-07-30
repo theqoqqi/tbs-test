@@ -33,8 +33,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "shock": "25"
         },
@@ -45,8 +45,8 @@
         "distancePenalty": 1
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "shock": "0"
         },
@@ -57,15 +57,21 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "magic_shield",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "magic_shield",
+        "imageName": "MagicShield",
+        "hintTitle": "special_magic_shield_head",
+        "hintDescription": "special_magic_shield_hint",
         "reload": 2
       },
       {
-        "internalName": "battle_mage",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "battle_mage",
+        "imageName": "Battle_Mage",
+        "hintTitle": "special_battle_mage_head",
+        "hintDescription": "special_battle_mage_hint",
         "reload": 3,
         "scriptParams": {
           "duration": "2",
@@ -78,9 +84,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "telekines",
-        "base": "defaultMelee",
         "slot": "ability_3",
+        "base": "defaultMelee",
+        "internalName": "telekines",
+        "imageName": "Telekines",
+        "hintTitle": "special_telekines_head",
+        "hintDescription": "special_telekines_hint",
         "charges": 1
       }
     ],

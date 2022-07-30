@@ -35,8 +35,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "sleep": "50",
           "dod": "no",
@@ -51,8 +51,8 @@
         "distancePenalty": 0.5
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "sleep": "0",
           "dod": "no",
@@ -66,9 +66,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "dominator",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "dominator",
+        "imageName": "Mind_Control",
+        "hintTitle": "special_dominator_head",
+        "hintDescription": "special_dominator_hint",
         "charges": 1,
         "scriptParams": {
           "sleep": "0",
@@ -97,7 +100,10 @@
       {
         "group": "1,2",
         "class": "scripted",
-        "ad_factor": "1",
+        "ad_factor": [
+          "1",
+          "1"
+        ],
         "showdmg": "1",
         "mindist": "1",
         "base_attack": "1",

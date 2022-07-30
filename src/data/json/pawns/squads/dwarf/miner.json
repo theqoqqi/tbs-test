@@ -27,8 +27,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 3, 4]
         ]
@@ -36,9 +36,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "run",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"
@@ -46,9 +49,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "strike",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "strike",
+        "imageName": "strike",
+        "hintTitle": "special_strike_head",
+        "hintDescription": "special_strike_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "1",

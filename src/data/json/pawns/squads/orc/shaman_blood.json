@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 15, 22]
         ]
@@ -38,9 +38,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "bs_spirit_rage",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "bs_spirit_rage",
+        "imageName": "bs_spirit_rage",
+        "hintTitle": "bs_spirit_rage_head",
+        "hintDescription": "bs_spirit_rage_hint",
         "reload": 4,
         "scriptParams": {
           "dam": "7-15",
@@ -53,9 +56,12 @@
         }
       },
       {
-        "internalName": "bs_sacrifice",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "bs_sacrifice",
+        "imageName": "sacrifice",
+        "hintTitle": "bs_sacrifice_head",
+        "hintDescription": "bs_sacrifice_hint",
         "reload": 3,
         "scriptParams": {
           "rage": "5-10",
@@ -64,9 +70,12 @@
         }
       },
       {
-        "internalName": "bs_horde_power",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "bs_horde_power",
+        "imageName": "bs_horde_power",
+        "hintTitle": "bs_horde_power_head",
+        "hintDescription": "bs_horde_power_hint",
         "charges": 2,
         "scriptParams": {
           "rage_spent": "15",

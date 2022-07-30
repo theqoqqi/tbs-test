@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 4, 6]
         ]
@@ -38,9 +38,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "berserk",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "berserk",
+        "imageName": "Berserk",
+        "hintTitle": "special_barb_head",
+        "hintDescription": "special_barb_hint",
         "charges": 1,
         "scriptParams": {
           "duration": "3",

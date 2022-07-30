@@ -33,8 +33,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultRanged",
         "slot": "regular",
+        "base": "defaultRanged",
         "scriptParams": {
           "holy": "150"
         },
@@ -47,8 +47,8 @@
         "disabledIfNearEnemy": true
       },
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "holy": "150"
         },
@@ -59,18 +59,24 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "respawn",
-        "base": "defaultMelee",
         "slot": "ability_1",
+        "base": "defaultMelee",
+        "internalName": "respawn",
+        "imageName": "resurection",
+        "hintTitle": "special_prist_res_head",
+        "hintDescription": "special_prist_res_hint",
         "charges": 1,
         "scriptParams": {
           "heal": "7"
         }
       },
       {
-        "internalName": "holy_rage",
-        "base": "defaultMelee",
         "slot": "ability_2",
+        "base": "defaultMelee",
+        "internalName": "holy_rage",
+        "imageName": "Holy_Rage",
+        "hintTitle": "special_holy_rage_head",
+        "hintDescription": "special_holy_rage_hint",
         "charges": 3,
         "scriptParams": {
           "rage": "3-10",

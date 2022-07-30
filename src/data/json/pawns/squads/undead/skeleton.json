@@ -30,8 +30,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 2, 3]
         ]
@@ -39,9 +39,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "run",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"
@@ -49,9 +52,12 @@
         "endsTurn": false
       },
       {
-        "internalName": "spawn_skelet",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "spawn_skelet",
+        "imageName": "spawn_skelet",
+        "hintTitle": "special_spawn_skelet_head",
+        "hintDescription": "special_spawn_skelet_hint",
         "charges": 1,
         "scriptParams": {
           "count": "3"
@@ -59,9 +65,12 @@
         "endsTurn": true
       },
       {
-        "internalName": "skeleton_gate",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "skeleton_gate",
+        "imageName": "skeleton_gate",
+        "hintTitle": "special_skeleton_gate_head",
+        "hintDescription": "special_skeleton_gate_hint",
         "reload": 3,
         "scriptParams": {
           "count": "2"

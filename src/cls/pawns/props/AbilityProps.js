@@ -7,6 +7,10 @@ export default class AbilityProps {
         this.charges = props.charges ?? null;
         this.scriptParams = props.scriptParams ?? {};
 
+        this.imageName = props.imageName ?? null;
+        this.hintTitle = props.hintTitle ?? null;
+        this.hintDescription = props.hintDescription ?? null;
+
         this.getEvents = props.getEvents ?? null;
         this.getMoveInfo = props.getMoveInfo ?? null;
         this.targetCollector = props.targetCollector ?? null;

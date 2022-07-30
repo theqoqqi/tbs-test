@@ -33,8 +33,11 @@
       },
       {
         "slot": "ability_1",
-        "internalName": "longAttack",
         "base": "longAttack",
+        "internalName": "longattack",
+        "imageName": "Flail",
+        "hintTitle": "special_robber_long_head",
+        "hintDescription": "special_robber_long_hint",
         "reload": 2,
         "damageRanges": [
           ["physical", 3, 4]
@@ -44,6 +47,9 @@
         "slot": "ability_2",
         "internalName": "greediness",
         "base": "greediness",
+        "imageName": "Greedness",
+        "hintTitle": "special_robber_greediness_head",
+        "hintDescription": "special_robber_greediness_hint",
         "endsTurn": false,
         "charges": 1
       }

@@ -7,6 +7,12 @@ let parseBoolean = value => {
     return !!parseInt(value);
 };
 
+let getRegexMatch = (value, regex, matchIndex = 1) => {
+    let match = regex.exec(value);
+
+    return match?.[matchIndex] ?? null;
+};
+
 module.exports = class AtomConverter {
 
     movementTypes = new Map([
@@ -48,9 +54,12 @@ module.exports = class AtomConverter {
     };
 
     abilityReaders = {
-        internalName: (ability, name, slot) => slot ? name : undefined,
-        base: ability => ability.class === 'throw' ? 'defaultRanged' : 'defaultMelee',
         slot: (ability, name, slot) => slot === null ? 'regular' : `ability_${slot}`,
+        base: ability => ability.class === 'throw' ? 'defaultRanged' : 'defaultMelee',
+        internalName: (ability, name, slot) => slot ? name : undefined,
+        imageName: ability => getRegexMatch(ability.picture, /[Bb][Aa]1_(\w+)_/) ?? undefined,
+        hintTitle: ability => ability.hinthead,
+        hintDescription: ability => ability.hint,
         reload: ability => parseInt(ability.reload) || undefined,
         charges: ability => parseInt(ability.moves) || undefined,
         scriptParams: ability => ability.custom_params,
@@ -139,8 +148,8 @@ module.exports = class AtomConverter {
         let atomParams = this.atom.arena_params;
         let atomAbilityNames = atomParams.attacks ? atomParams.attacks.split(',') : [];
         let nonRegularAbilities = atomAbilityNames
-            .map(name => atomParams[name])
-            .filter(ability => !ability.group);
+            .filter(name => !atomParams[name].group && name !== 'moveattack')
+            .map(name => atomParams[name]);
 
         for (const abilityName of atomAbilityNames) {
             let atomAbility = atomParams[abilityName];

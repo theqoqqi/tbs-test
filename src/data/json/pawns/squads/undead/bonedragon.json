@@ -34,8 +34,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "poison": "50"
         },
@@ -46,9 +46,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "poison_cloud",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "poison_cloud",
+        "imageName": "PoisonCloud",
+        "hintTitle": "special_poison_cloud_head",
+        "hintDescription": "special_poison_cloud_hint",
         "reload": 3,
         "scriptParams": {
           "spoison": "90",
@@ -60,18 +63,24 @@
         ]
       },
       {
-        "internalName": "eat",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "eat",
+        "imageName": "bonedragon_eat",
+        "hintTitle": "special_bonedragon_eat_corpse_head",
+        "hintDescription": "special_bonedragon_eat_corpse_hint",
         "charges": 1,
         "scriptParams": {
           "k": "50"
         }
       },
       {
-        "internalName": "blue",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "blue",
+        "imageName": "bonedragon_blue",
+        "hintTitle": "special_spawn_skeleton_head",
+        "hintDescription": "special_spawn_skeleton_hint",
         "charges": 1,
         "scriptParams": {}
       }

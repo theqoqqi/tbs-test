@@ -29,8 +29,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "rage_spent": "0"
         },
@@ -41,9 +41,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "badabum",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "badabum",
+        "imageName": "Axes",
+        "hintTitle": "special_sham_dance_head",
+        "hintDescription": "special_sham_dance_hint_new",
         "reload": 3,
         "scriptParams": {
           "damage": "20-25",
@@ -59,9 +62,12 @@
         ]
       },
       {
-        "internalName": "protective_totem",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "protective_totem",
+        "imageName": "Totem_Life",
+        "hintTitle": "special_life_totem_head",
+        "hintDescription": "special_life_totem_hint_new",
         "reload": 4,
         "scriptParams": {
           "atomname": "totem_life",
@@ -71,9 +77,12 @@
         }
       },
       {
-        "internalName": "ice_totem",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "ice_totem",
+        "imageName": "Totem_Death",
+        "hintTitle": "special_dead_totem_head",
+        "hintDescription": "special_dead_totem_hint_new",
         "reload": 4,
         "scriptParams": {
           "atomname": "totem_death",

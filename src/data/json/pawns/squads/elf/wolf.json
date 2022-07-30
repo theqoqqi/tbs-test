@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "scriptParams": {
           "rabid": "20",
           "duration": "1"
@@ -44,15 +44,21 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "cry",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "cry",
+        "imageName": "Wolf_Cry",
+        "hintTitle": "special_wolf_cry_head",
+        "hintDescription": "special_wolf_cry_hint",
         "charges": 1
       },
       {
-        "internalName": "transform",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "transform",
+        "imageName": "HumanTransform",
+        "hintTitle": "special_human_transform_head",
+        "hintDescription": "special_human_transform_hint",
         "reload": 3,
         "endsTurn": false
       }

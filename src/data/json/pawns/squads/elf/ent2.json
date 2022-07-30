@@ -31,8 +31,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["physical", 100, 140]
         ]
@@ -40,9 +40,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "throw1",
+        "slot": "ability_1",
         "base": "defaultRanged",
-        "slot": "ability_2",
+        "internalName": "throw1",
+        "imageName": "Wasp",
+        "hintTitle": "special_swarm_head",
+        "hintDescription": "special_swarm_hint",
         "charges": 1,
         "damageRanges": [
           ["poison", 50, 90],
@@ -54,18 +57,24 @@
         "disabledIfNearEnemy": true
       },
       {
-        "internalName": "reload",
+        "slot": "ability_2",
         "base": "defaultMelee",
-        "slot": "ability_3",
+        "internalName": "reload",
+        "imageName": "Wasp_Call",
+        "hintTitle": "special_reload_head",
+        "hintDescription": "special_reload_hint",
         "reload": 2,
         "scriptParams": {
           "count": "1"
         }
       },
       {
-        "internalName": "run",
+        "slot": "ability_3",
         "base": "defaultMelee",
-        "slot": "ability_4",
+        "internalName": "run",
+        "imageName": "Run",
+        "hintTitle": "special_run_head",
+        "hintDescription": "special_run_hint",
         "charges": 1,
         "scriptParams": {
           "ap": "2"

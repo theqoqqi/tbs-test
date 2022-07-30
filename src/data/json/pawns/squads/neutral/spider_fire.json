@@ -32,8 +32,8 @@
     ],
     "abilities": [
       {
-        "base": "defaultMelee",
         "slot": "regular",
+        "base": "defaultMelee",
         "damageRanges": [
           ["fire", 4, 5]
         ]
@@ -41,9 +41,12 @@
     ],
     "__nonRegularAbilities": [
       {
-        "internalName": "web",
+        "slot": "ability_1",
         "base": "defaultMelee",
-        "slot": "ability_2",
+        "internalName": "web",
+        "imageName": "Web",
+        "hintTitle": "special_spider_web_head",
+        "hintDescription": "special_spider_web_hint",
         "charges": 2
       }
     ],
