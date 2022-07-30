@@ -11,7 +11,7 @@ export default {
                 let victim = event.victim;
                 let attacker = event.attacker;
 
-                if (victim === owner && !event.ability.noHitbacks) {
+                if (victim === owner && fight.moveExecutor.shouldHitback(attacker, victim, event.ability)) {
                     let ability = fight.getAbilityInSlot(owner, AbilitySlot.REGULAR);
 
                     fight.moveExecutor.attack(victim, attacker, ability, 2);
