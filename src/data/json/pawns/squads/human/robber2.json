@@ -45,6 +45,7 @@
         "internalName": "looter",
         "base": "looter",
         "targetCollector": "defaultActionWithCorpses.targetCollector",
+        "usesMovement": true,
         "charges": 2
       },
       {
