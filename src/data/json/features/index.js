@@ -12,3 +12,4 @@ export {default as comradeship} from './common/comradeship.json';
 export {default as favorite_enemy} from './common/favorite_enemy.json';
 export {default as plant_killer} from './common/plant_killer.json';
 export {default as robbery} from './common/robbery.json';
+export {default as care} from './common/care.json';

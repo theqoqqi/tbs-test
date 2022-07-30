@@ -1,0 +1,8 @@
+{
+  "props": {
+    "scriptParams": {
+      "stackSizeFactor": 0.7,
+      "evasionChance": 0.3
+    }
+  }
+}
