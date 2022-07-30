@@ -229,7 +229,7 @@ export default class Pawn {
         let otherPawns = this.fight.arena.getAllPawns()
             .filter(pawn => pawn !== this);
 
-        for (const otherPawn of otherPawns) {
+        otherPawns.forEach(otherPawn => {
             otherPawn.applyCallbacks('modifyOtherPawnProperty', callback => {
                 value = callback({
                     pawn: this,
@@ -237,7 +237,7 @@ export default class Pawn {
                     value,
                 });
             });
-        }
+        });
 
         return this.props.postProcess(propertyName, value);
     }

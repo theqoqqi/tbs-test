@@ -1,4 +1,3 @@
-import MoveInfo from '../../../../cls/util/info/MoveInfo.js';
 
 export default {
     /** @this Ability */

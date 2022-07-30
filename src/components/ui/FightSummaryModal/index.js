@@ -11,10 +11,6 @@ export default class FightSummaryModal extends React.Component {
         onClose: PropTypes.func,
     };
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let {
             summary: s,
