@@ -1,11 +1,13 @@
 import DamageType from '../enums/DamageType.js';
 
+let nonBreakingHyphen = '\u2011';
+
 let damageOfType = (ranges, type) => {
     let values = [
         ranges.getMin(type),
         ranges.getMax(type),
     ];
-    return values.join('-');
+    return values.join(nonBreakingHyphen);
 };
 
 let damage = (ranges) => {
@@ -13,7 +15,7 @@ let damage = (ranges) => {
         ranges.combinedMin,
         ranges.combinedMax,
     ];
-    return values.join('-');
+    return values.join(nonBreakingHyphen);
 };
 
 export default class AbilityVars {

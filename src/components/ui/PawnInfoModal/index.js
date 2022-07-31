@@ -320,7 +320,7 @@ export default class PawnInfoModal extends React.Component {
                 }}
             >
                 <header>
-                    {p.unitTitle}
+                    <h2>{p.unitTitle}</h2>
                 </header>
                 <main>
                     <div className='main-pawn-info'>
