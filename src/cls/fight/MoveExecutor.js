@@ -114,7 +114,9 @@ export default class MoveExecutor {
     }
 
     shouldHitback(attacker, victim, ability) {
-        return victim.stackSize > 0
+        return attacker
+            && victim
+            && victim.stackSize > 0
             && victim.canHitback
             && !attacker.hitbackProtection
             && !ability.noHitbacks
