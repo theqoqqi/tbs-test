@@ -208,14 +208,6 @@ export default class Pawn {
 
     //region Приватные методы
 
-    #callForEachFeature(propertyName, callback) {
-        Pawn.#callForEachWithBind(this.features, propertyName, callback);
-    }
-
-    #callForEachEffect(propertyName, callback) {
-        Pawn.#callForEachWithBind(this.effects, propertyName, callback);
-    }
-
     #calculatePropertyValue(propertyName) {
         let value = this.getBaseProperty(propertyName);
 
@@ -244,6 +236,14 @@ export default class Pawn {
 
     #clearCache() {
         this.#cachedProps.clear();
+    }
+
+    #callForEachFeature(propertyName, callback) {
+        Pawn.#callForEachWithBind(this.features, propertyName, callback);
+    }
+
+    #callForEachEffect(propertyName, callback) {
+        Pawn.#callForEachWithBind(this.effects, propertyName, callback);
     }
 
     static #callForEachWithBind(elements, propertyName, callback) {
