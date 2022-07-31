@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Arena from './components/arena/Arena';
 import GameContext from './cls/context/GameContext.js';
 import HexagonUtils from './cls/util/HexagonUtils.js';
@@ -21,6 +22,8 @@ import {GlobalHotKeys} from 'react-hotkeys';
 import FightSummaryModal from './components/ui/FightSummaryModal';
 import GamecycleGameOverEvent from './cls/events/types/GamecycleGameOverEvent.js';
 import Ranges from './cls/util/Ranges.js';
+import Locale from './cls/localization/Locale.js';
+import AbilityVars from './cls/localization/AbilityVars.js';
 
 const globalKeyMap = {
     WAIT: {
@@ -47,6 +50,10 @@ const globalKeyMap = {
 
 export default class App extends React.Component {
 
+    static propTypes = {
+        locale: PropTypes.instanceOf(Locale),
+    };
+
     static CELL_SIZE = 128;
 
     static CELL_SPACING = 4;
@@ -55,6 +62,8 @@ export default class App extends React.Component {
         super(props);
 
         let gameContext = new GameContext();
+
+        this.locale = props.locale;
 
         this.arenaRef = React.createRef();
         this.splashLayerRef = React.createRef();
@@ -616,8 +625,8 @@ export default class App extends React.Component {
             .filter(ability => slots.includes(ability.slot))
             .map(ability => {
                 return {
-                    title: ability.hintTitle,
-                    description: ability.hintDescription,
+                    title: this.locale.get(ability.hintTitle),
+                    description: this.locale.get(ability.hintDescription, AbilityVars.from(ability)),
                     currentReload: ability.currentReload,
                     currentCharges: ability.currentCharges,
                 };
@@ -658,8 +667,8 @@ export default class App extends React.Component {
                 return {
                     slot: ability.slot,
                     image: `img/abilities/${ability.imageName}.png`,
-                    title: ability.hintTitle,
-                    description: ability.hintDescription,
+                    title: this.locale.get(ability.hintTitle),
+                    description: this.locale.get(ability.hintDescription, AbilityVars.from(ability)),
                     currentReload: ability.currentReload,
                     maxReload: ability.reload,
                     usesCharges: ability.usesCharges,
