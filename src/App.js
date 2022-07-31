@@ -570,7 +570,7 @@ export default class App extends React.Component {
     getPawnProps() {
         return this.arena.getAllPawns().map(pawn => {
             let countEffects = ofType => {
-                let effects = pawn.effects.filter(effect => effect.effectType === ofType);
+                let effects = pawn.effects.filter(effect => !effect.isHidden && effect.effectType === ofType);
 
                 return effects.length;
             };
@@ -605,8 +605,8 @@ export default class App extends React.Component {
             .filter(effect => !effect.isHidden)
             .map(feature => {
                 return {
-                    title: feature.internalName,
-                    description: feature.internalName,
+                    title: this.locale.get(feature.hintTitle),
+                    description: this.locale.get(feature.hintDescription),
                 };
             });
 
@@ -614,8 +614,8 @@ export default class App extends React.Component {
             .filter(effect => !effect.isHidden)
             .map(effect => {
                 return {
-                    title: effect.internalName,
-                    description: effect.internalName,
+                    title: this.locale.get(effect.hintTitle),
+                    description: this.locale.get(effect.hintDescription),
                     duration: effect.duration,
                     effectType: effect.effectType,
                 };

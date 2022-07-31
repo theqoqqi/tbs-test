@@ -4,6 +4,9 @@ export default class AbstractEffectProps {
         this.internalName = props.internalName ?? null;
         this.scriptParams = props.scriptParams ?? {};
 
+        this.hintTitle = props.hintTitle ?? props.internalName;
+        this.hintDescription = props.hintDescription ?? props.internalName;
+
         this.getEvents = props.getEvents ?? null;
         this.modifyPawnProperty = props.modifyPawnProperty ?? null;
         this.modifyOtherPawnProperty = props.modifyOtherPawnProperty ?? null;

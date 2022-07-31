@@ -7,5 +7,7 @@ export default class EffectProps extends AbstractEffectProps {
         super(props);
 
         this.effectType = props.effectType ?? EffectType.NEUTRAL;
+
+        this.imageName = props.imageName ?? props.internalName;
     }
 }

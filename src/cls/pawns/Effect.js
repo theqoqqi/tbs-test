@@ -27,9 +27,17 @@ export default class Effect extends AbstractEffect {
         return this.#duration;
     }
 
+
+
     get effectType() {
         return this.getProperty('effectType');
     }
+
+    get imageName() {
+        return this.getProperty('imageName');
+    }
+
+
 
     decreaseDuration() {
         if (!this.#isInfinite) {

@@ -1,5 +1,7 @@
 {
   "props": {
+    "hintTitle": "plant_killer_header",
+    "hintDescription": "plant_killer_hint",
     "scriptParams": {
       "multiplier": 2
     }

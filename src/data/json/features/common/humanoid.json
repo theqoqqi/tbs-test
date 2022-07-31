@@ -1,3 +1,5 @@
 {
-  "props": {}
+  "props": {
+    "isHidden": true
+  }
 }

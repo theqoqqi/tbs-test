@@ -30,6 +30,14 @@ export default class AbstractEffect {
         return this.getProperty('scriptParams');
     }
 
+    get hintTitle() {
+        return this.getProperty('hintTitle');
+    }
+
+    get hintDescription() {
+        return this.getProperty('hintDescription');
+    }
+
     get getEvents() {
         return this.getProperty('getEvents');
     }

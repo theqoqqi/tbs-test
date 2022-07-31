@@ -1,5 +1,7 @@
 {
   "props": {
+    "hintTitle": "comradeship_header",
+    "hintDescription": "comradeship_hint",
     "scriptParams": {
       "maxBonus": 10,
       "unitsPerBonus": 30

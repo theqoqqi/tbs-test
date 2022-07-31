@@ -1,5 +1,7 @@
 {
   "props": {
+    "hintTitle": "robbery_header",
+    "hintDescription": "robbery_hint",
     "scriptParams": {}
   }
 }

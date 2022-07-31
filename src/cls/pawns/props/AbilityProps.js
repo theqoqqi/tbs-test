@@ -7,9 +7,9 @@ export default class AbilityProps {
         this.charges = props.charges ?? null;
         this.scriptParams = props.scriptParams ?? {};
 
-        this.imageName = props.imageName ?? null;
-        this.hintTitle = props.hintTitle ?? null;
-        this.hintDescription = props.hintDescription ?? null;
+        this.imageName = props.imageName ?? props.internalName;
+        this.hintTitle = props.hintTitle ?? props.internalName;
+        this.hintDescription = props.hintDescription ?? props.internalName;
 
         this.getEvents = props.getEvents ?? null;
         this.getMoveInfo = props.getMoveInfo ?? null;

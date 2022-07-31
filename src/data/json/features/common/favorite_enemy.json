@@ -1,5 +1,7 @@
 {
   "props": {
+    "hintTitle": "favorite_enemy_header",
+    "hintDescription": "favorite_enemy_hint",
     "scriptParams": {
       "multiplier": 1.15
     }

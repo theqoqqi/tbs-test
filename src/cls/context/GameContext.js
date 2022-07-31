@@ -91,15 +91,15 @@ export default class GameContext {
     }
 
     registerFeature(name, props) {
+        props.internalName = name;
         let featureProps = new FeatureProps(props);
-        featureProps.internalName = name;
 
         this.featureRegistry.register(name, featureProps);
     }
 
     registerEffect(name, props) {
+        props.internalName = name;
         let effectProps = new EffectProps(props);
-        effectProps.internalName = name;
 
         this.effectRegistry.register(name, effectProps);
     }
