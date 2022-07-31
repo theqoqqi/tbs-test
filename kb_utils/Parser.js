@@ -1,7 +1,7 @@
 
 module.exports = class Parser {
 
-    static keyCharsRegex = /[@~.?\w]/;
+    static keyCharsRegex = /[@~.?\wа-яА-ЯёЁ]/;
 
     pos;
 

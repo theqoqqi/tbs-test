@@ -21,6 +21,8 @@ fs.readdirSync(localizationPath).forEach(fileName => {
 });
 
 async function convertLng(path, convertedPath) {
+    console.log('converting', path);
+
     let text = fs.readFileSync(path, 'utf16le');
     let lng = parser.parseConfig(text);
 
@@ -33,19 +35,24 @@ async function convertLng(path, convertedPath) {
 }
 
 function cleanUpLng(lng) {
+    let lastActualValue = '';
+
     for (let [key, value] of Object.entries(lng)) {
         if (Array.isArray(value)) {
             value.forEach(cleanUpLng);
         } else if (typeof value === 'object') {
             cleanUpLng(value)
         } else if (typeof value === 'string') {
-            lng[key] = value = cleanUpValue(value);
+            value = cleanUpValue(value);
 
-            if (value === '[Good]' || value === '[Bad]') {
-                let nameKey = key.slice(0, -5) + '_name';
+            let valueWithoutVars = removeVars(value);
 
-                lng[key] = lng[nameKey];
-                delete lng[nameKey];
+            if (valueWithoutVars.trim() === '') {
+                lng[key] = lastActualValue;
+                // delete lng[nameKey];
+            } else {
+                lng[key] = value;
+                lastActualValue = value;
             }
         }
     }
@@ -53,4 +60,8 @@ function cleanUpLng(lng) {
 
 function cleanUpValue(value) {
     return value.replace(/\^\w+\^/g, '');
+}
+
+function removeVars(value) {
+    return value.replace(/\[\/?\w+%?]/g, '');
 }
