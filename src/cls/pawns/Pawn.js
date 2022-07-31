@@ -318,6 +318,10 @@ export default class Pawn {
         return this.getProperty(PawnProps.pawnType);
     }
 
+    get unitTitle() {
+        return this.getProperty(PawnProps.unitTitle);
+    }
+
     get level() {
         return this.getProperty(PawnProps.level);
     }
@@ -398,6 +402,10 @@ export default class Pawn {
 
     get basePawnType() {
         return this.getBaseProperty(PawnProps.pawnType);
+    }
+
+    get baseUnitTitle() {
+        return this.getBaseProperty(PawnProps.unitTitle);
     }
 
     get baseLevel() {

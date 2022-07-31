@@ -105,6 +105,7 @@ export default class GameContext {
     }
 
     registerPawn(name, props, options = {}) {
+        props.unitTitle = 'cpn_' + name;
         let pawnProps = new PawnProps(props);
         pawnProps.initDefaultValues();
 

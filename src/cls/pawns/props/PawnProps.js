@@ -7,6 +7,7 @@ import PawnType from '../../enums/PawnType.js';
 export default class PawnProps {
 
     static pawnType = 'pawnType';
+    static unitTitle = 'unitTitle';
     static level = 'level';
     static race = 'race';
     static leadership = 'leadership';
@@ -29,6 +30,9 @@ export default class PawnProps {
     static propDescriptors = new Map([
         [PawnProps.pawnType, {
             defaultValue: PawnType.SQUAD,
+        }],
+        [PawnProps.unitTitle, {
+            defaultValue: '',
         }],
         [PawnProps.level, {
             defaultValue: 1,
