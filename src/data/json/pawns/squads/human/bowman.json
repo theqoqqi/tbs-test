@@ -21,22 +21,13 @@
     "features": [
       "shot",
       "humanoid",
-      "archer"
-    ],
-    "__featuresFromHints": [
-      "shot",
+      "archer",
       "favorite_enemy"
     ],
     "abilities": [
       {
         "slot": "regular",
         "base": "defaultRanged",
-        "scriptParams": {
-          "burn": "0",
-          "freeze": "0",
-          "arrows": "1",
-          "dragon": "0"
-        },
         "damageRanges": [
           ["physical", 3, 4]
         ],
@@ -48,16 +39,10 @@
       {
         "slot": "regular",
         "base": "defaultMelee",
-        "scriptParams": {
-          "burn": "0",
-          "freeze": "0"
-        },
         "damageRanges": [
           ["physical", 2, 3]
         ]
-      }
-    ],
-    "__nonRegularAbilities": [
+      },
       {
         "slot": "ability_1",
         "base": "defaultRanged",
@@ -67,10 +52,7 @@
         "hintDescription": "special_fire_arrow_hint",
         "charges": 1,
         "scriptParams": {
-          "burn": "100",
-          "dragon": "0",
-          "freeze": "0",
-          "arrows": "1"
+          "burnDuration": 3
         },
         "damageRanges": [
           ["fire", 4, 5]
@@ -89,10 +71,7 @@
         "hintDescription": "special_ice_arrow_hint",
         "charges": 1,
         "scriptParams": {
-          "burn": "0",
-          "freeze": "100",
-          "dragon": "0",
-          "arrows": "1"
+          "slowDuration": 3
         },
         "damageRanges": [
           ["physical", 3, 4]
@@ -101,138 +80,6 @@
         "maxDistance": 6,
         "distancePenalty": 0.5,
         "disabledIfNearEnemy": true
-      },
-      {
-        "slot": "ability_3",
-        "base": "defaultRanged",
-        "internalName": "dragon",
-        "imageName": "Dragon_Arrow",
-        "hintTitle": "special_dragon_arrow_head",
-        "hintDescription": "special_dragon_arrow_hint",
-        "charges": 1,
-        "scriptParams": {
-          "burn": "0",
-          "dragon": "1",
-          "arrows": "1",
-          "freeze": "0"
-        },
-        "damageRanges": [
-          ["astral", 3, 4]
-        ],
-        "minDistance": 2,
-        "maxDistance": 100,
-        "distancePenalty": 0.5,
-        "disabledIfNearEnemy": true
-      }
-    ],
-    "__rawAtomAbilities": [
-      {
-        "group": "1,1",
-        "nonextifenemy": "1",
-        "ad_factor": "1",
-        "damage": {
-          "physical": "2,3"
-        },
-        "custom_params": {
-          "burn": "0",
-          "freeze": "0"
-        }
-      },
-      {
-        "group": "1,2",
-        "showdmg": "1",
-        "base_attack": "1",
-        "class": "throw",
-        "distance": "6",
-        "mindist": "2",
-        "penalty": "0.5",
-        "animation": "cast/throw/thtarget",
-        "throw": "bowman_arrow",
-        "framekey": "x",
-        "damage": {
-          "physical": "3,4"
-        },
-        "custom_params": {
-          "burn": "0",
-          "freeze": "0",
-          "arrows": "1",
-          "dragon": "0"
-        }
-      },
-      {
-        "moves": "1",
-        "dontusenearenemy": "1",
-        "class": "throw",
-        "picture": "ba1_fieryarrow_",
-        "picture_small": "ba1_fieryarrow_small.png",
-        "hinthead": "special_fire_arrow_head",
-        "hint": "special_fire_arrow_hint",
-        "distance": "6",
-        "mindist": "2",
-        "penalty": "0.5",
-        "animation": "firecast/throw/thtarget",
-        "throw": "bowman_firearrow",
-        "framekey": "x",
-        "damage": {
-          "fire": "4,5"
-        },
-        "custom_params": {
-          "burn": "100",
-          "dragon": "0",
-          "freeze": "0",
-          "arrows": "1"
-        }
-      },
-      {
-        "moves": "1",
-        "dontusenearenemy": "1",
-        "class": "throw",
-        "picture": "BA1_IceArrow_",
-        "picture_small": "BA1_IceArrow_small.png",
-        "hinthead": "special_ice_arrow_head",
-        "hint": "special_ice_arrow_hint",
-        "distance": "6",
-        "mindist": "2",
-        "penalty": "0.5",
-        "animation": "icycast/throw/thtarget",
-        "throw": "bowman_icyarrow",
-        "framekey": "x",
-        "damage": {
-          "physical": "3,4"
-        },
-        "custom_params": {
-          "burn": "0",
-          "freeze": "100",
-          "dragon": "0",
-          "arrows": "1"
-        }
-      },
-      {
-        "dontusenearenemy": "1",
-        "class": "throw",
-        "picture": "BA1_Dragon_Arrow_",
-        "picture_small": "BA1_DragonArrow_small.png",
-        "hinthead": "special_dragon_arrow_head",
-        "hint": "special_dragon_arrow_hint",
-        "showdmg": "0",
-        "moves": "1",
-        "ad_factor": "1",
-        "distance": "100",
-        "disabled": "1",
-        "mindist": "2",
-        "penalty": "0.5",
-        "animation": "cast/throw/thtarget",
-        "throw": "arrow_dragon",
-        "framekey": "x",
-        "damage": {
-          "astral": "3,4"
-        },
-        "custom_params": {
-          "burn": "0",
-          "dragon": "1",
-          "arrows": "1",
-          "freeze": "0"
-        }
       }
     ]
   }
