@@ -142,6 +142,9 @@ class PawnEffect extends React.Component {
                         [this.props.effectType.enumKey.toLowerCase()]: true,
                     })}
                 >
+                    <div className='pawn-effect-icon' style={{display: "inline-block"}}>
+                        <img src={this.props.image} alt={this.props.title} />
+                    </div>
                     <span className='pawn-effect-title'>
                         {this.props.title}
                     </span>
@@ -156,6 +159,7 @@ class PawnEffect extends React.Component {
 class PawnAbility extends React.Component {
 
     static propTypes = {
+        image: PropTypes.string,
         title: PropTypes.string,
         description: PropTypes.string,
         currentReload: PropTypes.number,
@@ -180,6 +184,9 @@ class PawnAbility extends React.Component {
                 title={$tooltip}
                 disableInteractive>
                 <div className='pawn-ability'>
+                    <div className='pawn-ability-icon' style={{display: "inline-block"}}>
+                        <img src={this.props.image} alt={this.props.title} />
+                    </div>
                     <span className='pawn-ability-title'>
                         {this.props.title}
                     </span>
@@ -236,6 +243,9 @@ export default class PawnInfoModal extends React.Component {
         opened: PropTypes.bool,
         position: PropTypes.instanceOf(Vector),
         pawnInfo: PropTypes.shape({
+            image: PropTypes.string,
+            unitTitle: PropTypes.string,
+
             attack: PropTypes.number,
             baseAttack: PropTypes.number,
 
@@ -309,51 +319,59 @@ export default class PawnInfoModal extends React.Component {
                     top: position.y + 'px',
                 }}
             >
+                <header>
+                    {p.unitTitle}
+                </header>
                 <main>
-                    <div className='pawn-parameter-list'>
-                        <PawnParameter
-                            title='Атака'
-                            value={p.attack}
-                            baseValue={p.baseAttack}
-                        />
-                        <PawnParameter
-                            title='Защита'
-                            value={p.defence}
-                            baseValue={p.baseDefence}
-                            tooltip={<ResistancesTooltipContent resistances={p.resistances} />}
-                        />
-                        <PawnParameter
-                            title='Инициатива'
-                            value={p.initiative}
-                            baseValue={p.baseInitiative}
-                        />
-                        <PawnParameter
-                            title='Скорость'
-                            current={p.currentActionPoints}
-                            value={p.maxActionPoints}
-                            baseValue={p.baseMaxActionPoints}
-                        />
-                        <PawnParameter
-                            title='Крит'
-                            value={Math.round(p.criticalHitChance * 100)}
-                            baseValue={Math.round(p.baseCriticalHitChance * 100)}
-                            format={value => value + ' %'}
-                        />
-                        <PawnParameter
-                            title='Урон'
-                            value={`${minDamage} - ${maxDamage}`}
-                            tooltip={<DamageRangesTooltipContent damageRanges={p.damageRanges} />}
-                        />
-                        <PawnParameter
-                            title='Здоровье'
-                            current={p.currentHealth}
-                            value={p.maxHealth}
-                            baseValue={p.baseMaxHealth}
-                        />
-                        <PawnParameter
-                            title=''
-                            value={p.movementType.enumKey}
-                        />
+                    <div className='main-pawn-info'>
+                        <div className='pawn-portrait'>
+                            <img src={p.image} alt={p.unitTitle} />
+                        </div>
+                        <div className='pawn-parameter-list'>
+                            <PawnParameter
+                                title='Атака'
+                                value={p.attack}
+                                baseValue={p.baseAttack}
+                            />
+                            <PawnParameter
+                                title='Защита'
+                                value={p.defence}
+                                baseValue={p.baseDefence}
+                                tooltip={<ResistancesTooltipContent resistances={p.resistances} />}
+                            />
+                            <PawnParameter
+                                title='Инициатива'
+                                value={p.initiative}
+                                baseValue={p.baseInitiative}
+                            />
+                            <PawnParameter
+                                title='Скорость'
+                                current={p.currentActionPoints}
+                                value={p.maxActionPoints}
+                                baseValue={p.baseMaxActionPoints}
+                            />
+                            <PawnParameter
+                                title='Крит'
+                                value={Math.round(p.criticalHitChance * 100)}
+                                baseValue={Math.round(p.baseCriticalHitChance * 100)}
+                                format={value => value + ' %'}
+                            />
+                            <PawnParameter
+                                title='Урон'
+                                value={`${minDamage} - ${maxDamage}`}
+                                tooltip={<DamageRangesTooltipContent damageRanges={p.damageRanges} />}
+                            />
+                            <PawnParameter
+                                title='Здоровье'
+                                current={p.currentHealth}
+                                value={p.maxHealth}
+                                baseValue={p.baseMaxHealth}
+                            />
+                            <PawnParameter
+                                title=''
+                                value={p.movementType.enumKey}
+                            />
+                        </div>
                     </div>
                     <div className='pawn-feature-list'>
                         <span className='subtitle'>Особенности:</span>

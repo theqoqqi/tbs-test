@@ -616,6 +616,7 @@ export default class App extends React.Component {
             .filter(effect => !effect.isHidden)
             .map(effect => {
                 return {
+                    image: `img/abilities/${effect.imageName}.png`,
                     title: this.locale.get(effect.hintTitle),
                     description: this.locale.get(effect.hintDescription),
                     duration: effect.duration,
@@ -627,6 +628,7 @@ export default class App extends React.Component {
             .filter(ability => slots.includes(ability.slot))
             .map(ability => {
                 return {
+                    image: `img/abilities/${ability.imageName}.png`,
                     title: this.locale.get(ability.hintTitle),
                     description: this.locale.get(ability.hintDescription, AbilityVars.from(ability)),
                     currentReload: ability.currentReload,
@@ -637,6 +639,9 @@ export default class App extends React.Component {
         let damageRanges = regularAbility?.damageRanges ?? new Ranges();
 
         return {
+            image: `img/pawns/${pawn.unitName}.png`,
+            unitTitle: this.locale.get(pawn.unitTitle),
+
             attack: pawn.attack,
             defence: pawn.defence,
             initiative: pawn.initiative,

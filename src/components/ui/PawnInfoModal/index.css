@@ -4,8 +4,6 @@
     align-items: center;
     justify-content: center;
 
-    width: 220px;
-
     font-size: 14px;
 
     z-index: 1300;
@@ -31,9 +29,22 @@
 
 
 
+.main-pawn-info {
+    display: flex;
+}
+
+
+
+.pawn-portrait {
+    width: 120px;
+}
+
+
+
 .pawn-parameter {
     display: flex;
 
+    width: 180px;
     padding: 1px 5px;
 
     font-size: 14px;
