@@ -211,6 +211,12 @@ export default class Pawn {
     #calculatePropertyValue(propertyName) {
         let value = this.getBaseProperty(propertyName);
 
+        this.applyCallbacks('propertyBonuses', bonuses => {
+            if (typeof bonuses[propertyName] === 'number') {
+                value += bonuses[propertyName] ?? 0;
+            }
+        });
+
         this.applyCallbacks('modifyPawnProperty', callback => {
             value = callback({
                 propertyName,
@@ -251,7 +257,11 @@ export default class Pawn {
             let property = element[propertyName];
 
             if (property) {
-                callback(property.bind(element));
+                if (typeof property === 'function') {
+                    property = property.bind(element);
+                }
+
+                callback(property);
             }
         }
     }

@@ -8,6 +8,7 @@ export default class AbstractEffectProps {
         this.hintDescription = props.hintDescription ?? props.internalName;
 
         this.getEvents = props.getEvents ?? null;
+        this.propertyBonuses = props.propertyBonuses ?? null;
         this.modifyPawnProperty = props.modifyPawnProperty ?? null;
         this.modifyOtherPawnProperty = props.modifyOtherPawnProperty ?? null;
         this.incomingDamageModifier = props.incomingDamageModifier ?? null;

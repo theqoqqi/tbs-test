@@ -42,6 +42,10 @@ export default class AbstractEffect {
         return this.getProperty('getEvents');
     }
 
+    get propertyBonuses() {
+        return this.getProperty('propertyBonuses');
+    }
+
     get modifyPawnProperty() {
         return this.getProperty('modifyPawnProperty');
     }
