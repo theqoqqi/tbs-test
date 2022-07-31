@@ -1,7 +1,6 @@
 {
   "props": {
     "effectType": "buff",
-    "isHidden": true,
-    "modifyPawnProperty": "blockBonus.modifyPawnProperty"
+    "isHidden": true
   }
 }

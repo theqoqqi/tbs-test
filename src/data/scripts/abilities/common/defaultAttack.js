@@ -1,3 +1,5 @@
+import PawnDamageReceivedEvent from '../../../../cls/events/types/PawnDamageReceivedEvent.js';
+import AbilitySlot from '../../../../cls/enums/AbilitySlot.js';
 
 export default {
     /** @this Ability */
@@ -12,5 +14,28 @@ export default {
         } else {
             moveExecutor.makeMovementMove(move, path);
         }
+    },
+    /** @this Effect */
+    getEvents() {
+        return [
+            [PawnDamageReceivedEvent, event => {
+                if (event.attacker !== this.owner || event.ability.slot !== AbilitySlot.REGULAR) {
+                    return;
+                }
+
+                let addEffectIfNeeded = (effectName, target) => {
+                    let chance = this.scriptParams[effectName + 'Chance'] ?? 1;
+                    let duration = this.scriptParams[effectName + 'Duration'];
+
+                    if (duration && chance >= Math.random()) {
+                        this.fight.ensurePawnEffect(target, effectName, {
+                            duration,
+                        });
+                    }
+                };
+
+                addEffectIfNeeded('burn', event.victim);
+            }],
+        ];
     },
 }

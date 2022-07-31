@@ -2,8 +2,7 @@
   "props": {
     "effectType": "debuff",
     "imageName": "burning",
-    "hintTitle": "effect_burn_hint",
-    "hintDescription": "effect_burn_header",
-    "getEvents": "burn.getEvents"
+    "hintTitle": "effect_burn_header",
+    "hintDescription": "effect_burn_hint"
   }
 }
