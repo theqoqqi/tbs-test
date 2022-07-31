@@ -1,6 +1,8 @@
 
 module.exports = class Parser {
 
+    static keyCharsRegex = /[@~.?\w]/;
+
     pos;
 
     constructor() {
@@ -27,10 +29,10 @@ module.exports = class Parser {
 
         this.skipSpaces();
 
-        while (this.hasNext && this.checkChar(/[@~.?\w]/)) {
+        while (this.hasNext && this.checkChar(Parser.keyCharsRegex)) {
             let [key, value] = this.parseField();
 
-            this.#addField(fields, key, value);
+            Parser.#addField(fields, key, value);
 
             this.skipSpaces();
         }
@@ -38,7 +40,7 @@ module.exports = class Parser {
         return fields;
     }
 
-    #addField(fields, key, value) {
+    static #addField(fields, key, value) {
         if (Array.isArray(fields[key])) {
             fields[key].push(value);
         } else if (fields[key] !== undefined) {
@@ -51,7 +53,7 @@ module.exports = class Parser {
     parseField() {
         this.skipSpaces();
 
-        let key = this.readWhile(/[@~.?\w]/);
+        let key = this.readWhile(Parser.keyCharsRegex);
 
         this.skipSpaces();
 
@@ -108,7 +110,7 @@ module.exports = class Parser {
 
     skipSpaces(withNewLine = true) {
         if (withNewLine) {
-            this.skip(' \r\n\t');
+            this.skip(' \r\n\t\uFEFF');
         } else {
             this.skip(' \t');
         }
