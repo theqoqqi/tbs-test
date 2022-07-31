@@ -6,7 +6,7 @@ import Team from './cls/pawns/Team.js';
 let army1 = new Army(Team.DEFAULT_1);
 let army2 = new Army(Team.DEFAULT_2);
 
-army1.addSquad('test_dragon', 50);
+army1.addSquad('test_dragon', 5);
 army1.addSquad('peasant', 250);
 army1.addSquad('robber', 100);
 army1.addSquad('robber2', 50);
