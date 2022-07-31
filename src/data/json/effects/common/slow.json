@@ -1,0 +1,8 @@
+{
+  "props": {
+    "effectType": "debuff",
+    "imageName": "slow",
+    "hintTitle": "effect_slow_header",
+    "hintDescription": "effect_slow_hint"
+  }
+}

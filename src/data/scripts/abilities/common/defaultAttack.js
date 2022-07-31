@@ -19,7 +19,7 @@ export default {
     getEvents() {
         return [
             [PawnDamageReceivedEvent, event => {
-                if (event.attacker !== this.owner || event.ability.slot !== AbilitySlot.REGULAR) {
+                if (event.attacker !== this.owner || event.ability !== this) {
                     return;
                 }
 
@@ -35,6 +35,7 @@ export default {
                 };
 
                 addEffectIfNeeded('burn', event.victim);
+                addEffectIfNeeded('slow', event.victim);
             }],
         ];
     },
