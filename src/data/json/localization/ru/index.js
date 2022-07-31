@@ -1,0 +1,21 @@
+
+export {default as common} from './common.json';
+export {default as rus_base} from './rus_base.json';
+export {default as rus_battle} from './rus_battle.json';
+export {default as rus_boss} from './rus_boss.json';
+export {default as rus_hero} from './rus_hero.json';
+export {default as rus_items} from './rus_items.json';
+export {default as rus_items_base} from './rus_items_base.json';
+export {default as rus_map} from './rus_map.json';
+export {default as rus_map_object} from './rus_map_object.json';
+export {default as rus_pet} from './rus_pet.json';
+export {default as rus_records} from './rus_records.json';
+export {default as rus_rewards} from './rus_rewards.json';
+export {default as rus_skills} from './rus_skills.json';
+export {default as rus_spells} from './rus_spells.json';
+export {default as rus_spirits} from './rus_spirits.json';
+export {default as rus_units} from './rus_units.json';
+export {default as rus_units_features} from './rus_units_features.json';
+export {default as rus_units_specials} from './rus_units_specials.json';
+export {default as rus_windows} from './rus_windows.json';
+export {default as rus_windows_small} from './rus_windows_small.json';
