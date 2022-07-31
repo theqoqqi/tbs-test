@@ -135,8 +135,10 @@ export default class App extends React.Component {
         let fromRight = attackerPlainPosition.x > victimPlainPosition.x;
         let damageOffset = new Vector(0, App.CELL_SIZE * -0.5);
 
-        if (hitInfo.isCriticalHit) {
-            this.createCritSplash(cell, damageOffset, hitInfo.damage)
+        if (hitInfo.isEvaded) {
+            this.createMissSplash(cell, damageOffset);
+        } else if (hitInfo.isCriticalHit) {
+            this.createCritSplash(cell, damageOffset, hitInfo.damage);
         } else {
             this.createDamageSplash(cell, damageOffset, hitInfo.damage);
         }
