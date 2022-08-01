@@ -1,7 +1,7 @@
 import './index.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Tooltip} from '@mui/material';
+import Tooltip from '../../util/Tooltip';
 import {buildStyles, CircularProgressbar} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 

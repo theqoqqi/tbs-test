@@ -1,0 +1,47 @@
+
+.pawn-parameter {
+    display: flex;
+
+    padding: 1px 5px;
+
+    font-size: 14px;
+}
+
+.pawn-parameter:hover {
+    background-color: #ddd;
+}
+
+.pawn-parameter main {
+    display: flex;
+    justify-content: space-between;
+
+    flex: 4;
+}
+
+.pawn-parameter aside {
+    flex: 1;
+}
+
+.pawn-parameter-title {
+    padding-right: 5px;
+}
+
+.pawn-parameter-value {
+    padding-left: 5px;
+}
+
+.pawn-parameter-base-value {
+    padding-left: 5px;
+
+    color: gray;
+}
+
+
+
+.pawn-parameter-tooltip {
+
+}
+
+.pawn-parameter-tooltip .pawn-parameter {
+    font-size: 11px;
+}
