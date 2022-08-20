@@ -1,5 +1,5 @@
 
-.pawn-parameter {
+.pawnParameter {
     display: flex;
 
     padding: 1px 5px;
@@ -7,41 +7,35 @@
     font-size: 14px;
 }
 
-.pawn-parameter:hover {
+.pawnParameter:hover {
     background-color: #ddd;
 }
 
-.pawn-parameter main {
+.pawnParameter main {
     display: flex;
     justify-content: space-between;
 
     flex: 4;
 }
 
-.pawn-parameter aside {
+.pawnParameter aside {
     flex: 1;
 }
 
-.pawn-parameter-title {
+.pawnParameter .title {
     padding-right: 5px;
 }
 
-.pawn-parameter-value {
+.pawnParameter .value {
     padding-left: 5px;
 }
 
-.pawn-parameter-base-value {
+.pawnParameter .baseValue {
     padding-left: 5px;
 
     color: gray;
 }
 
+.pawnParameterTooltip {
 
-
-.pawn-parameter-tooltip {
-
-}
-
-.pawn-parameter-tooltip .pawn-parameter {
-    font-size: 11px;
 }

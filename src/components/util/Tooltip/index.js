@@ -1,9 +1,13 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import {Tooltip as MuiTooltip} from '@mui/material';
 import classNames from 'classnames';
 
-export default class Tooltip extends React.Component {
+class Tooltip extends React.Component {
+
+    static Title = TooltipTitle;
+
+    static Description = TooltipDescription;
 
     render() {
         let classes = this.props.classes ?? {};
@@ -18,3 +22,13 @@ export default class Tooltip extends React.Component {
         );
     }
 }
+
+function TooltipTitle(props) {
+    return <div {...props} className={styles.tooltipTitle}>{props.children}</div>;
+}
+
+function TooltipDescription(props) {
+    return <div {...props} className={styles.tooltipDescription}>{props.children}</div>;
+}
+
+export default Tooltip;

@@ -1,4 +1,4 @@
-.modal.pawn-info-modal {
+.pawnInfoModal {
     position: fixed;
     display: flex;
     align-items: center;
@@ -11,47 +11,49 @@
     z-index: 1300;
 }
 
-.modal.pawn-info-modal .modal-content {
+.pawnInfoModal .modalContent {
     width: 100%;
     padding: 16px;
 
     border: 2px solid black;
 }
 
-.pawn-info-modal header h2 {
+.pawnInfoModal header h2 {
     margin-top: 0;
 }
 
-.pawn-info-modal footer {
+.pawnInfoModal footer {
     display: flex;
     justify-content: flex-end;
 
     margin-top: 16px;
 }
 
-.pawn-info-modal .subtitle {
-    font-weight: 500;
-}
 
 
-
-.main-pawn-info {
+.mainPawnInfo {
     display: flex;
 }
 
 
 
-.pawn-portrait {
+.pawnPortrait {
     width: 120px;
     margin-right: 10px;
 }
 
 
 
-.pawn-parameter-list {
+.pawnParameterList {
     display: flex;
     flex-direction: column;
     align-items: stretch;
 
     flex: 1;
+}
+
+
+
+.closeButton {
+
 }

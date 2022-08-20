@@ -14,6 +14,9 @@ export default class DamageRangesTooltipContent extends React.Component {
                     title={damageType.enumKey}
                     value={`${min} - ${max}`}
                     noAside
+                    containerProps={{
+                        style: {fontSize: '11px'},
+                    }}
                 />
             );
         });

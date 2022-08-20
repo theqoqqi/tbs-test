@@ -1,4 +1,4 @@
-import './PawnEffect.css';
+import styles from './styles/PawnEffect.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import EffectType from '../../../cls/enums/EffectType.js';
@@ -17,27 +17,29 @@ export default class PawnEffect extends React.Component {
     render() {
         let $tooltip = (
             <>
-                <div className='tooltip-title'>{this.props.title}</div>
-                <div className='tooltip-description'>{this.props.description}</div>
+                <Tooltip.Title>{this.props.title}</Tooltip.Title>
+                <Tooltip.Description>{this.props.description}</Tooltip.Description>
             </>
         );
 
         let duration = this.props.duration;
+        let effectTypeName = this.props.effectType.enumKey.toLowerCase();
 
         return (
             <Tooltip
-                classes={{ popper: 'pawn-effect-tooltip' }}
+                classes={{ popper: styles.pawnEffectTooltip }}
                 title={$tooltip}
-                disableInteractive>
+                disableInteractive
+            >
                 <div
-                    className={classNames('pawn-effect', {
-                        [this.props.effectType.enumKey.toLowerCase()]: true,
+                    className={classNames(styles.pawnEffect, {
+                        [styles[effectTypeName]]: true,
                     })}
                 >
-                    <div className='pawn-effect-icon' style={{display: "inline-block"}}>
+                    <div className={styles.pawnEffectIcon}>
                         <img src={this.props.image} alt={this.props.title} />
                     </div>
-                    <span className='pawn-effect-title'>
+                    <span className={styles.pawnEffectTitle}>
                         {this.props.title}
                     </span>
                     {' '}

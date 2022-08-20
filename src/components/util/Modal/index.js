@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
@@ -13,7 +13,7 @@ const BackdropUnstyled = React.forwardRef((props, ref) => {
     const { open, className, ...other } = props;
     return (
         <div
-            className={classNames({ 'MuiBackdrop-open': open }, 'backdrop', className)}
+            className={classNames({ 'MuiBackdrop-open': open }, styles.backdrop, className)}
             ref={ref}
             {...other}
         />
@@ -55,12 +55,15 @@ export default class Modal extends React.Component {
         return (
             <StyledModal
                 {...modalProps}
-                className={classNames('modal', this.props.className)}
+                className={classNames(styles.modal, this.props.className)}
                 components={{ Backdrop: StyledBackdrop }}
                 open={this.props.open}
                 onClose={this.props.onClose}
             >
-                <div className='modal-content' {...this.props.contentProps}>
+                <div
+                    {...this.props.contentProps}
+                    className={classNames(styles.modalContent, this.props.contentProps.className)}
+                >
                     {this.props.children}
                 </div>
             </StyledModal>

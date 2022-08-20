@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './styles/index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../util/Modal';
@@ -6,13 +6,12 @@ import MovementType from '../../../cls/enums/MovementType.js';
 import Ranges from '../../../cls/util/Ranges.js';
 import Resistances from '../../../cls/util/Resistances.js';
 import Vector from '../../../cls/util/Vector.js';
-import WithSeparators from '../../util/WithSeparators';
 import PawnParameter from './PawnParameter.js';
-import PawnFeature from './PawnFeature.js';
-import PawnEffect from './PawnEffect.js';
-import PawnAbility from './PawnAbility.js';
 import ResistancesTooltipContent from './ResistancesTooltipContent.js';
 import DamageRangesTooltipContent from './DamageRangesTooltipContent.js';
+import PawnAbilityList from './PawnAbilityList.js';
+import PawnEffectList from './PawnEffectList.js';
+import PawnFeatureList from './PawnFeatureList.js';
 
 export default class PawnInfoModal extends React.Component {
 
@@ -49,9 +48,9 @@ export default class PawnInfoModal extends React.Component {
 
             movementType: PropTypes.oneOf(Object.values(MovementType)),
 
-            features: PropTypes.arrayOf(PropTypes.shape(PawnFeature.propTypes)),
-            effects: PropTypes.arrayOf(PropTypes.shape(PawnEffect.propTypes)),
-            abilities: PropTypes.arrayOf(PropTypes.shape(PawnAbility.propTypes)),
+            features: PawnFeatureList.propTypes.features,
+            effects: PawnEffectList.propTypes.effects,
+            abilities: PawnAbilityList.propTypes.abilities,
         }),
         onClose: PropTypes.func,
     };
@@ -71,23 +70,12 @@ export default class PawnInfoModal extends React.Component {
         let minDamage = p.damageRanges.combinedMin;
         let maxDamage = p.damageRanges.combinedMax;
 
-        let $features = p.features.map((feature, index) => {
-            return <PawnFeature key={index} {...feature} />;
-        });
-
-        let $effects = p.effects.map((effect, index) => {
-            return <PawnEffect key={index} {...effect} />;
-        });
-
-        let $abilities = p.abilities.map((ability, index) => {
-            return <PawnAbility key={index} {...ability} />;
-        });
-
-        let $noData = <span style={{color: 'gray'}}>Нет</span>;
-
         return (
             <Modal
-                className='pawn-info-modal'
+                className={styles.pawnInfoModal}
+                contentProps={{
+                    className: styles.modalContent,
+                }}
                 open={opened}
                 hideBackdrop={true}
                 onClose={onClose}
@@ -100,11 +88,11 @@ export default class PawnInfoModal extends React.Component {
                     <h2>{p.unitTitle}</h2>
                 </header>
                 <main>
-                    <div className='main-pawn-info'>
-                        <div className='pawn-portrait'>
+                    <div className={styles.mainPawnInfo}>
+                        <div className={styles.pawnPortrait}>
                             <img src={p.image} alt={p.unitTitle} />
                         </div>
-                        <div className='pawn-parameter-list'>
+                        <div className={styles.pawnParameterList}>
                             <PawnParameter
                                 title='Атака'
                                 value={p.attack}
@@ -150,24 +138,12 @@ export default class PawnInfoModal extends React.Component {
                             />
                         </div>
                     </div>
-                    <div className='pawn-feature-list'>
-                        <span className='subtitle'>Особенности:</span>
-                        {' '}
-                        <WithSeparators separator=', '>
-                            {$features.length ? $features : $noData}
-                        </WithSeparators>
-                    </div>
-                    <div className='pawn-effect-list'>
-                        <span className='subtitle'>Эффекты:</span>
-                        {$effects.length ? $effects : <div>{$noData}</div>}
-                    </div>
-                    <div className='pawn-ability-list'>
-                        <span className='subtitle'>Способности:</span>
-                        {$abilities.length ? $abilities : <div>{$noData}</div>}
-                    </div>
+                    <PawnFeatureList features={p.features} />
+                    <PawnEffectList effects={p.effects} />
+                    <PawnAbilityList abilities={p.abilities} />
                 </main>
                 <footer>
-                    <button className='close-button' onClick={onClose}>
+                    <button className={styles.closeButton} onClick={onClose}>
                         Закрыть
                     </button>
                 </footer>

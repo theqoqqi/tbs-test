@@ -1,4 +1,4 @@
-import './PawnParameter.css';
+import styles from './styles/PawnParameter.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from '../../util/Tooltip';
@@ -22,6 +22,7 @@ export default class PawnParameter extends React.Component {
         baseValue: this.valueType,
         noAside: PropTypes.bool,
         format: PropTypes.func,
+        containerProps: PropTypes.object,
     };
 
     static defaultProps = {
@@ -40,6 +41,7 @@ export default class PawnParameter extends React.Component {
             baseValue,
             noAside,
             format,
+            containerProps,
         } = this.props;
 
         let valueText = format(value, current);
@@ -48,22 +50,22 @@ export default class PawnParameter extends React.Component {
 
         return (
             <Tooltip
-                classes={{ popper: 'pawn-parameter-tooltip' }}
+                classes={{ popper: styles.pawnParameterTooltip }}
                 title={tooltip ?? ''}
                 open={tooltip ? undefined : false}
                 disableInteractive>
-                <div className='pawn-parameter'>
+                <div {...containerProps} className={styles.pawnParameter}>
                     <main>
-                        <div className='pawn-parameter-title'>
+                        <div className={styles.title}>
                             {title}
                         </div>
-                        <div className='pawn-parameter-value'>
+                        <div className={styles.value}>
                             {valueText}
                         </div>
                     </main>
                     {!noAside && (
                         <aside>
-                            <div className='pawn-parameter-base-value'>
+                            <div className={styles.baseValue}>
                                 {showAsideText && `(${baseValue})`}
                             </div>
                         </aside>

@@ -14,6 +14,9 @@ export default class ResistancesTooltipContent extends React.Component {
                     title={damageType.enumKey}
                     value={resistance * 100 + ' %'}
                     noAside
+                    containerProps={{
+                        style: {fontSize: '11px'},
+                    }}
                 />
             );
         });

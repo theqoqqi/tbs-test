@@ -1,0 +1,28 @@
+
+.pawnEffectTooltip {
+    max-width: 250px;
+}
+
+.pawnEffect {
+
+}
+
+.pawnEffect.neutral {
+    color: #888888;
+}
+
+.pawnEffect.debuff {
+    color: #dd4444;
+}
+
+.pawnEffect.buff {
+    color: #008800;
+}
+
+.pawnEffectIcon {
+    display: inline;
+}
+
+.pawnEffectTitle {
+
+}

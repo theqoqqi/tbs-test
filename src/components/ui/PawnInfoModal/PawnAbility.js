@@ -1,4 +1,4 @@
-import './PawnAbility.css';
+import styles from './styles/PawnAbility.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from '../../util/Tooltip';
@@ -19,22 +19,23 @@ export default class PawnAbility extends React.Component {
 
         let $tooltip = (
             <>
-                <div className='tooltip-title'>{this.props.title}</div>
-                <div className='tooltip-description'>{this.props.description}</div>
+                <Tooltip.Title>{this.props.title}</Tooltip.Title>
+                <Tooltip.Description>{this.props.description}</Tooltip.Description>
                 {currentReload > 0 && <>Перезарядка: {currentReload}</>}
             </>
         );
 
         return (
             <Tooltip
-                classes={{ popper: 'pawn-ability-tooltip' }}
+                classes={{ popper: styles.pawnAbilityTooltip }}
                 title={$tooltip}
-                disableInteractive>
-                <div className='pawn-ability'>
-                    <div className='pawn-ability-icon' style={{display: "inline-block"}}>
+                disableInteractive
+            >
+                <div className={styles.pawnAbility}>
+                    <div className={styles.pawnAbilityIcon}>
                         <img src={this.props.image} alt={this.props.title} />
                     </div>
-                    <span className='pawn-ability-title'>
+                    <span className={styles.pawnAbilityTitle}>
                         {this.props.title}
                     </span>
                     {' '}
