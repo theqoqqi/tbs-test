@@ -57,7 +57,7 @@ export default class ArenaCell extends React.Component {
                     [styles.arenaCell]: true,
                     [styles.selectable]: this.props.selectable,
                     [styles.selected]: this.props.selected,
-                    [passabilityClassName]: true,
+                    [styles[passabilityClassName]]: true,
                 })}
                 style={{
                     '--cell-size': this.context.gridProps.cellSize,
