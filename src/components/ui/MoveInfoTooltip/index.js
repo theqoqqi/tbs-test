@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Popover} from '@mui/material';
@@ -24,8 +24,8 @@ export default class MoveInfoTooltip extends React.Component {
         return (
             <Popover
                 classes={{
-                    root: 'action-info-tooltip',
-                    paper: 'tooltip-content',
+                    root: styles.actionInfoTooltip,
+                    paper: styles.tooltipContent,
                 }}
                 open={this.props.opened}
                 hideBackdrop={true}

@@ -1,5 +1,5 @@
 
-.splash-layer {
+.splashLayer {
     position: relative;
 }
 
@@ -52,20 +52,20 @@
 
 
 
-.splash-enter {
+.splashEnter {
     opacity: 0;
 }
 
-.splash-enter-active {
+.splashEnterActive {
     opacity: 1;
     transition: .2s ease-in;
 }
 
-.splash-exit {
+.splashExit {
     opacity: 1;
 }
 
-.splash-exit-active {
+.splashExitActive {
     opacity: 0;
     transition: 3s ease-in;
 

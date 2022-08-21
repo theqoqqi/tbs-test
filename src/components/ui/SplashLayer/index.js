@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import classNames from 'classnames';
@@ -42,10 +42,15 @@ export default class SplashLayer extends React.Component {
                 <CSSTransition
                     key={splash.id}
                     timeout={3000}
-                    classNames='splash'
+                    classNames={{
+                        enter: styles.splashEnter,
+                        enterActive: styles.splashEnterActive,
+                        exit: styles.splashExit,
+                        exitActive: styles.splashExitActive,
+                    }}
                 >
                     <div
-                        className={classNames('splash', splash.splashType)}
+                        className={classNames(styles.splash, styles[splash.splashType])}
                         style={{
                             left: splash.position.x + 'px',
                             top: splash.position.y + 'px',
@@ -58,7 +63,7 @@ export default class SplashLayer extends React.Component {
         });
 
         return (
-            <TransitionGroup className='splash-layer'>
+            <TransitionGroup className={styles.splashLayer}>
                 {$splashes}
             </TransitionGroup>
         );

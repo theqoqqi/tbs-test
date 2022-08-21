@@ -1,5 +1,5 @@
 
-.ability-slot {
+.abilitySlot {
     --border-color: black;
     --border-width: 2px;
 
@@ -16,31 +16,35 @@
     transition: .1s ease-in-out;
 }
 
-.ability-slot.empty {
+.abilitySlot.empty {
     opacity: 0.25;
 }
 
-.ability-slot.muted {
+.abilitySlot.muted {
     filter: grayscale(1);
 }
 
-.ability-slot:not(.ready):not(.empty) {
+.abilitySlot:not(.ready):not(.empty) {
     filter: grayscale(1);
 }
 
-.ability-slot.selected {
+.abilitySlot.selected {
     --border-color: green;
     --border-width: 4px;
 }
 
-.ability-slot.ready:hover {
+.abilitySlot.ready:hover {
     --border-color: darkgreen;
     cursor: pointer;
 }
 
+.abilitySlot.reloading {
+
+}
 
 
-.ability-slot .ability-charges {
+
+.abilitySlot .abilityCharges {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -64,11 +68,17 @@
 
 
 
-.ability-slot .ability-reload-container {
+.abilitySlot .abilityReloadContainer {
     overflow: hidden;
     border-radius: 6px;
 }
 
-.ability-slot .ability-reload {
+.abilitySlot .abilityReload {
     transform: scale(2);
+}
+
+
+
+.abilityTooltip {
+
 }

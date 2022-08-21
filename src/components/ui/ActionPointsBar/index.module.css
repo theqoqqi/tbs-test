@@ -1,9 +1,9 @@
 
-.action-points-bar {
+.actionPointsBar {
     display: flex;
 }
 
-.action-point {
+.actionPoint {
     width: 12px;
     height: 12px;
     margin-right: 8px;
@@ -15,14 +15,14 @@
     transition: .3s;
 }
 
-.action-point.usable {
+.actionPoint.usable {
     background-color: green;
 }
 
-.action-point.used {
+.actionPoint.used {
     background-color: dodgerblue;
 }
 
-.action-point.empty {
+.actionPoint.empty {
     background-color: gray;
 }

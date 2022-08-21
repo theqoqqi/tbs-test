@@ -689,6 +689,7 @@ export default class App extends React.Component {
         return {
             abilities,
             canWait: !pawn.isWaiting,
+            canDefence: true,
             currentActionPoints: pawn.currentActionPoints,
             maxActionPoints: pawn.maxActionPoints,
         };

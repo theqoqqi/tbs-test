@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -22,10 +22,10 @@ export default class ActionPointsBar extends React.Component {
             let $point = (
                 <div
                     key={i}
-                    className={classNames('action-point', {
-                        'usable': usable,
-                        'used': used,
-                        'empty': !usable && !used,
+                    className={classNames(styles.actionPoint, {
+                        [styles.usable]: usable,
+                        [styles.used]: used,
+                        [styles.empty]: !usable && !used,
                     })}
                 />
             );
@@ -40,7 +40,7 @@ export default class ActionPointsBar extends React.Component {
         let $points = this.getPoints();
 
         return (
-            <div className='action-points-bar'>
+            <div className={styles.actionPointsBar}>
                 {$points}
             </div>
         );

@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {default as AbilitySlotEnum} from '../../../cls/enums/AbilitySlot.js';
@@ -14,6 +14,7 @@ export default class PawnControls extends React.Component {
             maxActionPoints: PropTypes.number,
             abilities: PropTypes.arrayOf(PropTypes.shape(AbilitySlot.propTypes)),
             canWait: PropTypes.bool,
+            canDefence: PropTypes.bool,
         }),
         onAbilityClick: PropTypes.func,
         onWaitButtonClick: PropTypes.func,
@@ -58,27 +59,27 @@ export default class PawnControls extends React.Component {
         let $abilities = this.getAbilities();
 
         return (
-            <div className='pawn-controls'>
-                <div className='abilities'>
+            <div className={styles.pawnControls}>
+                <div className={styles.abilities}>
                     {$abilities}
                 </div>
                 <div
-                    className={classNames('move-button wait', {
-                        'muted': !pawnInfo?.canWait,
+                    className={classNames(styles.moveButton, styles.wait, {
+                        [styles.muted]: !pawnInfo?.canWait,
                     })}
                     onClick={onWaitButtonClick}
                 >
                     W
                 </div>
                 <div
-                    className={classNames('move-button wait', {
-                        'muted': !pawnInfo?.canWait,
+                    className={classNames(styles.moveButton, styles.defence, {
+                        [styles.muted]: !pawnInfo?.canDefence,
                     })}
                     onClick={onDefenceButtonClick}
                 >
                     D
                 </div>
-                <div className='action-points-bar-container'>
+                <div className={styles.actionPointsBarContainer}>
                     <ActionPointsBar
                         current={pawnInfo?.currentActionPoints}
                         max={pawnInfo?.maxActionPoints}

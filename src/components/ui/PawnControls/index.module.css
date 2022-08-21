@@ -1,5 +1,5 @@
 
-.pawn-controls {
+.pawnControls {
     position: fixed;
     display: flex;
     align-items: center;
@@ -17,7 +17,7 @@
     border-top-left-radius: 20px;
 }
 
-.pawn-controls .abilities {
+.pawnControls .abilities {
     display: flex;
     align-items: center;
 
@@ -25,13 +25,13 @@
     margin: 0 8px;
 }
 
-.pawn-controls .abilities > * {
+.pawnControls .abilities > * {
     margin: 8px;
 }
 
 
 
-.action-points-bar-container {
+.actionPointsBarContainer {
     position: absolute;
     left: 24px;
     top: -8px;
@@ -39,7 +39,7 @@
 
 
 
-.move-button {
+.moveButton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,11 +57,19 @@
     transition: .1s ease-in-out;
 }
 
-.move-button.muted {
+.moveButton.wait {
+
+}
+
+.moveButton.defence {
+
+}
+
+.moveButton.muted {
     filter: grayscale(0.5);
 }
 
-.move-button:hover {
+.moveButton:hover {
     border-color: darkgreen;
     cursor: pointer;
 }

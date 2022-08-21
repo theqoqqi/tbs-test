@@ -1,9 +1,10 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from '../../util/Tooltip';
 import {buildStyles, CircularProgressbar} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import classNames from 'classnames';
 
 export default class AbilitySlot extends React.Component {
 
@@ -26,7 +27,7 @@ export default class AbilitySlot extends React.Component {
     render() {
         if (this.props.empty) {
             return (
-                <div className='ability-slot empty' />
+                <div className={classNames(styles.abilitySlot, styles.empty)} />
             );
         }
 
@@ -46,7 +47,7 @@ export default class AbilitySlot extends React.Component {
 
         return (
             <Tooltip
-                classes={{ popper: 'ability-tooltip' }}
+                classes={{ popper: styles.abilityTooltip }}
                 title={(
                     <>
                         <div>
@@ -60,11 +61,11 @@ export default class AbilitySlot extends React.Component {
                 disableInteractive>
                 <div
                     className={{
-                        'ability-slot': true,
-                        'reloading': currentReload > 0,
-                        'muted': muted,
-                        'ready': ready,
-                        'selected': selected,
+                        [styles.abilitySlot]: true,
+                        [styles.reloading]: currentReload > 0,
+                        [styles.muted]: muted,
+                        [styles.ready]: ready,
+                        [styles.selected]: selected,
                     }}
                     style={{
                         backgroundImage: `url('${image}')`,
@@ -72,14 +73,14 @@ export default class AbilitySlot extends React.Component {
                     onClick={onClick}
                 >
                     {usesCharges && (
-                        <span className='ability-charges'>
+                        <span className={styles.abilityCharges}>
                             {charges}
                         </span>
                     )}
                     {currentReload > 0 && (
-                        <div className='ability-reload-container'>
+                        <div className={styles.abilityReloadContainer}>
                             <CircularProgressbar
-                                className='ability-reload'
+                                className={styles.abilityReload}
                                 value={currentReload}
                                 maxValue={maxReload}
                                 strokeWidth={50}

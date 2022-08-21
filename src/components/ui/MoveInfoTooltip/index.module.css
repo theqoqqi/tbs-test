@@ -1,0 +1,8 @@
+
+.actionInfoTooltip {
+    pointer-events: none;
+}
+
+.actionInfoTooltip .tooltipContent {
+    padding: 4px 8px;
+}

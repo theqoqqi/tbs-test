@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../util/Modal';
@@ -20,7 +20,7 @@ export default class FightSummaryModal extends React.Component {
 
         return (
             <Modal
-                className='fight-summary-modal'
+                className={styles.fightSummaryModal}
                 open={opened}
                 onClose={onClose}
             >
