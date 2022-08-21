@@ -114,12 +114,22 @@ export default class MoveExecutor {
     }
 
     shouldHitback(attacker, victim, ability) {
+        return this.isHitbackApplicable(attacker, victim)
+            && this.isHitbackAllowed(attacker, victim, ability);
+    }
+
+    isHitbackAllowed(attacker, victim, ability) {
+        return attacker
+            && victim
+            && victim.canHitback
+            && !attacker.hitbackProtection
+            && !ability.noHitbacks;
+    }
+
+    isHitbackApplicable(attacker, victim) {
         return attacker
             && victim
             && victim.stackSize > 0
-            && victim.canHitback
-            && !attacker.hitbackProtection
-            && !ability.noHitbacks
             && this.#fight.hasAbilityInSlot(victim, AbilitySlot.REGULAR)
             && HexagonUtils.isNeighbors(attacker.position, victim.position);
     }
