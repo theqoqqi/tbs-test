@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Vector from '../../../cls/util/Vector.js';
@@ -60,7 +60,7 @@ export default class ArenaPawn extends React.Component {
 
         return (
             <div
-                className={classNames('arena-pawn', {
+                className={classNames(styles.arenaPawn, {
                     [pawnType.enumKey.toLowerCase()]: true,
                 })}
                 style={{
@@ -76,30 +76,30 @@ export default class ArenaPawn extends React.Component {
             >
                 {name}
                 {showHealthBar && (
-                    <div className='health-bar' style={{'--percent': health / maxHealth}}>
-                        <div className='health' />
+                    <div className={styles.healthBar} style={{'--percent': health / maxHealth}}>
+                        <div className={styles.health} />
                     </div>
                 )}
                 {showStatusBar && (
-                    <div className='status-bar'>
+                    <div className={styles.statusBar}>
                         {showStackSize && (
-                            <span className='effects'>
-                                <span className={classNames('debuffs', {muted: debuffs === 0})}>
+                            <span className={styles.effects}>
+                                <span className={classNames(styles.debuffs, {[styles.muted]: debuffs === 0})}>
                                     {debuffs}
                                 </span>
-                                <span className='separator' />
-                                <span className={classNames('buffs', {muted: buffs === 0})}>
+                                <span className={styles.separator} />
+                                <span className={classNames(styles.buffs, {[styles.muted]: buffs === 0})}>
                                     {buffs}
                                 </span>
                             </span>
                         )}
                         {showEffects && (
-                            <span className='stack-size'>
+                            <span className={styles.stackSize}>
                                 {stackSize}
                             </span>
                         )}
                         {showTurnOrder && (
-                            <span className='turn-order' style={{'--order': turnOrder ?? 0}}>
+                            <span className={styles.turnOrder} style={{'--order': turnOrder ?? 0}}>
                                 {turnOrder ?? '×'}
                             </span>
                         )}

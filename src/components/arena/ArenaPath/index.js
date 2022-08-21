@@ -1,10 +1,11 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import eachCons from 'each-cons';
 import Vector from '../../../cls/util/Vector.js';
 import HexagonUtils from '../../../cls/util/HexagonUtils.js';
 import PropTypes from 'prop-types';
 import ArenaContext from '../Arena/ArenaContext.js';
+import classNames from 'classnames';
 
 export default class ArenaPath extends React.Component {
 
@@ -30,7 +31,7 @@ export default class ArenaPath extends React.Component {
 
         if (!targetPlainPosition.equals(lastPlainPosition)) {
             let center = Vector.lerp(lastPlainPosition, targetPlainPosition, 0.5);
-            let node = this.createNode('attack', center, lastPlainPosition, index++);
+            let node = this.createNode(styles.arenaPathNodeAttack, center, lastPlainPosition, index++);
 
             pathNodes.unshift(node);
         }
@@ -43,8 +44,8 @@ export default class ArenaPath extends React.Component {
                 let center = from.add(difference.multiply(-0.5));
 
                 return [
-                    this.createNode('move', from, center, index++),
-                    this.createNode('move', center, to, index++),
+                    this.createNode(styles.arenaPathNodeMove, from, center, index++),
+                    this.createNode(styles.arenaPathNodeMove, center, to, index++),
                 ];
             });
 
@@ -64,7 +65,7 @@ export default class ArenaPath extends React.Component {
         return (
             <div
                 key={index}
-                className={`arena-path-node arena-path-node-${className}`}
+                className={classNames(styles.arenaPathNode, className)}
                 style={{
                     left: center.x + 'px',
                     top: center.y + 'px',
@@ -81,7 +82,7 @@ export default class ArenaPath extends React.Component {
         let $pathNodes = this.getPathNodes();
 
         return (
-            <div className='arena-path'>
+            <div className={styles.arenaPath}>
                 {$pathNodes}
             </div>
         );

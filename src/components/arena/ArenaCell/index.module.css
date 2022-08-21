@@ -1,4 +1,4 @@
-.arena-cell {
+.arenaCell {
     --default-cell-size: 128;
     --spacing-px: 4px;
     --border-width: 2;
@@ -21,64 +21,64 @@
     user-select: none;
 }
 
-.arena-cell {
+.arenaCell {
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
-.arena-cell, .arena-cell * {
+.arenaCell, .arenaCell * {
     transition: .2s;
 }
 
-.arena-cell:hover {
+.arenaCell:hover {
     --border-width: 6;
 }
 
-.arena-cell.selected {
+.arenaCell.selected {
     --border-width: 6;
 }
 
 
 
-.arena-cell.walking-passable {
+.arenaCell.walkingPassable {
 
 }
 
-.arena-cell.soaring-passable .hexagon {
+.arenaCell.soaringPassable .hexagon {
     opacity: 0 !important;
 }
 
-.arena-cell.flying-passable .hexagon {
+.arenaCell.flyingPassable .hexagon {
     opacity: 0 !important;
 }
 
-.arena-cell.impassable .hexagon {
+.arenaCell.impassable .hexagon {
     opacity: 0 !important;
 }
 
 
 
-.arena-cell .content {
+.arenaCell .content {
     position: absolute;
 }
 
-.arena-cell .content .distance {
+.arenaCell .content .distance {
     font-size: calc(40px * var(--scale));
 }
 
-.arena-cell:hover .content .distance {
+.arenaCell:hover .content .distance {
     opacity: 1 !important;
 }
 
 
 
-.arena-cell svg {
+.arenaCell svg {
     height: calc(100% - var(--spacing-px) - var(--border-width-px) * var(--ratio));
     width: calc(100% - var(--spacing-px) - var(--border-width-px));
 
     overflow: visible;
 }
 
-.arena-cell svg .hexagon {
+.arenaCell svg .hexagon {
     fill: #92d050;
     fill-opacity: 0.5;
 
@@ -90,7 +90,7 @@
     opacity: 0.4;
 }
 
-.arena-cell:hover svg .hexagon {
+.arenaCell:hover svg .hexagon {
     fill-opacity: 0.5;
 
     stroke: #466220;
@@ -99,13 +99,13 @@
     opacity: 0.8;
 }
 
-.arena-cell.selectable svg .hexagon {
+.arenaCell.selectable svg .hexagon {
     fill: #404040;
 
     opacity: 0.5;
 }
 
-.arena-cell.selected svg .hexagon {
+.arenaCell.selected svg .hexagon {
     fill-opacity: 0.25;
 
     stroke: white;
@@ -116,7 +116,7 @@
 
 
 
-.arena-cell .coords {
+.arenaCell .coords {
     position: absolute;
     display: flex;
     justify-content: center;

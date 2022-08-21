@@ -1,10 +1,10 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Vector from '../../../cls/util/Vector.js';
 import ArenaContext from '../../arena/Arena/ArenaContext.js';
-import {paramCase} from 'change-case';
+import {camelCase} from 'change-case';
 import PassabilityType from '../../../cls/enums/PassabilityType.js';
 
 export default class ArenaCell extends React.Component {
@@ -37,7 +37,7 @@ export default class ArenaCell extends React.Component {
 
         let distanceSpan = this.props.distance > 0 && (
             <span
-                className='distance'
+                className={styles.distance}
                 style={{
                     color: this.props.distance === -1 ? 'darkred' : '#08f',
                     opacity: this.props.distance ? Math.max(0, 1 - this.props.distance / 10) : 0,
@@ -49,14 +49,14 @@ export default class ArenaCell extends React.Component {
             </span>
         );
 
-        let passabilityClassName = paramCase(this.props.passability.enumKey);
+        let passabilityClassName = camelCase(this.props.passability.enumKey);
 
         return (
             <div
                 className={classNames({
-                    'arena-cell': true,
-                    'selectable': this.props.selectable,
-                    'selected': this.props.selected,
+                    [styles.arenaCell]: true,
+                    [styles.selectable]: this.props.selectable,
+                    [styles.selected]: this.props.selected,
                     [passabilityClassName]: true,
                 })}
                 style={{
@@ -75,7 +75,7 @@ export default class ArenaCell extends React.Component {
                     version='1.1'
                     xmlns='http://www.w3.org/2000/svg'
                 >
-                    <path className='hexagon' d='
+                    <path className={styles.hexagon} d='
                         M 61 5.7735
                         a 20 20 0 0 1 20 0 l 44.0859 25.453
                         a 20 20 0 0 1 10 17.3205 l 0 50.906
@@ -85,11 +85,11 @@ export default class ArenaCell extends React.Component {
                         a 20 20 0 0 1 10 -17.3205 l 44.0859 -25.453
                     '/>
                 </svg>
-                <span className='content'>
+                <span className={styles.content}>
                     {this.props.content}
                     {distanceSpan}
                 </span>
-                <span className='coords'>
+                <span className={styles.coords}>
                     {this.props.axialPosition.x} {this.props.axialPosition.y}
                 </span>
             </div>

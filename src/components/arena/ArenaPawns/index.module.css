@@ -1,0 +1,24 @@
+
+.arenaPawns {
+
+}
+
+
+
+.arenaPawnEnter {
+    opacity: 0;
+}
+
+.arenaPawnEnterActive {
+    opacity: 1;
+    transition: opacity .2s ease-in;
+}
+
+.arenaPawnExit {
+    opacity: 1;
+}
+
+.arenaPawnExitActive {
+    opacity: 0;
+    transition: opacity .5s ease-in;
+}

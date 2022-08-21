@@ -1,4 +1,4 @@
-.arena-pawn {
+.arenaPawn {
     --team-color: black;
 
     display: flex;
@@ -19,37 +19,17 @@
     transition: .2s;
 }
 
-.arena-pawn:hover {
+.arenaPawn:hover {
     background-color: #ddd;
 }
 
-.arena-pawn > * {
+.arenaPawn > * {
     pointer-events: none;
 }
 
 
 
-.arena-pawn-enter {
-    opacity: 0;
-}
-
-.arena-pawn-enter-active {
-    opacity: 1;
-    transition: opacity .2s ease-in;
-}
-
-.arena-pawn-exit {
-    opacity: 1;
-}
-
-.arena-pawn-exit-active {
-    opacity: 0;
-    transition: opacity .5s ease-in;
-}
-
-
-
-.arena-pawn .health-bar {
+.arenaPawn .healthBar {
     --percent: 0.8;
     --hue: calc(var(--percent) * 105);
     --lightness: calc(50% - var(--percent) * 25%);
@@ -67,7 +47,7 @@
     border-radius: 4px;
 }
 
-.arena-pawn .health-bar .health {
+.arenaPawn .healthBar .health {
     position: relative;
     width: calc(var(--percent) * 100%);
     height: 100%;
@@ -78,7 +58,7 @@
 
 
 
-.arena-pawn .status-bar {
+.arenaPawn .statusBar {
     --gradient-fade-at: 15%;
 
     position: absolute;
@@ -102,13 +82,13 @@
     border-radius: 4px;
 }
 
-.arena-pawn .status-bar > * {
+.arenaPawn .statusBar > * {
     margin: 0 3px;
 }
 
 
 
-.arena-pawn .effects {
+.arenaPawn .effects {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -117,13 +97,13 @@
     font-weight: 500;
 }
 
-.arena-pawn .debuffs {
+.arenaPawn .debuffs {
     align-self: baseline;
     margin-right: 1px;
     color: #ff4444;
 }
 
-.arena-pawn .separator {
+.arenaPawn .separator {
     align-self: center;
     display: inline-block;
 
@@ -134,18 +114,18 @@
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-.arena-pawn .buffs {
+.arenaPawn .buffs {
     align-self: baseline;
     color: #44ff44;
 }
 
-.arena-pawn .muted {
+.arenaPawn .muted {
     color: rgba(255, 255, 255, 0.5);
 }
 
 
 
-.arena-pawn .stack-size {
+.arenaPawn .stackSize {
     flex: 4 0 0;
 
     background-color: var(--team-color);
@@ -157,7 +137,7 @@
 
 
 
-.arena-pawn .turn-order {
+.arenaPawn .turnOrder {
     --order: 1;
     --hue: max(0, 120 - (var(--order) - 1) * 15);
     --saturation: min(80%, 100% * var(--order)); /* if order === 0 then 0% else 80% */
@@ -175,12 +155,12 @@
 
 
 
-.arena-pawn.structure .status-bar {
+.arenaPawn.structure .statusBar {
     --gradient-fade-at: 25%;
 
     width: 60%;
 }
 
-.arena-pawn.structure .turn-order:only-child {
+.arenaPawn.structure .turnOrder:only-child {
     justify-content: center;
 }

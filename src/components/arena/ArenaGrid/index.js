@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import ArenaCell from '../ArenaCell';
@@ -59,7 +59,7 @@ export default class ArenaGrid extends React.Component {
         });
 
         return (
-            <div className='arena-grid'>
+            <div className={styles.arenaGrid}>
                 {$cells}
             </div>
         );

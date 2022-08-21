@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import HexagonUtils from '../../../cls/util/HexagonUtils.js';
@@ -35,7 +35,12 @@ export default class ArenaPawns extends React.Component {
                 <CSSTransition
                     key={pawn.id}
                     timeout={500}
-                    classNames='arena-pawn'
+                    classNames={{
+                        enter: styles.arenaPawnEnter,
+                        enterActive: styles.arenaPawnEnterActive,
+                        exit: styles.arenaPawnExit,
+                        exitActive: styles.arenaPawnExitActive,
+                    }}
                 >
                     <ArenaPawn
                         key={pawn.id}
@@ -51,7 +56,7 @@ export default class ArenaPawns extends React.Component {
         });
 
         return (
-            <TransitionGroup className='arena-pawns'>
+            <TransitionGroup className={styles.arenaPawns}>
                 {$pawns}
             </TransitionGroup>
         );

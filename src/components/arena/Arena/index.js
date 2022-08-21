@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import ArenaGrid from '../ArenaGrid';
@@ -56,7 +56,7 @@ export default class Arena extends React.Component {
 
         return (
             <ArenaContext.Provider value={this.props}>
-                <div className='arena' ref={this.rootRef}>
+                <div className={styles.arena} ref={this.rootRef}>
                     <ArenaGrid
                         ref={this.gridRef}
                         onClick={onCellClick}
