@@ -2,7 +2,7 @@ import PawnProps from '../../../../cls/pawns/props/PawnProps.js';
 
 export default {
     /** @this Feature */
-    modifyPawnProperty({pawn, propertyName, value}) {
+    modifyPawnProperty({propertyName, value}) {
 
         if (propertyName !== PawnProps.evasionChance) {
             return value;
