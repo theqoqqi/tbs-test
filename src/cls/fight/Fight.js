@@ -212,7 +212,11 @@ export default class Fight {
         let abilities = this.#getAbilitiesForAvailableMoves(forPawn, abilitySlot);
         let ability = abilities.length === 1 ? abilities[0] : null;
         let addMoves = moves => {
-            moves.forEach(move => movesMap.set(move.targetCell.position, move));
+            moves.forEach(move => {
+                if (!movesMap.has(move.targetCell.position)) {
+                    movesMap.set(move.targetCell.position, move);
+                }
+            });
         };
 
         if (!abilities || abilitySlot === AbilitySlot.REGULAR || ability.usesMovement) {
@@ -595,6 +599,7 @@ export default class Fight {
     isAbilityReady(pawn, ability) {
         return !ability.isReloading
             && (!ability.usesCharges || ability.hasCharges)
+            && !this.isAbilityDisabled(pawn, ability)
             && !this.isAbilityMuted(pawn, ability);
     }
 
